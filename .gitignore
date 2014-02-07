@@ -1,0 +1,37 @@
+# Misc:
+*.in
+*~
+.DS_Store
+*.thumb
+*.autosave
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.dvi
+*.fdb_latexmk
+*.fls
+*.glg
+*.glo
+*.gls
+*.idx
+*.ilg
+*.ind
+*.ist
+*.lof
+*.log
+*.lot
+*.nav
+*.nlo
+*.out
+*.pdfsync
+*.ps
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.maf
+*.mtc
+*.mtc0
+*.pdf
