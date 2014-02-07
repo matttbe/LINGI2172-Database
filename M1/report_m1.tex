@@ -1,0 +1,230 @@
+\documentclass[a4paper,11pt]{article}
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{lmodern}
+\usepackage[english]{babel}
+\usepackage{amsmath} % math
+\usepackage{amsfonts}% math
+\usepackage{amssymb} % math
+% \usepackage{gensymb} % math
+\usepackage{graphicx} % images
+% \usepackage{qtree}    % dessiner des arbres %% => texlive-humanities
+\usepackage{url}
+	\urlstyle{sf}
+\usepackage[usenames]{color}
+\usepackage[english]{varioref} % \vref and \vpageref
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage[backgroundcolor=yellow]{todonotes} %% todonotes: \listoftodos & \todo{Some note or other.} & \missingfigure{}
+
+\definecolor{codeBlue}{rgb}{0,0,1}
+\definecolor{webred}{rgb}{0.5,0,0}
+\definecolor{codeGreen}{rgb}{0,0.5,0}
+\definecolor{codeGrey}{rgb}{0.6,0.6,0.6}
+\definecolor{webdarkblue}{rgb}{0,0,0.4}
+\definecolor{webgreen}{rgb}{0,0.3,0}
+\definecolor{webblue}{rgb}{0,0,0.8}
+\definecolor{orange}{rgb}{0.7,0.1,0.1}
+
+\usepackage{caption}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{listings}		% Pour l'insersion de fichiers de codes sources.
+\lstset{
+	  language=SQL,
+	  frame=single,
+	  flexiblecolumns=true,
+	  numbers=none, % left
+	  stepnumber=1,
+	  numberstyle=\ttfamily\tiny,
+	  keywordstyle=\ttfamily\textcolor{blue},
+	  stringstyle=\ttfamily\textcolor{red},
+	  commentstyle=\ttfamily\textcolor{green},
+	  breaklines=true,
+	  extendedchars=true,
+	  basicstyle=\ttfamily\scriptsize,
+	  showstringspaces=false
+	}
+
+\IfFileExists{fourier.sty}{\usepackage{fourier}}{\typeout{! WARNING: Fourier package not included: skip it}}
+
+%%%%%%%%%%%%%%%%%%%%
+
+\title{\texttt{LINGI2172}: Databases - Mission 1}
+\author{Matthieu \textsc{Baerts}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+% \tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%
+\section*{Introduction}
+Here is the answers of the questions related to for the first mission.
+
+%%%%%%%%%%%%%%%%%%%%
+\section{PostgreSQL}
+
+\subsection{What are available databases on this server? How can you list them? Can you connect to the “suppliers and parts” one and send a simple query (e.g. ‘\texttt{SELECT * FROM suppliers}’)?}
+
+There are four databases on this server. We can list them with this command:
+\begin{lstlisting}[language=bash]
+	$ psql -h attma.info.ucl.ac.be -l -U lingi2172student
+\end{lstlisting}
+Which returns these messages:
+\begin{lstlisting}[basicstyle=\ttfamily\tiny,flexiblecolumns=false]
+                                            List of databases
+             Name              |   Owner   | Encoding |  Collation  |    Ctype    |   Access privileges   
+-------------------------------+-----------+----------+-------------+-------------+-----------------------
+ lingi2172_suppliers_and_parts | lingi2172 | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ postgres                      | postgres  | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ template0                     | postgres  | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres
+                                                                                  : postgres=CTc/postgres
+ template1                     | postgres  | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres
+                                                                                  : postgres=CTc/postgres
+(4 rows)
+\end{lstlisting}
+If we want to the "suppliers and parts" one, we can use this command:\label{connect}
+\begin{lstlisting}[language=bash]
+	$ psql -h attma.info.ucl.ac.be -d lingi2172_suppliers_and_parts -U lingi2172student
+\end{lstlisting}
+
+Then we can send a simple query:
+\begin{lstlisting}[flexiblecolumns=false]
+lingi2172_suppliers_and_parts=> SELECT * FROM suppliers;
+ sid | name  | status |  city  
+-----+-------+--------+--------
+ S1  | Smith |     20 | London
+ S2  | Jones |     10 | Paris
+ S3  | Blake |     30 | Paris
+ S4  | Clark |     20 | London
+ S5  | Adams |     30 | Athens
+(5 rows)
+\end{lstlisting}
+
+%% == %% == %% == %%
+
+\subsection{How is it implemented on the server above (what tables, foreign keys, data?). What commands did you use?}
+After being connected to the database (as seen in the section \vref{connect}), we can list all tables with the command "\verb|\d|":
+\begin{lstlisting}[flexiblecolumns=false]
+lingi2172_suppliers_and_parts=> \d
+           List of relations
+ Schema |   Name    | Type  |   Owner   
+--------+-----------+-------+-----------
+ public | parts     | table | lingi2172
+ public | shipments | table | lingi2172
+ public | suppliers | table | lingi2172
+(3 rows)
+\end{lstlisting}
+Then we can get informations (primary key, foreign key, etc.) about a table with the command "\verb|\d <table>|", e.g.:
+\begin{lstlisting}[flexiblecolumns=false]
+lingi2172_suppliers_and_parts=> \d suppliers
+          Table "public.suppliers"
+ Column |         Type          | Modifiers 
+--------+-----------------------+-----------
+ sid    | character varying(3)  | not null
+ name   | character varying(20) | 
+ status | integer               | 
+ city   | character varying(20) | 
+Indexes:
+    "suppliers_pkey" PRIMARY KEY, btree (sid)
+Referenced by:
+    TABLE "shipments" CONSTRAINT "shipments_sid_fkey" FOREIGN KEY (sid) REFERENCES suppliers(sid)
+\end{lstlisting}
+Then we can see the content of a table with the command "\texttt{SELECT * FROM <table>}" as seen in the section \vref{connect}).
+
+%% == %% == %% == %%
+
+\subsection{What command can you use to dump the schema of the existing database as a SQL script to be re-executed on another server? Can you explain every line of the script? How can you make this script not too sensible to the current state of the target database (idempotent)?}
+Thanks to PostgreSQL tools, we can use \texttt{pg\_dump}:
+\begin{lstlisting}[language=bash]
+	$ pg_dump --schema-only lingi2172_suppliers_and_parts -h attma.info.ucl.ac.be -U lingi2172student > lingi2172student_schemas.sql
+\end{lstlisting}
+It will create a dump of the database: this file will contain SQL queries to recreate the structure of the database.\\
+
+This new SQL script file contains 3 parts:
+\begin{itemize}
+	\item The first part is about the parameters: with \texttt{SET} SQL command
+	\item Then the table is created: with \texttt{CREATE TABLE} and \texttt{ALTER TABLE} SQL commands
+	\item Finally the rights are correctly set: with \texttt{REVOKE} and \texttt{GRANT} SQL commands
+\end{itemize}
+
+If you want to make this script not too sensible to the current state of the target database, you can use the \texttt{--inserts} (or even \texttt{--attribute-inserts}) option.\\
+
+To restore the database, you can connect to another server with \texttt{psql} and then launch:
+\begin{lstlisting}
+\i lingi2172student_schemas.sql
+\end{lstlisting}
+Note that if you want to recreate exactly the same structure in the database with the same name and owned by the same user name, you will have to launch these commands before connecting to the server with \texttt{psql} and the user \texttt{lingi2172student}:
+\begin{lstlisting}
+CREATE USER lingi2172student;
+CREATE DATABASE lingi2172_suppliers_and_parts OWNER lingi2172student;
+\end{lstlisting}
+
+%% == %% == %% == %%
+
+\subsection{Write a SQL script to dump the data from INGI’s suppliers and parts database. Can you execute this script to fill your own database? Can you execute this script multiple times without facing errors? Why not? How can you make this script idempotent?}
+We can also create this script with \texttt{pg\_dump}:
+\begin{lstlisting}[language=bash]
+	$ pg_dump --data-only --table=parts --table=suppliers lingi2172_suppliers_and_parts -h attma.info.ucl.ac.be -U lingi2172student > lingi2172student_data.sql
+\end{lstlisting}
+We can fill our own database with the same \texttt{psql} command:
+\begin{lstlisting}
+\i lingi2172student_data.sql
+\end{lstlisting}
+We can't execute this script multiple times because these tables contain constraints (some keys are unique). We also have to use the \texttt{--inserts} option of \texttt{pg\_dump}.
+
+%% == %% == %% == %%
+
+\subsection{Execute the following query in SQL: Get all parts with weight strictly less than 17.0 (pounds)}
+\begin{lstlisting}[flexiblecolumns=false]
+lingi2172_suppliers_and_parts=> SELECT * FROM parts WHERE "weight" < 17.0;
+ pid | name  | color | weight |  city  
+-----+-------+-------+--------+--------
+ P1  | Nut   | Red   |     12 | London
+ P4  | Screw | Red   |     14 | London
+ P5  | Cam   | Blue  |     12 | Paris
+(3 rows)
+\end{lstlisting}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%
+
+\section{Rel}
+
+\subsection{Why does this file (\texttt{sap-schema.d}) use the ‘.d’ extension? What effect does this script have? Can you explain each of the three blocks of code?}
+Source files with '\texttt{.d}' extension are linked to the Tutorial D language. Like SQL, it's a language designed for relational databases. According to the Rel website\footnote{\url{http://dbappbuilder.sourceforge.net/Rel.php}}, Rel is \textit{an implementation of Date and Darwen's Tutorial D database language} and D is an abstract language specification.\\
+This script creates the structure of a new database which looks like the one seen in the PostgreSQL section: first the types are defined (informations about each column), then the content of the 3 tables (\texttt{SUPPLIERS}, \texttt{PARTS}, \texttt{SHIPMENTS}) and the third block defines the relations between each tables.
+
+%% == %% == %% == %%
+
+\subsection{Where is your database? Can you start a standalone server on it? What is the main difference between Rel and PostgreSQL with respect to the backend service? How can you connect to the standalone server with the database browser?}
+The database is available in this directory: \texttt{/path/to/Rel/directory/Database}. Note that this database is managed by the Rel server which is automatically launched when starting \texttt{DBrowser}.\\
+With Rel, we do not directly connect to a shell (not like the \texttt{psql} tool).
+
+If you want to only launch the Rel Server, simply execute this script in the Rel directory: \texttt{./RelServer}. Then you can open this remote database running on \texttt{localhost} on the default port \texttt{5514} with \texttt{DBrowser}.
+
+%% == %% == %% == %%
+
+\subsection{Connect to your database and execute the script \texttt{sap-data.d} that comes with this mission statement. What effect does this script have? Is it idempotent?}
+This script will fill in the database with some data. It's idempotent: we can execute this script twice but the database will not be two time bigger. Thanks to the primary keys, these entries can't be duplicated in the table.
+
+%% == %% == %% == %%
+
+\subsection{Execute the following query in Tutorial D: Get all parts with weight strictly less than 17.0 (pounds)}
+\begin{lstlisting}[flexiblecolumns=false]
+PARTS WHERE THE_WEIGHT(WEIGHT) < 17.0
+RELATION {PID P#, NAME NAME, COLOR COLOR, WEIGHT WEIGHT, CITY CHARACTER} {
+	TUPLE {PID P#("P1"), NAME NAME("Nut"), COLOR COLOR("Red"), WEIGHT WEIGHT(12.0), CITY "London"},
+	TUPLE {PID P#("P4"), NAME NAME("Screw"), COLOR COLOR("Red"), WEIGHT WEIGHT(14.0), CITY "London"},
+	TUPLE {PID P#("P5"), NAME NAME("Cam"), COLOR COLOR("Blue"), WEIGHT WEIGHT(12.0), CITY "Paris"}
+}
+\end{lstlisting}
+(when using \textit{Copy to input} button)
+
+%%%%%%%%%%%%%%%%%%%%
+\section*{Conclusion}
+After this first mission, we are now comfortable with a few database tools.
+
+\end{document}
