@@ -270,7 +270,7 @@
     <puzzle id="D6">
 
       <answer language="sql"><![CDATA[
-        SELECT * FROM parts ORDER BY weight DESC,pid ASC LIMIT 1;
+        SELECT * FROM parts ORDER BY weight DESC, pid ASC LIMIT 1;
       ]]></answer>
 
     </puzzle>
@@ -324,7 +324,7 @@
     <puzzle id="H5">
 
       <answer language="sql"><![CDATA[
-        SELECT sid, SUM(qty) AS total FROM shipments GROUP BY sid ORDER BY total DESC LIMIT 3;
+        SELECT sid, SUM(qty) AS total FROM shipments GROUP BY sid HAVING SUM(qty) >= (SELECT SUM(qty) AS total FROM shipments GROUP BY sid ORDER BY total DESC OFFSET 2 LIMIT 1);
       ]]></answer>
 
     </puzzle>
