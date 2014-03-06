@@ -8,6 +8,10 @@
 
     <puzzle id="S1">
 
+      <answer language="tutorial-d"><![CDATA[
+        SUPPLIERS
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT * FROM suppliers;
       ]]></answer>
@@ -17,6 +21,10 @@
 
 
     <puzzle id="S2">
+
+      <answer language="tutorial-d"><![CDATA[
+        SUPPLIERS {SID, NAME}
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT sid,name FROM suppliers;
@@ -28,6 +36,10 @@
 
     <puzzle id="S3">
 
+      <answer language="tutorial-d"><![CDATA[
+        SUPPLIERS {ALL BUT STATUS}
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT sid,name,city FROM suppliers;
       ]]></answer>
@@ -37,6 +49,10 @@
 
 
     <puzzle id="S4">
+
+      <answer language="tutorial-d"><![CDATA[
+        SUPPLIERS {CITY}
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT DISTINCT city FROM suppliers;
@@ -48,6 +64,10 @@
 
     <puzzle id="S5">
 
+      <answer language="tutorial-d"><![CDATA[
+        SUPPLIERS WHERE 15 <= STATUS AND STATUS <= 25
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT * FROM suppliers WHERE "status" BETWEEN 15 AND 25;
       ]]></answer>
@@ -57,6 +77,10 @@
 
 
     <puzzle id="S6">
+
+      <answer language="tutorial-d"><![CDATA[
+        SUPPLIERS WHERE CITY = 'London' OR CITY = 'Athens'
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT * FROM suppliers WHERE "city" IN ('London', 'Athens');
@@ -68,6 +92,10 @@
 
     <puzzle id="S7">
 
+      <answer language="tutorial-d"><![CDATA[
+        SUPPLIERS WHERE NOT (CITY = 'London' OR CITY = 'Athens')
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT * FROM suppliers WHERE NOT "city" IN ('London', 'Athens');
       ]]></answer>
@@ -77,6 +105,10 @@
 
 
     <puzzle id="S8">
+
+      <answer language="tutorial-d"><![CDATA[
+        (SUPPLIERS WHERE CITY = 'London'){SID}
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT sid FROM suppliers WHERE "city" = 'London';
@@ -88,6 +120,10 @@
 
     <puzzle id="E1">
 
+      <answer language="tutorial-d"><![CDATA[
+        (SHIPMENTS WHERE PID = P#('P1')){SID}
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT sid FROM shipments WHERE pid = 'P1';
       ]]></answer>
@@ -97,6 +133,10 @@
 
 
     <puzzle id="E2">
+
+      <answer language="tutorial-d"><![CDATA[
+        SUMMARIZE SHIPMENTS : {c := COUNT()}
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT COUNT(*) AS c FROM shipments;
@@ -108,6 +148,10 @@
 
     <puzzle id="E3">
 
+      <answer language="tutorial-d"><![CDATA[
+        SUMMARIZE SHIPMENTS WHERE SID = S#('S1') : {c := COUNT()}
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT COUNT(*) AS c FROM shipments WHERE sid = 'S1';
       ]]></answer>
@@ -117,6 +161,10 @@
 
 
     <puzzle id="E4">
+
+      <answer language="tutorial-d"><![CDATA[
+        SUPPLIERS MATCHING SHIPMENTS{SID}
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT * FROM suppliers WHERE sid IN (SELECT DISTINCT sid FROM shipments);
@@ -128,6 +176,10 @@
 
     <puzzle id="E5">
 
+      <answer language="tutorial-d"><![CDATA[
+        SUPPLIERS NOT MATCHING SHIPMENTS{SID}
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT * FROM suppliers WHERE sid NOT IN (SELECT DISTINCT sid FROM shipments);
       ]]></answer>
@@ -137,6 +189,10 @@
 
 
     <puzzle id="E6">
+
+      <answer language="tutorial-d"><![CDATA[
+        (SHIPMENTS JOIN (SUPPLIERS RENAME{NAME AS SNAME}){SID, SNAME} JOIN (PARTS RENAME{NAME AS PNAME}){PID, PNAME}){SID, SNAME, PID, PNAME, QTY}
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT sid, (SELECT name FROM suppliers WHERE suppliers.sid = shipments.sid) AS sname, pid, (SELECT name FROM parts WHERE parts.pid = shipments.pid) AS pname, qty FROM shipments;
@@ -152,6 +208,10 @@
 
     <puzzle id="M1">
 
+      <answer language="tutorial-d"><![CDATA[
+        SUMMARIZE (SHIPMENTS WHERE SID = S#('S1')) : {total := SUM(QTY)}
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT SUM(qty) AS total FROM shipments WHERE sid = 'S1';
       ]]></answer>
@@ -161,6 +221,10 @@
 
 
     <puzzle id="M2">
+
+      <answer language="tutorial-d"><![CDATA[
+        (SHIPMENTS JOIN (SUPPLIERS WHERE CITY = 'Paris')) {PID}
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT DISTINCT pid FROM shipments WHERE sid IN (SELECT sid FROM suppliers WHERE city = 'Paris');
@@ -172,6 +236,10 @@
 
     <puzzle id="M3">
 
+      <answer language="tutorial-d"><![CDATA[
+        ((SUMMARIZE SUPPLIERS PER(SUPPLIERS{CITY}) : {CITIES := COUNT()}) WHERE CITIES >= 2){CITY}
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT city FROM suppliers GROUP BY city HAVING COUNT(city) >= 2;
       ]]></answer>
@@ -181,6 +249,10 @@
 
 
     <puzzle id="M4">
+
+      <answer language="tutorial-d"><![CDATA[
+        (SUPPLIERS where CITY = MIN(SUPPLIERS, CITY)){SID}
+      ]]></answer>
       <answer language="sql"><![CDATA[
         SELECT sid FROM suppliers ORDER BY city LIMIT 1;
       ]]></answer>
@@ -190,6 +262,10 @@
 
 
     <puzzle id="M5">
+
+      <answer language="tutorial-d"><![CDATA[
+        (SUMMARIZE SHIPMENTS PER(SHIPMENTS{SID}) : {total := SUM(QTY)})
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT sid, SUM(qty) AS total FROM shipments GROUP BY sid;
@@ -201,6 +277,10 @@
 
     <puzzle id="M6">
 
+      <answer language="tutorial-d"><![CDATA[
+        (PARTS WHERE WEIGHT = MIN(PARTS, WEIGHT)){PID}
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT pid FROM parts WHERE weight = (SELECT weight FROM parts ORDER by weight LIMIT 1);
       ]]></answer>
@@ -211,8 +291,8 @@
 
     <puzzle id="D1">
 
-      <answer language="sql"><![CDATA[
-        SELECT DISTINCT pid FROM shipments WHERE sid NOT IN (SELECT sid FROM suppliers WHERE city = 'Paris');
+      <answer language="tutorial-d"><![CDATA[
+        SHIPMENTS{PID} XUNION (JOIN{SUPPLIERS, SHIPMENTS} WHERE CITY = 'Paris'){PID}
       ]]></answer>
 
       <answer language="sql"><![CDATA[
@@ -224,6 +304,10 @@
 
 
     <puzzle id="D2">
+
+      <answer language="tutorial-d"><![CDATA[
+        COUNT((SUMMARIZE SHIPMENTS PER(SHIPMENTS{SID}) : {TOTALSHIPPED := COUNT()} WHERE TOTALSHIPPED = COUNT(PARTS{PID})){SID})
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT COUNT(*) AS total from suppliers WHERE sid IN (SELECT sid FROM shipments GROUP BY sid HAVING COUNT(pid) = (SELECT COUNT(pid) FROM parts));
@@ -239,6 +323,10 @@
 
     <puzzle id="D3">
 
+      <answer language="tutorial-d"><![CDATA[
+        SUPPLIERS WHERE STATUS < (SUM(SUPPLIERS WHERE SID = S#('S1'), STATUS))
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT * FROM suppliers WHERE status < (SELECT status FROM suppliers WHERE sid = 'S1');
       ]]></answer>
@@ -248,6 +336,10 @@
 
 
     <puzzle id="D4">
+
+      <answer language="tutorial-d"><![CDATA[
+        (SUPPLIERS{SID} JOIN PARTS{PID}) NOT MATCHING SHIPMENTS{PID,SID}
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT sid, pid FROM suppliers, parts EXCEPT (SELECT sid, pid FROM shipments);
@@ -259,8 +351,55 @@
 
     <puzzle id="D5">
 
+      <answer language="tutorial-d"><![CDATA[
+        (
+          SUMMARIZE
+          (
+            EXTEND
+            (
+              SUMMARIZE SUPPLIERS PER (SUPPLIERS{CITY}) : {SS := COUNT()}
+            )
+            : {PS := 0, TOTAL := 0}
+          )
+          UNION
+          (
+            EXTEND
+            (
+              SUMMARIZE PARTS PER (PARTS{CITY}) : {PS := COUNT()}
+            )
+            : {SS := 0, TOTAL := 0}
+          )
+          UNION
+          (
+            EXTEND
+            (
+              SUMMARIZE (SUPPLIERS JOIN SHIPMENTS) PER (SUPPLIERS{CITY}) : {TOTAL := SUM(QTY)}
+            )
+            : {SS := 0, PS := 0}
+          )
+            PER (SUPPLIERS{CITY} UNION PARTS{CITY})
+            : {SS := SUM(SS), PS := SUM(PS), TOTAL := SUM(TOTAL)}
+        )
+        {CITY, PS, SS, TOTAL}
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
-        SELECT city, SUM(ps) AS ps, SUM(ss) AS ss, SUM(total) AS total FROM (SELECT city, COUNT(city) AS ss, 0 AS ps, 0 AS total FROM suppliers GROUP BY city UNION SELECT city, 0 AS ss, COUNT(city) AS ps, 0 AS total FROM parts GROUP BY city UNION SELECT city, 0 AS ps, 0 as SS, SUM(qty) AS total FROM shipments AS sh, suppliers AS s WHERE sh.sid = s.sid GROUP BY city) AS alias GROUP BY city;
+        SELECT city, SUM(ps) AS ps, SUM(ss) AS ss, SUM(total) AS total
+        FROM (
+            SELECT city, COUNT(city) AS ss, 0 AS ps, 0 AS total
+            FROM suppliers
+            GROUP BY city
+          UNION
+            SELECT city, 0 AS ss, COUNT(city) AS ps, 0 AS total
+            FROM parts
+            GROUP BY city
+          UNION
+            SELECT city, 0 AS ps, 0 as SS, SUM(qty) AS total
+            FROM shipments AS sh, suppliers AS s
+            WHERE sh.sid = s.sid
+            GROUP BY city
+          )
+        AS alias GROUP BY city;
       ]]></answer>
 
     </puzzle>
@@ -268,6 +407,10 @@
 
 
     <puzzle id="D6">
+
+      <answer language="tutorial-d"><![CDATA[
+        PARTS WHERE PID = MIN(PARTS WHERE WEIGHT = MAX(PARTS, WEIGHT), PID)
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT * FROM parts ORDER BY weight DESC, pid ASC LIMIT 1;
@@ -279,6 +422,10 @@
 
     <puzzle id="H1">
 
+      <answer language="tutorial-d"><![CDATA[
+        (SUMMARIZE SUPPLIERS PER (SUPPLIERS{CITY}) : {avg_status := AVG(STATUS)}) MATCHING PARTS{CITY}
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT city, AVG(status) AS avg_status FROM suppliers WHERE city in (SELECT DISTINCT city FROM parts) GROUP BY city;
       ]]></answer>
@@ -289,8 +436,8 @@
 
     <puzzle id="H2">
 
-      <answer language="sql"><![CDATA[
-        SELECT DISTINCT pid FROM shipments WHERE sid IN (SELECT sid FROM suppliers WHERE city = 'London');
+      <answer language="tutorial-d"><![CDATA[
+        ((SUMMARIZE SHIPMENTS JOIN (SUPPLIERS WHERE CITY = 'London'){SID} PER (SHIPMENTS{PID}) : {TOTAL := COUNT()}) WHERE TOTAL = COUNT(SUPPLIERS WHERE CITY = 'London')){PID}
       ]]></answer>
 
       <answer language="sql"><![CDATA[
@@ -303,6 +450,7 @@
 
     <puzzle id="H3">
 
+      <!-- Needs PostgreSQL >= 8.4: https://stackoverflow.com/questions/2560946/postgresql-group-concat-equivalent -->
       <answer language="sql"><![CDATA[
         SELECT sx.sid AS sx, sy.sid AS sy FROM shipments AS sx, shipments AS sy WHERE sx.sid > sy.sid GROUP BY sx.sid, sy.sid HAVING array_agg(DISTINCT sx.pid ORDER BY sx.pid) = array_agg(DISTINCT sy.pid ORDER BY sy.pid);
       ]]></answer>
@@ -313,6 +461,22 @@
 
     <puzzle id="H4">
 
+      <answer language="tutorial-d"><![CDATA[
+      (
+        (
+          (
+            SHIPMENTS RENAME {PID AS p}
+          )
+          JOIN
+          (
+            SHIPMENTS RENAME {PID AS q}
+          )
+        )
+        WHERE (p <> q)
+      )
+      {p,q}
+      ]]></answer>
+
       <answer language="sql"><![CDATA[
         SELECT sx.pid AS p, sy.pid AS q FROM shipments AS sx, shipments AS sy WHERE sx.pid != sy.pid GROUP BY sx.pid, sy.pid HAVING array_agg(DISTINCT sx.sid ORDER BY sx.sid) = array_agg(DISTINCT sy.sid ORDER BY sy.sid);
       ]]></answer>
@@ -322,6 +486,10 @@
 
 
     <puzzle id="H5">
+
+      <answer language="tutorial-d"><![CDATA[
+        SUMMARIZE SHIPMENTS PER (SHIPMENTS{SID}) : {total := SUM(QTY)}
+      ]]></answer>
 
       <answer language="sql"><![CDATA[
         SELECT sid, SUM(qty) AS total FROM shipments GROUP BY sid HAVING SUM(qty) >= (SELECT SUM(qty) AS total FROM shipments GROUP BY sid ORDER BY total DESC OFFSET 2 LIMIT 1);
