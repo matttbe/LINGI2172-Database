@@ -294,7 +294,7 @@
       ]]></answer>
 
       <answer language="sql"><![CDATA[
-        SELECT DISTINCT pid FROM suppliers AS s, shipments AS sh WHERE s.sid = sh.sid AND s.city = 'London';
+        SELECT pid FROM parts AS p WHERE ((SELECT COUNT(*) FROM shipments WHERE (p.pid = pid AND sid IN (SELECT sid FROM suppliers WHERE city = 'London'))) = (SELECT COUNT(*) FROM suppliers WHERE city = 'London'));
       ]]></answer>
 
     </puzzle>
