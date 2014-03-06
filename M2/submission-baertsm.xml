@@ -216,7 +216,7 @@
       ]]></answer>
 
       <answer language="sql"><![CDATA[
-        SELECT DISTINCT sh.pid FROM shipments AS sh, suppliers AS s WHERE sh.sid = s.sid AND s.city != 'Paris';
+        SELECT DISTINCT pid FROM shipments WHERE pid NOT IN (SELECT sh.pid FROM suppliers AS s, shipments AS sh WHERE s.city = 'Paris' AND s.sid = sh.sid);
       ]]></answer>
 
     </puzzle>
