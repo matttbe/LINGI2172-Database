@@ -43,11 +43,11 @@
     </puzzle>
     <puzzle id="E2">
 	<answer language="sql"><![CDATA[SELECT count(sid) as c FROM shipments;]]></answer>
-	<answer language="tutorial-d"><![CDATA[COUNT (SHIPMENTS)]]></answer>
+	<answer language="tutorial-d"><![CDATA[COUNT (SHIPMENTS) ]]></answer>
     </puzzle>
     <puzzle id="E3">
 	<answer language="sql"><![CDATA[SELECT count(sid) as c FROM shipments WHERE sid='S1';]]></answer>
-	<answer language="tutorial-d"><![CDATA[COUNT((SHIPMENTS WHERE SID=S#('S1')) {PID})]]></answer>
+	<answer language="tutorial-d"><![CDATA[COUNT(SHIPMENTS where SID=S#('S1'))]]></answer>
     </puzzle>
     <puzzle id="E4">
 	<answer language="sql"><![CDATA[SELECT * FROM suppliers WHERE sid IN (SELECT sid FROM shipments);]]></answer>
@@ -87,15 +87,15 @@
     </puzzle>
     <puzzle id="D1">
 	<answer language="sql"><![CDATA[SELECT distinct pid FROM shipments WHERE pid NOT IN(SELECT distinct pid from shipments WHERE sid NOT IN (SELECT sid FROM suppliers WHERE city NOT IN ('Paris')));]]></answer>
-	<answer language="tutorial-d"><![CDATA[(SHIPMENTS not matching (SUPPLIERS where CITY='Paris'))]]></answer>
+	<answer language="tutorial-d"><![CDATA[SHIPMENTS{PID} XUNION (JOIN{SUPPLIERS,SHIPMENTS} WHERE CITY='Paris'){PID}]]></answer>
     </puzzle>
     <puzzle id="D2">
 	<answer language="sql"><![CDATA[SELECT sid FROM suppliers WHERE sid IN (SELECT sid from shipments GROUP BY sid HAVING count(pid)>= (SELECT count(pid) FROM parts));]]></answer>
-	<answer language="tutorial-d"><![CDATA[(SUMMARIZE SHIPMENTS PER (SUPPLIERS{SID}):{Supp:=COUNT()}) WHERE Supp=COUNT(PARTS)]]></answer>
+	<answer language="tutorial-d"><![CDATA[((SUMMARIZE SHIPMENTS PER (SUPPLIERS{SID}):{Supp:=COUNT()}) WHERE Supp=COUNT(PARTS)) {SID}]]></answer>
     </puzzle>
     <puzzle id="D3">
 	<answer language="sql"><![CDATA[SELECT sid,name fROM suppliers WHERE status <(SELECT status FROM suppliers WHERE sid='S1');]]></answer>
-	<answer language="tutorial-d"><![CDATA[SUPPLIERS WHERE STATUS <(SUM(SUPPLIERS where SID=S#('S1'),STATUS))]]></answer>
+	<answer language="tutorial-d"><![CDATA[(SUPPLIERS WHERE STATUS <(SUM(SUPPLIERS where SID=S#('S1'),STATUS))) {SID,NAME}]]></answer>
     </puzzle>
     <puzzle id="D4">
 	<answer language="sql"><![CDATA[SELECT sid,pid FROM SUPPLIERS,PARTS WHERE (pid,sid) NOT IN (SELECT pid,sid FROM SHIPMENTS);]]></answer>
