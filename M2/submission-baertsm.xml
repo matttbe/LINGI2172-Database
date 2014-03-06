@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<submission>
+  <student>
+    <name>Matthieu Baerts</name>
+    <noma>3610-08-00</noma>
+  </student>
+  <solutions>
+
+    <puzzle id="S1">
+
+      <answer language="sql"><![CDATA[
+        SELECT * FROM suppliers;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="S2">
+
+      <answer language="sql"><![CDATA[
+        SELECT sid,name FROM suppliers;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="S3">
+
+      <answer language="sql"><![CDATA[
+        SELECT sid,name,city FROM suppliers;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="S4">
+
+      <answer language="sql"><![CDATA[
+        SELECT DISTINCT city FROM suppliers;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="S5">
+
+      <answer language="sql"><![CDATA[
+        SELECT * FROM suppliers WHERE "status" BETWEEN 15 AND 25;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="S6">
+
+      <answer language="sql"><![CDATA[
+        SELECT * FROM suppliers WHERE "city" IN ('London', 'Athens');
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="S7">
+
+      <answer language="sql"><![CDATA[
+        SELECT * FROM suppliers WHERE NOT "city" IN ('London', 'Athens');
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="S8">
+
+      <answer language="sql"><![CDATA[
+        SELECT sid FROM suppliers WHERE "city" = 'London';
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="E1">
+
+      <answer language="sql"><![CDATA[
+        SELECT sid FROM shipments WHERE pid = 'P1';
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="E2">
+
+      <answer language="sql"><![CDATA[
+        SELECT COUNT(*) AS c FROM shipments;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="E3">
+
+      <answer language="sql"><![CDATA[
+        SELECT COUNT(*) AS c FROM shipments WHERE sid = 'S1';
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="E4">
+
+      <answer language="sql"><![CDATA[
+        SELECT * FROM suppliers WHERE sid IN (SELECT DISTINCT sid FROM shipments);
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="E5">
+
+      <answer language="sql"><![CDATA[
+        SELECT * FROM suppliers WHERE sid NOT IN (SELECT DISTINCT sid FROM shipments);
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="E6">
+
+      <answer language="sql"><![CDATA[
+        SELECT sid, (SELECT name FROM suppliers WHERE suppliers.sid = shipments.sid) AS sname, pid, (SELECT name FROM parts WHERE parts.pid = shipments.pid) AS pname, qty FROM shipments;
+      ]]></answer>
+
+      <answer language="sql"><![CDATA[
+        SELECT s.sid, s.name AS sname, p.pid, p.name AS pname, sh.qty FROM shipments AS sh, parts AS p, suppliers AS s WHERE sh.sid = s.sid AND sh.pid = p.pid;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="M1">
+
+      <answer language="sql"><![CDATA[
+        SELECT SUM(qty) AS total FROM shipments WHERE sid = 'S1';
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="M2">
+
+      <answer language="sql"><![CDATA[
+        SELECT DISTINCT pid FROM shipments WHERE sid IN (SELECT sid FROM suppliers WHERE city = 'Paris');
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="M3">
+
+      <answer language="sql"><![CDATA[
+        SELECT city FROM suppliers GROUP BY city HAVING COUNT(city) >= 2
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="M4">
+      <answer language="sql"><![CDATA[
+        SELECT sid FROM suppliers ORDER BY city LIMIT 1;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="M5">
+
+      <answer language="sql"><![CDATA[
+        SELECT sid, SUM(qty) AS total FROM shipments GROUP BY sid;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="M6">
+
+      <answer language="sql"><![CDATA[
+        SELECT pid FROM parts WHERE weight = (SELECT weight FROM parts ORDER by weight LIMIT 1);
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="D1">
+
+      <answer language="sql"><![CDATA[
+        SELECT DISTINCT pid FROM shipments WHERE sid NOT IN (SELECT sid FROM suppliers WHERE city = 'Paris');
+      ]]></answer>
+
+      <answer language="sql"><![CDATA[
+        SELECT DISTINCT sh.pid FROM shipments AS sh, suppliers AS s WHERE sh.sid = s.sid AND s.city != 'Paris';
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="D2">
+
+      <answer language="sql"><![CDATA[
+        SELECT COUNT(*) AS total from suppliers WHERE sid IN (SELECT sid FROM shipments GROUP BY sid HAVING COUNT(pid) = (SELECT COUNT(pid) FROM parts));
+      ]]></answer>
+
+      <answer language="sql"><![CDATA[
+        SELECT COUNT(DISTINCT sid) AS total FROM shipments GROUP BY sid HAVING COUNT(pid) = (SELECT COUNT(pid) FROM parts);
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="D3">
+
+      <answer language="sql"><![CDATA[
+        SELECT * FROM suppliers WHERE status < (SELECT status FROM suppliers WHERE sid = 'S1');
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="D4">
+
+      <answer language="sql"><![CDATA[
+        SELECT sid, pid FROM suppliers, parts EXCEPT (SELECT sid, pid FROM shipments);
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="D5">
+
+      <answer language="sql"><![CDATA[
+        SELECT city, SUM(ps) AS ps, SUM(ss) AS ss, SUM(total) AS total FROM (SELECT city, COUNT(city) AS ss, 0 AS ps, 0 AS total FROM suppliers GROUP BY city UNION SELECT city, 0 AS ss, COUNT(city) AS ps, 0 AS total FROM parts GROUP BY city UNION SELECT city, 0 AS ps, 0 as SS, SUM(qty) AS total FROM shipments AS sh, suppliers AS s WHERE sh.sid = s.sid GROUP BY city) AS alias GROUP BY city;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="D6">
+
+      <answer language="sql"><![CDATA[
+        SELECT * FROM parts ORDER BY weight DESC,pid ASC LIMIT 1;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="H1">
+
+      <answer language="sql"><![CDATA[
+        SELECT city, AVG(status) AS avg_status FROM suppliers WHERE city in (SELECT DISTINCT city FROM parts) GROUP BY city;
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="H2">
+
+      <answer language="sql"><![CDATA[
+        SELECT DISTINCT pid FROM shipments WHERE sid IN (SELECT sid FROM suppliers WHERE city = 'London');
+      ]]></answer>
+
+      <answer language="sql"><![CDATA[
+        SELECT DISTINCT pid FROM suppliers AS s, shipments AS sh WHERE s.sid = sh.sid AND s.city = 'London';
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="H3">
+
+      <answer language="sql"><![CDATA[
+        SELECT sx.sid AS sx, sy.sid AS sy FROM shipments AS sx, shipments AS sy WHERE sx.sid > sy.sid GROUP BY sx.sid, sy.sid HAVING array_agg(DISTINCT sx.pid ORDER BY sx.pid) = array_agg(DISTINCT sy.pid ORDER BY sy.pid);
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="H4">
+
+      <answer language="sql"><![CDATA[
+        SELECT sx.pid AS p, sy.pid AS q FROM shipments AS sx, shipments AS sy WHERE sx.pid != sy.pid GROUP BY sx.pid, sy.pid HAVING array_agg(DISTINCT sx.sid ORDER BY sx.sid) = array_agg(DISTINCT sy.sid ORDER BY sy.sid);
+      ]]></answer>
+
+    </puzzle>
+
+
+
+    <puzzle id="H5">
+
+      <answer language="sql"><![CDATA[
+        SELECT sid, SUM(qty) AS total FROM shipments GROUP BY sid ORDER BY total DESC LIMIT 3;
+      ]]></answer>
+
+    </puzzle>
+  </solutions>
+</submission>
