@@ -173,7 +173,7 @@
     <puzzle id="M3">
 
       <answer language="sql"><![CDATA[
-        SELECT city FROM suppliers GROUP BY city HAVING COUNT(city) >= 2
+        SELECT city FROM suppliers GROUP BY city HAVING COUNT(city) >= 2;
       ]]></answer>
 
     </puzzle>
