@@ -99,11 +99,11 @@
 <puzzle id="E2">
 
       <answer language="sql"><![CDATA[
-        select count(*) from shipments;
+        select count(*) as c from shipments;
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
-      	COUNT(SHIPMENTS)
+        SUMMARIZE SUPPLIERS : { c := COUNT() }
       ]]></answer>
 </puzzle>
 <puzzle id="E3">
@@ -113,7 +113,7 @@
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
-      	COUNT(SHIPMENTS where SID=S#('S1'))
+        SUMMARIZE (SHIPMENTS WHERE SID=S#('S1')) :{c:=COUNT()}
       ]]></answer>
 </puzzle>
 <puzzle id="E4">
@@ -133,7 +133,7 @@
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
-		SUPPLIERS not matching SHIPMENTS{SID}      	
+		SUPPLIERS NOT MATCHING SHIPMENTS{SID}      	
       ]]></answer>
 </puzzle>
 <puzzle id="E6">
@@ -143,7 +143,7 @@
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
-      	SHIPMENTS JOIN (SUPPLIERS rename {NAME as SNAME}){SID,SNAME} JOIN (PARTS rename {NAME as PNAME}){PID,PNAME}
+      	(SHIPMENTS JOIN (SUPPLIERS rename {NAME as SNAME}){SID,SNAME} JOIN (PARTS rename {NAME as PNAME}){PID,PNAME}){SID,SNAME,PID,PNAME,QTY}
       ]]></answer>
 </puzzle>
 <puzzle id="M1">
@@ -152,7 +152,7 @@
         select sum(shipments.qty) as total from suppliers, shipments where suppliers.sid = shipments.sid and suppliers.sid='S1';
       ]]></answer>
       <answer language="tutorial-d"><![CDATA[
-      	SUM(SHIPMENTS where SID=S#('S1'),QTY)
+      	SUMMARIZE (SHIPMENTS where SID=S#('S1')) :{total:=SUM(QTY)}
       ]]></answer>
 </puzzle>
 <puzzle id="M2">
@@ -177,7 +177,8 @@
 
 <puzzle id="M4">
       <answer language="sql"><![CDATA[
-        select * from suppliers where city in (select city from suppliers order by city limit 1);
+        select sid from suppliers where city in (select min(city) from suppliers);
+
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
@@ -187,16 +188,16 @@
 
 <puzzle id="M5">
       <answer language="sql"><![CDATA[
-        select sid, sum(qty) from shipments group by sid;
+        select sid, sum(qty) as total from shipments group by sid;
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
-      	(SUMMARIZE SHIPMENTS PER (SHIPMENTS{SID}) : { TOTAL:=SUM(QTY) } ) 
+      	(SUMMARIZE SHIPMENTS PER (SHIPMENTS{SID}) : { total:=SUM(QTY) } ) 
       ]]></answer>
 </puzzle>
 <puzzle id="M6">
       <answer language="sql"><![CDATA[
-        select * from parts where weight in (select weight from parts order by weight limit 1);
+        select * from parts where weight in (select min(weight) from parts);
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
@@ -214,20 +215,20 @@
 </puzzle>
 <puzzle id="D2">
       <answer language="sql"><![CDATA[
-        select count(*) from suppliers where sid in (select sid from shipments group by sid having count(pid)=(select count(pid) from parts));
+        select sid from shipments group by sid having count(pid)=(select count(*) from parts);
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
-      	(SUMMARIZE SHIPMENTS PER (SHIPMENTS{SID}) : { TOTALSHIPPED:= COUNT() } where TOTALSHIPPED = COUNT(PARTS{PID})) 
+      	(SUMMARIZE SHIPMENTS PER (SHIPMENTS{SID}) : { TOTALSHIPPED:= COUNT() } where TOTALSHIPPED = COUNT(PARTS{PID})){SID}
       ]]></answer>
 </puzzle>
 <puzzle id="D3">
       <answer language="sql"><![CDATA[
-        select * from suppliers where status<(select status from suppliers where sid='S1');
+        select sid,name from suppliers where status<(select status from suppliers where sid='S1');
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
-      	SUPPLIERS where STATUS < (SUM(SUPPLIERS where SID=S#('S1'),STATUS))
+      	(SUPPLIERS where STATUS < (SUM(SUPPLIERS where SID=S#('S1'),STATUS))){SID,NAME}
       ]]></answer>
 </puzzle>
 <puzzle id="D4">
@@ -249,29 +250,20 @@
 
       ]]></answer>
 </puzzle>
-<puzzle id="D6">
-      <answer language="sql"><![CDATA[
-        select * from parts order by weight desc limit 1;
-      ]]></answer>
-
-      <answer language="tutorial-d"><![CDATA[
-      	PARTS where PID = MIN(PARTS where WEIGHT=MAX(PARTS,WEIGHT), PID)
-      ]]></answer>
-</puzzle>
 
 <puzzle id="D6">
       <answer language="sql"><![CDATA[
-       select min(PID) from parts where weight=(select max(weight) from parts);
+       select * from parts where pid in (select min(PID) from parts where weight=(select max(weight) from parts));
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
-      	(PARTS where PID = MIN(PARTS where WEIGHT=MAX(PARTS,WEIGHT), PID)){PID}
+      	(PARTS where PID = MIN(PARTS where WEIGHT=MAX(PARTS,WEIGHT), PID))
       ]]></answer>
 </puzzle>
 
 <puzzle id="H1">
       <answer language="sql"><![CDATA[
-        select s.city, avg(s.status) as avg_status from suppliers s, parts p  where s.city in (select city from parts) group by s.city
+        select s.city, avg(status) as avg_status from suppliers s, parts p  where s.city in (select city from parts) group by s.city;
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
@@ -281,17 +273,17 @@
 
 <puzzle id="H2">
       <answer language="sql"><![CDATA[
-        select sh.pid from shipments sh, suppliers s where s.city='London' and s.sid=sh.sid group by sh.pid having count(*)=(select count(*) from suppliers where city='London')
+        select sh.pid from shipments sh, suppliers s where s.city='London' and s.sid=sh.sid group by sh.pid having count(*)=(select count(*) from suppliers where city='London');
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
-      	((SUMMARIZE SHIPMENTS matching (SUPPLIERS where CITY='London'){SID} per (SHIPMENTS{PID}):{TOTAL:=count()}) where TOTAL=count(SUPPLIERS where CITY='London')){PID}
+      	((SUMMARIZE SHIPMENTS MATCHING (SUPPLIERS where CITY='London'){SID} per (SHIPMENTS{PID}):{TOTAL:=count()}) where TOTAL=count(SUPPLIERS where CITY='London')){PID}
       ]]></answer>
 </puzzle>
 
 <puzzle id="H3">
       <answer language="sql"><![CDATA[
-        
+        select distinct shx.sid as sx, shy.sid as sy from  shipments shx, shipments shy where shx.sid > shy.sid group by shx.sid, shy.sid having array_to_string( ARRAY (select sha.pid from shipments sha where shx.sid=sha.sid order by sha.pid),',') = array_to_string( ARRAY (select shb.pid from shipments shb where shy.sid=shb.sid order by shb.pid),',') ;
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
@@ -302,17 +294,17 @@
 
 <puzzle id="H4">
       <answer language="sql"><![CDATA[
-        select distinct sa.pid as p, sb.pid as q from shipments sa, shipments sb where sa.sid=sb.sid and not sa.pid=sb.pid;
+        select distinct shp.pid as p, shq.pid as q from shipments shp, shipments shq where shp.sid=shq.sid and shp.pid<shq.pid;
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
-      	((SHIPMENTS RENAME {PID AS p}) JOIN (SHIPMENTS RENAME {PID AS q}) WHERE p <> q){p,q}
+      	(((SHIPMENTS RENAME {PID AS p,SID AS SIDp, QTY AS QTYp}) JOIN (SHIPMENTS RENAME {PID AS q, SID AS SIDq, QTY AS QTYq})) WHERE (SIDp = SIDq AND p<q)){p,q}
       ]]></answer>
 </puzzle>
 
 <puzzle id="H5">
       <answer language="sql"><![CDATA[
-        select sid, sum(qty) as total from shipments group by sid having sum(qty)>= (select min(s) from (select distinct sid, sum(qty) as s from shipments group by sid order by sum(qty) desc limit 3) as tmp)
+        select sid, sum(qty) as total from shipments group by sid having sum(qty)>= (select min(sumq) from (select distinct sid, sum(qty) as sumq from shipments group by sid order by sum(qty) desc limit 3) as tmp);
       ]]></answer>
 
       <answer language="tutorial-d"><![CDATA[
