@@ -493,7 +493,8 @@
     <puzzle id="H5">
 
       <answer language="tutorial-d"><![CDATA[
-        SUMMARIZE SHIPMENTS PER (SHIPMENTS{SID}) : {total := SUM(QTY)}
+        WITH (TABSUM := SUMMARIZE SHIPMENTS BY {SID} : {TOTAL := SUM(QTY)}) :
+(((SUMMARIZE (EXTEND (TABSUM JOIN (TABSUM{TOTAL} RENAME {TOTAL AS TOT})) : {LOWER:= TOTAL <= TOT}) BY {SID,LOWER} : {NBR := COUNT( )})  WHERE (LOWER = true AND NBR <=3)) JOIN TABSUM) {SID,TOTAL}
       ]]></answer>
 
       <answer language="sql"><![CDATA[
