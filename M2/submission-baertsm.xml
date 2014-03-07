@@ -450,6 +450,11 @@
 
     <puzzle id="H3">
 
+      <answer language="tutorial-d"><![CDATA[
+        WITH (PARTS :=(EXTEND SHIPMENTS {SID} : {PARTS := (RELATION { TUPLE { SID SID}} COMPOSE SHIPMENTS{SID, PID})})) :
+(((PARTS RENAME {SID AS SX,PARTS AS SXP}) JOIN (PARTS RENAME {SID AS SY, PARTS AS SYP})) WHERE ((SXP = SYP) AND NOT(SX = SY))) {SX, SY}
+      ]]></answer>
+
       <!-- Needs PostgreSQL >= 8.4: https://stackoverflow.com/questions/2560946/postgresql-group-concat-equivalent -->
       <answer language="sql"><![CDATA[
         SELECT sx.sid AS sx, sy.sid AS sy FROM shipments AS sx, shipments AS sy WHERE sx.sid > sy.sid GROUP BY sx.sid, sy.sid HAVING array_agg(DISTINCT sx.pid ORDER BY sx.pid) = array_agg(DISTINCT sy.pid ORDER BY sy.pid);
