@@ -1,0 +1,157 @@
+\documentclass[a4paper,11pt]{article}
+%\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage{lmodern}
+\usepackage[french]{babel}
+\usepackage{amsmath} % math
+\usepackage{amsfonts}% math
+\usepackage{amssymb} % math
+% \usepackage{gensymb} % math
+\usepackage{graphicx} % images
+% \usepackage{qtree}    % dessiner des arbres %% => texlive-humanities
+\usepackage{url}
+	\urlstyle{sf}
+\usepackage[usenames]{color}
+\usepackage[french]{varioref} % \vref and \vpageref
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage[backgroundcolor=yellow]{todonotes} %% todonotes: \listoftodos & \todo{Some note or other.} & \missingfigure{}
+
+\definecolor{codeBlue}{rgb}{0,0,1}
+\definecolor{webred}{rgb}{0.5,0,0}
+\definecolor{codeGreen}{rgb}{0,0.5,0}
+\definecolor{codeGrey}{rgb}{0.6,0.6,0.6}
+\definecolor{webdarkblue}{rgb}{0,0,0.4}
+\definecolor{webgreen}{rgb}{0,0.3,0}
+\definecolor{webblue}{rgb}{0,0,0.8}
+\definecolor{orange}{rgb}{0.7,0.1,0.1}
+
+\usepackage{caption}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{listings}		% Pour l'insersion de fichiers de codes sources.
+\lstset{
+	  language=SQL,
+	  frame=single,
+	  flexiblecolumns=true,
+	  numbers=none, % left
+	  stepnumber=1,
+	  numberstyle=\ttfamily\tiny,
+	  keywordstyle=\ttfamily\textcolor{blue},
+	  stringstyle=\ttfamily\textcolor{red},
+	  commentstyle=\ttfamily\textcolor{green},
+	  breaklines=true,
+	  extendedchars=true,
+	  basicstyle=\ttfamily\scriptsize,
+	  showstringspaces=false
+	}
+
+\IfFileExists{fourier.sty}{\usepackage{fourier}}{\typeout{! WARNING: Fourier package not included: skip it}}
+
+%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\userstory}[3]{En tant #1, je voudrais \textbf{#2}, ainsi \textbf{#3}.\\}
+\newcommand{\etauto}[2]{\userstory{qu'\textit{automobiliste}}{#1}{#2}}
+\newcommand{\etgp}[2]{\userstory{que \textit{gestionnaire de parking}}{#1}{#2}}
+
+%%%%%%%%%%%%%%%%%%%%
+
+\title{\texttt{LINGI2172}: Database\\Mission 3}
+\author{Matthieu \textsc{Baerts} \and Benoît \textsc{Baufays} \and Julien \textsc{Colmont} \and Alex \textsc{Vermeylen}}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+% \tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%
+\section*{Introduction}
+Ce document décrit en détails notre application de gestion de parkings: \textit{Parking App}. Une description accompagnée des buts et besoins du programme ainsi que les différentes histoires utilisateurs possibles y sont présentente ci dessous.
+
+\section{Vision document}
+
+Construire une application de réservation et de gestion de parkings :
+\begin{itemize}
+  \item Pour un automobiliste :
+  \begin{itemize}
+  	\item Trouver une place de parking la plus proche ou la moins cher
+    \item Gérer ses abonnements de parking
+    % Source: https://play.google.com/store/apps/details?id=net.osmand.parkingPlugin
+    \item Retrouver un emplacement de parking
+    \item Être averti lorsque le temps de parking est dépassé.
+  \end{itemize}
+  \item Pour un gestionnaire de parking :
+  \begin{itemize}
+    \item Gérer les abonnements de son parking
+    \item Avoir des statistiques détaillées d'utilisation de son parking
+  \end{itemize}
+\end{itemize}
+
+
+\section{Description}
+
+La Parking App est une application permettant de trouver la place de parking libre la plus proche ou de comparer les différentes offres.  L'application se basera sur une base de données contenant les parkings avec le nombre de place totales, la grille de tarif ainsi que leur localisation et, éventuellement, des informations complémentaires comme le nombre de place de parkings handicapés ou la présence d'un défibrillateur.\\
+
+Afin de garder les informations de parking à jour, le gestionnaire de parking peut modifier les informations relatives à son ou ses parkings.  Avec l'historique de fréquentation et le temps d'occupation de chaque parking, le gestionnaire de parking pourra avoir des statistiques détaillées sur son parking.  Pour l'utilisateur, il pourra savoir s'il est déjà venu dans le parking et, éventuellement, voir ses évaluations.
+
+\section{Goals \& software requirements}
+
+\begin{itemize}
+  \item Chaque parking :
+  \begin{itemize}
+    \item Doit avoir au moins un nombre de places maximum
+    \item Doit avoir une localisation
+    \item Peut avoir, éventuellement, une grille de tarif
+    \item Peut avoir, éventuellement, un système d'abonnement
+    \item Peut avoir, éventuellement, un système pour mettre à jour le nombre de places de parking libres
+    \item Peut avoir, éventuellement, une évaluation faite par certains automobilistes
+    \item Peut avoir, éventuellement, des informations concernant le nombre de places de parking pour handicapés
+    \item Peut avoir, éventuellement, des informations concernant les types de véhicule acceptés
+    \item Peut avoir, éventuellement, des informations concernant les heures d'ouvertures.
+  \end{itemize}
+  \item Chaque automobiliste :
+  \begin{itemize}
+    \item Peut avoir, éventuellement, un abonnement à un ou plusieurs parkings
+    \item Doit avoir au moins un type de véhicule
+    \item Peut avoir, éventuellement, un historique de fréquentation de parkings
+  \end{itemize}
+\end{itemize}
+
+\section{User Stories}
+\subsection{Pour l'automobiliste}
+  \noindent
+  \etauto{obtenir la liste des parkings aux allentours}{je pourrai choisir quel parking m'intéresse}
+  \etauto{obtenir la liste des parkings près d'un endroit}{je pourrai planifier l'endroit où je compte me parker}
+  \etauto{classer la liste avec les parkings les plus proches}{je pourrai me garer tout près}
+  \etauto{classer la liste en commençant par les parkings les moins chers}{je pourrai faire des économies}
+  \etauto{filtrer la liste avec uniquement les parkings disposant d'au-moins une place libre}{je pourrai me garer avec la certitude d'avoir une place}
+  \etauto{filtrer la liste avec uniquement les parkings disposant d'un defibrillateur}{je pourrai être rassuré en cas de problème}
+  \etauto{filtrer la liste avec uniquement les parkings disposant de place réservées aux handicapés}{je pourrai trouver une place plus large et près de la sortie} % je pourrais emmener papy/la Charlie team/autre?
+  \etauto{filtrer la liste avec uniquement les parkings acceptant mon abonnement}{je pourrai m'y garer avec ma carte}
+  \etauto{retrouver un parking avec son nom ou identifiant}{je pourrai retrouver un parking}
+  \etauto{avoir toutes les informations d'un parking dans la liste}{je pourrai me faire une idée sur le parking en question}
+  \etauto{mettre un parking en favori}{je pourrai rapidement retrouver un parking}
+  \etauto{indiquer un rappel lié à un parking}{je pourrai rejoindre le parking avant le délai maximum}
+  \etauto{gérer mes abonnements de parking}{je pourrai consulter mon compte et mes informations liés à ces abonnements}
+  \etauto{avoir un historique des recherches}{je pourrai rapidement retrouver une précédente recherche}
+  \etauto{avoir un historique des parkings visités}{je pourrai retrouver les parkings précédemment visités}
+  \etauto{indiquer une note/commentaire pour un parking}{je pourrai informer les autres utilisateurs}
+  % DOUBLON ! \etauto{marquer certains parkings en favoris}{je pourrais facilement les retrouver}
+%  \etauto{}{}
+  %\etauto{danser nu avec des fougères}{je gagnerai un pari}
+
+\subsection{Pour le gestionnaire de parking}
+  \noindent
+  \userstory{que \textit{futur gestionnaire de parking}}{pouvoir me créer un compte spécial gestionnaire de parking}{gérer mes parkings}
+  \etgp{pouvoir rajouter mon parking (avec toutes ses données associées) dans l'application}{il sera visible pour les utilisateurs}
+  \etgp{pouvoir modifier les données que j'ai précédemment entrées pour un de mes parkings}{chaque information pourra être à jour}
+  \etgp{pouvoir supprimer ou fermer un de mes parkings}{un parking ne sera plus présent/visible dans l'application} 
+  \etgp{pouvoir consulter la liste des abonnés à un de mes/tous mes parkings}{je pourrai faire des statistiques}
+  \etgp{pouvoir consulter le nombre d'automobilistes présents à un de mes/tous mes parkings}{je pourrai faire des statistiques}
+  \etgp{pouvoir consulter divers données statistiques}{je pourrai mieux adapter l'infrastructure du parking}
+%  \etgp{}{}
+
+\section*{Conclusion}
+Grâce aux différentes descriptions énoncées, nous avons une meilleure vue d'ensemble du programme et ceci devrait donc permettre à quiconque de s'imaginer comment l'application va fonctionner et à quels buts elle va servir.
+
+\end{document}
+
