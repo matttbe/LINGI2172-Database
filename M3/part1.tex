@@ -2,7 +2,7 @@
 %\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 %\usepackage{lmodern}
-\usepackage[french]{babel}
+\usepackage[english]{babel}
 \usepackage{amsmath} % math
 \usepackage{amsfonts}% math
 \usepackage{amssymb} % math
@@ -15,6 +15,7 @@
 \usepackage[french]{varioref} % \vref and \vpageref
 \usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry}
 \usepackage[backgroundcolor=yellow]{todonotes} %% todonotes: \listoftodos & \todo{Some note or other.} & \missingfigure{}
+\usepackage{tikz}
 
 \definecolor{codeBlue}{rgb}{0,0,1}
 \definecolor{webred}{rgb}{0.5,0,0}
@@ -44,7 +45,7 @@
 	  showstringspaces=false
 	}
 
-\IfFileExists{fourier.sty}{\usepackage{fourier}}{\typeout{! WARNING: Fourier package not included: skip it}}
+%\IfFileExists{fourier.sty}{\usepackage{fourier}}{\typeout{! WARNING: Fourier package not included: skip it}}
 
 %%%%%%%%%%%%%%%%%%%%
 
@@ -57,6 +58,10 @@
 \title{\texttt{LINGI2172}: Database\\Mission 3}
 \author{Matthieu \textsc{Baerts} \and Benoît \textsc{Baufays} \and Julien \textsc{Colmont} \and Alex \textsc{Vermeylen}}
 \date{\today}
+
+
+
+
 
 \begin{document}
 
@@ -149,6 +154,9 @@ Afin de garder les informations de parking à jour, le gestionnaire de parking p
   \etgp{pouvoir consulter le nombre d'automobilistes présents à un de mes/tous mes parkings}{je pourrai faire des statistiques}
   \etgp{pouvoir consulter divers données statistiques}{je pourrai mieux adapter l'infrastructure du parking}
 %  \etgp{}{}
+ 
+\section{ER Schema}
+
 
 \section*{Conclusion}
 Grâce aux différentes descriptions énoncées, nous avons une meilleure vue d'ensemble du programme et ceci devrait donc permettre à quiconque de s'imaginer comment l'application va fonctionner et à quels buts elle va servir.
