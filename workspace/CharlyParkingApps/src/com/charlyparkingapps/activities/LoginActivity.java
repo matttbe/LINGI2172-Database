@@ -10,6 +10,9 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -50,6 +53,17 @@ public class LoginActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		if(((CharlyApplication) getApplication()).testLogIn()){
+			Intent i = new Intent(this, MainActivity.class);
+			startActivity(i);
+		}
+		else{
+			create(savedInstanceState);
+		}
+	}
+	
+	private void create(Bundle savedInstanceState){
+
 		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_login);
@@ -84,6 +98,7 @@ public class LoginActivity extends Activity {
 						attemptLogin();
 					}
 				});
+
 	}
 
 	@Override
@@ -209,8 +224,13 @@ public class LoginActivity extends Activity {
 				user.Close();
 			}
 			if(log){
-				user.Open();				
-				 ((CharlyApplication) getApplicationContext()).setCurrent_user(user.GetByUsername(mUsername));
+				user.Open();			
+				User u=user.GetByUsername(mUsername);
+				((CharlyApplication) getApplication()).setCurrent_user(u);
+				SharedPreferences sharedPref = 	((CharlyApplication) getApplication()).getSharedPreferences("user", Context.MODE_PRIVATE);
+				SharedPreferences.Editor editor = sharedPref.edit();
+				editor.putInt(getString(R.string.id_user_pref), u.getId());
+				editor.commit();
 				user.Close();
 			}
 			return log;

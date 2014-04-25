@@ -26,8 +26,8 @@ public class CharlyApplication extends Application{
 		this.current_user = current_user;
 	}
 	
-	public boolean testLogIn(Activity activity){
-		SharedPreferences sharedPref = activity.getPreferences(Context.MODE_PRIVATE);
+	public boolean testLogIn(){
+		SharedPreferences sharedPref = 	this.getSharedPreferences("user", Context.MODE_PRIVATE);
 		int id = sharedPref.getInt(getString(R.string.id_user_pref), 0);
 		if(id!=0){
 			UserDB user = new UserDB(getApplicationContext());
