@@ -230,7 +230,7 @@ public class LoginActivity extends Activity {
 				SharedPreferences sharedPref = 	((CharlyApplication) getApplication()).getSharedPreferences("user", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = sharedPref.edit();
 				editor.putInt(getString(R.string.id_user_pref), u.getId());
-				editor.commit();
+				editor.apply();
 				user.Close();
 			}
 			return log;

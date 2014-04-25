@@ -28,7 +28,7 @@ public class CharlyApplication extends Application{
 		SharedPreferences sharedPref = 	this.getSharedPreferences("user", Context.MODE_PRIVATE);
 		SharedPreferences.Editor editor = sharedPref.edit();
 		editor.putInt(getString(R.string.id_user_pref), 0);
-		editor.commit();
+		editor.apply();
 		setCurrent_user(null);
 		
 	}
