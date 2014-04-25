@@ -1,6 +1,5 @@
 package com.charlyparkingapps.activities;
 
-
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.UserDB;
@@ -54,16 +53,15 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		if(((CharlyApplication) getApplication()).testLogIn()){
+		if (((CharlyApplication) getApplication()).testLogIn()) {
 			Intent i = new Intent(this, MainActivity.class);
 			startActivity(i);
-		}
-		else{
+		} else {
 			create(savedInstanceState);
 		}
 	}
-	
-	private void create(Bundle savedInstanceState){
+
+	private void create(Bundle savedInstanceState) {
 
 		setContentView(R.layout.activity_login);
 
@@ -144,7 +142,7 @@ public class LoginActivity extends Activity {
 			mEmailView.setError(getString(R.string.error_field_required));
 			focusView = mEmailView;
 			cancel = true;
-		} 
+		}
 
 		if (cancel) {
 			// There was an error; don't attempt login and focus the first
@@ -157,7 +155,7 @@ public class LoginActivity extends Activity {
 			showProgress(true);
 			mAuthTask = new UserLoginTask();
 			mAuthTask.execute((Void) null);
-			//mAuthTask.
+			// mAuthTask.
 		}
 	}
 
@@ -214,20 +212,21 @@ public class LoginActivity extends Activity {
 			user.Open();
 			boolean log = user.login(mUsername, mPassword);
 			user.Close();
-			if(!log){
+			if (!log) {
 				user.Open();
-				if(user.GetByUsername(mUsername)==null){
-					User u = new User(mUsername, 0,mPassword);
+				if (user.GetByUsername(mUsername) == null) {
+					User u = new User(mUsername, 0, mPassword);
 					user.Save(u);
-					log=true;
+					log = true;
 				}
 				user.Close();
 			}
-			if(log){
-				user.Open();			
-				User u=user.GetByUsername(mUsername);
+			if (log) {
+				user.Open();
+				User u = user.GetByUsername(mUsername);
 				((CharlyApplication) getApplication()).setCurrent_user(u);
-				SharedPreferences sharedPref = 	((CharlyApplication) getApplication()).getSharedPreferences("user", Context.MODE_PRIVATE);
+				SharedPreferences sharedPref = ((CharlyApplication) getApplication())
+						.getSharedPreferences("user", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = sharedPref.edit();
 				editor.putInt(getString(R.string.id_user_pref), u.getId());
 				editor.apply();
@@ -241,7 +240,7 @@ public class LoginActivity extends Activity {
 			mAuthTask = null;
 			showProgress(false);
 
-			if (success) {				
+			if (success) {
 				finish();
 			} else {
 				mPasswordView

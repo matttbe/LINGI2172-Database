@@ -7,17 +7,16 @@ import com.charlyparkingapps.db.ObjectDB;
 
 public abstract class ObjectRepository implements ObjectDB {
 
-    protected SQLiteDatabase maBDD;
- 
-    protected SQLiteOpenHelper sqLiteOpenHelper;
+	protected SQLiteDatabase maBDD;
 
-    public void Open() {
-        maBDD = sqLiteOpenHelper.getWritableDatabase();
-    }
+	protected SQLiteOpenHelper sqLiteOpenHelper;
 
-    public void Close() {
-        maBDD.close();
-    }
-    
+	public void Open() {
+		maBDD = sqLiteOpenHelper.getWritableDatabase();
+	}
+
+	public void Close() {
+		maBDD.close();
+	}
 
 }
