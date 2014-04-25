@@ -1,11 +1,23 @@
 package com.charlyparkingapps.db;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import android.content.ContentValues;
+import android.content.Context;
+import android.database.Cursor;
+
+import com.charlyparkingapps.db.object.ObjectRepository;
 import com.charlyparkingapps.db.object.User;
 
-public class UserDB implements ObjectDB {
+public class UserDB extends ObjectRepository {
 	
 	private User user;
-
+	
+	public UserDB(Context context) {
+        sqLiteOpenHelper = new CharlyAppHelper(context, null);
+    }
+	
 	@Override
 	public String getTablename() {
 		return "User";
@@ -27,5 +39,73 @@ public class UserDB implements ObjectDB {
 	public Object getObject() {
 		return this.user;
 	}
+	
+	
+	public List GetAll(){
+        Cursor cursor = maBDD.query(getTablename(),
+                User.ALL_COLUMNS, null, null, null,
+                null, null);
+ 
+        return ConvertCursorToListObject(cursor);
+	}
+	
+	
+	public User GetById(int id) {
+        Cursor cursor = maBDD.query(getTablename(),
+                User.ALL_COLUMNS,
+                User.ALL_COLUMNS[0] + "=?",
+                new String[] { String.valueOf(id) }, null, null, null);
+ 
+        return new User(cursor);
+    }
+ 
+    @Override
+    public void Save(Object entite) {
+    	User user=(User) entite;
+        ContentValues contentValues = new ContentValues();
+        for(int i = 1; i< User.ALL_COLUMNS.length; i++){
+        	contentValues.put( User.ALL_COLUMNS[1], user.getByInt(1));
+        }
+ 
+        maBDD.insert(getTablename(), null, contentValues);
+    }
+ 
+    @Override
+    public void Update(Object entite) {
+    	User user=(User) entite;
+        ContentValues contentValues = new ContentValues();
+        for(int i = 1; i< User.ALL_COLUMNS.length; i++){
+        	contentValues.put( User.ALL_COLUMNS[1], user.getByInt(1));
+        }
+ 
+        maBDD.update(getTablename(), contentValues,
+        		User.ALL_COLUMNS[0] + "=?",
+                new String[] { String.valueOf(user.getId()) });
+    }
+ 
+    @Override
+    public void Delete(int id) {
+        maBDD.delete(getTablename(),
+        		User.ALL_COLUMNS[0] + "=?",
+                new String[] { String.valueOf(id) });
+    }
+    
+    
+    public List ConvertCursorToListObject(Cursor c) {
+        List liste = new ArrayList();
+        if (c.getCount() == 0)
+            return liste;
+        c.moveToFirst();
 
+        do {
+ 
+            User user = new User(c);
+ 
+            liste.add(user);
+        } while (c.moveToNext());
+ 
+        c.close();
+ 
+        return liste;
+    }
 }

@@ -1,5 +1,8 @@
 package com.charlyparkingapps.db;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -11,10 +14,11 @@ public class CharlyAppHelper extends SQLiteOpenHelper{
  
     private static final String BASE_NAME = "charly.db";
     
-    private static final ObjectDB[] ALL_OBJECTS= new ObjectDB[]{new UserDB()};
+    private static List<ObjectDB> all_objects= new LinkedList<ObjectDB>();
  
     public CharlyAppHelper(Context context, CursorFactory factory) {
         super(context, BASE_NAME, factory, DATABASE_VERSION);
+        all_objects.add(new UserDB(context));
     }
  
     /**
@@ -22,7 +26,7 @@ public class CharlyAppHelper extends SQLiteOpenHelper{
      */
     @Override
     public void onCreate(SQLiteDatabase db) {
-    	for(ObjectDB object : ALL_OBJECTS){
+    	for(ObjectDB object : all_objects){
     		db.execSQL(object.getRequete());
     	}
     }
@@ -33,7 +37,7 @@ public class CharlyAppHelper extends SQLiteOpenHelper{
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (newVersion > DATABASE_VERSION) {
-        	for(ObjectDB object : ALL_OBJECTS){
+        	for(ObjectDB object : all_objects){
         		db.execSQL("DROP TABLE " + object.getTablename() + ";");
         	}
             onCreate(db);            
