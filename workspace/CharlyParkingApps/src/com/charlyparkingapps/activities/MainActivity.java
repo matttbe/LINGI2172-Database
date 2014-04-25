@@ -12,17 +12,13 @@ import android.view.MenuItem;
  
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.Menu;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.charlyparkingapps.R;
 import com.charlyparkingapps.listeners.DrawerListListener;
-import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 
-public class MainActivity extends SlidingFragmentActivity {
+public class MainActivity extends Activity {
 	
 	private ListView mMenuList; 
 	private DrawerLayout mDrawerLayout;
