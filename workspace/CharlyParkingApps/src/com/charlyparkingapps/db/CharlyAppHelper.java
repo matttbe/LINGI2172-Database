@@ -21,9 +21,6 @@ public class CharlyAppHelper extends SQLiteOpenHelper{
         all_objects.add(new UserDB(context));
     }
  
-    /**
-     * Création de la base
-     */
     @Override
     public void onCreate(SQLiteDatabase db) {
     	for(ObjectDB object : all_objects){
@@ -31,9 +28,6 @@ public class CharlyAppHelper extends SQLiteOpenHelper{
     	}
     }
  
-    /**
-     * Mise à jour de la base
-     */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (newVersion > DATABASE_VERSION) {
