@@ -50,13 +50,26 @@ public class UserDB extends ObjectRepository {
 	}
 	
 	
+	public boolean login(int id, String password) {
+        Cursor cursor = maBDD.query(getTablename(),
+                User.ALL_COLUMNS,
+                User.ALL_COLUMNS[0] + "=? AND "+"password =?",
+                new String[] { String.valueOf(id), password }, null, null, null);
+ 
+        return cursor.moveToFirst();
+    }
+	
+	
 	public User GetById(int id) {
         Cursor cursor = maBDD.query(getTablename(),
                 User.ALL_COLUMNS,
                 User.ALL_COLUMNS[0] + "=?",
                 new String[] { String.valueOf(id) }, null, null, null);
  
-        return new User(cursor);
+        if(cursor.moveToFirst())
+        	return new User(cursor);
+        else
+        	return null;
     }
  
     @Override
