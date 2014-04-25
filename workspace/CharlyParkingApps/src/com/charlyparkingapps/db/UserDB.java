@@ -77,11 +77,11 @@ public class UserDB extends ObjectRepository {
         	return null;
     }
 	
-	public User GetByUsername(String mEmail) {
+	public User GetByUsername(String username) {
 		Cursor cursor = maBDD.query(getTablename(),
                 User.ALL_COLUMNS,
                 "username=?",
-                new String[] { mEmail }, null, null, null);
+                new String[] { username }, null, null, null);
  
         if(cursor.moveToFirst())
         	return new User(cursor);

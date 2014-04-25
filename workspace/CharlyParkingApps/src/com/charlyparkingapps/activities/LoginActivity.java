@@ -1,5 +1,7 @@
 package com.charlyparkingapps.activities;
 
+
+import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.UserDB;
 import com.charlyparkingapps.db.object.User;
@@ -206,7 +208,11 @@ public class LoginActivity extends Activity {
 				}
 				user.Close();
 			}
-			// TODO: register the new account here.
+			if(log){
+				user.Open();				
+				 ((CharlyApplication) getApplicationContext()).setCurrent_user(user.GetByUsername(mUsername));
+				user.Close();
+			}
 			return log;
 		}
 
@@ -215,7 +221,7 @@ public class LoginActivity extends Activity {
 			mAuthTask = null;
 			showProgress(false);
 
-			if (success) {
+			if (success) {				
 				finish();
 			} else {
 				mPasswordView
