@@ -15,5 +15,9 @@
     <string name="logout">Log out</string>
     
     <string name="test">test</string>
+    
+    <string name="drawer_open">Menu opened</string>
+    <string name="drawer_close">Menu closed</string>
+    <string name="menu">Menu</string>
 
 </resources>
