@@ -53,6 +53,7 @@ public class LoginActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
 		if(((CharlyApplication) getApplication()).testLogIn()){
 			Intent i = new Intent(this, MainActivity.class);
 			startActivity(i);
@@ -63,8 +64,6 @@ public class LoginActivity extends Activity {
 	}
 	
 	private void create(Bundle savedInstanceState){
-
-		super.onCreate(savedInstanceState);
 
 		setContentView(R.layout.activity_login);
 
