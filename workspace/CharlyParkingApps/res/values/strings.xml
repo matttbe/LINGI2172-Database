@@ -12,5 +12,6 @@
     <string name="sliding_settings">Settings</string>
     <string name="sliding_logout">Logout</string>
     <string name="id_user_pref">0</string>
+    <string name="logout">Log out</string>
 
 </resources>

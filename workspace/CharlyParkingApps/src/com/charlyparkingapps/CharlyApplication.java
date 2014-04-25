@@ -3,11 +3,9 @@ package com.charlyparkingapps;
 import com.charlyparkingapps.db.UserDB;
 import com.charlyparkingapps.db.object.User;
 
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 
 public class CharlyApplication extends Application{
 
@@ -32,6 +30,7 @@ public class CharlyApplication extends Application{
 		editor.putInt(getString(R.string.id_user_pref), 0);
 		editor.commit();
 		setCurrent_user(null);
+		
 	}
 	
 	public boolean testLogIn(){
