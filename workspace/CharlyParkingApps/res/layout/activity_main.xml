@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="5dp"
-                class="com.charlyparkingapps.searchFragment" />
+                class="com.charlyparkingapps.fragments.SearchFragment" />
         </LinearLayout>
     </FrameLayout>
 
