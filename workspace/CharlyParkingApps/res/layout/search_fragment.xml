@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="2dp"
+    android:layout_weight="1"
+    tools:context="SearchFragment" >
+
+    <LinearLayout
+        android:id="@+id/linearL1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@android:color/white" >
+
+
+
+        <SearchView
+            android:id="@+id/search_view_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:ems="10" >
+
+        </SearchView>
+    </LinearLayout>
+
+</FrameLayout>

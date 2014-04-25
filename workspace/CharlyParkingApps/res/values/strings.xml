@@ -4,5 +4,12 @@
     <string name="app_name">Charly Parking Apps</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    
+    <string name="sliding_map">Map</string>
+    <string name="sliding_car">Car</string>
+    <string name="sliding_search">Search</string>
+    <string name="sliding_profile">Profile</string>
+    <string name="sliding_settings">Settings</string>
+    <string name="sliding_logout">Logout</string>
 
 </resources>
