@@ -26,6 +26,14 @@ public class CharlyApplication extends Application{
 		this.current_user = current_user;
 	}
 	
+	public void logOut(){
+		SharedPreferences sharedPref = 	this.getSharedPreferences("user", Context.MODE_PRIVATE);
+		SharedPreferences.Editor editor = sharedPref.edit();
+		editor.putInt(getString(R.string.id_user_pref), 0);
+		editor.commit();
+		setCurrent_user(null);
+	}
+	
 	public boolean testLogIn(){
 		SharedPreferences sharedPref = 	this.getSharedPreferences("user", Context.MODE_PRIVATE);
 		int id = sharedPref.getInt(getString(R.string.id_user_pref), 0);
