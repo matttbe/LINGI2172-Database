@@ -46,7 +46,7 @@ public class UserDB extends ObjectRepository {
 	}
 	
 	
-	public List GetAll(){
+	public List<Object> GetAll(){
         Cursor cursor = maBDD.query(getTablename(),
                 User.ALL_COLUMNS, null, null, null,
                 null, null);
@@ -122,8 +122,8 @@ public class UserDB extends ObjectRepository {
     }
     
     
-    public List ConvertCursorToListObject(Cursor c) {
-        List liste = new ArrayList();
+    public List<Object> ConvertCursorToListObject(Cursor c) {
+        List<Object> liste = new ArrayList<Object>();
         if (c.getCount() == 0)
             return liste;
         c.moveToFirst();

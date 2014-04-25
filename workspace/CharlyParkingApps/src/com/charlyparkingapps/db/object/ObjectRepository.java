@@ -1,9 +1,5 @@
 package com.charlyparkingapps.db.object;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 

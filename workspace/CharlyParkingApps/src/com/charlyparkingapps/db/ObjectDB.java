@@ -2,11 +2,9 @@ package com.charlyparkingapps.db;
 
 import java.util.List;
 
-import android.database.Cursor;
-
 public interface ObjectDB {
 		 
-	    public List GetAll();
+	    public List<Object> GetAll();
 	    public Object GetById(int id);
 	 
 	    public void Save(Object entite);

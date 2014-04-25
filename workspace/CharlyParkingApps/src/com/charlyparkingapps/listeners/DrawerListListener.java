@@ -7,7 +7,7 @@ import android.widget.ListView;
 public class DrawerListListener implements ListView.OnItemClickListener {
 	
     @Override
-    public void onItemClick(AdapterView parent, View view, int position, long id) {
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
     	
     	switch(position) {
     		case 0:
