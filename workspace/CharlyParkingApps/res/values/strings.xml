@@ -13,5 +13,7 @@
     <string name="sliding_logout">Logout</string>
     <string name="id_user_pref">0</string>
     <string name="logout">Log out</string>
+    
+    <string name="test">test</string>
 
 </resources>
