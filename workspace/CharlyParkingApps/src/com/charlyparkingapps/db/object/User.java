@@ -4,16 +4,18 @@ import android.database.Cursor;
 
 public class User {
 	
-	public static final String[] ALL_COLUMNS={"userId","type","username"};
+	public static final String[] ALL_COLUMNS={"userId","username","type","password"};
 	
 	private int id;
 	private String username;
+	private String password;
 	private int type;
 	
 	
-	public User(String usernameParam, int typeParam){
+	public User(String usernameParam, int typeParam, String passwordParam){
 		this.setUsername(usernameParam);
 		this.setType(typeParam);
+		this.setPassword(passwordParam);
 	}
 
 
@@ -28,9 +30,12 @@ public class User {
 			case 0:
 				return String.valueOf(getId());
 			case 1:
-				return String.valueOf(getType());
-			case 2:
 				return getUsername();
+			case 2:
+				return String.valueOf(getType());
+			case 3:
+				return String.valueOf(getPassword());
+
 		}
 		return String.valueOf(getId());		
 	}
@@ -63,6 +68,16 @@ public class User {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+	public String getPassword() {
+		return password;
+	}
+
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

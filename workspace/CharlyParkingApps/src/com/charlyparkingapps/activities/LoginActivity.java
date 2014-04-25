@@ -1,4 +1,8 @@
-package com.charlyparkingapps;
+package com.charlyparkingapps.activities;
+
+import com.charlyparkingapps.R;
+import com.charlyparkingapps.db.UserDB;
+import com.charlyparkingapps.db.object.User;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -20,12 +24,6 @@ import android.widget.TextView;
  * well.
  */
 public class LoginActivity extends Activity {
-	/**
-	 * A dummy authentication store containing known user names and passwords.
-	 * TODO: remove after connecting to a real authentication system.
-	 */
-	private static final String[] DUMMY_CREDENTIALS = new String[] {
-			"foo@example.com:hello", "bar@example.com:world" };
 
 	/**
 	 * The default email to populate the email field with.
@@ -38,7 +36,7 @@ public class LoginActivity extends Activity {
 	private UserLoginTask mAuthTask = null;
 
 	// Values for email and password at the time of the login attempt.
-	private String mEmail;
+	private String mUsername;
 	private String mPassword;
 
 	// UI references.
@@ -55,9 +53,9 @@ public class LoginActivity extends Activity {
 		setContentView(R.layout.activity_login);
 
 		// Set up the login form.
-		mEmail = getIntent().getStringExtra(EXTRA_EMAIL);
-		mEmailView = (EditText) findViewById(R.id.email);
-		mEmailView.setText(mEmail);
+		mUsername = getIntent().getStringExtra(EXTRA_EMAIL);
+		mEmailView = (EditText) findViewById(R.id.username);
+		mEmailView.setText(mUsername);
 
 		mPasswordView = (EditText) findViewById(R.id.password);
 		mPasswordView
@@ -108,7 +106,7 @@ public class LoginActivity extends Activity {
 		mPasswordView.setError(null);
 
 		// Store values at the time of the login attempt.
-		mEmail = mEmailView.getText().toString();
+		mUsername = mEmailView.getText().toString();
 		mPassword = mPasswordView.getText().toString();
 
 		boolean cancel = false;
@@ -126,15 +124,11 @@ public class LoginActivity extends Activity {
 		}
 
 		// Check for a valid email address.
-		if (TextUtils.isEmpty(mEmail)) {
+		if (TextUtils.isEmpty(mUsername)) {
 			mEmailView.setError(getString(R.string.error_field_required));
 			focusView = mEmailView;
 			cancel = true;
-		} else if (!mEmail.contains("@")) {
-			mEmailView.setError(getString(R.string.error_invalid_email));
-			focusView = mEmailView;
-			cancel = true;
-		}
+		} 
 
 		if (cancel) {
 			// There was an error; don't attempt login and focus the first
@@ -198,25 +192,22 @@ public class LoginActivity extends Activity {
 	public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
 		@Override
 		protected Boolean doInBackground(Void... params) {
-			// TODO: attempt authentication against a network service.
 
-			try {
-				// Simulate network access.
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				return false;
-			}
-
-			for (String credential : DUMMY_CREDENTIALS) {
-				String[] pieces = credential.split(":");
-				if (pieces[0].equals(mEmail)) {
-					// Account exists, return true if the password matches.
-					return pieces[1].equals(mPassword);
+			UserDB user = new UserDB(getApplicationContext());
+			user.Open();
+			boolean log = user.login(mUsername, mPassword);
+			user.Close();
+			if(!log){
+				user.Open();
+				if(user.GetByUsername(mUsername)==null){
+					User u = new User(mUsername, 0,mPassword);
+					user.Save(u);
+					log=true;
 				}
+				user.Close();
 			}
-
 			// TODO: register the new account here.
-			return true;
+			return log;
 		}
 
 		@Override

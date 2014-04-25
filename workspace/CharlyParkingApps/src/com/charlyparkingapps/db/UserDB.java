@@ -6,6 +6,7 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.charlyparkingapps.db.object.ObjectRepository;
 import com.charlyparkingapps.db.object.User;
@@ -17,6 +18,10 @@ public class UserDB extends ObjectRepository {
 	public UserDB(Context context) {
         sqLiteOpenHelper = new CharlyAppHelper(context, null);
     }
+	
+	public UserDB(){
+		
+	}
 	
 	@Override
 	public String getTablename() {
@@ -50,11 +55,11 @@ public class UserDB extends ObjectRepository {
 	}
 	
 	
-	public boolean login(int id, String password) {
+	public boolean login(String mEmail, String password) {
         Cursor cursor = maBDD.query(getTablename(),
                 User.ALL_COLUMNS,
-                User.ALL_COLUMNS[0] + "=? AND "+"password =?",
-                new String[] { String.valueOf(id), password }, null, null, null);
+                "username =? AND "+"password =?",
+                new String[] { String.valueOf(mEmail), password }, null, null, null);
  
         return cursor.moveToFirst();
     }
@@ -71,15 +76,28 @@ public class UserDB extends ObjectRepository {
         else
         	return null;
     }
+	
+	public User GetByUsername(String mEmail) {
+		Cursor cursor = maBDD.query(getTablename(),
+                User.ALL_COLUMNS,
+                "username=?",
+                new String[] { mEmail }, null, null, null);
+ 
+        if(cursor.moveToFirst())
+        	return new User(cursor);
+        else
+        	return null;
+		
+	}
  
     @Override
     public void Save(Object entite) {
     	User user=(User) entite;
         ContentValues contentValues = new ContentValues();
-        for(int i = 1; i< User.ALL_COLUMNS.length; i++){
-        	contentValues.put( User.ALL_COLUMNS[1], user.getByInt(1));
+        for(int i = 1; i < User.ALL_COLUMNS.length; i++){
+        	contentValues.put( User.ALL_COLUMNS[i], user.getByInt(i));
         }
- 
+        Log.i("charlyLog",contentValues.toString());
         maBDD.insert(getTablename(), null, contentValues);
     }
  
@@ -121,4 +139,5 @@ public class UserDB extends ObjectRepository {
  
         return liste;
     }
+
 }
