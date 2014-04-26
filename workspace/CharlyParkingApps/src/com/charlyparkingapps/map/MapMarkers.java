@@ -25,7 +25,8 @@ public class MapMarkers {
 			float radius)
 	{
 		Log.d ("Markers", "== getMarkers: " + location + " " + radius);
-		ArrayList<Parking> markers = null; // TODO: DB ParkingDB.getParkings()
+		// TODO: DB => ParkingDB.getParkings(location.getLatitude(), location.getLongitude())
+		ArrayList<Parking> markers = new ArrayList<Parking>(); // TODO: rm
 		return markers;
 	}
 
@@ -42,9 +43,6 @@ public class MapMarkers {
 	public void updateMarkers ()
 	{
 		ArrayList<Parking> items = getMarkersForLocation ();
-		if (items == null)
-			return;
-
 		for (Parking item : items)
 		{
 			int id = item.getParkingId();

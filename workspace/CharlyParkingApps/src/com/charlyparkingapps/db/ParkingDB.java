@@ -12,19 +12,18 @@ import com.charlyparkingapps.db.object.ObjectRepository;
 import com.charlyparkingapps.db.object.Parking;
 
 public class ParkingDB extends ObjectRepository {
-	
-	private Parking parking=new Parking();
-	
-	private Context context;
-	
+
+	private Parking parking = new Parking();
+
+	private Parking parking;
+	private static final double ONE_METER = 0.00000898 * 1.05; // with extras
+
 	public ParkingDB(Context context) {
-		this.context=context;
 		sqLiteOpenHelper = new CharlyAppHelper(context, null);
 	}
 
 	public ParkingDB() {
-		
-	}	
+	}
 
 	@Override
 	public String getTablename() {
@@ -45,8 +44,7 @@ public class ParkingDB extends ObjectRepository {
 	public Model getObject() {
 		return this.parking;
 	}
-	
-	
+
 	public List<Object> ConvertCursorToListObject(Cursor c) {
 		List<Object> liste = new ArrayList<Object>();
 		if (c.getCount() == 0)
@@ -60,5 +58,17 @@ public class ParkingDB extends ObjectRepository {
 		return liste;
 	}
 
+	public ArrayList<Parking> getParkings(double latitude, double longitude,
+			float radius) {
+		double diffLat = ONE_METER * radius;
+		double latMin = latitude - diffLat;
+		double latMax = latitude + diffLat;
+		double lonMin = longitude - diffLat / Math.cos(latMin);
+		double lonMax = longitude + diffLat / Math.cos(latMax);
+
+		ArrayList<Parking> list = new ArrayList<Parking>();
+		// TODO: SELECT * FROM parkings WHERE lat > $latMin AND lat < $latMax AND lon > $lonMin AND lon < $lonMax
+		return list;
+	}
 
 }
