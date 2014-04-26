@@ -1,5 +1,6 @@
 package com.charlyparkingapps.db.object;
 
+import android.content.Context;
 import android.database.Cursor;
 
 public class Parking {
@@ -11,9 +12,15 @@ public class Parking {
 	private int freePlaces;
 	private int maxHeight;
 	
+	private Address address;
+	private boolean isLoaded=false;
+	
+	private Context context;
+	
 	public static final String[] ALL_COLUMNS = { "parkingId", "name", "defibrillator", "totalPlaces", "freePlaces", "maxHeight" };
 	
-	public Parking(String nameParam, boolean defibrillatorParam, int totalPlacesParam, int freePlacesParam, int maxHeightParam){
+	public Parking(Context contextParam, String nameParam, boolean defibrillatorParam, int totalPlacesParam, int freePlacesParam, int maxHeightParam){
+		this.context=contextParam;
 		this.name=nameParam;
 		this.defibrillator=defibrillatorParam;
 		this.totalPlaces=totalPlacesParam;
@@ -21,7 +28,8 @@ public class Parking {
 		this.maxHeight=maxHeightParam;
 	}
 	
-	public Parking(Cursor c) {
+	public Parking(Cursor c, Context context) {
+		this.context=context;
 		this.parkingId=c.getInt(0);
 		this.name=c.getString(1);
 		this.defibrillator=c.getString(2).equals("true");
@@ -99,6 +107,21 @@ public class Parking {
 
 	public static String[] getAllColumns() {
 		return ALL_COLUMNS;
+	}
+
+	public void setAddress(Address address) {
+		this.address=address;
+	}
+	
+	private void loadAddress(){
+		isLoaded=true;
+	}
+	
+	public Address getAddress() {
+		if(!isLoaded){
+			loadAddress();
+		}
+		return address;
 	}
 
 }

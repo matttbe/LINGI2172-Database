@@ -14,12 +14,15 @@ public class ParkingDB extends ObjectRepository {
 	
 	private Parking parking;
 	
+	private Context context;
+	
 	public ParkingDB(Context context) {
+		this.context=context;
 		sqLiteOpenHelper = new CharlyAppHelper(context, null);
 	}
 
 	public ParkingDB() {
-
+		
 	}
 
 	@Override
@@ -37,7 +40,7 @@ public class ParkingDB extends ObjectRepository {
 				new String[] { String.valueOf(id) }, null, null, null);
 
 		if (cursor.moveToFirst())
-			return new Parking(cursor);
+			return new Parking(cursor,context);
 		else
 			return null;
 	}
@@ -98,7 +101,7 @@ public class ParkingDB extends ObjectRepository {
 			return liste;
 		c.moveToFirst();
 		do {
-			Parking parking = new Parking(c);
+			Parking parking = new Parking(c,context);
 			liste.add(parking);
 		} while (c.moveToNext());
 		c.close();
