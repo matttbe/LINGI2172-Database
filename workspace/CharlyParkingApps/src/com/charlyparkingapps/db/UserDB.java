@@ -90,7 +90,6 @@ public class UserDB extends ObjectRepository {
 		for (int i = 1; i < User.ALL_COLUMNS.length; i++) {
 			contentValues.put(User.ALL_COLUMNS[i], user.getByInt(i));
 		}
-		Log.i("charlyLog", contentValues.toString());
 		maBDD.insert(getTablename(), null, contentValues);
 	}
 
@@ -99,7 +98,7 @@ public class UserDB extends ObjectRepository {
 		User user = (User) entite;
 		ContentValues contentValues = new ContentValues();
 		for (int i = 1; i < User.ALL_COLUMNS.length; i++) {
-			contentValues.put(User.ALL_COLUMNS[1], user.getByInt(1));
+			contentValues.put(User.ALL_COLUMNS[i], user.getByInt(i));
 		}
 
 		maBDD.update(getTablename(), contentValues, User.ALL_COLUMNS[0] + "=?",
