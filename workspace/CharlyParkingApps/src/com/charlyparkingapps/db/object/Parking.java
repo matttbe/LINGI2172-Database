@@ -119,7 +119,7 @@ public class Parking implements Model{
 		isLoaded=true;
 		AddressDB ad=new AddressDB(context);
 		ad.Open();
-		address=(Address)ad.GetByIdParking(this.getParkingId());
+		address=ad.GetByIdParking(this.getParkingId());
 		
 	}
 	
