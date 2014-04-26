@@ -241,7 +241,6 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 
 			if (success) {
-				finish();
 				Intent i = new Intent(LoginActivity.this, MainActivity.class);
 				startActivity(i);
 			} else {
