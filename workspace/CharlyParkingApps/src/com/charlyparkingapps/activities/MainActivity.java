@@ -47,7 +47,7 @@ public class MainActivity extends Activity implements LocationListener {
 	private static final int GPS_MIN_TIME_UPDATE = 5 * 60 * 1000; // 5min
 	private static final int NETWORK_MIN_TIME_UPDATE = 10 * 60 * 1000; // 10min
 	private static final int MIN_DISTANCE_UPDATE = 100; // 100 meters
-	private static final float ZOOM_INIT = 11;
+	private static final float ZOOM_INIT = 10;
 	private static final float ZOOM_GPS = 12;
 
 
