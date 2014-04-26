@@ -8,19 +8,20 @@ import android.content.Context;
 import android.database.Cursor;
 import android.util.Log;
 
+import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.ObjectRepository;
 import com.charlyparkingapps.db.object.User;
 
 public class UserDB extends ObjectRepository {
 
-	private User user;
+	private User user=new User();
 
 	public UserDB(Context context) {
+		this.setContext(context);
 		sqLiteOpenHelper = new CharlyAppHelper(context, null);
 	}
 
 	public UserDB() {
-
 	}
 
 	@Override
@@ -41,16 +42,10 @@ public class UserDB extends ObjectRepository {
 	}
 
 	@Override
-	public Object getObject() {
+	public Model getObject() {
 		return this.user;
 	}
 
-	public List<Object> GetAll() {
-		Cursor cursor = maBDD.query(getTablename(), User.ALL_COLUMNS, null,
-				null, null, null, null);
-
-		return ConvertCursorToListObject(cursor);
-	}
 
 	public boolean login(String mEmail, String password) {
 		Cursor cursor = maBDD.query(getTablename(), User.ALL_COLUMNS,
@@ -61,23 +56,12 @@ public class UserDB extends ObjectRepository {
 		return cursor.moveToFirst();
 	}
 
-	public User GetById(int id) {
-		Cursor cursor = maBDD.query(getTablename(), User.ALL_COLUMNS,
-				User.ALL_COLUMNS[0] + "=?",
-				new String[] { String.valueOf(id) }, null, null, null);
-
-		if (cursor.moveToFirst())
-			return new User(cursor);
-		else
-			return null;
-	}
-
 	public User GetByUsername(String username) {
 		Cursor cursor = maBDD.query(getTablename(), User.ALL_COLUMNS,
 				"username=?", new String[] { username }, null, null, null);
 
 		if (cursor.moveToFirst())
-			return new User(cursor);
+			return new User(cursor, this.getContext());
 		else
 			return null;
 
@@ -119,7 +103,7 @@ public class UserDB extends ObjectRepository {
 
 		do {
 
-			User user = new User(c);
+			User user = new User(c, this.getContext());
 
 			liste.add(user);
 		} while (c.moveToNext());

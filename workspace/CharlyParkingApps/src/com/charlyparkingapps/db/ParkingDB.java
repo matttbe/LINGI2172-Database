@@ -7,6 +7,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.ObjectRepository;
 import com.charlyparkingapps.db.object.Parking;
 
@@ -23,26 +24,6 @@ public class ParkingDB extends ObjectRepository {
 
 	public ParkingDB() {
 		
-	}
-
-	@Override
-	public List<Object> GetAll() {
-		Cursor cursor = maBDD.query(getTablename(), Parking.ALL_COLUMNS, null,
-				null, null, null, null);
-
-		return ConvertCursorToListObject(cursor);
-	}
-
-	@Override
-	public Object GetById(int id) {
-		Cursor cursor = maBDD.query(getTablename(), Parking.ALL_COLUMNS,
-				Parking.ALL_COLUMNS[0] + "=?",
-				new String[] { String.valueOf(id) }, null, null, null);
-
-		if (cursor.moveToFirst())
-			return new Parking(cursor,context);
-		else
-			return null;
 	}
 
 	@Override
@@ -90,7 +71,7 @@ public class ParkingDB extends ObjectRepository {
 	}
 
 	@Override
-	public Object getObject() {
+	public Model getObject() {
 		return this.parking;
 	}
 	

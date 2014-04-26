@@ -3,7 +3,7 @@ package com.charlyparkingapps.db.object;
 import android.content.Context;
 import android.database.Cursor;
 
-public class Parking {
+public class Parking implements Model{
 	
 	private int parkingId;
 	private String name;
@@ -105,10 +105,6 @@ public class Parking {
 		this.maxHeight = maxHeight;
 	}
 
-	public static String[] getAllColumns() {
-		return ALL_COLUMNS;
-	}
-
 	public void setAddress(Address address) {
 		this.address=address;
 	}
@@ -122,6 +118,22 @@ public class Parking {
 			loadAddress();
 		}
 		return address;
+	}
+
+	@Override
+	public String[] getAll_Columns() {
+		return ALL_COLUMNS;
+	}
+
+	@Override
+	public Model createFromCursor(Cursor c, Context context) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getUniqueColumn() {
+		return ALL_COLUMNS[0];
 	}
 
 }

@@ -1,8 +1,9 @@
 package com.charlyparkingapps.db.object;
 
+import android.content.Context;
 import android.database.Cursor;
 
-public class User {
+public class User implements Model{
 
 	public static final String[] ALL_COLUMNS = { "userId", "username", "type",
 			"password" };
@@ -17,11 +18,21 @@ public class User {
 		this.setType(typeParam);
 		this.setPassword(passwordParam);
 	}
+	
 
-	public User(Cursor c) {
+	public User(Cursor c, Context context) {
+		createFromCursor(c, context);
+	}
+	
+	public User() {
+	}
+
+
+	public Model createFromCursor(Cursor c, Context context){
 		this.setId(c.getInt(0));
 		this.setType(c.getInt(1));
 		this.setUsername(c.getString(2));
+		return this;
 	}
 
 	public String getByInt(int i) {
@@ -69,6 +80,17 @@ public class User {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String[] getAll_Columns() {
+		return ALL_COLUMNS;
+	}
+
+
+	@Override
+	public String getUniqueColumn() {
+		return this.getAll_Columns()[0];
 	}
 
 }

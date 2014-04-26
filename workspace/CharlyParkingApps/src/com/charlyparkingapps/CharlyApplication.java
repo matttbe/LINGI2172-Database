@@ -41,7 +41,7 @@ public class CharlyApplication extends Application {
 		if (id != 0) {
 			UserDB user = new UserDB(getApplicationContext());
 			user.Open();
-			((CharlyApplication) getApplicationContext()).setCurrent_user(user
+			((CharlyApplication) getApplicationContext()).setCurrent_user((User)user
 					.GetById(id));
 			user.Close();
 			return true;

@@ -2,6 +2,10 @@ package com.charlyparkingapps.db;
 
 import java.util.List;
 
+import android.database.Cursor;
+
+import com.charlyparkingapps.db.object.Model;
+
 public interface ObjectDB {
 
 	public List<Object> GetAll();
@@ -20,6 +24,8 @@ public interface ObjectDB {
 
 	boolean checkConstraint();
 
-	Object getObject();
+	Model getObject();
+	
+	public List<Object> ConvertCursorToListObject(Cursor c);
 
 }
