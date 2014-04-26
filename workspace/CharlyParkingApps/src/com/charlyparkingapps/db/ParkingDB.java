@@ -3,7 +3,6 @@ package com.charlyparkingapps.db;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -15,10 +14,12 @@ public class ParkingDB extends ObjectRepository {
 
 	private Parking parking = new Parking();
 
-	private Parking parking;
 	private static final double ONE_METER = 0.00000898 * 1.05; // with extras
 
+	private Context context;
+
 	public ParkingDB(Context context) {
+		this.context = context;
 		sqLiteOpenHelper = new CharlyAppHelper(context, null);
 	}
 
@@ -51,7 +52,7 @@ public class ParkingDB extends ObjectRepository {
 			return liste;
 		c.moveToFirst();
 		do {
-			Parking parking = new Parking(c);
+			Parking parking = new Parking(context, c);
 			liste.add(parking);
 		} while (c.moveToNext());
 		c.close();

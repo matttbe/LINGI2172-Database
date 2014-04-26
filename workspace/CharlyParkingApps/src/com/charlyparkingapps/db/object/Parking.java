@@ -1,13 +1,10 @@
 package com.charlyparkingapps.db.object;
 
-<<<<<<< HEAD
 import com.charlyparkingapps.db.AddressDB;
-=======
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
->>>>>>> Markers: added support
 
 import android.content.Context;
 import android.database.Cursor;
@@ -30,8 +27,12 @@ public class Parking implements Model{
 	private Marker marker = null;
 	private LatLng location;
 
-	public Parking(String nameParam, boolean defibrillatorParam,
-			int totalPlacesParam, int freePlacesParam, int maxHeightParam) {
+	private Context context;
+
+	public Parking(Context context, String nameParam,
+			boolean defibrillatorParam, int totalPlacesParam,
+			int freePlacesParam, int maxHeightParam) {
+		this.context = context;
 		this.name = nameParam;
 		this.defibrillator = defibrillatorParam;
 		this.totalPlaces = totalPlacesParam;
@@ -39,7 +40,8 @@ public class Parking implements Model{
 		this.maxHeight = maxHeightParam;
 	}
 
-	public Parking(Cursor c) {
+	public Parking(Context context, Cursor c) {
+		this.context = context;
 		this.parkingId = c.getInt(0);
 		this.name = c.getString(1);
 		this.defibrillator = c.getString(2).equals("true");
@@ -48,8 +50,7 @@ public class Parking implements Model{
 		this.maxHeight = c.getInt(5);
 	}
 
-	public Parking(){
-		
+	public Parking() {
 	}
 
 	public String getByInt(int i) {
@@ -124,11 +125,10 @@ public class Parking implements Model{
 	}
 	
 	public void loadAddress(){
-		isLoaded=true;
-		AddressDB ad=new AddressDB(context);
+		isLoaded = true;
+		AddressDB ad = new AddressDB(context);
 		ad.Open();
-		address=ad.GetByIdParking(this.getParkingId());
-		
+		address = ad.GetByIdParking(this.getParkingId());
 	}
 	
 	public Address getAddress() {
