@@ -53,7 +53,7 @@ public class ParkingDB extends ObjectRepository {
 			return liste;
 		c.moveToFirst();
 		do {
-			Parking parking = new Parking(c,context);
+			Parking parking = new Parking(c);
 			liste.add(parking);
 		} while (c.moveToNext());
 		c.close();

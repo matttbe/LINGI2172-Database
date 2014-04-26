@@ -17,27 +17,24 @@ public class Parking implements Model{
 	private Address address;
 	private boolean isLoaded=false;
 	
-	private Context context;
-	
 	public static final String[] ALL_COLUMNS = { "parkingId", "name", "defibrillator", "totalPlaces", "freePlaces", "maxHeight" };
 	
-	public Parking(Context contextParam, String nameParam, boolean defibrillatorParam, int totalPlacesParam, int freePlacesParam, int maxHeightParam){
-		this.context=contextParam;
 		this.name=nameParam;
 		this.defibrillator=defibrillatorParam;
 		this.totalPlaces=totalPlacesParam;
 		this.freePlaces=freePlacesParam;
 		this.maxHeight=maxHeightParam;
+	public Parking(String nameParam, boolean defibrillatorParam,
+			int totalPlacesParam, int freePlacesParam, int maxHeightParam) {
 	}
 	
-	public Parking(Cursor c, Context context) {
-		this.context=context;
 		this.parkingId=c.getInt(0);
 		this.name=c.getString(1);
 		this.defibrillator=c.getString(2).equals("true");
 		this.totalPlaces=c.getInt(3);
 		this.freePlaces=c.getInt(4);
 		this.maxHeight=c.getInt(5);
+	public Parking(Cursor c) {
 	}
 	
 	public Parking(){
