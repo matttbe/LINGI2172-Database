@@ -177,6 +177,14 @@ public class Parking implements Model{
 	}
 
 	/**
+	 * @return a list of all corners of the parking or null
+	 */
+	public List<LatLng> getAllCorners () {
+		// TODO?? => ORDER BY id
+		return null;
+	}
+
+	/**
 	 * @return a MarkerOptions needed for creating a marker
 	 */
 	private MarkerOptions getMarkerOptions ()

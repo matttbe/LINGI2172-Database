@@ -12,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolygonOptions;
 
 public class MapMarkers {
 	private GoogleMap map;
@@ -106,14 +107,20 @@ public class MapMarkers {
 	public void showParking(Parking parking) {
 		clearMap();
 
-		// TODO? display a polygon around the parking: map.addPolygon(options);
 		parking.addMarkerToMap(map);
 		parking.getMarker().showInfoWindow();
 
 		LatLng center = parking.getLocation();
 		MapCamera.moveCamera(map, center, MapCamera.ZOOM_OBJECT);
 
-		List<LatLng> points = parking.getAllEntries();
+		List<LatLng> points = parking.getAllCorners();
+		if (points != null) {
+			PolygonOptions polygon = new PolygonOptions();
+			polygon.addAll(points);
+			map.addPolygon(polygon);
+		}
+
+		points = parking.getAllEntries();
 		if (points != null) {
 			for (LatLng position : points) {
 				MarkerOptions markerOptions = new MarkerOptions ();
