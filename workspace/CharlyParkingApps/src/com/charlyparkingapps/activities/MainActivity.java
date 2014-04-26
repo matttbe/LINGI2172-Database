@@ -62,7 +62,7 @@ public class MainActivity extends Activity implements LocationListener {
 		initMap();
 	}
 
-	private void initMap() {
+	private void initMenu() {
 		mEntries = getResources().getStringArray(R.array.drawer_array);
 		mMenuList = (ListView) findViewById(R.id.drawer_menu_list);
 
@@ -99,7 +99,7 @@ public class MainActivity extends Activity implements LocationListener {
 		mActionBar.setHomeButtonEnabled(true);
 	}
 
-	private void initMenu() {
+	private void initMap() {
 		map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map))
 				.getMap();
 		map.setIndoorEnabled(true);
