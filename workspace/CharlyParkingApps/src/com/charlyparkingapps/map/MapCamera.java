@@ -19,12 +19,24 @@ public class MapCamera
 	 * @param location the center position
 	 * @param zoom between 2 and 21, see CameraUpdateFactory.newLatLngZoom
 	 * zoomLevel - At zoomLevel 1, the equator of the earth is 256 pixels long.
-	 * Each successive zoom level is magnified by a factor of 2. 
+	 * Each successive zoom level is magnified by a factor of 2.
 	 */
-	public static void moveCamera (GoogleMap map, final Location location, float zoom)
+	public static void moveCamera (GoogleMap map, Location location, float zoom)
 	{
-		final LatLng latLng = new LatLng (location.getLatitude (),
+		LatLng latLng = new LatLng (location.getLatitude (),
 				location.getLongitude ());
+		moveCamera(map, latLng, zoom);
+	}
+
+	/**
+	 * Move camera to a location with a custom zoom
+	 * @param latLng the center position
+	 * @param zoom between 2 and 21, see CameraUpdateFactory.newLatLngZoom
+	 * zoomLevel - At zoomLevel 1, the equator of the earth is 256 pixels long.
+	 * Each successive zoom level is magnified by a factor of 2.
+	 */
+	public static void moveCamera (GoogleMap map, LatLng latLng, float zoom)
+	{
 		Log.d ("GPS", "move camera to " + latLng.latitude + " " + latLng.longitude);
 		map.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, zoom));
 	}

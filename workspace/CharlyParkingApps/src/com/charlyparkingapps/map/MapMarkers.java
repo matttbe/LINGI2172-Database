@@ -106,6 +106,11 @@ public class MapMarkers {
 		clearMap();
 
 		// TODO? display a polygon around the parking: map.addPolygon(options);
+		parking.addMarkerToMap(map);
+		parking.getMarker().showInfoWindow();
+
+		LatLng center = parking.getLocation();
+		MapCamera.moveCamera(map, center, MapCamera.ZOOM_OBJECT);
 
 		for (LatLng position : parking.getAllLocations()) {
 			MarkerOptions markerOptions = new MarkerOptions ();
