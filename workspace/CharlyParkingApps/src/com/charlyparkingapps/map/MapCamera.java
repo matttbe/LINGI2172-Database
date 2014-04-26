@@ -10,6 +10,10 @@ import com.google.android.gms.maps.model.VisibleRegion;
 
 public class MapCamera
 {
+	public static final float ZOOM_INIT = 10;
+	public static final float ZOOM_GPS = 12;
+	public static final float ZOOM_OBJECT = 14;
+
 	/**
 	 * Move camera to a location with a custom zoom
 	 * @param location the center position

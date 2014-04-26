@@ -49,9 +49,6 @@ public class MainActivity extends Activity implements LocationListener {
 	private static final int GPS_MIN_TIME_UPDATE = 5 * 60 * 1000; // 5min
 	private static final int NETWORK_MIN_TIME_UPDATE = 10 * 60 * 1000; // 10min
 	private static final int MIN_DISTANCE_UPDATE = 100; // 100 meters
-	private static final float ZOOM_INIT = 10;
-	private static final float ZOOM_GPS = 12;
-
 
 	// ________________ LISTERNER ACTIVITY
 
@@ -142,7 +139,7 @@ public class MainActivity extends Activity implements LocationListener {
 		}
 
 		if (lastKnowLocation != null) {
-			MapCamera.moveCamera (map, lastKnowLocation, ZOOM_INIT);
+			MapCamera.moveCamera (map, lastKnowLocation, MapCamera.ZOOM_INIT);
 			markers.updateMarkers ();
 		}
 	}
@@ -234,7 +231,7 @@ public class MainActivity extends Activity implements LocationListener {
 	@Override
 	public void onLocationChanged(final Location location) {
 		if (isFirstPosition) {
-			MapCamera.moveCamera(map, location, ZOOM_GPS);
+			MapCamera.moveCamera(map, location, MapCamera.ZOOM_GPS);
 			isFirstPosition = false;
 			markers.updateMarkers();
 		}
