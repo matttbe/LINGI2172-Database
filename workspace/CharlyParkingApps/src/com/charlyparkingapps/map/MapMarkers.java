@@ -25,7 +25,7 @@ public class MapMarkers {
 			float radius)
 	{
 		Log.d ("Markers", "== getMarkers: " + location + " " + radius);
-		// TODO: DB => ParkingDB.getParkings(location.getLatitude(), location.getLongitude())
+		// TODO: DB => ParkingDB.getParkings(location.getLatitude(), location.getLongitude(), radius)
 		ArrayList<Parking> markers = new ArrayList<Parking>(); // TODO: rm
 		return markers;
 	}
