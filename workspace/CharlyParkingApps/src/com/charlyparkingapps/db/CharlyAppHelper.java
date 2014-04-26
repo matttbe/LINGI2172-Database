@@ -19,6 +19,7 @@ public class CharlyAppHelper extends SQLiteOpenHelper {
 	public CharlyAppHelper(Context context, CursorFactory factory) {
 		super(context, BASE_NAME, factory, DATABASE_VERSION);
 		all_objects.add(new UserDB());
+		all_objects.add(new ParkingDB());
 	}
 
 	@Override
