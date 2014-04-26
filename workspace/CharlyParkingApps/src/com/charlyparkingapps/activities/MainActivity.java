@@ -22,6 +22,7 @@ import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.listeners.DrawerListListener;
 import com.charlyparkingapps.map.MapCamera;
+import com.charlyparkingapps.map.MapMarkers;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.MapFragment;
@@ -39,6 +40,7 @@ public class MainActivity extends Activity implements LocationListener {
 	// Maps
 	private LocationManager locationManager;
 	private GoogleMap map;
+	private MapMarkers markers;
 
 	private boolean isUsingGPS = false;
 	private boolean isUsingNetwork = false;
@@ -108,6 +110,8 @@ public class MainActivity extends Activity implements LocationListener {
 		map.setOnCameraChangeListener(onCameraChangeListener);
 		map.getUiSettings().setZoomControlsEnabled(false);
 		map.getUiSettings().setMyLocationButtonEnabled(true);
+
+		markers = new MapMarkers (map);
 	}
 
 	@Override
@@ -139,6 +143,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 		if (lastKnowLocation != null) {
 			MapCamera.moveCamera (map, lastKnowLocation, ZOOM_INIT);
+			markers.updateMarkers ();
 		}
 	}
 
@@ -222,6 +227,7 @@ public class MainActivity extends Activity implements LocationListener {
 					+ position.zoom + " ; dist: "
 					+ MapCamera.radiusDistanceCovered(map).getRadius()
 					+ " meters");
+			markers.updateMarkers();
 		}
 	};
 
@@ -230,6 +236,7 @@ public class MainActivity extends Activity implements LocationListener {
 		if (isFirstPosition) {
 			MapCamera.moveCamera(map, location, ZOOM_GPS);
 			isFirstPosition = false;
+			markers.updateMarkers();
 		}
 	}
 
