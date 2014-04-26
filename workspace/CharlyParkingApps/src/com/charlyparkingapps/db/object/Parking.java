@@ -1,5 +1,8 @@
 package com.charlyparkingapps.db.object;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import com.charlyparkingapps.db.AddressDB;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
@@ -156,12 +159,22 @@ public class Parking implements Model{
 
 	// ___________________ MARKERS
 
+	/**
+	 * @return the location of the parking (one entry or the center of it)
+	 */
 	public LatLng getLocation () {
-		
 		if (location == null)
 			// TODO
 			location = new LatLng(0, 0);
 		return location;
+	}
+
+	/**
+	 * @return a list of all locations (all entries)
+	 */
+	public List<LatLng> getAllLocations () {
+		// TODO
+		return new ArrayList<LatLng>();
 	}
 
 	/**

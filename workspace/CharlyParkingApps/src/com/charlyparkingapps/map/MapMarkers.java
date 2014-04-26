@@ -8,6 +8,9 @@ import android.util.SparseArray;
 
 import com.charlyparkingapps.db.object.Parking;
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class MapMarkers {
 	private GoogleMap map;
@@ -92,6 +95,25 @@ public class MapMarkers {
 			}
 			for (int id : keysToRm)
 				parkingsArray.delete (id);
+		}
+	}
+
+	/**
+	 * Show the parking on the map with all entries
+	 * @param parking
+	 */
+	public void showParking(Parking parking) {
+		clearMap();
+
+		// TODO? display a polygon around the parking: map.addPolygon(options);
+
+		for (LatLng position : parking.getAllLocations()) {
+			MarkerOptions markerOptions = new MarkerOptions ();
+			markerOptions.title(parking.getName ());
+			markerOptions.position(position);
+			markerOptions.icon(BitmapDescriptorFactory
+					.defaultMarker (BitmapDescriptorFactory.HUE_AZURE));
+			map.addMarker (markerOptions);
 		}
 	}
 }
