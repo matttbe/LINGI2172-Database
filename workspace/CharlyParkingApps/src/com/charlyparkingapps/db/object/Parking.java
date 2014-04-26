@@ -1,6 +1,5 @@
 package com.charlyparkingapps.db.object;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.charlyparkingapps.db.AddressDB;
@@ -170,11 +169,11 @@ public class Parking implements Model{
 	}
 
 	/**
-	 * @return a list of all locations (all entries)
+	 * @return a list of all locations (all entries) or null
 	 */
-	public List<LatLng> getAllLocations () {
-		// TODO
-		return new ArrayList<LatLng>();
+	public List<LatLng> getAllEntries () {
+		// TODO => new ArrayList<LatLng>();
+		return null;
 	}
 
 	/**

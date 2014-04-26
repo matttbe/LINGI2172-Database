@@ -1,6 +1,7 @@
 package com.charlyparkingapps.map;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.location.Location;
 import android.util.Log;
@@ -112,13 +113,16 @@ public class MapMarkers {
 		LatLng center = parking.getLocation();
 		MapCamera.moveCamera(map, center, MapCamera.ZOOM_OBJECT);
 
-		for (LatLng position : parking.getAllLocations()) {
-			MarkerOptions markerOptions = new MarkerOptions ();
-			markerOptions.title(parking.getName ());
-			markerOptions.position(position);
-			markerOptions.icon(BitmapDescriptorFactory
-					.defaultMarker (BitmapDescriptorFactory.HUE_AZURE));
-			map.addMarker (markerOptions);
+		List<LatLng> points = parking.getAllEntries();
+		if (points != null) {
+			for (LatLng position : points) {
+				MarkerOptions markerOptions = new MarkerOptions ();
+				markerOptions.title(parking.getName ());
+				markerOptions.position(position);
+				markerOptions.icon(BitmapDescriptorFactory
+						.defaultMarker (BitmapDescriptorFactory.HUE_AZURE));
+				map.addMarker (markerOptions);
+			}
 		}
 	}
 }
