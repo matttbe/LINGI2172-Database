@@ -5,10 +5,11 @@ import android.database.Cursor;
 
 import com.charlyparkingapps.db.ParkingDB;
 
-public class Address {
+public class Address implements Model{
 	
-	public static final String[] ALL_COLUMNS = {"parking", "street", "number", "city", "zip", "country" };
+	public static final String[] ALL_COLUMNS = {"addressId","parking", "street", "number", "city", "zip", "country" };
 	
+	private int AddressID;
 	private int parkingID;
 	private String street;
 	private int number;
@@ -32,28 +33,28 @@ public class Address {
 	}
 	
 	public Address(Cursor c, Context context) {
-		this.context=context;
-		this.setParkingID(c.getInt(0));
-		this.setStreet(c.getString(1));
-		this.setNumber(c.getInt(2));
-		this.setCity(c.getString(3));
-		this.setZip(c.getInt(4));
-		this.setCountry(c.getString(5));	
+		createFromCursor(c, context);
+	}
+	
+	public Address(){
+		
 	}
 
 	public String getByInt(int i) {
 		switch (i) {
 		case 0:
-			return String.valueOf(this.getParkingID());
+			return String.valueOf(this.getAddressID());
 		case 1:
-			return this.getStreet();
+			return String.valueOf(this.getParkingID());
 		case 2:
-			return String.valueOf(this.getNumber());
+			return this.getStreet();
 		case 3:
-			return this.getCity();
+			return String.valueOf(this.getNumber());
 		case 4:
-			return String.valueOf(this.getZip());
+			return this.getCity();
 		case 5:
+			return String.valueOf(this.getZip());
+		case 6:
 			return this.getCountry();
 
 		}
@@ -115,6 +116,37 @@ public class Address {
 	}
 	public void setParkingID(int parkingID) {
 		this.parkingID = parkingID;
+	}
+
+	@Override
+	public String[] getAll_Columns() {
+		return ALL_COLUMNS;
+	}
+
+	@Override
+	public String getUniqueColumn() {
+		return ALL_COLUMNS[0];
+	}
+
+	@Override
+	public Model createFromCursor(Cursor c, Context context) {
+		this.context=context;
+		this.setAddressID(c.getInt(0));
+		this.setParkingID(c.getInt(1));
+		this.setStreet(c.getString(2));
+		this.setNumber(c.getInt(3));
+		this.setCity(c.getString(4));
+		this.setZip(c.getInt(5));
+		this.setCountry(c.getString(6));	
+		return this;
+	}
+
+	public int getAddressID() {
+		return AddressID;
+	}
+
+	public void setAddressID(int addressID) {
+		AddressID = addressID;
 	}
 
 }

@@ -13,7 +13,7 @@ import com.charlyparkingapps.db.object.Parking;
 
 public class ParkingDB extends ObjectRepository {
 	
-	private Parking parking;
+	private Parking parking=new Parking();
 	
 	private Context context;
 	

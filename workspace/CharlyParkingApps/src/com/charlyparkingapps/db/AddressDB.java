@@ -1,5 +1,6 @@
 package com.charlyparkingapps.db;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
@@ -8,11 +9,11 @@ import android.database.Cursor;
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.ObjectRepository;
 import com.charlyparkingapps.db.object.Address;
-import com.charlyparkingapps.db.object.Parking;
 
 public class AddressDB extends ObjectRepository {
 	
-	private Address address;
+	private Address address=new Address();
+	
 	
 	private Context context;
 	
@@ -32,25 +33,47 @@ public class AddressDB extends ObjectRepository {
 
 	@Override
 	public String getRequete() {
-		return "CREATE TABLE Address(parking INTEGER NOT NULL, street TEXT NOT NULL, number INTEGER NOT NULL, city TEXT NOT NULL, zip INTEGER NOT NULL, country TEXT NOT NULL, FOREIGN KEY(parking) REFERENCES Parking(parkingId))";
+		return "CREATE TABLE Address(addressId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,parking INTEGER NOT NULL, street TEXT NOT NULL, number INTEGER NOT NULL, city TEXT NOT NULL, zip INTEGER NOT NULL, country TEXT NOT NULL, FOREIGN KEY(parking) REFERENCES Parking(parkingId))";
 	}
 
 	@Override
 	public boolean checkConstraint() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 
 	@Override
 	public Model getObject() {
-		// TODO Auto-generated method stub
-		return null;
+		return address;
 	}
 
 	@Override
 	public List<Object> ConvertCursorToListObject(Cursor c) {
-		// TODO Auto-generated method stub
-		return null;
+		List<Object> liste = new ArrayList<Object>();
+		if (c.getCount() == 0)
+			return liste;
+		c.moveToFirst();
+
+		do {
+
+			Address address = new Address(c, this.getContext());
+
+			liste.add(address);
+		} while (c.moveToNext());
+
+		c.close();
+
+		return liste;
 	}
+	
+	public Address GetByIdParking(int id) {
+		Cursor cursor = maBDD.query(getTablename(), address.getAll_Columns(),
+				address.getByInt(1) + "=?",
+				new String[] { String.valueOf(id) }, null, null, null);
+
+		if (cursor.moveToFirst())
+			return new Address(cursor, context);
+		else
+			return null;
+	}	
 
 }

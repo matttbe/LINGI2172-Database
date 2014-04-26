@@ -1,5 +1,7 @@
 package com.charlyparkingapps.db.object;
 
+import com.charlyparkingapps.db.AddressDB;
+
 import android.content.Context;
 import android.database.Cursor;
 
@@ -36,6 +38,10 @@ public class Parking implements Model{
 		this.totalPlaces=c.getInt(3);
 		this.freePlaces=c.getInt(4);
 		this.maxHeight=c.getInt(5);
+	}
+	
+	public Parking(){
+		
 	}
 	
 	public String getByInt(int i) {
@@ -109,8 +115,12 @@ public class Parking implements Model{
 		this.address=address;
 	}
 	
-	private void loadAddress(){
+	public void loadAddress(){
 		isLoaded=true;
+		AddressDB ad=new AddressDB(context);
+		ad.Open();
+		address=(Address)ad.GetByIdParking(this.getParkingId());
+		
 	}
 	
 	public Address getAddress() {
