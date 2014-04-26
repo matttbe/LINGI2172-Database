@@ -195,4 +195,15 @@ public class Parking implements Model{
 	{
 		return marker;
 	}
+
+	/**
+	 * Remove the marker (if available) from the map and set it to null;
+	 */
+	public void removeMarker ()
+	{
+		if (marker != null) {
+			marker.remove();
+			marker = null;
+		}
+	}
 }
