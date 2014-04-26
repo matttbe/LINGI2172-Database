@@ -76,7 +76,7 @@ public class MapMarkers {
 			for (int i = 0; i < parkingsArray.size(); i++) {
 				nbToRm--;
 				keysToRm[nbToRm] = parkingsArray.keyAt(i);
-				parkingsArray.get(keysToRm[nbToRm]).getMarker ().remove ();
+				parkingsArray.get(keysToRm[nbToRm]).removeMarker();
 				if (nbToRm == 0)
 					break;
 			}
