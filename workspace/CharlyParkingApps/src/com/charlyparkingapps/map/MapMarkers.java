@@ -21,6 +21,16 @@ public class MapMarkers {
 		this.parkingsArray = new SparseArray<Parking> ();
 	}
 
+	/**
+	 * Remove all markers, etc. from the Map and this object
+	 */
+	public void clearMap () {
+		for (int i = 0; i < parkingsArray.size(); i++)
+			parkingsArray.valueAt(i).removeMarker();
+		parkingsArray.clear();
+		map.clear();
+	}
+
 	private ArrayList<Parking> getMarkersForLocation (Location location,
 			float radius)
 	{
