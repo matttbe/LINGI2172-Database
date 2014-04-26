@@ -24,36 +24,7 @@ public class ParkingDB extends ObjectRepository {
 
 	public ParkingDB() {
 		
-	}
-
-	@Override
-	public void Save(Object entite) {
-		Parking parking = (Parking) entite;
-		ContentValues contentValues = new ContentValues();
-		for (int i = 1; i < Parking.ALL_COLUMNS.length; i++) {
-			contentValues.put(Parking.ALL_COLUMNS[i], parking.getByInt(i));
-		}
-		maBDD.insert(getTablename(), null, contentValues);
-	}
-
-	@Override
-	public void Update(Object entite) {
-		Parking parking = (Parking) entite;
-		ContentValues contentValues = new ContentValues();
-		for (int i = 1; i < Parking.ALL_COLUMNS.length; i++) {
-			contentValues.put(Parking.ALL_COLUMNS[i], parking.getByInt(i));
-		}
-
-		maBDD.update(getTablename(), contentValues, Parking.ALL_COLUMNS[0] + "=?",
-				new String[] { String.valueOf(parking.getParkingId()) });
-
-	}
-
-	@Override
-	public void Delete(int id) {
-		maBDD.delete(getTablename(), Parking.ALL_COLUMNS[0] + "=?",
-				new String[] { String.valueOf(id) });
-	}
+	}	
 
 	@Override
 	public String getTablename() {

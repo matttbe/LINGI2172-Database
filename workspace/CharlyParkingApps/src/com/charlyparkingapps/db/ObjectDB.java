@@ -12,9 +12,9 @@ public interface ObjectDB {
 
 	public Object GetById(int id);
 
-	public void Save(Object entite);
+	public void Save(Model entite);
 
-	public void Update(Object entite);
+	public void Update(Model entite);
 
 	public void Delete(int id);
 

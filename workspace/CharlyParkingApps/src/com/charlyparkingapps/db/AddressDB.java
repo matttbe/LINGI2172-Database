@@ -26,24 +26,6 @@ public class AddressDB extends ObjectRepository {
 	}
 
 	@Override
-	public void Save(Object entite) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void Update(Object entite) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void Delete(int id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
 	public String getTablename() {
 		return "Address";
 	}

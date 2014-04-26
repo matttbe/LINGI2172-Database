@@ -6,7 +6,6 @@ import java.util.List;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.util.Log;
 
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.ObjectRepository;
@@ -66,34 +65,7 @@ public class UserDB extends ObjectRepository {
 			return null;
 
 	}
-
-	@Override
-	public void Save(Object entite) {
-		User user = (User) entite;
-		ContentValues contentValues = new ContentValues();
-		for (int i = 1; i < User.ALL_COLUMNS.length; i++) {
-			contentValues.put(User.ALL_COLUMNS[i], user.getByInt(i));
-		}
-		maBDD.insert(getTablename(), null, contentValues);
-	}
-
-	@Override
-	public void Update(Object entite) {
-		User user = (User) entite;
-		ContentValues contentValues = new ContentValues();
-		for (int i = 1; i < User.ALL_COLUMNS.length; i++) {
-			contentValues.put(User.ALL_COLUMNS[i], user.getByInt(i));
-		}
-
-		maBDD.update(getTablename(), contentValues, User.ALL_COLUMNS[0] + "=?",
-				new String[] { String.valueOf(user.getId()) });
-	}
-
-	@Override
-	public void Delete(int id) {
-		maBDD.delete(getTablename(), User.ALL_COLUMNS[0] + "=?",
-				new String[] { String.valueOf(id) });
-	}
+	
 
 	public List<Object> ConvertCursorToListObject(Cursor c) {
 		List<Object> liste = new ArrayList<Object>();

@@ -2,6 +2,7 @@ package com.charlyparkingapps.db.object;
 
 import java.util.List;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -51,5 +52,31 @@ public abstract class ObjectRepository implements ObjectDB {
 			return null;
 	}	
 	
+	@Override
+	public void Save(Model entite) {
+		ContentValues contentValues = new ContentValues();
+		for (int i = 1; i < entite.getAll_Columns().length; i++) {
+			contentValues.put(entite.getAll_Columns()[i], entite.getByInt(i));
+		}
+		maBDD.insert(getTablename(), null, contentValues);
+	}
+	
+	@Override
+	public void Update(Model entite) {
+		ContentValues contentValues = new ContentValues();
+		for (int i = 1; i < entite.getAll_Columns().length; i++) {
+			contentValues.put(entite.getAll_Columns()[i], entite.getByInt(i));
+		}
+
+		maBDD.update(getTablename(), contentValues, entite.getUniqueColumn() + "=?",
+				new String[] { String.valueOf(entite.getByInt(0)) });
+
+	}
+
+	@Override
+	public void Delete(int id) {
+		maBDD.delete(getTablename(), this.getObject().getAll_Columns()[0] + "=?",
+				new String[] { String.valueOf(id) });
+	}
 
 }
