@@ -1,27 +1,27 @@
 package com.charlyparkingapps;
 
-import com.charlyparkingapps.db.UserDB;
-import com.charlyparkingapps.db.object.User;
-
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import com.charlyparkingapps.db.UserDB;
+import com.charlyparkingapps.db.object.User;
+
 public class CharlyApplication extends Application {
 
-	private User current_user;
+	private User currentUser;
 
 	@Override
 	public void onCreate() {
 
 	}
 
-	public User getCurrent_user() {
-		return current_user;
+	public User getCurrentUser() {
+		return currentUser;
 	}
 
-	public void setCurrent_user(User current_user) {
-		this.current_user = current_user;
+	public void setCurrentUser(User currentUser) {
+		this.currentUser = currentUser;
 	}
 
 	public void logOut() {
@@ -30,7 +30,7 @@ public class CharlyApplication extends Application {
 		SharedPreferences.Editor editor = sharedPref.edit();
 		editor.putInt(getString(R.string.id_user_pref), 0);
 		editor.apply();
-		setCurrent_user(null);
+		setCurrentUser(null);
 
 	}
 
@@ -41,8 +41,8 @@ public class CharlyApplication extends Application {
 		if (id != 0) {
 			UserDB user = new UserDB(getApplicationContext());
 			user.open();
-			((CharlyApplication) getApplicationContext()).setCurrent_user((User)user
-					.getById(id));
+			((CharlyApplication) getApplicationContext())
+					.setCurrentUser((User) user.getById(id));
 			user.close();
 			return true;
 		}
