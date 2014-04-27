@@ -25,6 +25,8 @@ public interface ObjectDB {
 
 	public void populate(SQLiteDatabase db);
 
+	public void upgrade(SQLiteDatabase db, int oldVersion, int newVersion);
+
 	public boolean checkConstraint(Model entite);
 
 	public List<Model> convertCursorToListObject(Cursor c);

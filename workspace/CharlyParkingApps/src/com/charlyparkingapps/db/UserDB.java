@@ -46,6 +46,11 @@ public class UserDB extends ObjectRepository {
 	}
 
 	@Override
+	public void upgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
 	public boolean checkConstraint(Model entite) {
 		User user = (User) entite;
 		return user.getType() < 3 && user.getType() >= 0;

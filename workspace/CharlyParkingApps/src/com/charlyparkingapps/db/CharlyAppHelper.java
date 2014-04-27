@@ -37,11 +37,8 @@ public class CharlyAppHelper extends SQLiteOpenHelper {
 
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		if (newVersion > DATABASE_VERSION) {
-			for (ObjectDB object : allObjects) {
-				db.execSQL("DROP TABLE " + object.getTablename() + ";");
-			}
-			onCreate(db);
+		for (ObjectDB object : allObjects) {
+			object.upgrade(db, oldVersion, newVersion);
 		}
 	}
 }
