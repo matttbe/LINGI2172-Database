@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.charlyparkingapps.db.object.Model;
-import com.charlyparkingapps.db.object.ObjectRepository;
 import com.charlyparkingapps.db.object.Parking;
 
 public class ParkingDB extends ObjectRepository {

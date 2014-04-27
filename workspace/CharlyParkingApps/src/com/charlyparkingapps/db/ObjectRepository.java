@@ -1,4 +1,4 @@
-package com.charlyparkingapps.db.object;
+package com.charlyparkingapps.db;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.charlyparkingapps.db.ObjectDB;
+import com.charlyparkingapps.db.object.Model;
 
 public abstract class ObjectRepository implements ObjectDB {
 

@@ -9,7 +9,6 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.charlyparkingapps.db.object.Address;
 import com.charlyparkingapps.db.object.Model;
-import com.charlyparkingapps.db.object.ObjectRepository;
 
 public class AddressDB extends ObjectRepository {
 
