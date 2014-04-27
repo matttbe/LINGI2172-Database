@@ -13,7 +13,7 @@ import com.charlyparkingapps.db.object.ObjectRepository;
 
 public class AddressDB extends ObjectRepository {
 
-	public static final String[] ALL_COLUMNS = { "addressId", "parking",
+	private static final String[] ALL_COLUMNS = { "addressId", "parking",
 			"street", "number", "city", "zip", "country", "latitude",
 			"longitude" };
 

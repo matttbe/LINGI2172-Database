@@ -13,7 +13,7 @@ import com.charlyparkingapps.db.object.User;
 
 public class UserDB extends ObjectRepository {
 
-	public static final String[] ALL_COLUMNS = { "userId", "username", "type",
+	private static final String[] ALL_COLUMNS = { "userId", "username", "type",
 			"password" };
 
 	public UserDB(Context context) {

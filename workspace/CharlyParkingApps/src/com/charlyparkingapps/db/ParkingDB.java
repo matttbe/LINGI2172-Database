@@ -13,7 +13,7 @@ import com.charlyparkingapps.db.object.Parking;
 
 public class ParkingDB extends ObjectRepository {
 
-	public static final String[] ALL_COLUMNS = { "parkingId", "name",
+	private static final String[] ALL_COLUMNS = { "parkingId", "name",
 			"defibrillator", "totalPlaces", "freePlaces", "maxHeight" };
 
 	private static final double ONE_METER = 0.00000898 * 1.05; // with extras
