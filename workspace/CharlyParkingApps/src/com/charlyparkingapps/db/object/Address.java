@@ -19,7 +19,6 @@ public class Address implements Model {
 	private String country;
 
 	private Parking parking;
-	private boolean isLoaded = false;
 
 	private Context context;
 
@@ -70,18 +69,16 @@ public class Address implements Model {
 		this.setParking((Parking) p.GetById(this.getParkingID()));
 		this.parking.setAddress(this);
 		p.Close();
-		isLoaded = true;
 	}
 
 	public Parking getParking() {
-		if (!isLoaded) {
+		if (parking == null) {
 			loadParking();
 		}
 		return this.parking;
 	}
 
 	public void setParking(Parking parking) {
-		isLoaded = true;
 		this.parking = parking;
 	}
 

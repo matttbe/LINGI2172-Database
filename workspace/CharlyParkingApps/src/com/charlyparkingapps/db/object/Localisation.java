@@ -16,7 +16,6 @@ public class Localisation implements Model {
 	private Double longitude;
 
 	private Parking parking;
-	private boolean isLoaded = false;
 
 	private Context context;
 
@@ -107,11 +106,10 @@ public class Localisation implements Model {
 		p.Open();
 		this.setParking((Parking) p.GetById(this.getParkingID()));
 		p.Close();
-		isLoaded = true;
 	}
 
 	public Parking getParking() {
-		if (!isLoaded) {
+		if (parking == null) {
 			loadParking();
 		}
 		return this.parking;
@@ -119,7 +117,6 @@ public class Localisation implements Model {
 	}
 
 	public void setParking(Parking parking) {
-		isLoaded = true;
 		this.parking = parking;
 	}
 

@@ -21,7 +21,6 @@ public class Parking implements Model {
 	private int maxHeight;
 
 	private Address address;
-	private boolean isLoaded = false;
 
 	public static final String[] ALL_COLUMNS = { "parkingId", "name",
 			"defibrillator", "totalPlaces", "freePlaces", "maxHeight" };
@@ -127,14 +126,13 @@ public class Parking implements Model {
 	}
 
 	public void loadAddress() {
-		isLoaded = true;
 		AddressDB ad = new AddressDB(context);
 		ad.Open();
 		address = ad.GetByIdParking(this.getParkingId());
 	}
 
 	public Address getAddress() {
-		if (!isLoaded) {
+		if (address == null) {
 			loadAddress();
 		}
 		return address;
