@@ -21,7 +21,7 @@ public interface ObjectDB {
 
 	public String getTablename();
 
-	public String getRequete();
+	public String getCreateRequest();
 
 	public void populate(SQLiteDatabase db);
 

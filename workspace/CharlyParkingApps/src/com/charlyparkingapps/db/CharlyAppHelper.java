@@ -30,7 +30,7 @@ public class CharlyAppHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		for (ObjectDB object : allObjects) {
-			db.execSQL(object.getRequete());
+			db.execSQL(object.getCreateRequest());
 			object.populate(db);
 		}
 	}

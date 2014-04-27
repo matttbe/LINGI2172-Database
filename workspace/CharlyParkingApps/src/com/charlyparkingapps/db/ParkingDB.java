@@ -36,8 +36,17 @@ public class ParkingDB extends ObjectRepository {
 	}
 
 	@Override
-	public String getRequete() {
-		return "CREATE TABLE Parking(parkingId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name varchar(20) NOT NULL, defibrillator BOOL DEFAULT 0, totalPlaces INTEGER CHECK (totalPlaces > 0),freePlaces INTEGER CHECK(freePlaces < totalPlaces AND freePlaces >= 0) DEFAULT totalPlaces, maxHeight INTEGER CHECK (maxHeight > 0))";
+	public String getCreateRequest() {
+		return "CREATE TABLE Parking("
+					+ "parkingId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
+					+ "name varchar(20) NOT NULL, "
+					+ "defibrillator BOOL DEFAULT 0, "
+					+ "totalPlaces INTEGER CHECK (totalPlaces > 0), "
+					+ "freePlaces INTEGER CHECK("
+						+ "freePlaces < totalPlaces AND freePlaces >= 0"
+						+ ") DEFAULT 0, "
+					+ "maxHeight INTEGER CHECK (maxHeight > 0)"
+				+ ")";
 	}
 
 	@Override

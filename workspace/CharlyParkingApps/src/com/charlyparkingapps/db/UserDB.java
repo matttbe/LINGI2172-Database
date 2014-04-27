@@ -34,10 +34,14 @@ public class UserDB extends ObjectRepository {
 	}
 
 	@Override
-	public String getRequete() {
-		return "CREATE TABLE \"User\"(userId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, type INTEGER NOT NULL "
-				+ "CONSTRAINT chk_type CHECK (type IN (0, 1, 2)), "
-				+ "username varchar(20) NOT NULL UNIQUE, password varchar(20) NOT NULL)";
+	public String getCreateRequest() {
+		return "CREATE TABLE User("
+					+ "userId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
+					+ "type INTEGER NOT NULL CONSTRAINT chk_type "
+						+ "CHECK (type IN (0, 1, 2)), "
+					+ "username varchar(20) NOT NULL UNIQUE, "
+					+ "password varchar(20) NOT NULL"
+				+ ")";
 	}
 
 	@Override
