@@ -21,10 +21,9 @@ public class MapCamera
 	 * zoomLevel - At zoomLevel 1, the equator of the earth is 256 pixels long.
 	 * Each successive zoom level is magnified by a factor of 2.
 	 */
-	public static void moveCamera (GoogleMap map, Location location, float zoom)
-	{
-		LatLng latLng = new LatLng (location.getLatitude (),
-				location.getLongitude ());
+	public static void moveCamera(GoogleMap map, Location location, float zoom) {
+		LatLng latLng = new LatLng(location.getLatitude(),
+				location.getLongitude());
 		moveCamera(map, latLng, zoom);
 	}
 
@@ -35,10 +34,10 @@ public class MapCamera
 	 * zoomLevel - At zoomLevel 1, the equator of the earth is 256 pixels long.
 	 * Each successive zoom level is magnified by a factor of 2.
 	 */
-	public static void moveCamera (GoogleMap map, LatLng latLng, float zoom)
-	{
-		Log.d ("GPS", "move camera to " + latLng.latitude + " " + latLng.longitude);
-		map.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, zoom));
+	public static void moveCamera(GoogleMap map, LatLng latLng, float zoom) {
+		Log.d("GPS", "move camera to " + latLng.latitude + " "
+				+ latLng.longitude);
+		map.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, zoom));
 	}
 
 	/**
@@ -46,23 +45,23 @@ public class MapCamera
 	 * @param map, the current map
 	 * @return MarersParams with a location, a radius and null as request
 	 */
-	public static MarkersParams radiusDistanceCovered (GoogleMap map)
-	{
-		/* TODO: note: compared only to one side is maybe not the best solution
+	public static MarkersParams radiusDistanceCovered(GoogleMap map) {
+		/*
+		 * TODO: note: compared only to one side is maybe not the best solution
 		 * e.g: if the device is on the horizontal orientation
 		 */
-		VisibleRegion region = map.getProjection ().getVisibleRegion ();
+		VisibleRegion region = map.getProjection().getVisibleRegion();
 		double leftLongitude = region.latLngBounds.northeast.longitude;
-		LatLng centerCoord = region.latLngBounds.getCenter ();
+		LatLng centerCoord = region.latLngBounds.getCenter();
 
-		Location left = new Location ("left");
-		left.setLatitude (centerCoord.latitude);
-		left.setLongitude (leftLongitude);
+		Location left = new Location("left");
+		left.setLatitude(centerCoord.latitude);
+		left.setLongitude(leftLongitude);
 
-		Location center = new Location ("center");
-		center.setLatitude (centerCoord.latitude);
-		center.setLongitude (centerCoord.longitude);
+		Location center = new Location("center");
+		center.setLatitude(centerCoord.latitude);
+		center.setLongitude(centerCoord.longitude);
 
-		return new MarkersParams (center, center.distanceTo (left));
+		return new MarkersParams(center, center.distanceTo(left));
 	}
 }

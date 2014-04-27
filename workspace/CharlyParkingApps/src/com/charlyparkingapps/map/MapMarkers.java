@@ -20,73 +20,64 @@ public class MapMarkers {
 
 	private static final int MAXSIZE = 50;
 
-	public MapMarkers (GoogleMap map)
-	{
+	public MapMarkers(GoogleMap map) {
 		this.map = map;
-		this.parkingsArray = new SparseArray<Parking> ();
+		this.parkingsArray = new SparseArray<Parking>();
 	}
 
 	/**
 	 * Remove all markers, etc. from the Map and this object
 	 */
-	public void clearMap () {
+	public void clearMap() {
 		for (int i = 0; i < parkingsArray.size(); i++)
 			parkingsArray.valueAt(i).removeMarker();
 		parkingsArray.clear();
 		map.clear();
 	}
 
-	private ArrayList<Parking> getMarkersForLocation (Location location,
-			float radius)
-	{
-		Log.d ("Markers", "== getMarkers: " + location + " " + radius);
-		// TODO: DB => ParkingDB.getParkings(location.getLatitude(), location.getLongitude(), radius)
+	private ArrayList<Parking> getMarkersForLocation(Location location,
+			float radius) {
+		Log.d("Markers", "== getMarkers: " + location + " " + radius);
+		// TODO: DB => ParkingDB.getParkings(location.getLatitude(),
+		// location.getLongitude(), radius)
 		ArrayList<Parking> markers = new ArrayList<Parking>(); // TODO: rm
 		return markers;
 	}
 
-	private ArrayList<Parking> getMarkersForLocation ()
-	{
-		MarkersParams locationInfo = MapCamera.radiusDistanceCovered (map);
-		return getMarkersForLocation (locationInfo.getLocation (),
-				locationInfo.getRadius ());
+	private ArrayList<Parking> getMarkersForLocation() {
+		MarkersParams locationInfo = MapCamera.radiusDistanceCovered(map);
+		return getMarkersForLocation(locationInfo.getLocation(),
+				locationInfo.getRadius());
 	}
 
 	/**
 	 * Update the list of markers in the list
 	 */
-	public void updateMarkers ()
-	{
-		ArrayList<Parking> items = getMarkersForLocation ();
-		for (Parking item : items)
-		{
+	public void updateMarkers() {
+		ArrayList<Parking> items = getMarkersForLocation();
+		for (Parking item : items) {
 			int id = item.getParkingId();
-			Parking inHashItem = parkingsArray.get (id);
-			parkingsArray.delete (id);
+			Parking inHashItem = parkingsArray.get(id);
+			parkingsArray.delete(id);
 			// if the item already exists, update the position
-			if (inHashItem != null)
-			{
-				Log.d ("Markers", "An old item");
-				parkingsArray.put (id, inHashItem); // put it at the end
-			}
-			else
-			{
-				Log.d ("Markers", "A new item");
-				item.addMarkerToMap (map);
-				parkingsArray.put (id, item);
+			if (inHashItem != null) {
+				Log.d("Markers", "An old item");
+				parkingsArray.put(id, inHashItem); // put it at the end
+			} else {
+				Log.d("Markers", "A new item");
+				item.addMarkerToMap(map);
+				parkingsArray.put(id, item);
 			}
 		}
 
 		// remove extras
-		removeOldMarkers ();
+		removeOldMarkers();
 	}
 
-	private void removeOldMarkers ()
-	{
+	private void removeOldMarkers() {
 		// Remove extras
-		int nbToRm = parkingsArray.size () - MAXSIZE;
-		if (nbToRm > 0)
-		{
+		int nbToRm = parkingsArray.size() - MAXSIZE;
+		if (nbToRm > 0) {
 			int keysToRm[] = new int[nbToRm];
 			for (int i = 0; i < parkingsArray.size(); i++) {
 				nbToRm--;
@@ -96,12 +87,13 @@ public class MapMarkers {
 					break;
 			}
 			for (int id : keysToRm)
-				parkingsArray.delete (id);
+				parkingsArray.delete(id);
 		}
 	}
 
 	/**
 	 * Show the parking on the map with all entries
+	 * 
 	 * @param parking
 	 */
 	public void showParking(Parking parking) {
@@ -123,12 +115,12 @@ public class MapMarkers {
 		points = parking.getAllEntries();
 		if (points != null) {
 			for (LatLng position : points) {
-				MarkerOptions markerOptions = new MarkerOptions ();
-				markerOptions.title(parking.getName ());
+				MarkerOptions markerOptions = new MarkerOptions();
+				markerOptions.title(parking.getName());
 				markerOptions.position(position);
 				markerOptions.icon(BitmapDescriptorFactory
-						.defaultMarker (BitmapDescriptorFactory.HUE_AZURE));
-				map.addMarker (markerOptions);
+						.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+				map.addMarker(markerOptions);
 			}
 		}
 	}

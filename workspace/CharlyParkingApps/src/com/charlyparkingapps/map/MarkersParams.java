@@ -3,8 +3,7 @@ package com.charlyparkingapps.map;
 import android.location.Location;
 
 
-public class MarkersParams
-{
+public class MarkersParams {
 	private Location location;
 	private float radius;
 
@@ -12,8 +11,7 @@ public class MarkersParams
 	 * @param location the location of the center point
 	 * @param radius the radius that we have to cover
 	 */
-	public MarkersParams (Location location, float radius)
-	{
+	public MarkersParams(Location location, float radius) {
 		this.location = location;
 		this.radius = radius;
 	}
@@ -21,32 +19,28 @@ public class MarkersParams
 	/**
 	 * @return the location
 	 */
-	public Location getLocation ()
-	{
+	public Location getLocation() {
 		return location;
 	}
 
 	/**
 	 * @param location the location to set
 	 */
-	public void setLocation (Location location)
-	{
+	public void setLocation(Location location) {
 		this.location = location;
 	}
 
 	/**
 	 * @return the radius
 	 */
-	public float getRadius ()
-	{
+	public float getRadius() {
 		return radius;
 	}
 
 	/**
 	 * @param radius the radius to set
 	 */
-	public void setRadius (float radius)
-	{
+	public void setRadius(float radius) {
 		this.radius = radius;
 	}
 }
