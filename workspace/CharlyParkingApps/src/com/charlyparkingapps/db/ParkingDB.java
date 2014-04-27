@@ -17,14 +17,8 @@ public class ParkingDB extends ObjectRepository {
 
 	private static final double ONE_METER = 0.00000898 * 1.05; // with extras
 
-	private Context context;
-
 	public ParkingDB(Context context) {
-		this.context = context;
-		sqLiteOpenHelper = new CharlyAppHelper(context, null);
-	}
-
-	public ParkingDB() {
+		super(context);
 	}
 
 	@Override

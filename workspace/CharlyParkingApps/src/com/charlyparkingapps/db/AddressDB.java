@@ -16,15 +16,8 @@ public class AddressDB extends ObjectRepository {
 			"street", "number", "city", "zip", "country", "latitude",
 			"longitude" };
 
-	private Context context;
-
 	public AddressDB(Context context) {
-		this.context = context;
-		sqLiteOpenHelper = new CharlyAppHelper(context, null);
-	}
-
-	public AddressDB() {
-
+		super(context);
 	}
 
 	@Override

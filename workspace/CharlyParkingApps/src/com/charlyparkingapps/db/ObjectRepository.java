@@ -18,12 +18,13 @@ public abstract class ObjectRepository implements ObjectDB {
 
 	private Context context;
 
-	public Context getContext() {
-		return context;
+	public ObjectRepository(Context context) {
+		this.context = context;
+		sqLiteOpenHelper = CharlyAppHelper.getInstance();
 	}
 
-	public void setContext(Context context) {
-		this.context = context;
+	public Context getContext() {
+		return context;
 	}
 
 	public void open() {

@@ -16,11 +16,7 @@ public class UserDB extends ObjectRepository {
 			"password" };
 
 	public UserDB(Context context) {
-		this.setContext(context);
-		sqLiteOpenHelper = new CharlyAppHelper(context, null);
-	}
-
-	public UserDB() {
+		super(context);
 	}
 
 	@Override
