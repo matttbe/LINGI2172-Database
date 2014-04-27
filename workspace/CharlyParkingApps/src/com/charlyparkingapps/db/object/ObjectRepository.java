@@ -34,7 +34,7 @@ public abstract class ObjectRepository implements ObjectDB {
 		myBDD.close();
 	}
 
-	public List<Object> getAll() {
+	public List<Model> getAll() {
 		Cursor cursor = myBDD.query(getTablename(), this.getObject()
 				.getAllColumns(), null, null, null, null, null);
 

@@ -55,8 +55,8 @@ public class ParkingDB extends ObjectRepository {
 		return this.parking;
 	}
 
-	public List<Object> convertCursorToListObject(Cursor c) {
-		List<Object> liste = new ArrayList<Object>();
+	public List<Model> convertCursorToListObject(Cursor c) {
+		List<Model> liste = new ArrayList<Model>();
 		if (c.getCount() == 0)
 			return liste;
 		c.moveToFirst();
@@ -68,7 +68,7 @@ public class ParkingDB extends ObjectRepository {
 		return liste;
 	}
 
-	public ArrayList<Parking> getParkings(double latitude, double longitude,
+	public List<Model> getParkings(double latitude, double longitude,
 			float radius) {
 		double diffLat = ONE_METER * radius;
 		double latMin = latitude - diffLat;
@@ -76,10 +76,13 @@ public class ParkingDB extends ObjectRepository {
 		double lonMin = longitude - diffLat / Math.cos(latMin);
 		double lonMax = longitude + diffLat / Math.cos(latMax);
 
-		ArrayList<Parking> list = new ArrayList<Parking>();
-		// TODO: SELECT * FROM parkings WHERE lat > $latMin AND lat < $latMax
-		// AND lon > $lonMin AND lon < $lonMax
-		return list;
+		Cursor cursor = myBDD.query(getTablename(), Parking.ALL_COLUMNS,
+				"lat > ? AND lat < ? AND lon > ? AND lon < ?",
+				new String[] { String.valueOf(latMin), String.valueOf(latMax),
+						String.valueOf(lonMin), String.valueOf(lonMax) }, null,
+				null, null);
+
+		return this.convertCursorToListObject(cursor);
 	}
 
 }

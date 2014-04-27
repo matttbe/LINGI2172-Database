@@ -71,8 +71,8 @@ public class UserDB extends ObjectRepository {
 
 	}
 
-	public List<Object> convertCursorToListObject(Cursor c) {
-		List<Object> liste = new ArrayList<Object>();
+	public List<Model> convertCursorToListObject(Cursor c) {
+		List<Model> liste = new ArrayList<Model>();
 		if (c.getCount() == 0)
 			return liste;
 		c.moveToFirst();

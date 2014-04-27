@@ -9,7 +9,7 @@ import com.charlyparkingapps.db.object.Model;
 
 public interface ObjectDB {
 
-	public List<Object> getAll();
+	public List<Model> getAll();
 
 	public Object getById(int id);
 
@@ -29,6 +29,6 @@ public interface ObjectDB {
 
 	public Model getObject();
 
-	public List<Object> convertCursorToListObject(Cursor c);
+	public List<Model> convertCursorToListObject(Cursor c);
 
 }

@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class CharlyAppHelper extends SQLiteOpenHelper {
 
-	private static final int DATABASE_VERSION = 314;
+	private static final int DATABASE_VERSION = 316;
 
 	private static final String BASE_NAME = "charly.db";
 
@@ -20,6 +20,7 @@ public class CharlyAppHelper extends SQLiteOpenHelper {
 		super(context, BASE_NAME, factory, DATABASE_VERSION);
 		allObjects.add(new UserDB());
 		allObjects.add(new ParkingDB());
+		allObjects.add(new AddressDB());
 	}
 
 	@Override
