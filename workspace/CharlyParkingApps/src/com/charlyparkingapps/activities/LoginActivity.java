@@ -1,10 +1,5 @@
 package com.charlyparkingapps.activities;
 
-import com.charlyparkingapps.CharlyApplication;
-import com.charlyparkingapps.R;
-import com.charlyparkingapps.db.UserDB;
-import com.charlyparkingapps.db.object.User;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -22,6 +17,11 @@ import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.charlyparkingapps.CharlyApplication;
+import com.charlyparkingapps.R;
+import com.charlyparkingapps.db.UserDB;
+import com.charlyparkingapps.db.object.User;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -208,7 +208,7 @@ public class LoginActivity extends Activity {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 
-			UserDB user = new UserDB(getApplicationContext());
+			UserDB user = UserDB.getInstance();
 			user.open();
 			boolean log = user.login(mUsername, mPassword);
 			user.close();

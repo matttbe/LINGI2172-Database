@@ -12,6 +12,15 @@ import com.charlyparkingapps.db.object.Model;
 
 public class AddressDB extends ObjectRepository {
 
+	// Singleton stuff
+	private static AddressDB sInstance;
+	public static AddressDB getInstance() { return sInstance; }
+	public static AddressDB init(Context context) {
+		sInstance = new AddressDB(context);
+		return sInstance;
+	}
+
+
 	private static final String[] ALL_COLUMNS = { "addressId", "parking",
 			"street", "number", "city", "zip", "country", "latitude",
 			"longitude" };

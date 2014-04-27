@@ -12,6 +12,15 @@ import com.charlyparkingapps.db.object.User;
 
 public class UserDB extends ObjectRepository {
 
+	// Singleton stuff
+	private static UserDB sInstance;
+	public static UserDB getInstance() { return sInstance; }
+	public static UserDB init(Context context) {
+		sInstance = new UserDB(context);
+		return sInstance;
+	}
+
+
 	private static final String[] ALL_COLUMNS = { "userId", "username", "type",
 			"password" };
 

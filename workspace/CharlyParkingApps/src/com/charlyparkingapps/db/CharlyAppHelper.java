@@ -1,26 +1,30 @@
 package com.charlyparkingapps.db;
 
-import java.util.LinkedList;
 import java.util.List;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
 
 public class CharlyAppHelper extends SQLiteOpenHelper {
+
+	// Singleton stuff
+	private static CharlyAppHelper sInstance;
+	public static CharlyAppHelper getInstance() { return sInstance; }
+	public static void init(Context context, List<ObjectDB> allObjects) {
+		sInstance = new CharlyAppHelper(context, allObjects);
+	}
+
 
 	private static final int DATABASE_VERSION = 316;
 
 	private static final String BASE_NAME = "charly.db";
 
-	private static List<ObjectDB> allObjects = new LinkedList<ObjectDB>();
+	private List<ObjectDB> allObjects;
 
-	public CharlyAppHelper(Context context, CursorFactory factory) {
-		super(context, BASE_NAME, factory, DATABASE_VERSION);
-		allObjects.add(new UserDB());
-		allObjects.add(new ParkingDB());
-		allObjects.add(new AddressDB());
+	public CharlyAppHelper(Context context, List<ObjectDB> allObjects) {
+		super(context, BASE_NAME, null, DATABASE_VERSION);
+		this.allObjects = allObjects;
 	}
 
 	@Override

@@ -88,7 +88,7 @@ public class Localisation implements Model {
 	}
 
 	public void loadParking() {
-		ParkingDB p = new ParkingDB(context);
+		ParkingDB p = ParkingDB.getInstance();
 		p.open();
 		this.setParking((Parking) p.getById(this.getParkingID()));
 		p.close();

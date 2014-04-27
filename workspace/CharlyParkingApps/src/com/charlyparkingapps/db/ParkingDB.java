@@ -12,6 +12,15 @@ import com.charlyparkingapps.db.object.Parking;
 
 public class ParkingDB extends ObjectRepository {
 
+	// Singleton stuff
+	private static ParkingDB sInstance;
+	public static ParkingDB getInstance() { return sInstance; }
+	public static ParkingDB init(Context context) {
+		sInstance = new ParkingDB(context);
+		return sInstance;
+	}
+
+
 	private static final String[] ALL_COLUMNS = { "parkingId", "name",
 			"defibrillator", "totalPlaces", "freePlaces", "maxHeight" };
 

@@ -112,7 +112,7 @@ public class Parking implements Model {
 	}
 
 	public void loadAddress() {
-		AddressDB ad = new AddressDB(context);
+		AddressDB ad = AddressDB.getInstance();
 		ad.open();
 		address = ad.getByIdParking(this.getParkingId());
 	}
