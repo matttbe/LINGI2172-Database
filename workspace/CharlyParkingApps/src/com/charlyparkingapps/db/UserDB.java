@@ -3,7 +3,6 @@ package com.charlyparkingapps.db;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 
@@ -13,7 +12,7 @@ import com.charlyparkingapps.db.object.User;
 
 public class UserDB extends ObjectRepository {
 
-	private User user=new User();
+	private User user = new User();
 
 	public UserDB(Context context) {
 		this.setContext(context);
@@ -46,7 +45,6 @@ public class UserDB extends ObjectRepository {
 		return this.user;
 	}
 
-
 	public boolean login(String mEmail, String password) {
 		Cursor cursor = maBDD.query(getTablename(), User.ALL_COLUMNS,
 				"username =? AND " + "password =?",
@@ -66,7 +64,6 @@ public class UserDB extends ObjectRepository {
 			return null;
 
 	}
-	
 
 	public List<Object> ConvertCursorToListObject(Cursor c) {
 		List<Object> liste = new ArrayList<Object>();

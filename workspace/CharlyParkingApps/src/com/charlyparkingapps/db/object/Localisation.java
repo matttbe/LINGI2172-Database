@@ -1,38 +1,39 @@
 package com.charlyparkingapps.db.object;
 
-import com.charlyparkingapps.db.ParkingDB;
-
 import android.content.Context;
 import android.database.Cursor;
 
+import com.charlyparkingapps.db.ParkingDB;
+
 public class Localisation implements Model {
-	
-	public static final String[] ALL_COLUMNS = {"localisationId","parking", "latitude", "longitude"};
-	
+
+	public static final String[] ALL_COLUMNS = { "localisationId", "parking",
+			"latitude", "longitude" };
+
 	private int localisationID;
 	private int parkingID;
 	private Double latitude;
 	private Double longitude;
-	
+
 	private Parking parking;
-	private boolean isLoaded=false;
-	
+	private boolean isLoaded = false;
+
 	private Context context;
-	
-	
-	public Localisation(Context contextParam, int parkingIDParam, Double latitudeParam, Double longitudeParam){
-		this.context=contextParam;
+
+	public Localisation(Context contextParam, int parkingIDParam,
+			Double latitudeParam, Double longitudeParam) {
+		this.context = contextParam;
 		this.setParkingID(parkingIDParam);
 		this.setLatitude(latitudeParam);
 		this.setLongitude(longitudeParam);
 	}
-	
+
 	public Localisation(Cursor c, Context context) {
 		createFromCursor(c, context);
 	}
-	
-	public Localisation(){
-		
+
+	public Localisation() {
+
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class Localisation implements Model {
 
 	@Override
 	public Model createFromCursor(Cursor c, Context context) {
-		this.context=context;
+		this.context = context;
 		this.setParkingID(c.getInt(0));
 		this.setLatitude(c.getDouble(1));
 		this.setLongitude(c.getDouble(2));
@@ -101,23 +102,24 @@ public class Localisation implements Model {
 		this.longitude = longitude;
 	}
 
-	
-	public void loadParking(){
+	public void loadParking() {
 		ParkingDB p = new ParkingDB(context);
 		p.Open();
-		this.setParking((Parking)p.GetById(this.getParkingID()));
+		this.setParking((Parking) p.GetById(this.getParkingID()));
 		p.Close();
-		isLoaded=true;
+		isLoaded = true;
 	}
+
 	public Parking getParking() {
-		if(!isLoaded){
+		if (!isLoaded) {
 			loadParking();
 		}
 		return this.parking;
-			
+
 	}
+
 	public void setParking(Parking parking) {
-		isLoaded=true;
+		isLoaded = true;
 		this.parking = parking;
 	}
 

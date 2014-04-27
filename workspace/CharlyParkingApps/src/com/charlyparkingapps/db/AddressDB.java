@@ -6,24 +6,23 @@ import java.util.List;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.charlyparkingapps.db.object.Address;
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.ObjectRepository;
-import com.charlyparkingapps.db.object.Address;
 
 public class AddressDB extends ObjectRepository {
-	
-	private Address address=new Address();
-	
-	
+
+	private Address address = new Address();
+
 	private Context context;
-	
+
 	public AddressDB(Context context) {
-		this.context=context;
+		this.context = context;
 		sqLiteOpenHelper = new CharlyAppHelper(context, null);
 	}
 
 	public AddressDB() {
-		
+
 	}
 
 	@Override
@@ -64,7 +63,7 @@ public class AddressDB extends ObjectRepository {
 
 		return liste;
 	}
-	
+
 	public Address GetByIdParking(int id) {
 		Cursor cursor = maBDD.query(getTablename(), address.getAll_Columns(),
 				address.getByInt(1) + "=?",
@@ -74,6 +73,6 @@ public class AddressDB extends ObjectRepository {
 			return new Address(cursor, context);
 		else
 			return null;
-	}	
+	}
 
 }

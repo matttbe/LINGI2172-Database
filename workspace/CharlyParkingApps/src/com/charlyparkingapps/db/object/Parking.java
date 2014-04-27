@@ -2,16 +2,16 @@ package com.charlyparkingapps.db.object;
 
 import java.util.List;
 
+import android.content.Context;
+import android.database.Cursor;
+
 import com.charlyparkingapps.db.AddressDB;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
-import android.content.Context;
-import android.database.Cursor;
-
-public class Parking implements Model{
+public class Parking implements Model {
 
 	private int parkingId;
 	private String name;
@@ -123,18 +123,18 @@ public class Parking implements Model{
 	}
 
 	public void setAddress(Address address) {
-		this.address=address;
+		this.address = address;
 	}
-	
-	public void loadAddress(){
+
+	public void loadAddress() {
 		isLoaded = true;
 		AddressDB ad = new AddressDB(context);
 		ad.Open();
 		address = ad.GetByIdParking(this.getParkingId());
 	}
-	
+
 	public Address getAddress() {
-		if(!isLoaded){
+		if (!isLoaded) {
 			loadAddress();
 		}
 		return address;
@@ -161,7 +161,7 @@ public class Parking implements Model{
 	/**
 	 * @return the location of the parking (one entry or the center of it)
 	 */
-	public LatLng getLocation () {
+	public LatLng getLocation() {
 		if (location == null)
 			// TODO
 			location = new LatLng(0, 0);
@@ -171,7 +171,7 @@ public class Parking implements Model{
 	/**
 	 * @return a list of all locations (all entries) or null
 	 */
-	public List<LatLng> getAllEntries () {
+	public List<LatLng> getAllEntries() {
 		// TODO => new ArrayList<LatLng>();
 		return null;
 	}
@@ -179,7 +179,7 @@ public class Parking implements Model{
 	/**
 	 * @return a list of all corners of the parking or null
 	 */
-	public List<LatLng> getAllCorners () {
+	public List<LatLng> getAllCorners() {
 		// TODO?? => ORDER BY id
 		return null;
 	}
@@ -187,11 +187,10 @@ public class Parking implements Model{
 	/**
 	 * @return a MarkerOptions needed for creating a marker
 	 */
-	private MarkerOptions getMarkerOptions ()
-	{
-		MarkerOptions markerOptions = new MarkerOptions ();
-		markerOptions.title(getName ());
-		markerOptions.position(getLocation ());
+	private MarkerOptions getMarkerOptions() {
+		MarkerOptions markerOptions = new MarkerOptions();
+		markerOptions.title(getName());
+		markerOptions.position(getLocation());
 		// TODO: add description
 		// markerOptions.snippet (TEXT);
 		return markerOptions;
@@ -199,28 +198,27 @@ public class Parking implements Model{
 
 	/**
 	 * Add a marker with the info of this item if it doesn't exist yet
-	 * @param map where the marker will be added
+	 * 
+	 * @param map
+	 *            where the marker will be added
 	 * @return the marker added to the map
 	 */
-	public void addMarkerToMap (GoogleMap map)
-	{
+	public void addMarkerToMap(GoogleMap map) {
 		if (marker == null)
-			marker = map.addMarker (getMarkerOptions());
+			marker = map.addMarker(getMarkerOptions());
 	}
 
 	/**
 	 * @return the marker linked to this item
 	 */
-	public Marker getMarker ()
-	{
+	public Marker getMarker() {
 		return marker;
 	}
 
 	/**
 	 * Remove the marker (if available) from the map and set it to null;
 	 */
-	public void removeMarker ()
-	{
+	public void removeMarker() {
 		if (marker != null) {
 			marker.remove();
 			marker = null;

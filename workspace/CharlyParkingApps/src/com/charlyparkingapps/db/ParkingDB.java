@@ -39,7 +39,9 @@ public class ParkingDB extends ObjectRepository {
 	@Override
 	public boolean checkConstraint(Model entite) {
 		Parking parking = (Parking) entite;
-		return parking.getTotalPlaces() > 0 && parking.getFreePlaces() < parking.getTotalPlaces() && parking.getFreePlaces() >= 0 && parking.getMaxHeight() >=0;
+		return parking.getTotalPlaces() > 0
+				&& parking.getFreePlaces() < parking.getTotalPlaces()
+				&& parking.getFreePlaces() >= 0 && parking.getMaxHeight() >= 0;
 	}
 
 	@Override
@@ -69,7 +71,8 @@ public class ParkingDB extends ObjectRepository {
 		double lonMax = longitude + diffLat / Math.cos(latMax);
 
 		ArrayList<Parking> list = new ArrayList<Parking>();
-		// TODO: SELECT * FROM parkings WHERE lat > $latMin AND lat < $latMax AND lon > $lonMin AND lon < $lonMax
+		// TODO: SELECT * FROM parkings WHERE lat > $latMin AND lat < $latMax
+		// AND lon > $lonMin AND lon < $lonMax
 		return list;
 	}
 

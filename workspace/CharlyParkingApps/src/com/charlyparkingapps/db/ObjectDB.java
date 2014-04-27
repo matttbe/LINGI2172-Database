@@ -25,7 +25,7 @@ public interface ObjectDB {
 	boolean checkConstraint(Model entite);
 
 	Model getObject();
-	
+
 	public List<Object> ConvertCursorToListObject(Cursor c);
 
 }
