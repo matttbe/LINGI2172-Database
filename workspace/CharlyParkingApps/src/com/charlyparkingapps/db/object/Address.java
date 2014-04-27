@@ -8,7 +8,8 @@ import com.charlyparkingapps.db.ParkingDB;
 public class Address implements Model {
 
 	public static final String[] ALL_COLUMNS = { "addressId", "parking",
-			"street", "number", "city", "zip", "country" };
+			"street", "number", "city", "zip", "country", "latitude",
+			"longitude" };
 
 	private int AddressID;
 	private int parkingID;
@@ -17,6 +18,8 @@ public class Address implements Model {
 	private String city;
 	private int zip;
 	private String country;
+	private Double latitude;
+	private Double longitude;
 
 	private Parking parking;
 
@@ -24,7 +27,8 @@ public class Address implements Model {
 
 	public Address(Context contextParam, int parkingIDParam,
 			String streetParam, int numberParam, String cityParam,
-			int zipParam, String countryParam) {
+			int zipParam, String countryParam, Double latitudeParam,
+			Double longitudeParam) {
 		this.context = contextParam;
 		this.setParkingID(parkingIDParam);
 		this.setStreet(streetParam);
@@ -32,6 +36,8 @@ public class Address implements Model {
 		this.setCity(cityParam);
 		this.setZip(zipParam);
 		this.setCountry(countryParam);
+		this.setLatitude(latitudeParam);
+		this.setLongitude(longitudeParam);
 	}
 
 	public Address(Cursor c, Context context) {
@@ -58,7 +64,10 @@ public class Address implements Model {
 			return String.valueOf(this.getZip());
 		case 6:
 			return this.getCountry();
-
+		case 7:
+			return String.valueOf(this.getLatitude());
+		case 8:
+			return String.valueOf(this.getLongitude());
 		}
 		return String.valueOf(this.getParkingID());
 	}
@@ -150,6 +159,8 @@ public class Address implements Model {
 		this.setCity(c.getString(4));
 		this.setZip(c.getInt(5));
 		this.setCountry(c.getString(6));
+		this.setLatitude(c.getDouble(7));
+		this.setLongitude(c.getDouble(8));
 		return this;
 	}
 
@@ -159,6 +170,22 @@ public class Address implements Model {
 
 	public void setAddressID(int addressID) {
 		AddressID = addressID;
+	}
+
+	public Double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(Double latitude) {
+		this.latitude = latitude;
+	}
+
+	public Double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(Double longitude) {
+		this.longitude = longitude;
 	}
 
 }
