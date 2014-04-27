@@ -37,7 +37,7 @@ public class AddressDB extends ObjectRepository {
 	}
 
 	@Override
-	public boolean checkConstraint() {
+	public boolean checkConstraint(Model entite) {
 		return true;
 	}
 

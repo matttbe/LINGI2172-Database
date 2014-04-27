@@ -22,7 +22,7 @@ public interface ObjectDB {
 
 	String getRequete();
 
-	boolean checkConstraint();
+	boolean checkConstraint(Model entite);
 
 	Model getObject();
 	

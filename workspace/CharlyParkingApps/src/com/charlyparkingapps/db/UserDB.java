@@ -36,7 +36,8 @@ public class UserDB extends ObjectRepository {
 	}
 
 	@Override
-	public boolean checkConstraint() {
+	public boolean checkConstraint(Model entite) {
+		User user = (User) entite;
 		return user.getType() < 3 && user.getType() >= 0;
 	}
 

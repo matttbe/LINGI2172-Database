@@ -37,7 +37,8 @@ public class ParkingDB extends ObjectRepository {
 	}
 
 	@Override
-	public boolean checkConstraint() {
+	public boolean checkConstraint(Model entite) {
+		Parking parking = (Parking) entite;
 		return parking.getTotalPlaces() > 0 && parking.getFreePlaces() < parking.getTotalPlaces() && parking.getFreePlaces() >= 0 && parking.getMaxHeight() >=0;
 	}
 
