@@ -224,13 +224,14 @@ public class LoginActivity extends Activity {
 			if (log) {
 				user.open();
 				User u = user.getByUsername(mUsername);
-				((CharlyApplication) getApplication()).setCurrentUser(u);
 				SharedPreferences sharedPref = ((CharlyApplication) getApplication())
 						.getSharedPreferences("user", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = sharedPref.edit();
 				editor.putInt(getString(R.string.id_user_pref), u.getId());
 				editor.apply();
 				user.close();
+
+				((CharlyApplication) getApplication()).logIn(u);
 			}
 			return log;
 		}

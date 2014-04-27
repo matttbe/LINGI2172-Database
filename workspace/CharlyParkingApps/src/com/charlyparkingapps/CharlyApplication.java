@@ -20,7 +20,7 @@ public class CharlyApplication extends Application {
 		return currentUser;
 	}
 
-	public void setCurrentUser(User currentUser) {
+	public void logIn(User currentUser) {
 		this.currentUser = currentUser;
 	}
 
@@ -30,10 +30,15 @@ public class CharlyApplication extends Application {
 		SharedPreferences.Editor editor = sharedPref.edit();
 		editor.putInt(getString(R.string.id_user_pref), 0);
 		editor.apply();
-		setCurrentUser(null);
+		logIn(null);
 
 	}
 
+	/**
+	 * Test if we already save the user/pass. If yes, login.
+	 *
+	 * @return true if we are no logged in
+	 */
 	public boolean testLogIn() {
 		SharedPreferences sharedPref = this.getSharedPreferences("user",
 				Context.MODE_PRIVATE);
@@ -41,11 +46,11 @@ public class CharlyApplication extends Application {
 		if (id != 0) {
 			UserDB user = new UserDB(getApplicationContext());
 			user.open();
-			setCurrentUser((User) user.getById(id));
+			User u = (User) user.getById(id);
 			user.close();
+			logIn(u);
 			return true;
 		}
 		return false;
 	}
-
 }
