@@ -127,8 +127,8 @@ public class Parking implements Model {
 
 	public void loadAddress() {
 		AddressDB ad = new AddressDB(context);
-		ad.Open();
-		address = ad.GetByIdParking(this.getParkingId());
+		ad.open();
+		address = ad.getByIdParking(this.getParkingId());
 	}
 
 	public Address getAddress() {
@@ -139,7 +139,7 @@ public class Parking implements Model {
 	}
 
 	@Override
-	public String[] getAll_Columns() {
+	public String[] getAllColumns() {
 		return ALL_COLUMNS;
 	}
 

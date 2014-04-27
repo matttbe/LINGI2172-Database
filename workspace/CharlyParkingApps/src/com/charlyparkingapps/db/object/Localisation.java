@@ -36,7 +36,7 @@ public class Localisation implements Model {
 	}
 
 	@Override
-	public String[] getAll_Columns() {
+	public String[] getAllColumns() {
 		return ALL_COLUMNS;
 	}
 
@@ -103,9 +103,9 @@ public class Localisation implements Model {
 
 	public void loadParking() {
 		ParkingDB p = new ParkingDB(context);
-		p.Open();
-		this.setParking((Parking) p.GetById(this.getParkingID()));
-		p.Close();
+		p.open();
+		this.setParking((Parking) p.getById(this.getParkingID()));
+		p.close();
 	}
 
 	public Parking getParking() {

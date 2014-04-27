@@ -8,15 +8,15 @@ import com.charlyparkingapps.db.object.Model;
 
 public interface ObjectDB {
 
-	public List<Object> GetAll();
+	public List<Object> getAll();
 
-	public Object GetById(int id);
+	public Object getById(int id);
 
-	public void Save(Model entite);
+	public void save(Model entite);
 
-	public void Update(Model entite);
+	public void update(Model entite);
 
-	public void Delete(int id);
+	public void delete(int id);
 
 	String getTablename();
 
@@ -26,6 +26,6 @@ public interface ObjectDB {
 
 	Model getObject();
 
-	public List<Object> ConvertCursorToListObject(Cursor c);
+	public List<Object> convertCursorToListObject(Cursor c);
 
 }

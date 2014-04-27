@@ -12,7 +12,7 @@ import com.charlyparkingapps.db.ObjectDB;
 
 public abstract class ObjectRepository implements ObjectDB {
 
-	protected SQLiteDatabase maBDD;
+	protected SQLiteDatabase myBDD;
 
 	protected SQLiteOpenHelper sqLiteOpenHelper;
 
@@ -26,24 +26,24 @@ public abstract class ObjectRepository implements ObjectDB {
 		this.context = context;
 	}
 
-	public void Open() {
-		maBDD = sqLiteOpenHelper.getWritableDatabase();
+	public void open() {
+		myBDD = sqLiteOpenHelper.getWritableDatabase();
 	}
 
-	public void Close() {
-		maBDD.close();
+	public void close() {
+		myBDD.close();
 	}
 
-	public List<Object> GetAll() {
-		Cursor cursor = maBDD.query(getTablename(), this.getObject()
-				.getAll_Columns(), null, null, null, null, null);
+	public List<Object> getAll() {
+		Cursor cursor = myBDD.query(getTablename(), this.getObject()
+				.getAllColumns(), null, null, null, null, null);
 
-		return ConvertCursorToListObject(cursor);
+		return convertCursorToListObject(cursor);
 	}
 
-	public Model GetById(int id) {
-		Cursor cursor = maBDD.query(getTablename(), this.getObject()
-				.getAll_Columns(), this.getObject().getUniqueColumn() + "=?",
+	public Model getById(int id) {
+		Cursor cursor = myBDD.query(getTablename(), this.getObject()
+				.getAllColumns(), this.getObject().getUniqueColumn() + "=?",
 				new String[] { String.valueOf(id) }, null, null, null);
 
 		if (cursor.moveToFirst())
@@ -53,29 +53,29 @@ public abstract class ObjectRepository implements ObjectDB {
 	}
 
 	@Override
-	public void Save(Model entite) {
+	public void save(Model entite) {
 		ContentValues contentValues = new ContentValues();
-		for (int i = 1; i < entite.getAll_Columns().length; i++) {
-			contentValues.put(entite.getAll_Columns()[i], entite.getByInt(i));
+		for (int i = 1; i < entite.getAllColumns().length; i++) {
+			contentValues.put(entite.getAllColumns()[i], entite.getByInt(i));
 		}
-		maBDD.insert(getTablename(), null, contentValues);
+		myBDD.insert(getTablename(), null, contentValues);
 	}
 
 	@Override
-	public void Update(Model entite) {
+	public void update(Model entite) {
 		ContentValues contentValues = new ContentValues();
-		for (int i = 1; i < entite.getAll_Columns().length; i++) {
-			contentValues.put(entite.getAll_Columns()[i], entite.getByInt(i));
+		for (int i = 1; i < entite.getAllColumns().length; i++) {
+			contentValues.put(entite.getAllColumns()[i], entite.getByInt(i));
 		}
 
-		maBDD.update(getTablename(), contentValues, entite.getUniqueColumn()
+		myBDD.update(getTablename(), contentValues, entite.getUniqueColumn()
 				+ "=?", new String[] { String.valueOf(entite.getByInt(0)) });
 
 	}
 
 	@Override
-	public void Delete(int id) {
-		maBDD.delete(getTablename(), this.getObject().getAll_Columns()[0]
+	public void delete(int id) {
+		myBDD.delete(getTablename(), this.getObject().getAllColumns()[0]
 				+ "=?", new String[] { String.valueOf(id) });
 	}
 

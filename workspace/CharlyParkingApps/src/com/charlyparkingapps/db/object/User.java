@@ -81,13 +81,13 @@ public class User implements Model {
 	}
 
 	@Override
-	public String[] getAll_Columns() {
+	public String[] getAllColumns() {
 		return ALL_COLUMNS;
 	}
 
 	@Override
 	public String getUniqueColumn() {
-		return this.getAll_Columns()[0];
+		return this.getAllColumns()[0];
 	}
 
 }

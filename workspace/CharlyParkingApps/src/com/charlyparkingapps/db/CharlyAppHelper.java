@@ -14,17 +14,17 @@ public class CharlyAppHelper extends SQLiteOpenHelper {
 
 	private static final String BASE_NAME = "charly.db";
 
-	private static List<ObjectDB> all_objects = new LinkedList<ObjectDB>();
+	private static List<ObjectDB> allObjects = new LinkedList<ObjectDB>();
 
 	public CharlyAppHelper(Context context, CursorFactory factory) {
 		super(context, BASE_NAME, factory, DATABASE_VERSION);
-		all_objects.add(new UserDB());
-		all_objects.add(new ParkingDB());
+		allObjects.add(new UserDB());
+		allObjects.add(new ParkingDB());
 	}
 
 	@Override
 	public void onCreate(SQLiteDatabase db) {
-		for (ObjectDB object : all_objects) {
+		for (ObjectDB object : allObjects) {
 			db.execSQL(object.getRequete());
 		}
 	}
@@ -32,7 +32,7 @@ public class CharlyAppHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 		if (newVersion > DATABASE_VERSION) {
-			for (ObjectDB object : all_objects) {
+			for (ObjectDB object : allObjects) {
 				db.execSQL("DROP TABLE " + object.getTablename() + ";");
 			}
 			onCreate(db);

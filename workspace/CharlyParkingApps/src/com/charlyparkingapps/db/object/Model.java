@@ -5,7 +5,7 @@ import android.database.Cursor;
 
 public interface Model {
 
-	public String[] getAll_Columns();
+	public String[] getAllColumns();
 
 	public String getByInt(int i);
 

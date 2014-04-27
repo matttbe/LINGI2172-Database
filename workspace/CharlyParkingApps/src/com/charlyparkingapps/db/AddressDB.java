@@ -46,7 +46,7 @@ public class AddressDB extends ObjectRepository {
 	}
 
 	@Override
-	public List<Object> ConvertCursorToListObject(Cursor c) {
+	public List<Object> convertCursorToListObject(Cursor c) {
 		List<Object> liste = new ArrayList<Object>();
 		if (c.getCount() == 0)
 			return liste;
@@ -64,8 +64,8 @@ public class AddressDB extends ObjectRepository {
 		return liste;
 	}
 
-	public Address GetByIdParking(int id) {
-		Cursor cursor = maBDD.query(getTablename(), address.getAll_Columns(),
+	public Address getByIdParking(int id) {
+		Cursor cursor = myBDD.query(getTablename(), address.getAllColumns(),
 				address.getByInt(1) + "=?",
 				new String[] { String.valueOf(id) }, null, null, null);
 

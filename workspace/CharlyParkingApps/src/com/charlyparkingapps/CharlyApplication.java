@@ -40,10 +40,10 @@ public class CharlyApplication extends Application {
 		int id = sharedPref.getInt(getString(R.string.id_user_pref), 0);
 		if (id != 0) {
 			UserDB user = new UserDB(getApplicationContext());
-			user.Open();
+			user.open();
 			((CharlyApplication) getApplicationContext()).setCurrent_user((User)user
-					.GetById(id));
-			user.Close();
+					.getById(id));
+			user.close();
 			return true;
 		}
 		return false;

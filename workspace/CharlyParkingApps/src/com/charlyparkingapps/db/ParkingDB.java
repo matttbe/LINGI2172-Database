@@ -49,7 +49,7 @@ public class ParkingDB extends ObjectRepository {
 		return this.parking;
 	}
 
-	public List<Object> ConvertCursorToListObject(Cursor c) {
+	public List<Object> convertCursorToListObject(Cursor c) {
 		List<Object> liste = new ArrayList<Object>();
 		if (c.getCount() == 0)
 			return liste;

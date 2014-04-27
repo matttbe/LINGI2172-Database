@@ -46,7 +46,7 @@ public class UserDB extends ObjectRepository {
 	}
 
 	public boolean login(String mEmail, String password) {
-		Cursor cursor = maBDD.query(getTablename(), User.ALL_COLUMNS,
+		Cursor cursor = myBDD.query(getTablename(), User.ALL_COLUMNS,
 				"username =? AND " + "password =?",
 				new String[] { String.valueOf(mEmail), password }, null, null,
 				null);
@@ -54,8 +54,8 @@ public class UserDB extends ObjectRepository {
 		return cursor.moveToFirst();
 	}
 
-	public User GetByUsername(String username) {
-		Cursor cursor = maBDD.query(getTablename(), User.ALL_COLUMNS,
+	public User getByUsername(String username) {
+		Cursor cursor = myBDD.query(getTablename(), User.ALL_COLUMNS,
 				"username=?", new String[] { username }, null, null, null);
 
 		if (cursor.moveToFirst())
@@ -65,7 +65,7 @@ public class UserDB extends ObjectRepository {
 
 	}
 
-	public List<Object> ConvertCursorToListObject(Cursor c) {
+	public List<Object> convertCursorToListObject(Cursor c) {
 		List<Object> liste = new ArrayList<Object>();
 		if (c.getCount() == 0)
 			return liste;

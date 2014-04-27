@@ -65,10 +65,10 @@ public class Address implements Model {
 
 	public void loadParking() {
 		ParkingDB p = new ParkingDB(context);
-		p.Open();
-		this.setParking((Parking) p.GetById(this.getParkingID()));
+		p.open();
+		this.setParking((Parking) p.getById(this.getParkingID()));
 		this.parking.setAddress(this);
-		p.Close();
+		p.close();
 	}
 
 	public Parking getParking() {
@@ -131,7 +131,7 @@ public class Address implements Model {
 	}
 
 	@Override
-	public String[] getAll_Columns() {
+	public String[] getAllColumns() {
 		return ALL_COLUMNS;
 	}
 

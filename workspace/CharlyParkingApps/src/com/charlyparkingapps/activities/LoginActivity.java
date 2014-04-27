@@ -209,28 +209,28 @@ public class LoginActivity extends Activity {
 		protected Boolean doInBackground(Void... params) {
 
 			UserDB user = new UserDB(getApplicationContext());
-			user.Open();
+			user.open();
 			boolean log = user.login(mUsername, mPassword);
-			user.Close();
+			user.close();
 			if (!log) {
-				user.Open();
-				if (user.GetByUsername(mUsername) == null) {
+				user.open();
+				if (user.getByUsername(mUsername) == null) {
 					User u = new User(mUsername, 0, mPassword);
-					user.Save(u);
+					user.save(u);
 					log = true;
 				}
-				user.Close();
+				user.close();
 			}
 			if (log) {
-				user.Open();
-				User u = user.GetByUsername(mUsername);
+				user.open();
+				User u = user.getByUsername(mUsername);
 				((CharlyApplication) getApplication()).setCurrent_user(u);
 				SharedPreferences sharedPref = ((CharlyApplication) getApplication())
 						.getSharedPreferences("user", Context.MODE_PRIVATE);
 				SharedPreferences.Editor editor = sharedPref.edit();
 				editor.putInt(getString(R.string.id_user_pref), u.getId());
 				editor.apply();
-				user.Close();
+				user.close();
 			}
 			return log;
 		}
