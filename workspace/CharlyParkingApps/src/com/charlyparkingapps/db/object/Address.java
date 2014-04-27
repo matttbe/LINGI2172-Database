@@ -7,10 +7,6 @@ import com.charlyparkingapps.db.ParkingDB;
 
 public class Address implements Model {
 
-	public static final String[] ALL_COLUMNS = { "addressId", "parking",
-			"street", "number", "city", "zip", "country", "latitude",
-			"longitude" };
-
 	private int AddressID;
 	private int parkingID;
 	private String street;
@@ -137,16 +133,6 @@ public class Address implements Model {
 
 	public void setParkingID(int parkingID) {
 		this.parkingID = parkingID;
-	}
-
-	@Override
-	public String[] getAllColumns() {
-		return ALL_COLUMNS;
-	}
-
-	@Override
-	public String getUniqueColumn() {
-		return ALL_COLUMNS[0];
 	}
 
 	@Override

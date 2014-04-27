@@ -7,6 +7,7 @@ import com.charlyparkingapps.db.ParkingDB;
 
 public class Localisation implements Model {
 
+	// TODO a bouger quand LocalisationDB verra le jour
 	public static final String[] ALL_COLUMNS = { "localisationId", "parking",
 			"latitude", "longitude" };
 
@@ -36,11 +37,6 @@ public class Localisation implements Model {
 	}
 
 	@Override
-	public String[] getAllColumns() {
-		return ALL_COLUMNS;
-	}
-
-	@Override
 	public String getByInt(int i) {
 		switch (i) {
 		case 0:
@@ -53,11 +49,6 @@ public class Localisation implements Model {
 			return String.valueOf(this.getLongitude());
 		}
 		return String.valueOf(this.getLocalisationID());
-	}
-
-	@Override
-	public String getUniqueColumn() {
-		return ALL_COLUMNS[0];
 	}
 
 	@Override

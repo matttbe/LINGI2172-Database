@@ -35,19 +35,19 @@ public abstract class ObjectRepository implements ObjectDB {
 	}
 
 	public List<Model> getAll() {
-		Cursor cursor = myBDD.query(getTablename(), this.getObject()
-				.getAllColumns(), null, null, null, null, null);
+		Cursor cursor = myBDD.query(getTablename(), getAllColumns(), null,
+				null, null, null, null);
 
 		return convertCursorToListObject(cursor);
 	}
 
 	public Model getById(int id) {
-		Cursor cursor = myBDD.query(getTablename(), this.getObject()
-				.getAllColumns(), this.getObject().getUniqueColumn() + "=?",
+		Cursor cursor = myBDD.query(getTablename(), getAllColumns(),
+				getUniqueColumn() + "=?",
 				new String[] { String.valueOf(id) }, null, null, null);
 
 		if (cursor.moveToFirst())
-			return this.getObject().createFromCursor(cursor, context);
+			return createFromCursor(cursor, context);
 		else
 			return null;
 	}
@@ -55,8 +55,8 @@ public abstract class ObjectRepository implements ObjectDB {
 	@Override
 	public void save(Model entite) {
 		ContentValues contentValues = new ContentValues();
-		for (int i = 1; i < entite.getAllColumns().length; i++) {
-			contentValues.put(entite.getAllColumns()[i], entite.getByInt(i));
+		for (int i = 1; i < getAllColumns().length; i++) {
+			contentValues.put(getAllColumns()[i], entite.getByInt(i));
 		}
 		myBDD.insert(getTablename(), null, contentValues);
 	}
@@ -64,18 +64,18 @@ public abstract class ObjectRepository implements ObjectDB {
 	@Override
 	public void update(Model entite) {
 		ContentValues contentValues = new ContentValues();
-		for (int i = 1; i < entite.getAllColumns().length; i++) {
-			contentValues.put(entite.getAllColumns()[i], entite.getByInt(i));
+		for (int i = 1; i < getAllColumns().length; i++) {
+			contentValues.put(getAllColumns()[i], entite.getByInt(i));
 		}
 
-		myBDD.update(getTablename(), contentValues, entite.getUniqueColumn()
+		myBDD.update(getTablename(), contentValues, getUniqueColumn()
 				+ "=?", new String[] { String.valueOf(entite.getByInt(0)) });
 
 	}
 
 	@Override
 	public void delete(int id) {
-		myBDD.delete(getTablename(), this.getObject().getAllColumns()[0]
+		myBDD.delete(getTablename(), getAllColumns()[0]
 				+ "=?", new String[] { String.valueOf(id) });
 	}
 

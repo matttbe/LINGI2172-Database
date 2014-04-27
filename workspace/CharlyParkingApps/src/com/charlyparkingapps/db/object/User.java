@@ -5,9 +5,6 @@ import android.database.Cursor;
 
 public class User implements Model {
 
-	public static final String[] ALL_COLUMNS = { "userId", "username", "type",
-			"password" };
-
 	private int id;
 	private String username;
 	private String password;
@@ -79,15 +76,4 @@ public class User implements Model {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	@Override
-	public String[] getAllColumns() {
-		return ALL_COLUMNS;
-	}
-
-	@Override
-	public String getUniqueColumn() {
-		return this.getAllColumns()[0];
-	}
-
 }

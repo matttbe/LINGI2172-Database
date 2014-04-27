@@ -13,7 +13,8 @@ import com.charlyparkingapps.db.object.User;
 
 public class UserDB extends ObjectRepository {
 
-	private User user = new User();
+	public static final String[] ALL_COLUMNS = { "userId", "username", "type",
+			"password" };
 
 	public UserDB(Context context) {
 		this.setContext(context);
@@ -46,13 +47,8 @@ public class UserDB extends ObjectRepository {
 		return user.getType() < 3 && user.getType() >= 0;
 	}
 
-	@Override
-	public Model getObject() {
-		return this.user;
-	}
-
 	public boolean login(String mEmail, String password) {
-		Cursor cursor = myBDD.query(getTablename(), User.ALL_COLUMNS,
+		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
 				"username =? AND " + "password =?",
 				new String[] { String.valueOf(mEmail), password }, null, null,
 				null);
@@ -61,7 +57,7 @@ public class UserDB extends ObjectRepository {
 	}
 
 	public User getByUsername(String username) {
-		Cursor cursor = myBDD.query(getTablename(), User.ALL_COLUMNS,
+		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
 				"username=?", new String[] { username }, null, null, null);
 
 		if (cursor.moveToFirst())
@@ -87,6 +83,21 @@ public class UserDB extends ObjectRepository {
 		c.close();
 
 		return liste;
+	}
+
+	@Override
+	public String getUniqueColumn() {
+		return ALL_COLUMNS[0];
+	}
+
+	@Override
+	public String[] getAllColumns() {
+		return ALL_COLUMNS;
+	}
+
+	@Override
+	public Model createFromCursor(Cursor cursor, Context context) {
+		return new User(cursor, context);
 	}
 
 }

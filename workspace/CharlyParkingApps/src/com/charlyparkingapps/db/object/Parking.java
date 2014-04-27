@@ -22,9 +22,6 @@ public class Parking implements Model {
 
 	private Address address;
 
-	public static final String[] ALL_COLUMNS = { "parkingId", "name",
-			"defibrillator", "totalPlaces", "freePlaces", "maxHeight" };
-
 	private Marker marker = null;
 	private LatLng location;
 
@@ -41,7 +38,7 @@ public class Parking implements Model {
 		this.maxHeight = maxHeightParam;
 	}
 
-	public Parking(Context context, Cursor c) {
+	public Parking(Cursor c, Context context) {
 		this.createFromCursor(c, context);
 	}
 
@@ -133,11 +130,6 @@ public class Parking implements Model {
 	}
 
 	@Override
-	public String[] getAllColumns() {
-		return ALL_COLUMNS;
-	}
-
-	@Override
 	public Model createFromCursor(Cursor c, Context context) {
 		this.context = context;
 		this.parkingId = c.getInt(0);
@@ -147,11 +139,6 @@ public class Parking implements Model {
 		this.freePlaces = c.getInt(4);
 		this.maxHeight = c.getInt(5);
 		return this;
-	}
-
-	@Override
-	public String getUniqueColumn() {
-		return ALL_COLUMNS[0];
 	}
 
 	// ___________________ MARKERS

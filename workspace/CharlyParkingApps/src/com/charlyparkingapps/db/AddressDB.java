@@ -13,7 +13,9 @@ import com.charlyparkingapps.db.object.ObjectRepository;
 
 public class AddressDB extends ObjectRepository {
 
-	private Address address = new Address();
+	public static final String[] ALL_COLUMNS = { "addressId", "parking",
+			"street", "number", "city", "zip", "country", "latitude",
+			"longitude" };
 
 	private Context context;
 
@@ -47,11 +49,6 @@ public class AddressDB extends ObjectRepository {
 	}
 
 	@Override
-	public Model getObject() {
-		return address;
-	}
-
-	@Override
 	public List<Model> convertCursorToListObject(Cursor c) {
 		List<Model> liste = new ArrayList<Model>();
 		if (c.getCount() == 0)
@@ -71,14 +68,29 @@ public class AddressDB extends ObjectRepository {
 	}
 
 	public Address getByIdParking(int id) {
-		Cursor cursor = myBDD.query(getTablename(), address.getAllColumns(),
-				Address.ALL_COLUMNS[1] + "=?",
+		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS, ALL_COLUMNS[1]
+				+ "=?",
 				new String[] { String.valueOf(id) }, null, null, null);
 
 		if (cursor.moveToFirst())
 			return new Address(cursor, context);
 		else
 			return null;
+	}
+
+	@Override
+	public String getUniqueColumn() {
+		return ALL_COLUMNS[0];
+	}
+
+	@Override
+	public String[] getAllColumns() {
+		return ALL_COLUMNS;
+	}
+
+	@Override
+	public Model createFromCursor(Cursor cursor, Context context) {
+		return new Address(cursor, context);
 	}
 
 }

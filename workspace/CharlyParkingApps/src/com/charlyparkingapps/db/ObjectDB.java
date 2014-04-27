@@ -2,6 +2,7 @@ package com.charlyparkingapps.db;
 
 import java.util.List;
 
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -27,8 +28,12 @@ public interface ObjectDB {
 
 	public boolean checkConstraint(Model entite);
 
-	public Model getObject();
-
 	public List<Model> convertCursorToListObject(Cursor c);
+
+	public String getUniqueColumn();
+
+	public String[] getAllColumns();
+
+	public Model createFromCursor(Cursor cursor, Context context);
 
 }

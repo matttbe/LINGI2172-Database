@@ -13,7 +13,8 @@ import com.charlyparkingapps.db.object.Parking;
 
 public class ParkingDB extends ObjectRepository {
 
-	private Parking parking = new Parking();
+	public static final String[] ALL_COLUMNS = { "parkingId", "name",
+			"defibrillator", "totalPlaces", "freePlaces", "maxHeight" };
 
 	private static final double ONE_METER = 0.00000898 * 1.05; // with extras
 
@@ -50,10 +51,6 @@ public class ParkingDB extends ObjectRepository {
 				&& parking.getFreePlaces() >= 0 && parking.getMaxHeight() >= 0;
 	}
 
-	@Override
-	public Model getObject() {
-		return this.parking;
-	}
 
 	public List<Model> convertCursorToListObject(Cursor c) {
 		List<Model> liste = new ArrayList<Model>();
@@ -61,7 +58,7 @@ public class ParkingDB extends ObjectRepository {
 			return liste;
 		c.moveToFirst();
 		do {
-			Parking parking = new Parking(context, c);
+			Parking parking = new Parking(c, context);
 			liste.add(parking);
 		} while (c.moveToNext());
 		c.close();
@@ -76,13 +73,28 @@ public class ParkingDB extends ObjectRepository {
 		double lonMin = longitude - diffLat / Math.cos(latMin);
 		double lonMax = longitude + diffLat / Math.cos(latMax);
 
-		Cursor cursor = myBDD.query(getTablename(), Parking.ALL_COLUMNS,
+		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
 				"lat > ? AND lat < ? AND lon > ? AND lon < ?",
 				new String[] { String.valueOf(latMin), String.valueOf(latMax),
 						String.valueOf(lonMin), String.valueOf(lonMax) }, null,
 				null, null);
 
 		return this.convertCursorToListObject(cursor);
+	}
+
+	@Override
+	public String getUniqueColumn() {
+		return ALL_COLUMNS[0];
+	}
+
+	@Override
+	public String[] getAllColumns() {
+		return ALL_COLUMNS;
+	}
+
+	@Override
+	public Model createFromCursor(Cursor cursor, Context context) {
+		return new Parking(cursor, context);
 	}
 
 }
