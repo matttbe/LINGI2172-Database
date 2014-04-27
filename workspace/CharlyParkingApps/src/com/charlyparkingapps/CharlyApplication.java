@@ -41,8 +41,7 @@ public class CharlyApplication extends Application {
 		if (id != 0) {
 			UserDB user = new UserDB(getApplicationContext());
 			user.open();
-			((CharlyApplication) getApplicationContext())
-					.setCurrentUser((User) user.getById(id));
+			setCurrentUser((User) user.getById(id));
 			user.close();
 			return true;
 		}
