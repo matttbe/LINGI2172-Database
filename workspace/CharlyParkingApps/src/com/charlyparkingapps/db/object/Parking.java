@@ -42,13 +42,7 @@ public class Parking implements Model {
 	}
 
 	public Parking(Context context, Cursor c) {
-		this.context = context;
-		this.parkingId = c.getInt(0);
-		this.name = c.getString(1);
-		this.defibrillator = c.getString(2).equals("true");
-		this.totalPlaces = c.getInt(3);
-		this.freePlaces = c.getInt(4);
-		this.maxHeight = c.getInt(5);
+		this.createFromCursor(c, context);
 	}
 
 	public Parking() {
@@ -145,8 +139,14 @@ public class Parking implements Model {
 
 	@Override
 	public Model createFromCursor(Cursor c, Context context) {
-		// TODO Auto-generated method stub
-		return null;
+		this.context = context;
+		this.parkingId = c.getInt(0);
+		this.name = c.getString(1);
+		this.defibrillator = c.getString(2).equals("true");
+		this.totalPlaces = c.getInt(3);
+		this.freePlaces = c.getInt(4);
+		this.maxHeight = c.getInt(5);
+		return this;
 	}
 
 	@Override
@@ -161,8 +161,9 @@ public class Parking implements Model {
 	 */
 	public LatLng getLocation() {
 		if (location == null)
-			// TODO
-			location = new LatLng(0, 0);
+			this.getAddress();
+		location = new LatLng(this.address.getLatitude(),
+				this.address.getLongitude());
 		return location;
 	}
 
