@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.ObjectRepository;
@@ -34,6 +35,11 @@ public class ParkingDB extends ObjectRepository {
 	@Override
 	public String getRequete() {
 		return "CREATE TABLE Parking(parkingId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name varchar(20) NOT NULL, defibrillator BOOL DEFAULT 0, totalPlaces INTEGER CHECK (totalPlaces > 0),freePlaces INTEGER CHECK(freePlaces < totalPlaces AND freePlaces >= 0) DEFAULT totalPlaces, maxHeight INTEGER CHECK (maxHeight > 0))";
+	}
+
+	@Override
+	public void populate(SQLiteDatabase db) {
+		// TODO Auto-generated method stub
 	}
 
 	@Override

@@ -3,6 +3,7 @@ package com.charlyparkingapps.db;
 import java.util.List;
 
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.charlyparkingapps.db.object.Model;
 
@@ -18,13 +19,15 @@ public interface ObjectDB {
 
 	public void delete(int id);
 
-	String getTablename();
+	public String getTablename();
 
-	String getRequete();
+	public String getRequete();
 
-	boolean checkConstraint(Model entite);
+	public void populate(SQLiteDatabase db);
 
-	Model getObject();
+	public boolean checkConstraint(Model entite);
+
+	public Model getObject();
 
 	public List<Object> convertCursorToListObject(Cursor c);
 

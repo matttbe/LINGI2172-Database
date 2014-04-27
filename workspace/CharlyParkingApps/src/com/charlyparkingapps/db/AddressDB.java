@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.charlyparkingapps.db.object.Address;
 import com.charlyparkingapps.db.object.Model;
@@ -33,6 +34,11 @@ public class AddressDB extends ObjectRepository {
 	@Override
 	public String getRequete() {
 		return "CREATE TABLE Address(addressId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,parking INTEGER NOT NULL, street TEXT NOT NULL, number INTEGER NOT NULL, city TEXT NOT NULL, zip INTEGER NOT NULL, country TEXT NOT NULL, FOREIGN KEY(parking) REFERENCES Parking(parkingId))";
+	}
+
+	@Override
+	public void populate(SQLiteDatabase db) {
+		// TODO Auto-generated method stub
 	}
 
 	@Override

@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.ObjectRepository;
@@ -32,6 +33,11 @@ public class UserDB extends ObjectRepository {
 		return "CREATE TABLE \"User\"(userId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, type INTEGER NOT NULL "
 				+ "CONSTRAINT chk_type CHECK (type IN (0, 1, 2)), "
 				+ "username varchar(20) NOT NULL UNIQUE, password varchar(20) NOT NULL)";
+	}
+
+	@Override
+	public void populate(SQLiteDatabase db) {
+		// TODO Auto-generated method stub
 	}
 
 	@Override
