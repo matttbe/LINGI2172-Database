@@ -72,7 +72,7 @@ public class AddressDB extends ObjectRepository {
 
 	public Address getByIdParking(int id) {
 		Cursor cursor = myBDD.query(getTablename(), address.getAllColumns(),
-				address.getByInt(1) + "=?",
+				Address.ALL_COLUMNS[1] + "=?",
 				new String[] { String.valueOf(id) }, null, null, null);
 
 		if (cursor.moveToFirst())
