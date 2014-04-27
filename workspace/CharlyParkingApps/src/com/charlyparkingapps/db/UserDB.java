@@ -56,7 +56,7 @@ public class UserDB extends ObjectRepository {
 				"username=?", new String[] { username }, null, null, null);
 
 		if (cursor.moveToFirst())
-			return new User(cursor, this.getContext());
+			return new User(cursor);
 		else
 			return null;
 
@@ -70,7 +70,7 @@ public class UserDB extends ObjectRepository {
 
 		do {
 
-			User user = new User(c, this.getContext());
+			User user = new User(c);
 
 			liste.add(user);
 		} while (c.moveToNext());
@@ -91,8 +91,8 @@ public class UserDB extends ObjectRepository {
 	}
 
 	@Override
-	public Model createFromCursor(Cursor cursor, Context context) {
-		return new User(cursor, context);
+	public Model createFromCursor(Cursor cursor) {
+		return new User(cursor);
 	}
 
 }

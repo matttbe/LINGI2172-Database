@@ -2,7 +2,6 @@ package com.charlyparkingapps.db;
 
 import java.util.List;
 
-import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
@@ -34,6 +33,6 @@ public interface ObjectDB {
 
 	public String[] getAllColumns();
 
-	public Model createFromCursor(Cursor cursor, Context context);
+	public Model createFromCursor(Cursor cursor);
 
 }

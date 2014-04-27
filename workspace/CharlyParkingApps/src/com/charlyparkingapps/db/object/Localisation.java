@@ -1,6 +1,5 @@
 package com.charlyparkingapps.db.object;
 
-import android.content.Context;
 import android.database.Cursor;
 
 import com.charlyparkingapps.db.ParkingDB;
@@ -18,18 +17,15 @@ public class Localisation implements Model {
 
 	private Parking parking;
 
-	private Context context;
-
-	public Localisation(Context contextParam, int parkingIDParam,
-			Double latitudeParam, Double longitudeParam) {
-		this.context = contextParam;
+	public Localisation(int parkingIDParam, Double latitudeParam,
+			Double longitudeParam) {
 		this.setParkingID(parkingIDParam);
 		this.setLatitude(latitudeParam);
 		this.setLongitude(longitudeParam);
 	}
 
-	public Localisation(Cursor c, Context context) {
-		createFromCursor(c, context);
+	public Localisation(Cursor c) {
+		createFromCursor(c);
 	}
 
 	public Localisation() {
@@ -52,8 +48,7 @@ public class Localisation implements Model {
 	}
 
 	@Override
-	public Model createFromCursor(Cursor c, Context context) {
-		this.context = context;
+	public Model createFromCursor(Cursor c) {
 		this.setParkingID(c.getInt(0));
 		this.setLatitude(c.getDouble(1));
 		this.setLongitude(c.getDouble(2));

@@ -1,6 +1,5 @@
 package com.charlyparkingapps.db.object;
 
-import android.content.Context;
 import android.database.Cursor;
 
 public class User implements Model {
@@ -16,14 +15,14 @@ public class User implements Model {
 		this.setPassword(passwordParam);
 	}
 
-	public User(Cursor c, Context context) {
-		createFromCursor(c, context);
+	public User(Cursor c) {
+		createFromCursor(c);
 	}
 
 	public User() {
 	}
 
-	public Model createFromCursor(Cursor c, Context context) {
+	public Model createFromCursor(Cursor c) {
 		this.setId(c.getInt(0));
 		this.setType(c.getInt(1));
 		this.setUsername(c.getString(2));

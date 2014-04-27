@@ -2,7 +2,6 @@ package com.charlyparkingapps.db.object;
 
 import java.util.List;
 
-import android.content.Context;
 import android.database.Cursor;
 
 import com.charlyparkingapps.db.AddressDB;
@@ -25,12 +24,8 @@ public class Parking implements Model {
 	private Marker marker = null;
 	private LatLng location;
 
-	private Context context;
-
-	public Parking(Context context, String nameParam,
-			boolean defibrillatorParam, int totalPlacesParam,
-			int freePlacesParam, int maxHeightParam) {
-		this.context = context;
+	public Parking(String nameParam, boolean defibrillatorParam,
+			int totalPlacesParam, int freePlacesParam, int maxHeightParam) {
 		this.name = nameParam;
 		this.defibrillator = defibrillatorParam;
 		this.totalPlaces = totalPlacesParam;
@@ -38,8 +33,8 @@ public class Parking implements Model {
 		this.maxHeight = maxHeightParam;
 	}
 
-	public Parking(Cursor c, Context context) {
-		this.createFromCursor(c, context);
+	public Parking(Cursor c) {
+		this.createFromCursor(c);
 	}
 
 	public Parking() {
@@ -130,8 +125,7 @@ public class Parking implements Model {
 	}
 
 	@Override
-	public Model createFromCursor(Cursor c, Context context) {
-		this.context = context;
+	public Model createFromCursor(Cursor c) {
 		this.parkingId = c.getInt(0);
 		this.name = c.getString(1);
 		this.defibrillator = c.getString(2).equals("true");

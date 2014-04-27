@@ -51,7 +51,7 @@ public class ParkingDB extends ObjectRepository {
 			return liste;
 		c.moveToFirst();
 		do {
-			Parking parking = new Parking(c, context);
+			Parking parking = new Parking(c);
 			liste.add(parking);
 		} while (c.moveToNext());
 		c.close();
@@ -86,8 +86,8 @@ public class ParkingDB extends ObjectRepository {
 	}
 
 	@Override
-	public Model createFromCursor(Cursor cursor, Context context) {
-		return new Parking(cursor, context);
+	public Model createFromCursor(Cursor cursor) {
+		return new Parking(cursor);
 	}
 
 }

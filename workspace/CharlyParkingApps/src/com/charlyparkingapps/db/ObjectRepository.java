@@ -48,7 +48,7 @@ public abstract class ObjectRepository implements ObjectDB {
 				new String[] { String.valueOf(id) }, null, null, null);
 
 		if (cursor.moveToFirst())
-			return createFromCursor(cursor, context);
+			return createFromCursor(cursor);
 		else
 			return null;
 	}

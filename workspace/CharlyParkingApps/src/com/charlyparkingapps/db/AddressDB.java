@@ -49,7 +49,7 @@ public class AddressDB extends ObjectRepository {
 
 		do {
 
-			Address address = new Address(c, this.getContext());
+			Address address = new Address(c);
 
 			liste.add(address);
 		} while (c.moveToNext());
@@ -65,7 +65,7 @@ public class AddressDB extends ObjectRepository {
 				new String[] { String.valueOf(id) }, null, null, null);
 
 		if (cursor.moveToFirst())
-			return new Address(cursor, context);
+			return new Address(cursor);
 		else
 			return null;
 	}
@@ -81,8 +81,8 @@ public class AddressDB extends ObjectRepository {
 	}
 
 	@Override
-	public Model createFromCursor(Cursor cursor, Context context) {
-		return new Address(cursor, context);
+	public Model createFromCursor(Cursor cursor) {
+		return new Address(cursor);
 	}
 
 }
