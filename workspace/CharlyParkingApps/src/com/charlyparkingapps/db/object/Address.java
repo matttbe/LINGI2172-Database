@@ -81,6 +81,7 @@ public class Address implements Model{
 		isLoaded=true;
 		this.parking = parking;
 	}
+	
 	public String getStreet() {
 		return street;
 	}
