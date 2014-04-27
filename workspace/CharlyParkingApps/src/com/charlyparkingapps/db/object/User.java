@@ -19,9 +19,6 @@ public class User implements Model {
 		createFromCursor(c);
 	}
 
-	public User() {
-	}
-
 	public Model createFromCursor(Cursor c) {
 		this.setId(c.getInt(0));
 		this.setType(c.getInt(1));

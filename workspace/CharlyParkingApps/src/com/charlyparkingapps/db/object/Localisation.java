@@ -28,10 +28,6 @@ public class Localisation implements Model {
 		createFromCursor(c);
 	}
 
-	public Localisation() {
-
-	}
-
 	@Override
 	public String getByInt(int i) {
 		switch (i) {

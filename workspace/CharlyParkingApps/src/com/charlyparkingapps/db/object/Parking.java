@@ -37,9 +37,6 @@ public class Parking implements Model {
 		this.createFromCursor(c);
 	}
 
-	public Parking() {
-	}
-
 	public String getByInt(int i) {
 		switch (i) {
 		case 0:

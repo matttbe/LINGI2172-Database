@@ -35,10 +35,6 @@ public class Address implements Model {
 		createFromCursor(c);
 	}
 
-	public Address() {
-
-	}
-
 	public String getByInt(int i) {
 		switch (i) {
 		case 0:
