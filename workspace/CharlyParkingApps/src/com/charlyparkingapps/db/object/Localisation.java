@@ -6,9 +6,6 @@ import com.charlyparkingapps.db.ParkingDB;
 
 public class Localisation implements Model {
 
-	// TODO a bouger quand LocalisationDB verra le jour
-	public static final String[] ALL_COLUMNS = { "localisationId", "parking",
-			"latitude", "longitude" };
 
 	private int localisationID;
 	private int parkingID;
