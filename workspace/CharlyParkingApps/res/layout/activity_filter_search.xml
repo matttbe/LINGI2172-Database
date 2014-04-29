@@ -126,12 +126,14 @@
     	android:orientation="horizontal" >
     	
         <Button 
+            android:id="@+id/favorites_button"
             android:layout_width="0dp"
     		android:layout_height="wrap_content"
     		android:layout_weight="1"
     		android:text="@string/favorites"/>
         
         <Button 
+            android:id="@+id/using_button"
             android:layout_width="0dp"
     		android:layout_height="wrap_content"
     		android:layout_weight="1"
@@ -139,6 +141,7 @@
     		android:text="@string/using_parkings"/>
         
         <Button 
+            android:id="@+id/mine_button"
             android:layout_width="0dp"
     		android:layout_height="wrap_content"
     		android:layout_weight="1"
@@ -153,8 +156,8 @@
         android:text="@string/sort"/>
     
     <Spinner 
+        android:id="@+id/sort_spinner"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content" 
-        android:id="@+id/sort_spinner"/>
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
