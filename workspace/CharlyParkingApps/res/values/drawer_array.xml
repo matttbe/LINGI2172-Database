@@ -4,6 +4,7 @@
         <item>Map</item>
         <item>User Profile</item>
         <item>History</item>
+        <item>Filters</item>
         <item>Log in/out</item>
     </string-array>
 </resources>

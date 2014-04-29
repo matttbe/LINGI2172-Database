@@ -92,7 +92,7 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 		// Set the adapter for the list view
 		mMenuList.setAdapter(new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, mEntries));
-		this.mMenuList.setOnItemClickListener(new DrawerListListener());
+		this.mMenuList.setOnItemClickListener(new DrawerListListener(this));
 
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_menu_layout);
 		mDrawerToggle = new ActionBarDrawerToggle(this, /* host Activity */
