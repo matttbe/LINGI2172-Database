@@ -57,7 +57,7 @@ public class UserDB extends ObjectRepository {
 	@Override
 	public boolean checkConstraint(Model entite) {
 		User user = (User) entite;
-		return user.getType() < 3 && user.getType() >= 0;
+		return user.getType().ordinal() < 3 && user.getType().ordinal() >= 0;
 	}
 
 	public boolean login(String mEmail, String password) {

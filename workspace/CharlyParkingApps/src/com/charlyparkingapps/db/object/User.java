@@ -7,9 +7,9 @@ public class User implements Model {
 	private int id;
 	private String username;
 	private String password;
-	private int type;
+	private UserType type;
 
-	public User(String usernameParam, int typeParam, String passwordParam) {
+	public User(String usernameParam, UserType typeParam, String passwordParam) {
 		this.setUsername(usernameParam);
 		this.setType(typeParam);
 		this.setPassword(passwordParam);
@@ -21,7 +21,7 @@ public class User implements Model {
 
 	public Model createFromCursor(Cursor c) {
 		this.setId(c.getInt(0));
-		this.setType(c.getInt(1));
+		this.setType(UserType.values()[c.getInt(1)]);
 		this.setUsername(c.getString(2));
 		return this;
 	}
@@ -49,11 +49,11 @@ public class User implements Model {
 		this.username = username;
 	}
 
-	public int getType() {
+	public UserType getType() {
 		return type;
 	}
 
-	public void setType(int type) {
+	public void setType(UserType type) {
 		this.type = type;
 	}
 
@@ -71,5 +71,9 @@ public class User implements Model {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public enum UserType {
+		USER, OWNER, ADMIN;
 	}
 }

@@ -22,6 +22,7 @@ import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.UserDB;
 import com.charlyparkingapps.db.object.User;
+import com.charlyparkingapps.db.object.User.UserType;
 
 /**
  * Activity which displays a login screen to the user, offering registration as
@@ -214,7 +215,7 @@ public class LoginActivity extends Activity {
 			if (!log) {
 				user.open();
 				if (user.getByUsername(mUsername) == null) {
-					User u = new User(mUsername, 0, mPassword);
+					User u = new User(mUsername, UserType.USER, mPassword);
 					user.save(u);
 					log = true;
 				}
