@@ -155,7 +155,6 @@ public class LoginActivity extends Activity {
 			showProgress(true);
 			mAuthTask = new UserLoginTask();
 			mAuthTask.execute((Void) null);
-			// mAuthTask.
 		}
 	}
 

@@ -44,7 +44,6 @@ public class CharlyApplication extends Application {
 		editor.putInt(getString(R.string.id_user_pref), 0);
 		editor.apply();
 		logIn(null);
-
 	}
 
 	/**
