@@ -22,11 +22,11 @@ public class CharlyApplication extends Application {
 	public void onCreate() {
 		Context context = getApplicationContext();
 		List<ObjectDB> allObjects = new LinkedList<ObjectDB>();
+		CharlyAppHelper.init(context, allObjects); // at the beginning!
+
 		allObjects.add(UserDB.init(context));
 		allObjects.add(ParkingDB.init(context));
 		allObjects.add(AddressDB.init(context));
-
-		CharlyAppHelper.init(context, allObjects); // at the end!
 	}
 
 	public User getCurrentUser() {
