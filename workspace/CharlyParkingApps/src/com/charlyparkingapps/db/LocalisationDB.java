@@ -7,11 +7,18 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.charlyparkingapps.db.object.Address;
 import com.charlyparkingapps.db.object.Localisation;
 import com.charlyparkingapps.db.object.Model;
 
 public class LocalisationDB extends ObjectRepository {
+	
+	// Singleton stuff
+		private static LocalisationDB sInstance;
+		public static LocalisationDB getInstance() { return sInstance; }
+		public static LocalisationDB init(Context context) {
+			sInstance = new LocalisationDB(context);
+			return sInstance;
+		}
 	
 	public static final String[] ALL_COLUMNS = { "localisationId", "parking",
 			"latitude", "longitude" };
