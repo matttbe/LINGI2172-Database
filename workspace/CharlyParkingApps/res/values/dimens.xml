@@ -5,5 +5,7 @@
     <dimen name="shadow_width">15dp</dimen>
 
     <integer name="num_cols">1</integer>
+    
+    <dimen name="title_size">15dp</dimen>
 
 </resources>

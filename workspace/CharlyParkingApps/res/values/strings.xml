@@ -19,5 +19,18 @@
     <string name="drawer_open">Menu opened</string>
     <string name="drawer_close">Menu closed</string>
     <string name="menu">Menu</string>
-
+    <string name="defibrilator">defibrilator</string>
+    <string name="fuel">fuel</string>
+	<string name="diesel">diesel</string>
+	<string name="lpg">lpg</string>
+	<string name="ethanol">ethanol</string>
+	<string name="total_places">total places</string>
+	<string name="free_places">free places</string>
+	<string name="one_free_place">Show only parking with at least one free place</string>
+	<string name="handicaped_spot">places for handicaped people</string>
+	<string name="favorites">favorites</string>
+	<string name="using_parkings">used now</string>
+	<string name="my_parkings">my parkings</string>		
+	<string name="sort">sort</string>
+	
 </resources>

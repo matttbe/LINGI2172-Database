@@ -4,5 +4,157 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/title_size"
+        android:gravity="center"/>
+    
+    
+    <LinearLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+    	
+    	<CheckBox 
+     		android:layout_width="wrap_content"
+     	    android:layout_height="wrap_content"
+      		android:id="@+id/defibrilator_cb"
+      	  	android:text="@string/defibrilator"
+      	  	android:gravity="left" />
+    
+    	<CheckBox 
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:id="@+id/handicaped_cb"
+        	android:text="@string/handicaped_spot"
+        	android:gravity="right" />
+    	
+   	</LinearLayout>
+    
+    <LinearLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+    	
+        <CheckBox 
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:id="@+id/fuel_cb"
+        	android:text="@string/fuel" />
+        
+        <CheckBox 
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:id="@+id/diesel_cb"
+        	android:text="@string/diesel" />
+        
+        <CheckBox 
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:id="@+id/lpg_cb"
+        	android:text="@string/lpg" />
+        
+        <CheckBox 
+        	android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:id="@+id/ethanol_cb"
+        	android:text="@string/ethanol" />
+    
+    </LinearLayout>
+    
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/total_places"/>
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+        
+    	<SeekBar
+    	    android:id="@+id/total_places_sb"
+    	    android:layout_width="280dp"
+    	    android:layout_height="wrap_content"
+    	    android:max="2000" />
+    	
+    	<TextView 
+    	    android:id="@+id/total_places_tv"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:minEms="4"
+        	android:layout_toRightOf="@id/total_places_sb"/>
+    
+    </RelativeLayout>
+    
+     <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/free_places"/>
+    
+    <RelativeLayout 
+        android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal">
+        
+    	<SeekBar
+    	    android:id="@+id/free_places_sb"
+    	    android:layout_width="280dp"
+    	    android:layout_height="wrap_content"
+    	    android:max="2000" />
+    	
+    	<TextView 
+    	    android:id="@+id/free_places_tv"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:minEms="4"
+        	android:layout_toRightOf="@id/free_places_sb"/>
+    
+    </RelativeLayout>
+    
+    <CheckBox 
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/one_free_place_cb"
+        android:text="@string/one_free_place" />
+    
+    <LinearLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" >
+    	
+        <Button 
+            android:layout_width="0dp"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1"
+    		android:text="@string/favorites"/>
+        
+        <Button 
+            android:layout_width="0dp"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1"
+    		android:gravity="center"
+    		android:text="@string/using_parkings"/>
+        
+        <Button 
+            android:layout_width="0dp"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1"
+    		android:gravity="right"
+    		android:text="@string/my_parkings"/>
+    	
+    </LinearLayout>
+    
+    <TextView 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/sort"/>
+    
+    <Spinner 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" 
+        android:id="@+id/sort_spinner"/>
 
 </LinearLayout>
