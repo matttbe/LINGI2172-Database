@@ -104,7 +104,8 @@ public class MapMarkers {
 			clearMap();
 
 		parking.addMarkerToMap(map);
-		parking.getMarker().showInfoWindow();
+		if (onlyOne)
+			parking.getMarker().showInfoWindow();
 
 		if (onlyOne) {
 			LatLng center = parking.getLocation();
@@ -124,7 +125,6 @@ public class MapMarkers {
 		if (points != null) {
 			for (LatLng position : points) {
 				MarkerOptions markerOptions = new MarkerOptions();
-				markerOptions.title(parking.getName());
 				markerOptions.position(position);
 				markerOptions.icon(BitmapDescriptorFactory
 						.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
@@ -166,7 +166,8 @@ public class MapMarkers {
 			clearMap();
 
 		car.addMarkerToMap(map);
-		car.getMarker().showInfoWindow();
+		if (onlyOne)
+			car.getMarker().showInfoWindow();
 
 		if (onlyOne) {
 			LatLng center = car.getLocation();
@@ -177,7 +178,7 @@ public class MapMarkers {
 	/**
 	 * Show a list of cars on the map
 	 *
-	 * @param parking
+	 * @param cars to show
 	 */
 	/*public void showCar(List<Car> cars) { // TODO
 		int size = cars.size();
