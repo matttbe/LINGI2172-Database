@@ -21,6 +21,7 @@ import android.widget.TextView;
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.UserDB;
+import com.charlyparkingapps.db.object.Parking;
 import com.charlyparkingapps.db.object.User;
 import com.charlyparkingapps.db.object.User.UserType;
 
@@ -56,6 +57,19 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		if (((CharlyApplication) getApplication()).testLogIn()) {
 			Intent i = new Intent(this, MainActivity.class);
+			Parking parking = new Parking("Sainte Barb", true, 354, 0, 150);
+			parking.setParkingId(1);
+			i.putExtra(MainActivity.KEY_PARKING, parking);
+			/*
+			i.putExtra(MainActivity.DISPLAY_KEY,
+					MainActivity.DISPLAY_PARKINGS_LIST);
+			LinkedList<Parking> parkings = new LinkedList<Parking>();
+			Parking parking = new Parking("Sainte Barb", true, 354, 0, 150);
+			parkings.add(parking);
+			parking = new Parking("Sainte Barb 2", true, 354, 241, 150);
+			parkings.add(parking);
+			i.putExtra(MainActivity.KEY_PARKINGS_LIST, parkings);
+			*/
 			startActivity(i);
 		} else {
 			create(savedInstanceState);

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.charlyparkingapps.R;
 
@@ -21,7 +22,14 @@ public class ParkingActivity extends Activity {
 
 		int id = getIntent().getIntExtra(KEY_PARKING, 0);
 		if (id > 0)
-			System.out.println("Should display parking id: " + id); // TODO
+			loadParking(id);
+	}
+
+	private void loadParking(int id) {
+		System.out.println("Should display parking id: " + id); // TODO
+
+		TextView mHelloWorld = (TextView) findViewById(R.id.hello_world);
+		mHelloWorld.append("\nId = " + id);
 	}
 
 	/**
