@@ -135,13 +135,18 @@ public class Parking implements Model {
 	// ___________________ MARKERS
 
 	/**
-	 * @return the location of the parking (one entry or the center of it)
+	 * @return the location of the parking (the center of it) or null
 	 */
 	public LatLng getLocation() {
-		if (location == null)
+		if (location == null) {
 			this.getAddress();
-		location = new LatLng(this.address.getLatitude(),
-				this.address.getLongitude());
+			if (this.address != null)
+				location = new LatLng(this.address.getLatitude(),
+						this.address.getLongitude());
+			else {
+				location = new LatLng(0, 0); // TODO
+			}
+		}
 		return location;
 	}
 
