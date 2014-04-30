@@ -1,5 +1,7 @@
 package com.charlyparkingapps.activities;
 
+import java.util.List;
+
 import android.app.ActionBar;
 import android.app.Activity;
 import android.app.SearchManager;
@@ -51,7 +53,7 @@ public class MainActivity extends Activity implements LocationListener {
 	private boolean isUsingGPS = false;
 	private boolean isUsingNetwork = false;
 	private boolean isFirstPosition = true;
-	private boolean canMoveCamera = true;
+	private boolean canMoveCamera = false;
 
 	public static final String DISPLAY_KEY = "display";
 	public static final int DISPLAY_PARKING = 1;
@@ -60,9 +62,9 @@ public class MainActivity extends Activity implements LocationListener {
 	public static final int DISPLAY_CARS_LIST = 4;
 
 	public static final String KEY_PARKING = "parking";
-	public static final String KEY_PARKING_LIST = "parkingList";
+	public static final String KEY_PARKINGS_LIST = "parkingList";
 	public static final String KEY_CAR = "car";
-	public static final String KEY_CAR_LIST = "carList";
+	public static final String KEY_CARS_LIST = "carList";
 
 	private static final int GPS_MIN_TIME_UPDATE = 5 * 60 * 1000; // 5min
 	private static final int NETWORK_MIN_TIME_UPDATE = 10 * 60 * 1000; // 10min
@@ -142,15 +144,14 @@ public class MainActivity extends Activity implements LocationListener {
 		switch (extras.getInt(DISPLAY_KEY, 0)) {
 		case DISPLAY_PARKING:
 			Parking parking = (Parking) extras.getSerializable(KEY_PARKING);
-			canMoveCamera = false;
 			markers.showParking(parking);
 		case DISPLAY_PARKINGS_LIST:
-			/*
-			 * @SuppressWarnings("unchecked")
-			 * List<Parking> parkings =
-			 * (List<Parking>) extras .getSerializable(KEY_PARKING_LIST);
-			 * markers.showParking(parkings); TODO
-			 */
+			@SuppressWarnings("unchecked")
+			List<Parking> parkings = (List<Parking>) extras
+					.getSerializable(KEY_PARKINGS_LIST);
+			Log.d("INIT", "tutu "
+					+ (parkings != null ? parkings.size() : "(null)"));
+			markers.showParking(parkings);
 		case DISPLAY_CAR:
 			/*
 			 * Car car = (Car) extras.getSerializable(KEY_CAR);
@@ -159,9 +160,11 @@ public class MainActivity extends Activity implements LocationListener {
 		case DISPLAY_CARS_LIST:
 			/*
 			 * List<Car> cars = (List<Car>)
-			 * extras.getSerializable(KEY_CAR_LIST); markers.showCar(cars); TODO
+			 * extras.getSerializable(KEY_CARS_LIST); markers.showCar(cars);
+			 * TODO
 			 */
 		default:
+			canMoveCamera = true;
 			break;
 		}
 	}

@@ -93,8 +93,8 @@ public class MapMarkers {
 	}
 
 	/**
-	 * Show the parking on the map with all entries
-	 * 
+	 * Show the parking on the map with all entries and corners
+	 *
 	 * @param parking
 	 */
 	public void showParking(Parking parking) {
@@ -125,6 +125,17 @@ public class MapMarkers {
 						.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
 				map.addMarker(markerOptions);
 			}
+		}
+	}
+
+	/**
+	 * Show a list of parkings on the map with all entries and corners
+	 *
+	 * @param parking
+	 */
+	public void showParking(List<Parking> parkings) {
+		for (Parking parking : parkings) {
+			showParking(parking);
 		}
 	}
 }
