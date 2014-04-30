@@ -53,13 +53,12 @@ public class MainActivity extends Activity implements LocationListener {
 	private boolean isUsingGPS = false;
 	private boolean isUsingNetwork = false;
 	private boolean isFirstPosition = true;
-	private boolean canMoveCamera = false;
+	private boolean canMoveCamera = true;
+	private MapDisplay mapDisplay = MapDisplay.DEFAULT;
 
-	public static final String DISPLAY_KEY = "display";
-	public static final int DISPLAY_PARKING = 1;
-	public static final int DISPLAY_PARKINGS_LIST = 2;
-	public static final int DISPLAY_CAR = 3;
-	public static final int DISPLAY_CARS_LIST = 4;
+	private enum MapDisplay {
+		DEFAULT, PARKING, PARKINGS_LIST, CAR, CARS_LIST;
+	}
 
 	public static final String KEY_PARKING = "parking";
 	public static final String KEY_PARKINGS_LIST = "parkingList";
@@ -134,38 +133,44 @@ public class MainActivity extends Activity implements LocationListener {
 
 	private void displayInitItem() {
 		/*// How to use it:
-		indent.putExtra(MainActivity.DISPLAY_KEY,
-				MainActivity.DISPLAY_PARKING);
 		Parking parking = new Parking("Sainte Barb", true, 354, 241, 150);
 		indent.putExtra(MainActivity.KEY_PARKING, parking);
 		*/
 	
 		Bundle extras = getIntent().getExtras();
-		switch (extras.getInt(DISPLAY_KEY, 0)) {
-		case DISPLAY_PARKING:
-			Parking parking = (Parking) extras.getSerializable(KEY_PARKING);
+		if (extras == null)
+			return;
+
+		canMoveCamera = false;
+		Serializable serial;
+		if ((serial = extras.getSerializable(KEY_PARKING)) != null) {
+			Parking parking = (Parking) serial;
 			markers.showParking(parking, true);
-		case DISPLAY_PARKINGS_LIST:
-			@SuppressWarnings("unchecked")
-			List<Parking> parkings = (List<Parking>) extras
-					.getSerializable(KEY_PARKINGS_LIST);
-			Log.d("INIT", "tutu "
-					+ (parkings != null ? parkings.size() : "(null)"));
-			markers.showParking(parkings);
-		case DISPLAY_CAR:
-			/*
-			Car car = (Car) extras.getSerializable(KEY_CAR);
-			markers.showCar(car); //TODO
-			*/
-		case DISPLAY_CARS_LIST:
-			/*
-			List<Car> cars = (List<Car>) extras.getSerializable(KEY_CARS_LIST);
-			markers.showCar(cars); // TODO
-			*/
-		default:
-			canMoveCamera = true;
-			break;
+			mapDisplay = MapDisplay.PARKING;
 		}
+		else if ((serial = extras.getSerializable(KEY_PARKINGS_LIST)) != null) {
+			@SuppressWarnings("unchecked")
+			List<Parking> parkings = (List<Parking>) serial;
+			markers.showParking(parkings);
+			mapDisplay = MapDisplay.PARKINGS_LIST;
+		}
+		else if ((serial = extras.getSerializable(KEY_CAR)) != null) {
+			/*
+			 * Car car = (Car) extras.getSerializable(KEY_CAR);
+			 * markers.showCar(car); //TODO mapDisplay = MapDisplay.CAR;
+			 */
+			mapDisplay = MapDisplay.CAR;
+		}
+		else if ((serial = extras.getSerializable(KEY_CARS_LIST)) != null) {
+			/*
+			 * List<Car> cars = (List<Car>)
+			 * extras.getSerializable(KEY_CARS_LIST); markers.showCar(cars); //
+			 * TODO mapDisplay = MapDisplay.CARS_LIST;
+			 */
+			mapDisplay = MapDisplay.CARS_LIST;
+		}
+		else
+			canMoveCamera = true;
 	}
 
 	@Override
