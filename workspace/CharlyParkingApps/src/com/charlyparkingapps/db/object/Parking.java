@@ -61,7 +61,7 @@ public class Parking implements Model, Serializable {
 	}
 
 	public int getParkingId() {
-		return parkingId;
+		return parkingId; // TODO: what if parkingID == 0
 	}
 
 	public void setParkingId(int parkingId) {
@@ -183,7 +183,8 @@ public class Parking implements Model, Serializable {
 	 */
 	private MarkerOptions getMarkerOptions() {
 		MarkerOptions markerOptions = new MarkerOptions();
-		markerOptions.title(getName());
+		// we add the id on the title, a bit ugly but not for a DB view point
+		markerOptions.title(getParkingId() + " - " + getName());
 		markerOptions.position(getLocation());
 		// TODO: add description
 		// markerOptions.snippet (TEXT);
