@@ -77,33 +77,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 		initMenu();
 		initMap();
-
-		Bundle extras = getIntent().getExtras();
-		switch (extras.getInt(DISPLAY_KEY, 0)) {
-		case DISPLAY_PARKING:
-			Parking parking = (Parking) extras.getSerializable(KEY_PARKING);
-			canMoveCamera = false;
-			markers.showParking(parking);
-		case DISPLAY_PARKINGS_LIST:
-			/*
-			 * @SuppressWarnings("unchecked")
-			 * List<Parking> parkings =
-			 * (List<Parking>) extras .getSerializable(KEY_PARKING_LIST);
-			 * markers.showParking(parkings); TODO
-			 */
-		case DISPLAY_CAR:
-			/*
-			 * Car car = (Car) extras.getSerializable(KEY_CAR);
-			 * markers.showCar(car); TODO
-			 */
-		case DISPLAY_CARS_LIST:
-			/*
-			 * List<Car> cars = (List<Car>)
-			 * extras.getSerializable(KEY_CAR_LIST); markers.showCar(cars); TODO
-			 */
-		default:
-			break;
-		}
+		displayInitItem();
 	}
 
 	private void initMenu() {
@@ -154,6 +128,42 @@ public class MainActivity extends Activity implements LocationListener {
 		map.getUiSettings().setMyLocationButtonEnabled(true);
 
 		markers = new MapMarkers (map);
+	}
+
+	private void displayInitItem() {
+		/*// How to use it:
+		indent.putExtra(MainActivity.DISPLAY_KEY,
+				MainActivity.DISPLAY_PARKING);
+		Parking parking = new Parking("Sainte Barb", true, 354, 241, 150);
+		indent.putExtra(MainActivity.KEY_PARKING, parking);
+		*/
+	
+		Bundle extras = getIntent().getExtras();
+		switch (extras.getInt(DISPLAY_KEY, 0)) {
+		case DISPLAY_PARKING:
+			Parking parking = (Parking) extras.getSerializable(KEY_PARKING);
+			canMoveCamera = false;
+			markers.showParking(parking);
+		case DISPLAY_PARKINGS_LIST:
+			/*
+			 * @SuppressWarnings("unchecked")
+			 * List<Parking> parkings =
+			 * (List<Parking>) extras .getSerializable(KEY_PARKING_LIST);
+			 * markers.showParking(parkings); TODO
+			 */
+		case DISPLAY_CAR:
+			/*
+			 * Car car = (Car) extras.getSerializable(KEY_CAR);
+			 * markers.showCar(car); TODO
+			 */
+		case DISPLAY_CARS_LIST:
+			/*
+			 * List<Car> cars = (List<Car>)
+			 * extras.getSerializable(KEY_CAR_LIST); markers.showCar(cars); TODO
+			 */
+		default:
+			break;
+		}
 	}
 
 	@Override
