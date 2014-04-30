@@ -1,5 +1,6 @@
 package com.charlyparkingapps.activities;
 
+import java.io.Serializable;
 import java.util.List;
 
 import android.app.ActionBar;
@@ -32,9 +33,11 @@ import com.charlyparkingapps.map.MapCamera;
 import com.charlyparkingapps.map.MapMarkers;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
+import com.google.android.gms.maps.GoogleMap.OnInfoWindowClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
 public class MainActivity extends Activity implements LocationListener {
 
@@ -129,6 +132,37 @@ public class MainActivity extends Activity implements LocationListener {
 		map.getUiSettings().setMyLocationButtonEnabled(true);
 
 		markers = new MapMarkers (map);
+
+		OnInfoWindowClickListener onInfoWindowClickListener = new OnInfoWindowClickListener() {
+			@Override
+			public void onInfoWindowClick(Marker marker) {
+				Intent intent;
+				// this is very ugly but good for a DB view point :-)
+				String markerTitle = marker.getTitle();
+				markerTitle = markerTitle.substring(0, markerTitle.indexOf(' '));
+				int keyID = Integer.parseInt(markerTitle);
+
+				switch (mapDisplay) {
+				case DEFAULT:
+				case PARKING:
+				case PARKINGS_LIST:
+				default:
+					intent = new Intent(MainActivity.this,
+							ParkingActivity.class);
+					intent.putExtra(ParkingActivity.KEY_PARKING, keyID);
+					startActivity(intent);
+					break;
+
+				case CAR:
+				case CARS_LIST:
+					intent = new Intent(MainActivity.this, CarActivity.class);
+					intent.putExtra(CarActivity.KEY_CAR, keyID);
+					startActivity(intent);
+					break;
+				}
+			}
+		};
+		map.setOnInfoWindowClickListener(onInfoWindowClickListener);
 	}
 
 	private void displayInitItem() {
