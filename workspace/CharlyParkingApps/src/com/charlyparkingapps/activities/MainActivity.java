@@ -51,6 +51,18 @@ public class MainActivity extends Activity implements LocationListener {
 	private boolean isUsingGPS = false;
 	private boolean isUsingNetwork = false;
 	private boolean isFirstPosition = true;
+	private boolean canMoveCamera = true;
+
+	public static final String DISPLAY_KEY = "display";
+	public static final int DISPLAY_PARKING = 1;
+	public static final int DISPLAY_PARKINGS_LIST = 2;
+	public static final int DISPLAY_CAR = 3;
+	public static final int DISPLAY_CARS_LIST = 4;
+
+	public static final String KEY_PARKING = "parking";
+	public static final String KEY_PARKING_LIST = "parkingList";
+	public static final String KEY_CAR = "car";
+	public static final String KEY_CAR_LIST = "carList";
 
 	private static final int GPS_MIN_TIME_UPDATE = 5 * 60 * 1000; // 5min
 	private static final int NETWORK_MIN_TIME_UPDATE = 10 * 60 * 1000; // 10min
@@ -65,8 +77,33 @@ public class MainActivity extends Activity implements LocationListener {
 
 		initMenu();
 		initMap();
-		Parking parking = new Parking("Sainte Barb", true, 354, 241, 150);
-		markers.showParking(parking);
+
+		Bundle extras = getIntent().getExtras();
+		switch (extras.getInt(DISPLAY_KEY, 0)) {
+		case DISPLAY_PARKING:
+			Parking parking = (Parking) extras.getSerializable(KEY_PARKING);
+			canMoveCamera = false;
+			markers.showParking(parking);
+		case DISPLAY_PARKINGS_LIST:
+			/*
+			 * @SuppressWarnings("unchecked")
+			 * List<Parking> parkings =
+			 * (List<Parking>) extras .getSerializable(KEY_PARKING_LIST);
+			 * markers.showParking(parkings); TODO
+			 */
+		case DISPLAY_CAR:
+			/*
+			 * Car car = (Car) extras.getSerializable(KEY_CAR);
+			 * markers.showCar(car); TODO
+			 */
+		case DISPLAY_CARS_LIST:
+			/*
+			 * List<Car> cars = (List<Car>)
+			 * extras.getSerializable(KEY_CAR_LIST); markers.showCar(cars); TODO
+			 */
+		default:
+			break;
+		}
 	}
 
 	private void initMenu() {
@@ -147,7 +184,9 @@ public class MainActivity extends Activity implements LocationListener {
 		}
 
 		if (lastKnowLocation != null) {
-			MapCamera.moveCamera (map, lastKnowLocation, MapCamera.ZOOM_INIT);
+			if (canMoveCamera)
+				MapCamera.moveCamera (map, lastKnowLocation,
+						MapCamera.ZOOM_INIT);
 			markers.updateMarkers ();
 		}
 	}
@@ -245,7 +284,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 	@Override
 	public void onLocationChanged(final Location location) {
-		if (isFirstPosition) {
+		if (canMoveCamera && isFirstPosition) {
 			MapCamera.moveCamera(map, location, MapCamera.ZOOM_GPS);
 			isFirstPosition = false;
 			markers.updateMarkers();
