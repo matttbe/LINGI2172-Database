@@ -1,5 +1,6 @@
 package com.charlyparkingapps.db.object;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import android.database.Cursor;
@@ -144,7 +145,7 @@ public class Parking implements Model {
 				location = new LatLng(this.address.getLatitude(),
 						this.address.getLongitude());
 			else {
-				location = new LatLng(0, 0); // TODO
+				location = new LatLng(50.6676, 4.6215); // TODO remove example
 			}
 		}
 		return location;
@@ -163,7 +164,14 @@ public class Parking implements Model {
 	 */
 	public List<LatLng> getAllCorners() {
 		// TODO?? => ORDER BY id
-		return null;
+		// TODO: remove example
+		LinkedList<LatLng> corners = new LinkedList<LatLng>();
+		corners.add(new LatLng(50.667905, 4.621993));
+		corners.add(new LatLng(50.667876, 4.621063));
+		corners.add(new LatLng(50.667556, 4.621084));
+		corners.add(new LatLng(50.667299, 4.621462));
+		corners.add(new LatLng(50.667408, 4.622020));
+		return corners;
 	}
 
 	/**

@@ -20,6 +20,7 @@ import android.widget.Toast;
 
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
+import com.charlyparkingapps.db.object.Parking;
 import com.charlyparkingapps.listeners.DrawerListListener;
 import com.charlyparkingapps.map.MapCamera;
 import com.charlyparkingapps.map.MapMarkers;
@@ -59,6 +60,8 @@ public class MainActivity extends Activity implements LocationListener {
 
 		initMenu();
 		initMap();
+		Parking parking = new Parking("Sainte Barb", true, 354, 241, 150);
+		markers.showParking(parking);
 	}
 
 	private void initMenu() {
