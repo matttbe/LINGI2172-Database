@@ -18,22 +18,7 @@
             class="com.google.android.gms.maps.MapFragment"
             android:scrollbars="vertical" />
 
-        <LinearLayout
-            android:id="@+id/linearL1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:background="@android:color/white"
-            android:orientation="vertical" >
-
-            <fragment
-                android:id="@+id/search"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_margin="5dp"
-                class="com.charlyparkingapps.fragments.SearchFragment" />
-        </LinearLayout>
+        
     </FrameLayout>
 
     <!-- The navigation drawer -->

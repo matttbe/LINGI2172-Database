@@ -2,6 +2,8 @@ package com.charlyparkingapps.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.location.Location;
@@ -16,18 +18,21 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.object.Parking;
 import com.charlyparkingapps.listeners.DrawerListListener;
+import com.charlyparkingapps.listeners.SearchListener;
 import com.charlyparkingapps.map.MapCamera;
 import com.charlyparkingapps.map.MapMarkers;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMap.OnCameraChangeListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
 
 public class MainActivity extends Activity implements LocationListener {
 
@@ -173,6 +178,13 @@ public class MainActivity extends Activity implements LocationListener {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		// menu.a
+		
+		//For the search
+	    SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+	    SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
+	    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+	    searchView.setOnQueryTextListener(new SearchListener(this));
+		
 		return true;
 	}
 
@@ -265,5 +277,12 @@ public class MainActivity extends Activity implements LocationListener {
 	public void onStatusChanged(final String provider, final int status,
 			final Bundle extras) {
 		Log.d("GPS", "status changed " + provider + ": " + status);
+	}
+	
+	
+	// Return from search query
+	public void centerMap(LatLng loc) {
+		MapCamera.moveCamera(map, loc, MapCamera.ZOOM_GPS);
+		markers.updateMarkers();
 	}
 }

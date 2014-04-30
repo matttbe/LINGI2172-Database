@@ -32,5 +32,7 @@
 	<string name="using_parkings">used now</string>
 	<string name="my_parkings">my parkings</string>		
 	<string name="sort">sort</string>
+			
+	<string name="search">search</string>
 	
 </resources>
