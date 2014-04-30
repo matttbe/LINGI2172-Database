@@ -1,8 +1,5 @@
 package com.charlyparkingapps.activities;
 
-import com.charlyparkingapps.R;
-import com.charlyparkingapps.listeners.DrawerListListener;
-
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -24,6 +21,9 @@ import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+
+import com.charlyparkingapps.R;
+import com.charlyparkingapps.listeners.DrawerListListener;
 
 public class FiltersActivity extends Activity 
 implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener, 
