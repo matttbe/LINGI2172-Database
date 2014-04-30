@@ -33,7 +33,7 @@ public class User implements Model {
 		case 1:
 			return getUsername();
 		case 2:
-			return String.valueOf(getType());
+			return String.valueOf(getType().ordinal());
 		case 3:
 			return String.valueOf(getPassword());
 
