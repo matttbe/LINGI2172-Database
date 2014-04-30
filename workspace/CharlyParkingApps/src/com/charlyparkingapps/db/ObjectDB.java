@@ -13,7 +13,7 @@ public interface ObjectDB {
 
 	public Object getById(int id);
 
-	public void save(Model entite);
+	public long save(Model entite);
 
 	public void update(Model entite);
 

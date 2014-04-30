@@ -193,8 +193,7 @@ public class Parking implements Model, Serializable {
 	/**
 	 * Add a marker with the info of this item if it doesn't exist yet
 	 * 
-	 * @param map
-	 *            where the marker will be added
+	 * @param map where the marker will be added
 	 * @return the marker added to the map
 	 */
 	public void addMarkerToMap(GoogleMap map) {

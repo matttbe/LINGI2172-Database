@@ -6,6 +6,6 @@ public interface Model {
 
 	public String getByInt(int i);
 
-	Model createFromCursor(Cursor c);
+	public Model createFromCursor(Cursor c);
 
 }
