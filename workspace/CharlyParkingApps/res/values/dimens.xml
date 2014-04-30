@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <dimen name="slidingmenu_offset">60dp</dimen>
@@ -5,7 +6,9 @@
     <dimen name="shadow_width">15dp</dimen>
 
     <integer name="num_cols">1</integer>
-    
+
     <dimen name="title_size">15dp</dimen>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
 
 </resources>
