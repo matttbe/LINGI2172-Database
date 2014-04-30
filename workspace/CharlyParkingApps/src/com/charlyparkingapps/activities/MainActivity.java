@@ -154,15 +154,14 @@ public class MainActivity extends Activity implements LocationListener {
 			markers.showParking(parkings);
 		case DISPLAY_CAR:
 			/*
-			 * Car car = (Car) extras.getSerializable(KEY_CAR);
-			 * markers.showCar(car); TODO
-			 */
+			Car car = (Car) extras.getSerializable(KEY_CAR);
+			markers.showCar(car); //TODO
+			*/
 		case DISPLAY_CARS_LIST:
 			/*
-			 * List<Car> cars = (List<Car>)
-			 * extras.getSerializable(KEY_CARS_LIST); markers.showCar(cars);
-			 * TODO
-			 */
+			List<Car> cars = (List<Car>) extras.getSerializable(KEY_CARS_LIST);
+			markers.showCar(cars); // TODO
+			*/
 		default:
 			canMoveCamera = true;
 			break;

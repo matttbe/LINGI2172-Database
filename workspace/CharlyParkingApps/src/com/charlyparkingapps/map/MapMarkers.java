@@ -155,4 +155,45 @@ public class MapMarkers {
 		}
 		MapCamera.moveCamera(map, positions.build());
 	}
+
+	/**
+	 * Show one car on the map
+	 * @param car to show
+	 * @param onlyOne clear map and move the camera on top of the car
+	 */
+	/*public void showCar(CAR car, boolean onlyOne) { // TODO
+		if (onlyOne)
+			clearMap();
+
+		car.addMarkerToMap(map);
+		car.getMarker().showInfoWindow();
+
+		if (onlyOne) {
+			LatLng center = car.getLocation();
+			MapCamera.moveCamera(map, center, MapCamera.ZOOM_OBJECT);
+		}
+	}*/
+
+	/**
+	 * Show a list of cars on the map
+	 *
+	 * @param parking
+	 */
+	/*public void showCar(List<Car> cars) { // TODO
+		int size = cars.size();
+		if (size == 0)
+			return;
+		if (size == 1) {
+			showCar(cars.get(0), true);
+			return;
+		}
+
+		clearMap();
+		LatLngBounds.Builder positions = new LatLngBounds.Builder();
+		for (Car car : cars) {
+			showCar(car, false);
+			positions.include(car.getLocation());
+		}
+		MapCamera.moveCamera(map, positions.build());
+	}*/
 }
