@@ -54,12 +54,12 @@ public abstract class ObjectRepository implements ObjectDB {
 	}
 
 	@Override
-	public void save(Model entite) {
+	public long save(Model entite) {
 		ContentValues contentValues = new ContentValues();
 		for (int i = 1; i < getAllColumns().length; i++) {
 			contentValues.put(getAllColumns()[i], entite.getByInt(i));
 		}
-		myBDD.insert(getTablename(), null, contentValues);
+		return myBDD.insert(getTablename(), null, contentValues);
 	}
 
 	@Override
