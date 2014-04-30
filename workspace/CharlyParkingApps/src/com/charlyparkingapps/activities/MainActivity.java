@@ -144,7 +144,7 @@ public class MainActivity extends Activity implements LocationListener {
 		switch (extras.getInt(DISPLAY_KEY, 0)) {
 		case DISPLAY_PARKING:
 			Parking parking = (Parking) extras.getSerializable(KEY_PARKING);
-			markers.showParking(parking);
+			markers.showParking(parking, true);
 		case DISPLAY_PARKINGS_LIST:
 			@SuppressWarnings("unchecked")
 			List<Parking> parkings = (List<Parking>) extras

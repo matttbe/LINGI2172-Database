@@ -149,7 +149,7 @@ public class Parking implements Model, Serializable {
 				location = new LatLng(this.address.getLatitude(),
 						this.address.getLongitude());
 			else {
-				location = new LatLng(50.6676, 4.6215); // TODO remove example
+				location = new LatLng(50.6676 + ((double)freePlaces)/1000, 4.6215 + ((double)freePlaces)/1000); // TODO remove example
 			}
 		}
 		return location;

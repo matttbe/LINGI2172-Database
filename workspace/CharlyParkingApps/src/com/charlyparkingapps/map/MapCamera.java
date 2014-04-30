@@ -6,6 +6,7 @@ import android.util.Log;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.VisibleRegion;
 
 public class MapCamera
@@ -13,6 +14,8 @@ public class MapCamera
 	public static final float ZOOM_INIT = 10;
 	public static final float ZOOM_GPS = 12;
 	public static final float ZOOM_OBJECT = 17;
+
+	private static final int REGION_PADDING = 150;
 
 	/**
 	 * Move camera to a location with a custom zoom
@@ -41,8 +44,31 @@ public class MapCamera
 	}
 
 	/**
+	 * Move camera to a region to fit on screen
+	 *
+	 * @param map the map
+	 * @param positions the region to fit
+	 */
+	public static void moveCamera(final GoogleMap map,
+			final LatLngBounds positions) {
+		System.out.println(positions);
+		if (positions.northeast.equals(positions.southwest)) // one object
+			moveCamera(map, positions.northeast, ZOOM_OBJECT);
+		else {
+			map.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+				@Override
+				public void onMapLoaded() {
+					map.animateCamera(CameraUpdateFactory.newLatLngBounds(
+							positions, REGION_PADDING));
+				}
+			});
+		}
+	}
+
+	/**
 	 * Get the radius covered by current view
-	 * @param map, the current map
+	 *
+	 * @param map the current map
 	 * @return MarersParams with a location, a radius and null as request
 	 */
 	public static MarkersParams radiusDistanceCovered(GoogleMap map) {

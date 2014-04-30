@@ -12,6 +12,7 @@ import com.charlyparkingapps.db.object.Parking;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolygonOptions;
 
@@ -95,16 +96,20 @@ public class MapMarkers {
 	/**
 	 * Show the parking on the map with all entries and corners
 	 *
-	 * @param parking
+	 * @param parking parking to show
+	 * @param onlyOne clear map and move the camera on top of the parking
 	 */
-	public void showParking(Parking parking) {
-		clearMap();
+	public void showParking(Parking parking, boolean onlyOne) {
+		if (onlyOne)
+			clearMap();
 
 		parking.addMarkerToMap(map);
 		parking.getMarker().showInfoWindow();
 
-		LatLng center = parking.getLocation();
-		MapCamera.moveCamera(map, center, MapCamera.ZOOM_OBJECT);
+		if (onlyOne) {
+			LatLng center = parking.getLocation();
+			MapCamera.moveCamera(map, center, MapCamera.ZOOM_OBJECT);
+		}
 
 		List<LatLng> points = parking.getAllCorners();
 		if (points != null) {
@@ -134,8 +139,20 @@ public class MapMarkers {
 	 * @param parking
 	 */
 	public void showParking(List<Parking> parkings) {
-		for (Parking parking : parkings) {
-			showParking(parking);
+		int size = parkings.size();
+		if (size == 0)
+			return;
+		if (size == 1) {
+			showParking(parkings.get(0), true);
+			return;
 		}
+
+		clearMap();
+		LatLngBounds.Builder positions = new LatLngBounds.Builder();
+		for (Parking parking : parkings) {
+			showParking(parking, false);
+			positions.include(parking.getLocation());
+		}
+		MapCamera.moveCamera(map, positions.build());
 	}
 }
