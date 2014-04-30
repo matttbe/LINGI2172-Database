@@ -3,6 +3,7 @@ package com.charlyparkingapps.map;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Color;
 import android.location.Location;
 import android.util.Log;
 import android.util.SparseArray;
@@ -109,6 +110,8 @@ public class MapMarkers {
 		if (points != null) {
 			PolygonOptions polygon = new PolygonOptions();
 			polygon.addAll(points);
+			polygon.fillColor(Color.argb(50, 25, 25, 150));
+			polygon.strokeColor(Color.LTGRAY);
 			map.addPolygon(polygon);
 		}
 
