@@ -13,12 +13,12 @@ import com.charlyparkingapps.db.object.Model;
 public class LocalisationDB extends ObjectRepository {
 	
 	// Singleton stuff
-		private static LocalisationDB sInstance;
-		public static LocalisationDB getInstance() { return sInstance; }
-		public static LocalisationDB init(Context context) {
-			sInstance = new LocalisationDB(context);
-			return sInstance;
-		}
+	private static LocalisationDB sInstance;
+	public static LocalisationDB getInstance() { return sInstance; }
+	public static LocalisationDB init(Context context) {
+		sInstance = new LocalisationDB(context);
+		return sInstance;
+	}
 	
 	public static final String[] ALL_COLUMNS = { "localisationId", "parking",
 			"latitude", "longitude" };
@@ -34,7 +34,13 @@ public class LocalisationDB extends ObjectRepository {
 
 	@Override
 	public String getCreateRequest() {
-		return "CREATE TABLE Localisation(localisationId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,parking INTEGER NOT NULL, latitude DOUBLE NOT NULL, longitude DOUBLE NOT NULL, FOREIGN KEY(parking) REFERENCES Parking(parkingId))";
+		return "CREATE TABLE Localisation("
+				+ "localisationId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
+				+ "parking INTEGER NOT NULL, "
+				+ "latitude DOUBLE NOT NULL, "
+				+ "longitude DOUBLE NOT NULL, "
+				+ "FOREIGN KEY(parking) REFERENCES Parking(parkingId)"
+				+ ")";
 	}
 
 	@Override
