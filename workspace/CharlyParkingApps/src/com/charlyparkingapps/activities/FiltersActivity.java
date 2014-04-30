@@ -53,6 +53,7 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 	//Seekbars
 	private SeekBar mTotalPlacesSB;
 	private SeekBar mFreePlacesSB;
+	private SeekBar mPriceSB;
 	
 	//Buttons
 	private Button mFavoriteButton;
@@ -65,6 +66,7 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 	//TextViews
 	private TextView mTotalPlacesTV;
 	private TextView mFreePlacesTV;
+	private TextView mPriceTV;
 	
 	//Strings for preferences
 	public final static String DEFIBRILATOR_PREF = "defibrilator";
@@ -77,7 +79,7 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 	public final static String TOTALPLACES_PREF = "total places";
 	public final static String FREEPLACES_PREF = "free places";
 	public final static String SORT_PREF = "sorting";
-
+	public final static String PRICE_PREF = "price";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -149,6 +151,8 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 		this.mTotalPlacesSB.setOnSeekBarChangeListener(this);
 		this.mFreePlacesSB = (SeekBar) findViewById(R.id.free_places_sb);
 		this.mFreePlacesSB.setOnSeekBarChangeListener(this);
+		this.mPriceSB = (SeekBar) findViewById(R.id.price_sb);
+		this.mPriceSB.setOnSeekBarChangeListener(this);
 		
 		//Buttons
 		this.mFavoriteButton = (Button) findViewById(R.id.favorites_button);
@@ -170,6 +174,8 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 		this.mTotalPlacesTV.setText(""+this.mTotalPlacesSB.getProgress());
 		this.mFreePlacesTV = (TextView) findViewById(R.id.free_places_tv);
 		this.mFreePlacesTV.setText(""+this.mFreePlacesSB.getProgress());
+		this.mPriceTV = (TextView) findViewById(R.id.price_tv);
+		this.mPriceTV.setText("" + this.mPriceSB.getProgress());
 	}
 	
 	// ________________ LISTERNER FOR THE MENU
@@ -250,6 +256,10 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 		       			prefStr = FREEPLACES_PREF;
 		       			this.mFreePlacesTV.setText(""+seekBar.getProgress());
 		       			break;
+		case R.id.price_sb:
+			prefStr = PRICE_PREF;
+			this.mPriceTV.setText("" + seekBar.getProgress());
+			break;
 		       }
 
 		       this.mEditor.putInt(prefStr, seekBar.getProgress());
