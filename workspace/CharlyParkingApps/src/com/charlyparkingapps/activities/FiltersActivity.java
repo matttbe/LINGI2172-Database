@@ -25,23 +25,23 @@ import android.widget.TextView;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.listeners.DrawerListListener;
 
-public class FiltersActivity extends Activity 
-implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener, 
-						View.OnClickListener, OnItemSelectedListener {
-	
+public class FiltersActivity extends Activity implements
+		CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
+		View.OnClickListener, OnItemSelectedListener {
+
 	// Menu
 	private ListView mMenuList;
 	private DrawerLayout mDrawerLayout;
 	private String[] mEntries;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private ActionBar mActionBar;
-	
-	//Preferences
+
+	// Preferences
 	private SharedPreferences.Editor mEditor;
-    private SharedPreferences mPreferences;
-	
-	//Interface objects
-	//checkboxes
+	private SharedPreferences mPreferences;
+
+	// Interface objects
+	// checkboxes
 	private CheckBox mDefibrilatorCB;
 	private CheckBox mHandicapedCB;
 	private CheckBox mFuelCB;
@@ -49,26 +49,26 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 	private CheckBox mLPGCB;
 	private CheckBox mEthanolCB;
 	private CheckBox mOneFreeCB;
-	
-	//Seekbars
+
+	// Seekbars
 	private SeekBar mTotalPlacesSB;
 	private SeekBar mFreePlacesSB;
 	private SeekBar mPriceSB;
-	
-	//Buttons
+
+	// Buttons
 	private Button mFavoriteButton;
 	private Button mUsingButton;
 	private Button mMineButton;
-	
-	//Spinner
+
+	// Spinner
 	private Spinner mSortSpinner;
-	
-	//TextViews
+
+	// TextViews
 	private TextView mTotalPlacesTV;
 	private TextView mFreePlacesTV;
 	private TextView mPriceTV;
-	
-	//Strings for preferences
+
+	// Strings for preferences
 	public final static String DEFIBRILATOR_PREF = "defibrilator";
 	public final static String HANDICAPED_PREF = "handicaped";
 	public final static String FUEL_PREF = "fuel";
@@ -80,14 +80,14 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 	public final static String FREEPLACES_PREF = "free places";
 	public final static String SORT_PREF = "sorting";
 	public final static String PRICE_PREF = "price";
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_filter_search);
 
 		// For the navigation drawer
-		
+
 		mEntries = getResources().getStringArray(R.array.drawer_array);
 		mMenuList = (ListView) findViewById(R.id.drawer_menu_list);
 
@@ -122,15 +122,15 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 		mActionBar = getActionBar();
 		mActionBar.setDisplayHomeAsUpEnabled(true);
 		mActionBar.setHomeButtonEnabled(true);
-		
+
 		// End for the navigation drawer
-		
-		//Preferences
+
+		// Preferences
 		this.mPreferences = PreferenceManager.getDefaultSharedPreferences(this);
-        this.mEditor = mPreferences.edit();
-		
+		this.mEditor = mPreferences.edit();
+
 		// Interfaces Objects
-		//Checkboxes
+		// Checkboxes
 		this.mDefibrilatorCB = (CheckBox) findViewById(R.id.defibrilator_cb);
 		this.mDefibrilatorCB.setOnCheckedChangeListener(this);
 		this.mHandicapedCB = (CheckBox) findViewById(R.id.handicaped_cb);
@@ -145,157 +145,160 @@ implements 	CheckBox.OnCheckedChangeListener, SeekBar.OnSeekBarChangeListener,
 		this.mEthanolCB.setOnCheckedChangeListener(this);
 		this.mOneFreeCB = (CheckBox) findViewById(R.id.one_free_place_cb);
 		this.mOneFreeCB.setOnCheckedChangeListener(this);
-		
-		//SeekBars
+
+		// SeekBars
 		this.mTotalPlacesSB = (SeekBar) findViewById(R.id.total_places_sb);
 		this.mTotalPlacesSB.setOnSeekBarChangeListener(this);
 		this.mFreePlacesSB = (SeekBar) findViewById(R.id.free_places_sb);
 		this.mFreePlacesSB.setOnSeekBarChangeListener(this);
 		this.mPriceSB = (SeekBar) findViewById(R.id.price_sb);
 		this.mPriceSB.setOnSeekBarChangeListener(this);
-		
-		//Buttons
+
+		// Buttons
 		this.mFavoriteButton = (Button) findViewById(R.id.favorites_button);
 		this.mFavoriteButton.setOnClickListener(this);
 		this.mUsingButton = (Button) findViewById(R.id.using_button);
 		this.mUsingButton.setOnClickListener(this);
 		this.mMineButton = (Button) findViewById(R.id.mine_button);
 		this.mMineButton.setOnClickListener(this);
-		
-		//Spinner 
+
+		// Spinner
 		this.mSortSpinner = (Spinner) findViewById(R.id.sort_spinner);
 		this.mSortSpinner.setOnItemSelectedListener(this);
-		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.sort_spinner_array, android.R.layout.simple_spinner_item);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+				this, R.array.sort_spinner_array,
+				android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		this.mSortSpinner.setAdapter(adapter);
-		
-		//TextViews
+
+		// TextViews
 		this.mTotalPlacesTV = (TextView) findViewById(R.id.total_places_tv);
-		this.mTotalPlacesTV.setText(""+this.mTotalPlacesSB.getProgress());
+		this.mTotalPlacesTV.setText("" + this.mTotalPlacesSB.getProgress());
 		this.mFreePlacesTV = (TextView) findViewById(R.id.free_places_tv);
-		this.mFreePlacesTV.setText(""+this.mFreePlacesSB.getProgress());
+		this.mFreePlacesTV.setText("" + this.mFreePlacesSB.getProgress());
 		this.mPriceTV = (TextView) findViewById(R.id.price_tv);
 		this.mPriceTV.setText("" + this.mPriceSB.getProgress());
 	}
-	
+
 	// ________________ LISTERNER FOR THE MENU
 
-		@Override
-		protected void onPostCreate(Bundle savedInstanceState) {
-			super.onPostCreate(savedInstanceState);
-			// Sync the toggle state after onRestoreInstanceState has occurred.
-			mDrawerToggle.syncState();
-		}
+	@Override
+	protected void onPostCreate(Bundle savedInstanceState) {
+		super.onPostCreate(savedInstanceState);
+		// Sync the toggle state after onRestoreInstanceState has occurred.
+		mDrawerToggle.syncState();
+	}
 
-		@Override
-		public void onConfigurationChanged(Configuration newConfig) {
-			super.onConfigurationChanged(newConfig);
-			mDrawerToggle.onConfigurationChanged(newConfig);
-		}
+	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		mDrawerToggle.onConfigurationChanged(newConfig);
+	}
 
-		@Override
-		public boolean onCreateOptionsMenu(Menu menu) {
-			// Inflate the menu; this adds items to the action bar if it is present.
-			getMenuInflater().inflate(R.menu.main, menu);
-			// menu.a
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.main, menu);
+		// menu.a
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		if (mDrawerToggle.onOptionsItemSelected(item)) {
 			return true;
 		}
+		return super.onOptionsItemSelected(item);
+	}
 
-		@Override
-		public boolean onOptionsItemSelected(MenuItem item) {
-			if (mDrawerToggle.onOptionsItemSelected(item)) {
-				return true;
-			}
-			return super.onOptionsItemSelected(item);
-			}
-
-		
-		//Checkboxes listerner
-		@Override
-		public void onCheckedChanged(CompoundButton cb, boolean checked) {
-			String prefStr = "";
-			switch(cb.getId()) {
-				case R.id.defibrilator_cb:
-					prefStr = DEFIBRILATOR_PREF;
-					break;
-				case R.id.handicaped_cb:
-					prefStr = HANDICAPED_PREF;
-					break;
-				case R.id.fuel_cb:
-					prefStr = FUEL_PREF;
-					break;
-				case R.id.diesel_cb:
-					prefStr = DIESEL_PREF;
-					break;
-				case R.id.lpg_cb:
-					prefStr = LPG_PREF;
-					break;
-				case R.id.ethanol_cb:
-					prefStr = ETHANOL_PREF;
-					break;
-				case R.id.one_free_place_cb:
-					prefStr = ONEFREESPOT_PREF;
-					break;
-			}
-			
-			this.mEditor.putBoolean(prefStr, checked);
-            this.mEditor.commit();
-			//TODO faire di-rek la requete
+	// Checkboxes listerner
+	@Override
+	public void onCheckedChanged(CompoundButton cb, boolean checked) {
+		String prefStr = "";
+		switch (cb.getId()) {
+		case R.id.defibrilator_cb:
+			prefStr = DEFIBRILATOR_PREF;
+			break;
+		case R.id.handicaped_cb:
+			prefStr = HANDICAPED_PREF;
+			break;
+		case R.id.fuel_cb:
+			prefStr = FUEL_PREF;
+			break;
+		case R.id.diesel_cb:
+			prefStr = DIESEL_PREF;
+			break;
+		case R.id.lpg_cb:
+			prefStr = LPG_PREF;
+			break;
+		case R.id.ethanol_cb:
+			prefStr = ETHANOL_PREF;
+			break;
+		case R.id.one_free_place_cb:
+			prefStr = ONEFREESPOT_PREF;
+			break;
 		}
-		
-		//Seekbars listeners
-		 @Override
-		    public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-			 String prefStr = "";
-		       switch(seekBar.getId()) {
-		       		case R.id.total_places_sb:
-		       			prefStr = TOTALPLACES_PREF;
-		       			this.mTotalPlacesTV.setText(""+seekBar.getProgress());
-		       			break;
-		       		case R.id.free_places_sb:
-		       			prefStr = FREEPLACES_PREF;
-		       			this.mFreePlacesTV.setText(""+seekBar.getProgress());
-		       			break;
+
+		this.mEditor.putBoolean(prefStr, checked);
+		this.mEditor.commit();
+		// TODO faire di-rek la requete
+	}
+
+	// Seekbars listeners
+	@Override
+	public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+		String prefStr = "";
+		switch (seekBar.getId()) {
+		case R.id.total_places_sb:
+			prefStr = TOTALPLACES_PREF;
+			this.mTotalPlacesTV.setText("" + seekBar.getProgress());
+			break;
+		case R.id.free_places_sb:
+			prefStr = FREEPLACES_PREF;
+			this.mFreePlacesTV.setText("" + seekBar.getProgress());
+			break;
 		case R.id.price_sb:
 			prefStr = PRICE_PREF;
 			this.mPriceTV.setText("" + seekBar.getProgress());
 			break;
-		       }
+		}
 
-		       this.mEditor.putInt(prefStr, seekBar.getProgress());
-	           this.mEditor.commit();
-	         //TODO faire di-rek la requete
-		    }
+		this.mEditor.putInt(prefStr, seekBar.getProgress());
+		this.mEditor.commit();
+		// TODO faire di-rek la requete
+	}
 
-		    @Override
-		    public void onStartTrackingTouch(SeekBar seekBar) {
-		        //Nothing to do here !
-		    }
+	@Override
+	public void onStartTrackingTouch(SeekBar seekBar) {
+		// Nothing to do here !
+	}
 
-		    @Override
-		    public void onStopTrackingTouch(SeekBar seekBar) {
-		        //Nothing to do here !
-		    }
+	@Override
+	public void onStopTrackingTouch(SeekBar seekBar) {
+		// Nothing to do here !
+	}
 
-		    //Buttons listener
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				// Envoyer vers une liste avec les infos demandées ?
-				
-			}
+	// Buttons listener
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		// Envoyer vers une liste avec les infos demandées ?
 
-			//Spinner listener
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-				this.mEditor.putString(SORT_PREF, ""+parent.getItemAtPosition(pos)); //TODO, faire un enum ou pas ?
-		         this.mEditor.commit();
-				//TODO faire di-rek la requete
-			}
+	}
 
-			@Override
-			public void onNothingSelected(AdapterView<?> arg0) {
-				//Nothing to do here !
-				
-			}
+	// Spinner listener
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+		this.mEditor.putString(SORT_PREF, "" + parent.getItemAtPosition(pos));
+		// TODO, faire un enum ou pas ?
+		this.mEditor.commit();
+		// TODO faire di-rek la requete
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		// Nothing to do here !
+
+	}
 }
