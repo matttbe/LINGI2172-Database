@@ -7,35 +7,35 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.charlyparkingapps.db.object.Localisation;
+import com.charlyparkingapps.db.object.Entries;
 import com.charlyparkingapps.db.object.Model;
 
-public class LocalisationDB extends ObjectRepository {
+public class EntriesDB extends ObjectRepository {
 	
 	// Singleton stuff
-	private static LocalisationDB sInstance;
-	public static LocalisationDB getInstance() { return sInstance; }
-	public static LocalisationDB init(Context context) {
-		sInstance = new LocalisationDB(context);
+	private static EntriesDB sInstance;
+	public static EntriesDB getInstance() { return sInstance; }
+	public static EntriesDB init(Context context) {
+		sInstance = new EntriesDB(context);
 		return sInstance;
 	}
 	
-	public static final String[] ALL_COLUMNS = { "localisationId", "parking",
+	public static final String[] ALL_COLUMNS = { "entryId", "parking",
 			"latitude", "longitude" };
 
-	public LocalisationDB(Context context) {
+	public EntriesDB(Context context) {
 		super(context);
 	}
 	
 	@Override
 	public String getTablename() {
-		return "Localisation";
+		return "Entries";
 	}
 
 	@Override
 	public String getCreateRequest() {
-		return "CREATE TABLE Localisation("
-				+ "localisationId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
+		return "CREATE TABLE Entries("
+				+ "entryId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
 				+ "parking INTEGER NOT NULL, "
 				+ "latitude DOUBLE NOT NULL, "
 				+ "longitude DOUBLE NOT NULL, "
@@ -69,9 +69,9 @@ public class LocalisationDB extends ObjectRepository {
 
 		do {
 
-			Localisation localisation = new Localisation(c);
+			Entries entries = new Entries(c);
 
-			liste.add(localisation);
+			liste.add(entries);
 		} while (c.moveToNext());
 
 		c.close();
@@ -91,7 +91,7 @@ public class LocalisationDB extends ObjectRepository {
 
 	@Override
 	public Model createFromCursor(Cursor cursor) {
-		return new Localisation(cursor);
+		return new Entries(cursor);
 	}
 
 }

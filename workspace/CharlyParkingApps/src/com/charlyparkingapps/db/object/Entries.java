@@ -4,24 +4,24 @@ import android.database.Cursor;
 
 import com.charlyparkingapps.db.ParkingDB;
 
-public class Localisation implements Model {
+public class Entries implements Model {
 
 
-	private int localisationID;
+	private int entryID;
 	private int parkingID;
 	private Double latitude;
 	private Double longitude;
 
 	private Parking parking;
 
-	public Localisation(int parkingIDParam, Double latitudeParam,
+	public Entries(int parkingIDParam, Double latitudeParam,
 			Double longitudeParam) {
 		this.setParkingID(parkingIDParam);
 		this.setLatitude(latitudeParam);
 		this.setLongitude(longitudeParam);
 	}
 
-	public Localisation(Cursor c) {
+	public Entries(Cursor c) {
 		createFromCursor(c);
 	}
 
@@ -29,7 +29,7 @@ public class Localisation implements Model {
 	public String getByInt(int i) {
 		switch (i) {
 		case 0:
-			return String.valueOf(this.getLocalisationID());
+			return String.valueOf(this.getEntryID());
 		case 1:
 			return String.valueOf(this.getParkingID());
 		case 2:
@@ -37,7 +37,7 @@ public class Localisation implements Model {
 		case 3:
 			return String.valueOf(this.getLongitude());
 		}
-		return String.valueOf(this.getLocalisationID());
+		return String.valueOf(this.getEntryID());
 	}
 
 	@Override
@@ -48,12 +48,12 @@ public class Localisation implements Model {
 		return this;
 	}
 
-	public int getLocalisationID() {
-		return localisationID;
+	public int getEntryID() {
+		return entryID;
 	}
 
-	public void setLocalisationID(int localisationID) {
-		this.localisationID = localisationID;
+	public void setEntryID(int entryID) {
+		this.entryID = entryID;
 	}
 
 	public int getParkingID() {
