@@ -3,6 +3,7 @@ package com.charlyparkingapps.db.object;
 import android.database.Cursor;
 
 import com.charlyparkingapps.db.ParkingDB;
+import com.google.android.gms.maps.model.LatLng;
 
 public class Address implements Model {
 
@@ -164,4 +165,12 @@ public class Address implements Model {
 		this.longitude = longitude;
 	}
 
+	public LatLng getLatLng() {
+		return new LatLng(latitude, longitude);
+	}
+
+	public void setLatLng(LatLng latLng) {
+		latitude = latLng.latitude;
+		longitude = latLng.longitude;
+	}
 }
