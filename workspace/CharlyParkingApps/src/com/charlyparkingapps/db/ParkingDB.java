@@ -60,7 +60,7 @@ public class ParkingDB extends ObjectRepository {
 	public void populate() {
 		Address ad = new Address (1, "Place Sainte Barbe", 12, "Louvain-La-Neuve", 1348, "Belgium", 4.0, 5.0);
 		AddressDB adb = AddressDB.getInstance ();
-		adb.open ();
+		adb.open (true);
 		adb.save (ad);
 		adb.close ();
 
@@ -68,7 +68,7 @@ public class ParkingDB extends ObjectRepository {
 		parking.setAddress (ad);
 		parking.setParkingId(1);
 
-		this.open ();
+		this.open (true);
 		this.save (parking);
 		this.close ();
 	}

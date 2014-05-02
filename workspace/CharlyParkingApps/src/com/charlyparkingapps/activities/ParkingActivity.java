@@ -31,7 +31,7 @@ public class ParkingActivity extends Activity {
 	private void loadParking(int id) {
 		System.out.println("Should display parking id: " + id); // TODO
 		ParkingDB pdb = new ParkingDB (this.getBaseContext ());
-		pdb.open ();
+		pdb.open (false);
 		parking = (Parking) pdb.getById (id);
 		parking.loadAddress ();
 		pdb.close ();

@@ -59,7 +59,7 @@ public class CharlyApplication extends Application {
 		int id = sharedPref.getInt(getString(R.string.id_user_pref), 0);
 		if (id != 0) {
 			UserDB user = UserDB.getInstance();
-			user.open();
+			user.open(false);
 			User u = (User) user.getById(id);
 			user.close();
 			logIn(u);

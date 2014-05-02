@@ -126,7 +126,7 @@ public class Parking implements Model, Serializable {
 
 	public void loadAddress() {
 		AddressDB ad = AddressDB.getInstance();
-		ad.open();
+		ad.open(false);
 		address = ad.getByIdParking(this.getParkingId());
 		ad.close();
 	}

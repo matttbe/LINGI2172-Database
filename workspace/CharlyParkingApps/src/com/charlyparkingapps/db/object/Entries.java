@@ -82,7 +82,7 @@ public class Entries implements Model {
 
 	public void loadParking() {
 		ParkingDB p = ParkingDB.getInstance();
-		p.open();
+		p.open(false);
 		this.setParking((Parking) p.getById(this.getParkingID()));
 		p.close();
 	}

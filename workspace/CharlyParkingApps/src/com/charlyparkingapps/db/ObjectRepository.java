@@ -26,9 +26,12 @@ public abstract class ObjectRepository implements ObjectDB {
 	public Context getContext() {
 		return context;
 	}
-
-	public void open() {
-		myBDD = sqLiteOpenHelper.getWritableDatabase();
+	
+	public void open(boolean write) {
+		if(write)
+			myBDD = sqLiteOpenHelper.getWritableDatabase();
+		else
+			myBDD = sqLiteOpenHelper.getReadableDatabase();
 	}
 
 	public void close() {

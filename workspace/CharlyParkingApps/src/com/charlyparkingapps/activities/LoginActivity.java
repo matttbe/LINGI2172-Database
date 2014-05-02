@@ -223,11 +223,11 @@ public class LoginActivity extends Activity {
 		protected Boolean doInBackground(Void... params) {
 
 			UserDB user = UserDB.getInstance();
-			user.open();
+			user.open(true);
 			boolean log = user.login(mUsername, mPassword);
 			user.close();
 			if (!log) {
-				user.open();
+				user.open(true);
 				if (user.getByUsername(mUsername) == null) {
 					User u = new User(mUsername, UserType.USER, mPassword);
 					user.save(u);
@@ -236,7 +236,7 @@ public class LoginActivity extends Activity {
 				user.close();
 			}
 			if (log) {
-				user.open();
+				user.open(true);
 				User u = user.getByUsername(mUsername);
 				SharedPreferences sharedPref = ((CharlyApplication) getApplication())
 						.getSharedPreferences("user", Context.MODE_PRIVATE);
