@@ -57,7 +57,7 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		if (((CharlyApplication) getApplication()).testLogIn()) {
 			Intent i = new Intent(this, MainActivity.class);
-			Parking parking = new Parking("Sainte Barb", true, 354, 0, 150);
+			Parking parking = new Parking("Sainte Barbe", true, 354, 0, 150);
 			parking.setParkingId(1);
 			i.putExtra(MainActivity.KEY_PARKING, parking);
 			/*

@@ -8,10 +8,13 @@ import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.charlyparkingapps.R;
+import com.charlyparkingapps.db.ParkingDB;
+import com.charlyparkingapps.db.object.Parking;
 
 public class ParkingActivity extends Activity {
 
 	public static final String KEY_PARKING = "parkingID";
+	private  Parking parking;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,9 +30,17 @@ public class ParkingActivity extends Activity {
 
 	private void loadParking(int id) {
 		System.out.println("Should display parking id: " + id); // TODO
-
-		TextView mHelloWorld = (TextView) findViewById(R.id.hello_world);
-		mHelloWorld.append("\nId = " + id);
+		ParkingDB pdb = new ParkingDB (this.getBaseContext ());
+		pdb.open ();
+		parking = (Parking) pdb.getById (id);
+		pdb.close ();
+		TextView tv1 = (TextView) findViewById(R.id.textView1);
+		tv1.setText (parking.getName ());
+		TextView tv2 = (TextView) findViewById(R.id.textView2);
+		tv2.setText (parking.getAddress ().getStreet () + " "+ parking.getAddress ().getNumber ());
+		
+		TextView tv3 = (TextView) findViewById(R.id.textView3);
+				tv3.setText (parking.getAddress ().getZip () + " "+ parking.getAddress ().getCity ());
 	}
 
 	/**
