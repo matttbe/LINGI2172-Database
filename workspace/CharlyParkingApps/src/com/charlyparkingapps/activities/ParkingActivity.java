@@ -33,14 +33,21 @@ public class ParkingActivity extends Activity {
 		ParkingDB pdb = new ParkingDB (this.getBaseContext ());
 		pdb.open ();
 		parking = (Parking) pdb.getById (id);
+		parking.loadAddress ();
 		pdb.close ();
-		TextView tv1 = (TextView) findViewById(R.id.textView1);
+		TextView tv1 = (TextView) findViewById(R.id.parking_name);
 		tv1.setText (parking.getName ());
-		TextView tv2 = (TextView) findViewById(R.id.textView2);
+		TextView tv2 = (TextView) findViewById(R.id.parking_street_number);
 		tv2.setText (parking.getAddress ().getStreet () + " "+ parking.getAddress ().getNumber ());
+
+		TextView tv3 = (TextView) findViewById(R.id.parking_zip_city);
+		tv3.setText (parking.getAddress ().getZip () + " "+ parking.getAddress ().getCity ());
+		TextView tv4 = (TextView) findViewById(R.id.parking_country);
+		tv4.setText (parking.getAddress ().getCountry ());
 		
-		TextView tv3 = (TextView) findViewById(R.id.textView3);
-				tv3.setText (parking.getAddress ().getZip () + " "+ parking.getAddress ().getCity ());
+		TextView tv5 = (TextView) findViewById(R.id.schedule);
+		tv4.setText ("Free places : " + parking.getFreePlaces () + " under a total of: " + parking.getTotalPlaces () + " places" );
+		
 	}
 
 	/**
@@ -62,16 +69,16 @@ public class ParkingActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
+			case android.R.id.home:
+				// This ID represents the Home or Up button. In the case of this
+				// activity, the Up button is shown. Use NavUtils to allow users
+				// to navigate up one level in the application structure. For
+				// more details, see the Navigation pattern on Android Design:
+				//
+				// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+				//
+				NavUtils.navigateUpFromSameTask(this);
+				return true;
 		}
 		return super.onOptionsItemSelected(item);
 	}

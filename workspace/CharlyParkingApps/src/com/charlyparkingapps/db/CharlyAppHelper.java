@@ -31,7 +31,7 @@ public class CharlyAppHelper extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase db) {
 		for (ObjectDB object : allObjects) {
 			db.execSQL(object.getCreateRequest());
-			object.populate(db);
+			object.populate();
 		}
 	}
 

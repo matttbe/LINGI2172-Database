@@ -7,6 +7,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.charlyparkingapps.db.object.Address;
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.Parking;
 
@@ -56,8 +57,20 @@ public class ParkingDB extends ObjectRepository {
 	}
 
 	@Override
-	public void populate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
+	public void populate() {
+		Address ad = new Address (1, "Place Sainte Barbe", 12, "Louvain-La-Neuve", 1348, "Belgium", 4.0, 5.0);
+		AddressDB adb = AddressDB.getInstance ();
+		adb.open ();
+		adb.save (ad);
+		adb.close ();
+
+		Parking parking = new Parking("Sainte Barbe", true, 354, -1, 150, true);
+		parking.setAddress (ad);
+		parking.setParkingId(1);
+
+		this.open ();
+		this.save (parking);
+		this.close ();
 	}
 
 	@Override

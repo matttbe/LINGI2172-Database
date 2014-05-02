@@ -14,14 +14,14 @@ public class Address implements Model {
 	private String city;
 	private int zip;
 	private String country;
-	private Double latitude;
-	private Double longitude;
+	private double latitude;
+	private double longitude;
 
 	private Parking parking;
 
 	public Address(int parkingIDParam, String streetParam, int numberParam,
 			String cityParam, int zipParam, String countryParam,
-			Double latitudeParam, Double longitudeParam) {
+			double latitudeParam, double longitudeParam) {
 		this.setParkingID(parkingIDParam);
 		this.setStreet(streetParam);
 		this.setNumber(numberParam);

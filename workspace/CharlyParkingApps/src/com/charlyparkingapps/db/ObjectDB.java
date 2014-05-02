@@ -23,7 +23,7 @@ public interface ObjectDB {
 
 	public String getCreateRequest();
 
-	public void populate(SQLiteDatabase db);
+	public void populate();
 
 	public void upgrade(SQLiteDatabase db, int oldVersion, int newVersion);
 

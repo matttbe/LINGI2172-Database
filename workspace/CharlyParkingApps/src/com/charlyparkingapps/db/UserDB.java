@@ -45,7 +45,7 @@ public class UserDB extends ObjectRepository {
 	}
 
 	@Override
-	public void populate(SQLiteDatabase db) {
+	public void populate() {
 		// TODO Auto-generated method stub
 	}
 

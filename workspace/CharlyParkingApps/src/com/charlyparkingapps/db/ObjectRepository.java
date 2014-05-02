@@ -79,5 +79,7 @@ public abstract class ObjectRepository implements ObjectDB {
 		myBDD.delete(getTablename(), getAllColumns()[0]
 				+ "=?", new String[] { String.valueOf(id) });
 	}
+	
+	
 
 }

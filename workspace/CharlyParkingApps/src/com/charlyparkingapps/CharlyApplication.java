@@ -26,8 +26,8 @@ public class CharlyApplication extends Application {
 		CharlyAppHelper.init(context, allObjects); // at the beginning!
 
 		allObjects.add(UserDB.init(context));
+		allObjects.add(AddressDB.init (context));
 		allObjects.add(ParkingDB.init(context));
-		allObjects.add(AddressDB.init(context));
 		allObjects.add(EntriesDB.init(context));
 	}
 
