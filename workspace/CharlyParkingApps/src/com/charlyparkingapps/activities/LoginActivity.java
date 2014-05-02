@@ -223,7 +223,7 @@ public class LoginActivity extends Activity {
 		protected Boolean doInBackground(Void... params) {
 
 			UserDB user = UserDB.getInstance();
-			user.open(true);
+			user.open(false);
 			boolean log = user.login(mUsername, mPassword);
 			user.close();
 			if (!log) {
