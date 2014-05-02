@@ -22,6 +22,7 @@ public class Parking implements Model, Serializable {
 	private int totalPlaces;
 	private int freePlaces;
 	private int maxHeight;
+	private boolean disable;
 
 	private Address address;
 
@@ -29,12 +30,14 @@ public class Parking implements Model, Serializable {
 	private LatLng location;
 
 	public Parking(String nameParam, boolean defibrillatorParam,
-			int totalPlacesParam, int freePlacesParam, int maxHeightParam) {
+			int totalPlacesParam, int freePlacesParam, int maxHeightParam,
+			boolean disable) {
 		this.name = nameParam;
 		this.defibrillator = defibrillatorParam;
 		this.totalPlaces = totalPlacesParam;
 		this.freePlaces = freePlacesParam;
 		this.maxHeight = maxHeightParam;
+		this.disable = disable;
 	}
 
 	public Parking(Cursor c) {
@@ -55,7 +58,8 @@ public class Parking implements Model, Serializable {
 			return String.valueOf(this.freePlaces);
 		case 5:
 			return String.valueOf(this.maxHeight);
-
+		case 6:
+			return String.valueOf(this.disable);
 		}
 		return String.valueOf(this.parkingId);
 	}
@@ -108,6 +112,14 @@ public class Parking implements Model, Serializable {
 		this.maxHeight = maxHeight;
 	}
 
+	public boolean getHasPlacesForDisablesPeople() {
+		return disable;
+	}
+
+	public void setHasPlacesForDisablesPeople(boolean disable) {
+		this.disable = disable;
+	}
+
 	public void setAddress(Address address) {
 		this.address = address;
 	}
@@ -134,6 +146,7 @@ public class Parking implements Model, Serializable {
 		this.totalPlaces = c.getInt(3);
 		this.freePlaces = c.getInt(4);
 		this.maxHeight = c.getInt(5);
+		this.disable = c.getString(6).equals("true");
 		return this;
 	}
 

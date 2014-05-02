@@ -57,16 +57,16 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		if (((CharlyApplication) getApplication()).testLogIn()) {
 			Intent i = new Intent(this, MainActivity.class);
-			Parking parking = new Parking("Sainte Barbe", true, 354, 0, 150);
+			Parking parking = new Parking("Sainte Barbe", true, 354, 0, 150, true);
 			parking.setParkingId(1);
 			i.putExtra(MainActivity.KEY_PARKING, parking);
 			/*
 			i.putExtra(MainActivity.DISPLAY_KEY,
 					MainActivity.DISPLAY_PARKINGS_LIST);
 			LinkedList<Parking> parkings = new LinkedList<Parking>();
-			Parking parking = new Parking("Sainte Barb", true, 354, 0, 150);
+			Parking parking = new Parking("Sainte Barb", true, 354, 0, 150, true);
 			parkings.add(parking);
-			parking = new Parking("Sainte Barb 2", true, 354, 241, 150);
+			parking = new Parking("Sainte Barb 2", true, 354, 241, 150, true);
 			parkings.add(parking);
 			i.putExtra(MainActivity.KEY_PARKINGS_LIST, parkings);
 			*/

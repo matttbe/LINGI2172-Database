@@ -22,7 +22,7 @@ public class ParkingDB extends ObjectRepository {
 
 
 	private static final String[] ALL_COLUMNS = { "parkingId", "name",
-		"defibrillator", "totalPlaces", "freePlaces", "maxHeight" };
+		"defibrillator", "totalPlaces", "freePlaces", "maxHeight", "disable" };
 
 	private static final double ONE_METER = 0.00000898 * 1.05; // with extras
 
@@ -43,9 +43,10 @@ public class ParkingDB extends ObjectRepository {
 					+ "defibrillator BOOL DEFAULT 0, "
 					+ "totalPlaces INTEGER CHECK (totalPlaces > 0), "
 					+ "freePlaces INTEGER CHECK("
-					+ "freePlaces < totalPlaces AND freePlaces >= 0"
+						+ "freePlaces < totalPlaces AND freePlaces >= 0"
 					+ ") DEFAULT 0, "
-					+ "maxHeight INTEGER CHECK (maxHeight > 0)"
+					+ "maxHeight INTEGER CHECK (maxHeight > 0), "
+					+ "disable BOOL DEFAULT 0"
 				+ ")";
 	}
 

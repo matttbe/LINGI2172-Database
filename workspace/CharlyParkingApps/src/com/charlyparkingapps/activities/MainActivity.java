@@ -167,7 +167,7 @@ public class MainActivity extends Activity implements LocationListener {
 
 	private void displayInitItem() {
 		/*// How to use it:
-		Parking parking = new Parking("Sainte Barb", true, 354, 241, 150);
+		Parking parking = new Parking("Sainte Barb", true, 354, 241, 150, true);
 		indent.putExtra(MainActivity.KEY_PARKING, parking);
 		*/
 	
