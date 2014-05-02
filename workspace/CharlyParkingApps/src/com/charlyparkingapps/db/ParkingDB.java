@@ -57,7 +57,7 @@ public class ParkingDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-
+		// TODO Auto-generated method stub
 	}
 
 	@Override
