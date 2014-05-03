@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.charlyparkingapps.db.AddressDB;
+import com.charlyparkingapps.db.CarDB;
 import com.charlyparkingapps.db.CharlyAppHelper;
 import com.charlyparkingapps.db.EntriesDB;
 import com.charlyparkingapps.db.ObjectDB;
@@ -29,6 +30,9 @@ public class CharlyApplication extends Application {
 		allObjects.add(AddressDB.init (context));
 		allObjects.add(ParkingDB.init(context));
 		allObjects.add(EntriesDB.init(context));
+		// add fuel
+		allObjects.add(CarDB.init(context));
+
 	}
 
 	public User getCurrentUser() {
