@@ -21,8 +21,9 @@ public class User implements Model {
 
 	public Model createFromCursor(Cursor c) {
 		this.setId(c.getInt(0));
-		this.setType(UserType.values()[c.getInt(1)]);
-		this.setUsername(c.getString(2));
+		this.setUsername (c.getString (1));
+		this.setType (UserType.values ()[c.getInt (2)]);
+
 		return this;
 	}
 
