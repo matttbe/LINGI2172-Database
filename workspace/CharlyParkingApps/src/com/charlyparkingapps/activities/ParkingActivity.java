@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.charlyparkingapps.R;
@@ -45,9 +46,14 @@ public class ParkingActivity extends Activity {
 		TextView tv4 = (TextView) findViewById(R.id.parking_country);
 		tv4.setText (parking.getAddress ().getCountry ());
 		
-		TextView tv5 = (TextView) findViewById(R.id.schedule);
-		tv4.setText ("Free places : " + parking.getFreePlaces () + " under a total of: " + parking.getTotalPlaces () + " places" );
+		TextView tv5 = (TextView) findViewById(R.id.freePlaces);
+		tv5.setText ("Free places : " + parking.getFreePlaces ()
+				+ " under a total of: " + parking.getTotalPlaces () + " places");
 		
+		ProgressBar pb = (ProgressBar) findViewById (R.id.freePlacesProgressBar);
+		pb.setMax (parking.getTotalPlaces ());
+		pb.setProgress (parking.getFreePlaces ());
+
 	}
 
 	/**

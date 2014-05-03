@@ -22,7 +22,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="14dp" >
+            android:layout_marginRight="14dp"
+            android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/parking_name"
@@ -53,13 +54,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="14dp" >
+            android:layout_marginRight="14dp"
+            android:orientation="vertical" >
 
             <TextView
-                android:id="@+id/schedule"
+                android:id="@+id/freePlaces"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <ProgressBar
+                android:id="@+id/freePlacesProgressBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </LinearLayout>
 
