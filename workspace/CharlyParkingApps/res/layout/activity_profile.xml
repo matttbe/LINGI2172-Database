@@ -11,11 +11,5 @@
         android:gravity="center"
         android:text="@string/test"
         android:textStyle="bold" />
-    
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/standard_user" />
 
 </LinearLayout>
