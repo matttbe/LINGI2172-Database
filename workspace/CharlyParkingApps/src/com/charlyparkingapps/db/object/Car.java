@@ -46,7 +46,7 @@ public class Car implements Model {
 		case 5:
 			return String.valueOf(this.getLongitude());
 		default:
-			return String.valueOf(this.getUserId());
+			return String.valueOf(this.getCarId());
 		}
 	}
 
