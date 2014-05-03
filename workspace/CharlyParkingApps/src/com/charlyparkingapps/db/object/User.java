@@ -1,6 +1,10 @@
 package com.charlyparkingapps.db.object;
 
+import java.util.List;
+
 import android.database.Cursor;
+
+import com.charlyparkingapps.db.CarDB;
 
 public class User implements Model {
 
@@ -8,6 +12,8 @@ public class User implements Model {
 	private String username;
 	private String password;
 	private UserType type;
+
+	private List<Model> allCars;
 
 	public User(String usernameParam, UserType typeParam, String passwordParam) {
 		this.setUsername(usernameParam);
@@ -76,5 +82,19 @@ public class User implements Model {
 
 	public enum UserType {
 		USER, OWNER, ADMIN;
+	}
+
+	public void loadCars() {
+		CarDB p = CarDB.getInstance();
+		p.open(false);
+		this.allCars = p.getAllCars(this.id);
+		p.close();
+	}
+
+	public List<Model> getCars() {
+		if (this.allCars == null) {
+			loadCars();
+		}
+		return this.allCars;
 	}
 }

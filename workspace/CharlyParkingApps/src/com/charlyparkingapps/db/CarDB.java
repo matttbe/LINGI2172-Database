@@ -61,6 +61,12 @@ public class CarDB extends ObjectRepository {
 		return true;
 	}
 
+	public List<Model> getAllCars(int userId) {
+		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS, "user=?",
+				new String[] { String.valueOf(userId) }, null, null, null);
+		return convertCursorToListObject(cursor);
+	}
+
 	@Override
 	public List<Model> convertCursorToListObject(Cursor c) {
 		List<Model> liste = new ArrayList<Model>();
