@@ -8,6 +8,7 @@ import android.widget.ListView;
 
 import com.charlyparkingapps.activities.FiltersActivity;
 import com.charlyparkingapps.activities.MainActivity;
+import com.charlyparkingapps.activities.ProfileActivity;
 
 public class DrawerListListener implements ListView.OnItemClickListener {
 	
@@ -30,8 +31,12 @@ public class DrawerListListener implements ListView.OnItemClickListener {
 			}
 			break;
 		case 1:
-			// TODO faire l'action corresondante
-			break;
+				if (!(this.mContext instanceof ProfileActivity))
+				{
+					i = new Intent (mContext, ProfileActivity.class);
+					mContext.startActivity (i);
+				}
+				break;
 		case 2:
 			//TODO
 			break;

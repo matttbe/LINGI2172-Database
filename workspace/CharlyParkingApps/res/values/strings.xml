@@ -33,5 +33,6 @@
     <string name="search">search</string>
     <string name="title_activity_parking">ParkingActivity</string>
     <string name="title_activity_car">CarActivity</string>
-
+	<string name="edit_profile">Edit profile</string>
+	<string name="title_activity_profile">User Profile</string>
 </resources>
