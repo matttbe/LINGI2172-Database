@@ -34,7 +34,7 @@ public class Car implements Model {
 	public String getByInt(int i) {
 		switch (i) {
 		case 0:
-			return String.valueOf(this.getUserId());
+			return String.valueOf(this.getCarId());
 		case 1:
 			return String.valueOf(this.getHeight());
 		case 2:
