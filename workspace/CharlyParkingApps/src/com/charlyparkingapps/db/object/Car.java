@@ -2,23 +2,25 @@ package com.charlyparkingapps.db.object;
 
 import android.database.Cursor;
 
+import com.charlyparkingapps.db.FuelDB;
 import com.charlyparkingapps.db.UserDB;
 
 public class Car implements Model {
 
 	private int carId;
 	private int height = 0;
-	private int fuel = 0;
+	private int fuelId = 0;
 	private int userId;
 	private Double latitude;
 	private Double longitude;
 
 	private User user;
+	private Fuel fuel;
 
-	public Car(int heightParam, int fuelParam, int userIdParam,
+	public Car(int heightParam, int fuelIdParam, int userIdParam,
 			Double latitudeParam, Double longitudeParam) {
 		this.setHeight(heightParam);
-		this.setFuel(fuelParam);
+		this.setFuelId(fuelIdParam);
 		this.setUserId(userIdParam);
 		this.setLatitude(latitudeParam);
 		this.setLongitude(longitudeParam);
@@ -36,7 +38,7 @@ public class Car implements Model {
 		case 1:
 			return String.valueOf(this.getHeight());
 		case 2:
-			return String.valueOf(this.getFuel());
+			return String.valueOf(this.getFuelId());
 		case 3:
 			return String.valueOf(this.getUserId());
 		case 4:
@@ -52,7 +54,7 @@ public class Car implements Model {
 	public Model createFromCursor(Cursor c) {
 		this.setCarId(c.getInt(0));
 		this.setHeight(c.getInt(1));
-		this.setFuel(c.getInt(2));
+		this.setFuelId(c.getInt(2));
 		this.setUserId(c.getInt(3));
 		this.setLatitude(c.getDouble(4));
 		this.setLongitude(c.getDouble(5));
@@ -75,12 +77,12 @@ public class Car implements Model {
 		this.height = height;
 	}
 
-	public int getFuel() {
-		return fuel;
+	public int getFuelId() {
+		return fuelId;
 	}
 
-	public void setFuel(int fuel) {
-		this.fuel = fuel;
+	private void setFuelId(int fuel) {
+		this.fuelId = fuel;
 	}
 
 	public int getUserId() {
@@ -119,6 +121,20 @@ public class Car implements Model {
 			loadUser();
 		}
 		return this.user;
+	}
+
+	public void loadFuel() {
+		FuelDB p = FuelDB.getInstance();
+		p.open(false);
+		this.fuel = ((Fuel) p.getById(this.getFuelId()));
+		p.close();
+	}
+
+	public Fuel getFuel() {
+		if (this.fuel == null) {
+			loadUser();
+		}
+		return this.fuel;
 	}
 
 }
