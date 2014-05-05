@@ -85,6 +85,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.charlyparkingapps.activities.MainActivity" />
         </activity>
+        <activity
+            android:name="com.charlyparkingapps.activities.EditProfileActivity"
+            android:label="@string/title_activity_edit_profile"
+            android:parentActivityName="com.charlyparkingapps.activities.ProfileActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.charlyparkingapps.activities.ProfileActivity" />
+        </activity>
     </application>
 
 </manifest>

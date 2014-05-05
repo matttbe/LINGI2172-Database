@@ -46,7 +46,7 @@ public class UserDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
+		db.execSQL ("INSERT INTO User VALUES(5,0, 'BenBauf','SS')");
 	}
 
 	@Override

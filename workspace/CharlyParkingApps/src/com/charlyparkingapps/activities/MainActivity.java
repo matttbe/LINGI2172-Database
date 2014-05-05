@@ -64,8 +64,8 @@ public class MainActivity extends Activity implements LocationListener {
 	}
 
 	public static final String KEY_PARKING = "parking";
-	public static final String KEY_PARKINGS_LIST = "parkingList";
 	public static final String KEY_CAR = "car";
+	public static final String KEY_PARKINGS_LIST = "parkingList";
 	public static final String KEY_CARS_LIST = "carList";
 
 	private static final int GPS_MIN_TIME_UPDATE = 5 * 60 * 1000; // 5min

@@ -42,8 +42,9 @@ public class FuelDB extends ObjectRepository {
 	@Override
 	public void populate(SQLiteDatabase db) {
 		db.execSQL("INSERT INTO Fuel VALUES(1,'Diesel');"
-				+ "INSERT INTO Fuel VALUES(2,'Gasoil');"
-				+ "INSERT INTO Fuel VALUES(3,'Gas');");
+				+ "INSERT INTO Fuel VALUES(2,'Gasoline');"
+				+ "INSERT INTO Fuel VALUES(3,'LPG');"
+				+ "INSERT INTO Fuel VALUES(4,'Ethanol');");
 
 	}
 

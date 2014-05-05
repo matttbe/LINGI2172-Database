@@ -2,23 +2,23 @@ package com.charlyparkingapps.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.NavUtils;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.object.User;
 
-public class ProfileActivity extends Activity {
 
-	public static final String KEY_USER = "userID";
+public class EditProfileActivity extends Activity
+{
 
 	// Menu
 	private ListView mMenuList;
@@ -28,18 +28,19 @@ public class ProfileActivity extends Activity {
 	private ActionBar mActionBar;
 
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView (R.layout.activity_profile);
+	protected void onCreate (Bundle savedInstanceState)
+	{
+		super.onCreate (savedInstanceState);
+		setContentView (R.layout.activity_edit_profile);
 		// Show the Up button in the action bar.
-		setupActionBar();
-
+		setupActionBar ();
 		User u = ((CharlyApplication) this.getApplication ()).getCurrentUser ();
-		TextView tv = (TextView) findViewById (R.id.username);
-		tv.setText (u.getUsername ());
+
+		EditText et = (EditText) findViewById (R.id.edit_username);
+		et.setText (u.getUsername ());
+
 
 		initMenu ();
-
 	}
 
 	private void initMenu ()
@@ -79,39 +80,38 @@ public class ProfileActivity extends Activity {
 	/**
 	 * Set up the {@link android.app.ActionBar}.
 	 */
-	private void setupActionBar() {
+	private void setupActionBar ()
+	{
 
-		getActionBar().setDisplayHomeAsUpEnabled(true);
+		getActionBar ().setDisplayHomeAsUpEnabled (true);
 
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
+	public boolean onCreateOptionsMenu (Menu menu)
+	{
 		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater ().inflate (R.menu.profile, menu);
-
+		getMenuInflater ().inflate (R.menu.edit_profile, menu);
 		return true;
 	}
 
 	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		// Handle item selection
-		Intent i;
-		switch (item.getItemId()) {
-			case R.id.action_logout:
-				((CharlyApplication) getApplication ()).logOut ();
-				i = new Intent (this, LoginActivity.class);
-				startActivity (i);
+	public boolean onOptionsItemSelected (MenuItem item)
+	{
+		switch (item.getItemId ())
+		{
+			case android.R.id.home:
+				// This ID represents the Home or Up button. In the case of this
+				// activity, the Up button is shown. Use NavUtils to allow users
+				// to navigate up one level in the application structure. For
+				// more details, see the Navigation pattern on Android Design:
+				//
+				// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+				//
+				NavUtils.navigateUpFromSameTask (this);
 				return true;
-
-			case R.id.edit_profile:
-				i = new Intent (this, EditProfileActivity.class);
-				startActivity (i);
-				return true;
-
-			default:
-				return super.onOptionsItemSelected (item);
 		}
+		return super.onOptionsItemSelected (item);
 	}
 
 }
