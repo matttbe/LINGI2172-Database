@@ -2,6 +2,7 @@ package com.charlyparkingapps.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.NavUtils;
@@ -11,9 +12,11 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
+import com.charlyparkingapps.db.UserDB;
 import com.charlyparkingapps.db.object.User;
 
 
@@ -27,6 +30,9 @@ public class EditProfileActivity extends Activity
 	private ActionBarDrawerToggle mDrawerToggle;
 	private ActionBar mActionBar;
 
+	// Variables
+	User u;
+
 	@Override
 	protected void onCreate (Bundle savedInstanceState)
 	{
@@ -34,11 +40,19 @@ public class EditProfileActivity extends Activity
 		setContentView (R.layout.activity_edit_profile);
 		// Show the Up button in the action bar.
 		setupActionBar ();
-		User u = ((CharlyApplication) this.getApplication ()).getCurrentUser ();
+		u = ((CharlyApplication) this.getApplication ()).getCurrentUser ();
 
 		EditText et = (EditText) findViewById (R.id.edit_username);
 		et.setText (u.getUsername ());
-
+		findViewById (R.id.confirm_profile_edit_button).setOnClickListener (
+				new View.OnClickListener ()
+				{
+					@Override
+					public void onClick (View view)
+					{
+						editAction ();
+					}
+				});
 
 		initMenu ();
 	}
@@ -75,6 +89,69 @@ public class EditProfileActivity extends Activity
 		mActionBar = getActionBar ();
 		mActionBar.setDisplayHomeAsUpEnabled (true);
 		mActionBar.setHomeButtonEnabled (true);
+	}
+
+	private boolean checkFields ()
+	{
+		EditText username = (EditText) findViewById (R.id.edit_username);
+		EditText oldpass = (EditText) findViewById (R.id.old_password);
+		EditText newpass = (EditText) findViewById (R.id.new_password);
+		EditText confpass = (EditText) findViewById (R.id.new_password_confirm);
+		if (!username.getText ().toString ().equals (u.getUsername ()))
+		{
+			u.setUsername (username.getText ().toString ());
+		}
+
+		if (!(oldpass.getText ().toString ().equals ("") && newpass.getText ()
+				.toString ().equals ("")))
+		{
+			if (!(oldpass.getText ().toString ().equals (u.getPassword ())))
+			{
+				Toast.makeText (this, R.string.error_incorrect_password,
+						Toast.LENGTH_LONG).show ();
+				return false;
+			}
+			else
+			{
+				if (newpass.getText ().toString ()
+						.equals (confpass.getText ().toString ()))
+				{
+					if (newpass.getText ().toString ().length () < 4)
+					{
+						Toast.makeText (this, R.string.error_invalid_password,
+								Toast.LENGTH_LONG).show ();
+						return false;
+					}
+					else
+					{
+						u.setPassword (newpass.getText ().toString ());
+					}
+
+				}
+				else
+				{
+					Toast.makeText (this, R.string.error_matching,
+							Toast.LENGTH_LONG).show ();
+					return false;
+				}
+			}
+		}
+
+		return true;
+	}
+
+	private void editAction ()
+	{
+		if (checkFields ())
+		{
+			UserDB udb = UserDB.getInstance ();
+			udb.open (true);
+			udb.update (u);
+			udb.close ();
+			Intent i = new Intent(this,ProfileActivity.class);
+			startActivity (i);
+			return;
+		}
 	}
 
 	/**

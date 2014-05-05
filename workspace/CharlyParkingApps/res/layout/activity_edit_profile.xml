@@ -60,6 +60,13 @@
             android:gravity="center"
             android:text="@string/test"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/confirm_profile_edit_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/validate" />
+
     </LinearLayout>
 
 </android.support.v4.widget.DrawerLayout>

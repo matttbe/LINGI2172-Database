@@ -29,6 +29,7 @@ public class User implements Model {
 		this.setId(c.getInt(0));
 		this.setUsername (c.getString (1));
 		this.setType (UserType.values ()[c.getInt (2)]);
+		this.setPassword (c.getString (3));
 
 		return this;
 	}

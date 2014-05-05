@@ -39,5 +39,8 @@
     <string name="old_password">Old password</string>
     <string name="new_password">New password</string>
     <string name="confirm_password">Confirm new password</string>
+    <string name="validate">Validate</string>
+    
+    
 
 </resources>
