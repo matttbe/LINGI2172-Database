@@ -5,16 +5,17 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.charlyparkingapps.activities.CarActivity;
 import com.charlyparkingapps.activities.FiltersActivity;
-import com.charlyparkingapps.activities.MainActivity;
 import com.charlyparkingapps.activities.ProfileActivity;
 
 public class DrawerListListener implements ListView.OnItemClickListener {
-	
+
 	private Context mContext;
-	
-	public DrawerListListener(Context context){
+
+	public DrawerListListener(Context context) {
 		this.mContext = context;
 	}
 
@@ -25,29 +26,21 @@ public class DrawerListListener implements ListView.OnItemClickListener {
 		Intent i;
 		switch (position) {
 		case 0:
-			if(! (this.mContext instanceof MainActivity)) {
-				i = new Intent(mContext, MainActivity.class);
-				mContext.startActivity(i);
-			}
+			i = new Intent(mContext, FiltersActivity.class);
+			mContext.startActivity(i);
 			break;
 		case 1:
-				if (!(this.mContext instanceof ProfileActivity))
-				{
-					i = new Intent (mContext, ProfileActivity.class);
-					mContext.startActivity (i);
-				}
-				break;
-		case 2:
-			//TODO
+			i = new Intent(mContext, ProfileActivity.class);
+			mContext.startActivity(i);
 			break;
-		case 3:
-			if (!(this.mContext instanceof FiltersActivity)) {
-				i = new Intent(mContext, FiltersActivity.class);
-				mContext.startActivity(i);
-			}
+		case 2:
+			i = new Intent(mContext, CarActivity.class);
+			mContext.startActivity(i);
+			break;
+		case 3: // TODO: history view
+			Toast.makeText(mContext, "TODO: History", Toast.LENGTH_LONG).show();
 			break;
 		default:
-			// TODO gerer le reste
 			break;
 		}
 	}

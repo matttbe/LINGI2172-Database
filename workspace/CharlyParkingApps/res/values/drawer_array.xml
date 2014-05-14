@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="drawer_array">
-        <item>Map</item>
-        <item>User Profile</item>
-        <item>History</item>
         <item>Filters</item>
-        <item>Log in/out</item>
+        <item>My Profile</item>
+        <item>My Cars</item>
+        <item>My History</item>
     </string-array>
 </resources>
