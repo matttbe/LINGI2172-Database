@@ -9,7 +9,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.charlyparkingapps.CharlyApplication;
@@ -21,9 +20,7 @@ public class ProfileActivity extends Activity {
 	public static final String KEY_USER = "userID";
 
 	// Menu
-	private ListView mMenuList;
 	private DrawerLayout mDrawerLayout;
-	private String[] mEntries;
 	private ActionBarDrawerToggle mDrawerToggle;
 	private ActionBar mActionBar;
 
