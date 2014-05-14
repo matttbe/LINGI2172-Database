@@ -41,7 +41,7 @@
     <string name="confirm_password">Confirm new password</string>
     <string name="validate">Validate</string>
     <string name="title_activity_filter">FilterActivity</string>
-    
+    <string name="remove_car">Remove this car</string>
     
 
 </resources>

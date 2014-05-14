@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.charlyparkingapps.R;
 
@@ -12,12 +13,18 @@ public class CarActivity extends Activity {
 
 	public static final String KEY_CAR = "carID";
 
+	private Button mAddCar;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_car);
 		// Show the Up button in the action bar.
 		setupActionBar();
+
+		// TODO : get cars for the current user ! :)
+
+		this.mAddCar = (Button) findViewById(R.id.add_car);
 
 		int id = getIntent().getIntExtra(KEY_CAR, 0);
 		if (id > 0)

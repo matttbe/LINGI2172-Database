@@ -1,8 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:padding="7dp">
+    
+    <EditText
+    	android:id="@+id/car_name_edit"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content" />
+    	
+    <RadioGroup
+        android:id="@+id/radio_fuel"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+ 
+        <RadioButton
+            android:id="@+id/car_edit_radiofuel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fuel" 
+            android:checked="false" />
+ 
+        <RadioButton
+            android:id="@+id/car_edit_radiodiesel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/diesel" 
+            android:checked="false" />
+            
+        <RadioButton
+            android:id="@+id/car_edit_radiolpg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lpg" 
+            android:checked="false" />
+            
+        <RadioButton
+            android:id="@+id/car_edit_radioethanol"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ethanol" 
+            android:checked="false" />
+ 
+    </RadioGroup>
+    
+   <LinearLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" 
+    	android:padding="7dp" >
+    	
+    	<TextView
+    		android:id="@+id/car_edit_height"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="150"/>
+    		
+    	<Button
+    		android:id="@+id/height_minus"	
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="-"
+    		android:layout_marginLeft="5dp" />
+    	
+    	<Button
+    		android:id="@+id/height_plus"	
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="+"
+    		android:layout_marginLeft="5dp" />
+    	
+    </LinearLayout>   
+    
+    <Button
+    		android:id="@+id/remove_car"	
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:text="@string/remove_car"
+    		android:layout_marginLeft="5dp" />
     
 
 </LinearLayout>
