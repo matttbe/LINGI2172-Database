@@ -75,12 +75,5 @@
     	
     </LinearLayout>   
     
-    <Button
-    		android:id="@+id/remove_car"	
-    		android:layout_width="fill_parent"
-    		android:layout_height="wrap_content"
-    		android:text="@string/remove_car"
-    		android:layout_marginLeft="5dp" />
-    
 
 </LinearLayout>

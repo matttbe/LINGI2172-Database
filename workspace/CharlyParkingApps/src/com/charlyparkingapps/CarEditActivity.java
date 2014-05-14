@@ -27,7 +27,8 @@ public class CarEditActivity extends Activity implements
 	private TextView mCarHeight;
 	private Button mPlusHeight;
 	private Button mMinusHeight;
-	private Button mRemoveCar;
+
+	private boolean mRemoved = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +46,9 @@ public class CarEditActivity extends Activity implements
 		this.mPlusHeight.setOnClickListener(this);
 		this.mMinusHeight = (Button) findViewById(R.id.height_minus);
 		this.mMinusHeight.setOnClickListener(this);
-		this.mRemoveCar = (Button) findViewById(R.id.remove_car);
-		this.mRemoveCar.setOnClickListener(this);
 
 		ActionBar actionBar = getActionBar();
 		actionBar.setDisplayHomeAsUpEnabled(true);
-
 	}
 
 	@Override
@@ -73,6 +71,22 @@ public class CarEditActivity extends Activity implements
 		case android.R.id.home:
 			this.onBackPressed();
 			break;
+		case R.id.action_remove_car:
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(R.string.are_you_sure);
+			builder.setTitle(R.string.remove_car);
+			builder.setPositiveButton(R.string.yes,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							// TODO : delete the car form DB
+							mRemoved = true;
+							onBackPressed(); // return to the previous activity
+						}
+					});
+
+			AlertDialog dialog = builder.create();
+			dialog.show();
+			break;
 		}
 			
 		return super.onOptionsItemSelected(item);
@@ -80,7 +94,9 @@ public class CarEditActivity extends Activity implements
 
 	@Override
 	public void onBackPressed() {
-		// TODO : add modifications to the db !
+		if (!mRemoved) {
+			// TODO : add modifications to the db !
+		}
 		super.onBackPressed();
 	}
 
@@ -104,20 +120,6 @@ public class CarEditActivity extends Activity implements
 							+ (Integer.parseInt(this.mCarHeight.getText()
 									.toString()) + 1));
 			break;
-		case R.id.remove_car:
-			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setMessage(R.string.are_you_sure);
-			builder.setTitle(R.string.remove_car);
-			builder.setPositiveButton(R.string.yes,
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							// TODO : delete the car form DB
-							onBackPressed(); // return to the previous activity
-						}
-					});
-
-			AlertDialog dialog = builder.create();
-			dialog.show();
 		}
 
 	}
