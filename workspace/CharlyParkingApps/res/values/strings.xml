@@ -42,6 +42,9 @@
     <string name="validate">Validate</string>
     <string name="title_activity_filter">FilterActivity</string>
     <string name="remove_car">Remove this car</string>
-    
+    <string name="title_activity_car_edit">CarEditActivity</string>
+    <string name="are_you_sure">Are you sure ?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
 
 </resources>

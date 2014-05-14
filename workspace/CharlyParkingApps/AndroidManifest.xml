@@ -97,6 +97,10 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.charlyparkingapps.activities.ProfileActivity" />
         </activity>
+        <activity
+            android:name="com.charlyparkingapps.CarEditActivity"
+            android:label="@string/title_activity_car_edit" >
+        </activity>
     </application>
 
 </manifest>
