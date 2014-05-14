@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.charlyparkingapps.db.object.Car;
 
@@ -97,6 +98,9 @@ public class CarEditActivity extends Activity implements
 		if (!mRemoved) {
 			// TODO : add modifications to the db !
 		}
+		Toast saved = Toast.makeText(this, R.string.modifs_saved,
+				Toast.LENGTH_LONG);
+		saved.show();
 		super.onBackPressed();
 	}
 
