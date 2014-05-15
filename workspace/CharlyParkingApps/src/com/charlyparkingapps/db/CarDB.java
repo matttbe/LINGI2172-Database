@@ -30,7 +30,6 @@ public class CarDB extends ObjectRepository {
 
 	public CarDB(Context context) {
 		super(context);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
