@@ -121,6 +121,9 @@ public class User implements Model {
 		} else {
 			if (this.myFavoriteCar == null) {
 				loadFavoriteCar();
+				if (this.myFavoriteCar == null && this.allCars.size() > 0) {
+					this.setMyFavoriteCar((Car) this.allCars.get(0));
+				}
 			}
 			return this.myFavoriteCar;
 		}
