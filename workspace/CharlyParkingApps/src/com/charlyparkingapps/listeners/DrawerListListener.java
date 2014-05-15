@@ -5,12 +5,16 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.charlyparkingapps.CharlyApplication;
+import com.charlyparkingapps.R;
 import com.charlyparkingapps.activities.CarsActivity;
 import com.charlyparkingapps.activities.FiltersActivity;
 import com.charlyparkingapps.activities.HistoryActivity;
 import com.charlyparkingapps.activities.ManagerActivity;
 import com.charlyparkingapps.activities.ProfileActivity;
+import com.charlyparkingapps.db.object.User.UserType;
 
 public class DrawerListListener implements ListView.OnItemClickListener {
 
@@ -43,8 +47,14 @@ public class DrawerListListener implements ListView.OnItemClickListener {
 				mContext.startActivity (i);
 				break;
 			case 4:
-				i = new Intent (mContext, ManagerActivity.class);
-				mContext.startActivity (i);
+			if (((CharlyApplication) mContext.getApplicationContext())
+					.getCurrentUser().getType() == UserType.USER) {
+					Toast toast = Toast.makeText(mContext, mContext.getString(R.string.not_manager), Toast.LENGTH_LONG);
+					toast.show();
+				} else {
+					i = new Intent (mContext, ManagerActivity.class);
+					mContext.startActivity (i);
+				}
 				break;
 			default:
 				break;
