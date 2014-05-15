@@ -23,7 +23,7 @@ public class User implements Model {
 		this.setUsername(usernameParam);
 		this.setType(typeParam);
 		this.setPassword(passwordParam);
-		this.setMy_favorite_carID(myfavoritecarParam);
+		this.setMyFavoriteCarID(myfavoritecarParam);
 	}
 
 	public User(Cursor c) {
@@ -35,7 +35,7 @@ public class User implements Model {
 		this.setUsername (c.getString (1));
 		this.setType (UserType.values ()[c.getInt (2)]);
 		this.setPassword (c.getString (3));
-		this.setMy_favorite_carID(c.getInt(4));
+		this.setMyFavoriteCarID(c.getInt(4));
 
 		return this;
 	}
@@ -135,7 +135,7 @@ public class User implements Model {
 		return myFavoriteCarID;
 	}
 
-	public void setMy_favorite_carID(int my_favorite_car) {
-		this.myFavoriteCarID = my_favorite_car;
+	public void setMyFavoriteCarID(int myFavoriteCar) {
+		this.myFavoriteCarID = myFavoriteCar;
 	}
 }
