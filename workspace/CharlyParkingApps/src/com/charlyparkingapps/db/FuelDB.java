@@ -36,7 +36,10 @@ public class FuelDB extends ObjectRepository {
 
 	@Override
 	public String getCreateRequest() {
-		return "CREATE TABLE Fuel (fuelId INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , name TEXT NOT NULL  UNIQUE );";
+		return "CREATE TABLE Fuel ("
+				+ "fuelId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+				+ "name TEXT NOT NULL UNIQUE"
+			+ ");";
 	}
 
 	@Override
