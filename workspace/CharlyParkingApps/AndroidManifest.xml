@@ -74,7 +74,7 @@
                 android:value="com.charlyparkingapps.activities.MainActivity" />
         </activity>
         <activity
-            android:name="com.charlyparkingapps.activities.CarActivity"
+            android:name="com.charlyparkingapps.activities.CarsActivity"
             android:label="@string/title_activity_car"
             android:parentActivityName="com.charlyparkingapps.activities.MainActivity" >
             <meta-data

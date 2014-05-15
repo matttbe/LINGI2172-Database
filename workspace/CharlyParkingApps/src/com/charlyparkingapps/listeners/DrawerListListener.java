@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import com.charlyparkingapps.activities.CarActivity;
+import com.charlyparkingapps.activities.CarsActivity;
 import com.charlyparkingapps.activities.FiltersActivity;
 import com.charlyparkingapps.activities.ProfileActivity;
 
@@ -34,7 +34,7 @@ public class DrawerListListener implements ListView.OnItemClickListener {
 			mContext.startActivity(i);
 			break;
 		case 2:
-			i = new Intent(mContext, CarActivity.class);
+			i = new Intent(mContext, CarsActivity.class);
 			mContext.startActivity(i);
 			break;
 		case 3: // TODO: history view
