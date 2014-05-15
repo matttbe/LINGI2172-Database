@@ -2,6 +2,9 @@ package com.charlyparkingapps.db.object;
 
 import android.database.Cursor;
 
+import com.charlyparkingapps.db.FuelDB;
+import com.charlyparkingapps.db.ParkingDB;
+
 public class ForbiddenFuel implements Model {
 
 	// CREATE TABLE "ForbiddenFuel" ("parking" INTEGER NOT NULL , "forbidden"
@@ -10,6 +13,9 @@ public class ForbiddenFuel implements Model {
 	private int forbiddenFuelId;
 	private int parkingId;
 	private int forbiddentId;
+	
+	private Parking parking;
+	private Fuel fuel;
 
 	public ForbiddenFuel(int parkingIdParam, int forbiddentIdParam) {
 		this.setParkingId(parkingIdParam);
@@ -64,6 +70,46 @@ public class ForbiddenFuel implements Model {
 
 	public void setForbiddentId(int forbiddentId) {
 		this.forbiddentId = forbiddentId;
+	}
+
+	public void loadParking() {
+		ParkingDB p = ParkingDB.getInstance();
+		p.open(false);
+		this.setParking((Parking) p.getById(this.getParkingId()));
+		p.close();
+	}
+
+	public Parking getParking() {
+		if (parking == null) {
+			loadParking();
+		}
+		return this.parking;
+
+	}
+
+	public void loadFuel() {
+		FuelDB p = FuelDB.getInstance();
+		p.open(false);
+		this.setFuel((Fuel) p.getById(this.getForbiddentId()));
+		p.close();
+	}
+
+
+	public void setParking(Parking parking) {
+		this.parking = parking;
+		this.setParkingId(parking.getParkingId());
+	}
+
+	public Fuel getFuel() {
+		if (fuel == null) {
+			loadFuel();
+		}
+		return this.fuel;
+	}
+
+	public void setFuel(Fuel fuel) {
+		this.fuel = fuel;
+		this.setForbiddentId(fuel.getFuelId());
 	}
 
 }
