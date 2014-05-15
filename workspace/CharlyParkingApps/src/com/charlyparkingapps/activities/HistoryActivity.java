@@ -80,7 +80,7 @@ public class HistoryActivity extends Activity
 
 		final ListView listView2 = (ListView) findViewById (R.id.stationnary_cars_list);
 		final StableArrayAdapter2 adapter2 = new StableArrayAdapter2 (this,
-				R.layout.stationnary_car_cell, history);
+				R.layout.stationnary_car_cell, current);
 
 		listView2.setAdapter (adapter2);
 
@@ -92,13 +92,13 @@ public class HistoryActivity extends Activity
 					public void onItemClick (AdapterView<?> parent,
 							final View view, int position, long id)
 					{
-						// History h = (History) adapter2.getItem (position);
-						/*
-						 * Intent intent = new Intent (HistoryActivity.this,
-						 * HistoryActivity.class); intent.putExtra
-						 * (CarEditActivity.KEY_CAR_SERIAL, car); startActivity
-						 * (intent);
-						 */
+						History h = (History) adapter.getItem (position);
+
+						Intent intent = new Intent (HistoryActivity.this,
+								MainActivity.class);
+						intent.putExtra (MainActivity.KEY_PARKING,
+								h.getParking ());
+						startActivity (intent);
 					}
 				});
 

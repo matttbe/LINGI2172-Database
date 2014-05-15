@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/history_list"
+        android:text="@string/stationnary_list"
         android:textAppearance="?android:attr/textAppearanceLarge" />
     
      <ListView android:id="@+id/stationnary_cars_list"
