@@ -49,11 +49,17 @@
     <string name="modifs_saved">Modifications saved</string>
     <string name="action_add_car">Add a new car</string>
     <string name="height_colon">Height:</string>
-    <string name="name">Name: </string>
-    <string name="title_activity_parking_edit">Edit Parking</string>
-    <string name="add_parking">Add parking</string>
     <string name="title_activity_history">HistoryActivity</string>
     <string name="history_list">Previous Parkings where you went</string>
     <string name="stationnary_list">Parking where you are currently parked</string>
     <string name="action_show_all_cars_map">Show all cars on map</string>
+	<string name="name">Name : </string>
+	<string name="title_activity_parking_edit">Edit Parking</string>	
+	<string name="add_parking">Add parking</string>	
+	<string name="address">Address</string>	
+	<string name="num">No</string>	
+	<string name="street">Street</string>	
+	<string name="zip">Zip code</string>	
+	<string name="city">City</string>	
+	<string name="country">Country</string>
 </resources>

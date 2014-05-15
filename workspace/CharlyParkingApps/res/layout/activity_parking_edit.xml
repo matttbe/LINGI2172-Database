@@ -24,6 +24,59 @@
     		
     </LinearLayout>
     
+    <TextView
+    	android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:text="@string/address"/>
+    	
+    <LinearLayout
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal">
+    
+    	<EditText
+    		android:id="@+id/parking_edit_street"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="8" 
+    		android:hint="@string/street"/>
+    		
+    	<EditText
+    		android:id="@+id/parking_edit_num"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1"
+    		android:hint="@string/num" />
+    		
+    </LinearLayout>
+    
+    <LinearLayout
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal">
+    
+    	<EditText
+    		android:id="@+id/parking_edit_zip"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1" 
+    		android:hint="@string/zip"/>
+    		
+    	<EditText
+    		android:id="@+id/parking_edit_city"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="3"
+    		android:hint="@string/city" />
+    		
+    </LinearLayout>
+    
+    <EditText
+    	android:id="@+id/parking_edit_country"
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:hint="@string/country"/>
+    
     <LinearLayout
     	android:layout_width="match_parent"
     	android:layout_height="match_parent"
@@ -52,7 +105,6 @@
     	android:padding="7dp" >
     	
     	<TextView
-    		android:id="@+id/parking_edit_places"
     		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:text="@string/total_places" />
@@ -64,14 +116,14 @@
     		android:text="150"/>
     		
     	<Button
-    		android:id="@+id/places_height_minus"	
+    		android:id="@+id/places_minus"	
     		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:text="-"
     		android:layout_marginLeft="5dp" />
     	
     	<Button
-    		android:id="@+id/places_height_plus"	
+    		android:id="@+id/places_plus"	
     		android:layout_width="wrap_content"
     		android:layout_height="wrap_content"
     		android:text="+"
