@@ -65,4 +65,7 @@
 	<string name="country">Country</string>
 	<string name="p">P</string>
 	<string name="m">M</string>
+	<string name="become_manager">Become manager</string>
+	<string name="you_are_manager">You became manager !</string>
+	<string name="already_manager">You are already manager !</string>
 </resources>

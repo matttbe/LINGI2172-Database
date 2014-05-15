@@ -10,10 +10,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.object.User;
+import com.charlyparkingapps.db.object.User.UserType;
 
 public class ProfileActivity extends Activity {
 
@@ -24,6 +26,8 @@ public class ProfileActivity extends Activity {
 	private ActionBarDrawerToggle mDrawerToggle;
 	private ActionBar mActionBar;
 
+	private User mUser;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -31,9 +35,9 @@ public class ProfileActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 
-		User u = ((CharlyApplication) this.getApplication ()).getCurrentUser ();
+		mUser = ((CharlyApplication) this.getApplication()).getCurrentUser();
 		TextView tv = (TextView) findViewById (R.id.username);
-		tv.setText (u.getUsername ());
+		tv.setText(mUser.getUsername());
 
 		initMenu ();
 
@@ -105,6 +109,19 @@ public class ProfileActivity extends Activity {
 				i = new Intent (this, EditProfileActivity.class);
 				startActivity (i);
 				return true;
+				
+			case R.id.become_manager:
+			Toast toast;
+			if (this.mUser.getType() == UserType.USER) {
+				this.mUser.setType(UserType.ADMIN);
+				toast = Toast.makeText(this,
+						getString(R.string.you_are_manager), Toast.LENGTH_LONG);
+			} else {
+				toast = Toast.makeText(this,
+						getString(R.string.already_manager), Toast.LENGTH_LONG);
+			}
+			toast.show();
+			return true;
 
 			default:
 				return super.onOptionsItemSelected (item);
