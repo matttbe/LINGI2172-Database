@@ -188,7 +188,7 @@ public class MainActivity extends Activity implements LocationListener {
 			}
 			parkingDB.close();
 			markers.showParking(parkings);
-			mapDisplay = MapDisplay.CARS_LIST;
+			mapDisplay = MapDisplay.PARKINGS_LIST;
 			canMoveCamera = true;
 			return;
 		}
