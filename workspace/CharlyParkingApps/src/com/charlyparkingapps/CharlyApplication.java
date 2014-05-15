@@ -27,11 +27,11 @@ public class CharlyApplication extends Application {
 		List<ObjectDB> allObjects = new LinkedList<ObjectDB>();
 		CharlyAppHelper.init(context, allObjects); // at the beginning!
 
+		allObjects.add(FuelDB.init(context)); // before User (for constraints)
 		allObjects.add(UserDB.init(context));
 		allObjects.add(AddressDB.init (context));
 		allObjects.add(ParkingDB.init(context));
 		allObjects.add(EntriesDB.init(context));
-		allObjects.add(FuelDB.init(context));
 		allObjects.add(CarDB.init(context));
 
 	}

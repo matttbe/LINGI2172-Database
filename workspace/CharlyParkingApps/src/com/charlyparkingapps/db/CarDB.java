@@ -49,9 +49,9 @@ public class CarDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO Car VALUES(1, 'My car', 162, 1, 1, 50.668791, 4.62165291);"
-				+ "INSERT INTO Car VALUES(2, 'Pimp my car', 165, 3, 1, 50.667408, 4.62202);"
-				+ "INSERT INTO Car VALUES(3, 'My tailor is rich in my pimped car', 0, 0, 2, 50.666408, 4.62202);");
+		db.execSQL("INSERT INTO Car VALUES(1, 'My car', 162, 1, 1, 50.668791, 4.62165291);");
+		db.execSQL("INSERT INTO Car VALUES(2, 'Pimp my car', 165, 3, 1, 50.667408, 4.62202);");
+		db.execSQL("INSERT INTO Car VALUES(3, 'My tailor is rich in my pimped car', 0, 0, 2, 50.666408, 4.62202);");
 
 	}
 
@@ -74,21 +74,19 @@ public class CarDB extends ObjectRepository {
 
 	@Override
 	public List<Model> convertCursorToListObject(Cursor c) {
-		List<Model> liste = new ArrayList<Model>();
+		List<Model> list = new ArrayList<Model>();
 		if (c.getCount() == 0)
-			return liste;
+			return list;
 		c.moveToFirst();
 
 		do {
-
 			Car model = new Car(c);
-
-			liste.add(model);
+			list.add(model);
 		} while (c.moveToNext());
 
 		c.close();
 
-		return liste;
+		return list;
 	}
 
 	@Override

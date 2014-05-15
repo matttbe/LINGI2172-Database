@@ -1,6 +1,7 @@
 package com.charlyparkingapps.activities;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 import java.util.List;
 
 import android.app.ActionBar;
@@ -26,7 +27,9 @@ import android.widget.Toast;
 
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
+import com.charlyparkingapps.db.CarDB;
 import com.charlyparkingapps.db.object.Car;
+import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.Parking;
 import com.charlyparkingapps.listeners.DrawerListListener;
 import com.charlyparkingapps.listeners.SearchListener;
@@ -174,8 +177,23 @@ public class MainActivity extends Activity implements LocationListener {
 		*/
 	
 		Bundle extras = getIntent().getExtras();
-		if (extras == null)
+		if (extras == null) {
+			// init: TODO: what do we have to display?
+			// display my cars
+			CarDB carDB = CarDB.getInstance();
+			carDB.open(false);
+			int userID = ((CharlyApplication) getApplication())
+					.getCurrentUser().getId();
+			List<Car> cars = new LinkedList<Car>();
+			for (Model car : carDB.getAllCars(userID)) {
+				cars.add((Car) car);
+			}
+			carDB.close();
+			markers.showCar(cars);
+			mapDisplay = MapDisplay.CARS_LIST;
+			canMoveCamera = true;
 			return;
+		}
 
 		canMoveCamera = false;
 		Serializable serial;
@@ -200,10 +218,7 @@ public class MainActivity extends Activity implements LocationListener {
 			List<Car> cars = (List<Car>) extras.getSerializable(KEY_CARS_LIST);
 			markers.showCar(cars);
 			mapDisplay = MapDisplay.CARS_LIST;
-			mapDisplay = MapDisplay.CARS_LIST;
 		}
-		else
-			canMoveCamera = true;
 	}
 
 	@Override
