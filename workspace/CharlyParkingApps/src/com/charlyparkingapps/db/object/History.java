@@ -66,6 +66,9 @@ public class History implements Model {
 		Date dateEnd = null;
 		try {
 			dateStart = iso8601Format.parse(c.getString(2));
+			if (!c.isNull(3)) {
+				dateEnd = iso8601Format.parse(c.getString(3));
+			}
 		} catch (ParseException e) {
 			Log.e("History", "Error Parsing ISO8601", e);
 		} finally {

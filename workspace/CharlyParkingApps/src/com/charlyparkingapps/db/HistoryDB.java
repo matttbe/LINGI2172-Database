@@ -43,7 +43,7 @@ public class HistoryDB extends ObjectRepository {
 				+ "historyId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
 				+ "car INTEGER NOT NULL, "
 				+ "start DATETIME NOT NULL DEFAULT (null), "
-				+ "end DATETIME NOT NULL DEFAULT (null), "
+				+ "end DATETIME DEFAULT (null), "
 				+ "parking INTEGER NOT NULL"
 			+ ");";
 	}
@@ -67,6 +67,15 @@ public class HistoryDB extends ObjectRepository {
 	
 	public List<Model> getAllHistoriesOrdered(User user) {
 		Cursor cursor = myBDD.query(getTablename(), getAllColumns(), "user=?",
+				new String[] { String.valueOf(user.getId()) }, null, null,
+				"start");
+
+		return convertCursorToListObject(cursor);
+	}
+
+	public List<Model> getAllCurrentHistoriesOrdered(User user) {
+		Cursor cursor = myBDD.query(getTablename(), getAllColumns(),
+				"user=? AND end=NULL",
 				new String[] { String.valueOf(user.getId()) }, null, null,
 				"start");
 

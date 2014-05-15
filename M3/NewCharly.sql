@@ -1,0 +1,69 @@
+DROP TABLE IF EXISTS "Address";
+CREATE TABLE Address(parking INTEGER NOT NULL, street TEXT NOT NULL, number INTEGER NOT NULL, city TEXT NOT NULL, zip INTEGER NOT NULL, country TEXT NOT NULL, "latitude" DOUBLE, "longitude" DOUBLE, FOREIGN KEY(parking) REFERENCES Parking(parkingId));
+INSERT INTO "Address" VALUES(1,'Place Sainte Barbe',1,'Louvain-la-Neuve',1348,'BE',50.667408,4.62202);
+DROP TABLE IF EXISTS "Car";
+CREATE TABLE Car (carId INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , height INTEGER DEFAULT 0, fuel INTEGER DEFAULT 0, user INTEGER NOT NULL, latitude DOUBLE, longitude DOUBLE, FOREIGN KEY(user) REFERENCES User(userId), FOREIGN KEY(fuel) REFERENCES Fuel(fuelId));
+INSERT INTO "Car" VALUES(1,162,1,1,NULL,NULL);
+INSERT INTO "Car" VALUES(2,165,3,1,50.667408,4.62202);
+INSERT INTO "Car" VALUES(3,0,0,2,50.667408,4.62202);
+DROP TABLE IF EXISTS "Corners";
+CREATE TABLE "Corners"(parking INTEGER NOT NULL, latitude DOUBLE NOT NULL, longitude DOUBLE NOT NULL, FOREIGN KEY(parking) REFERENCES Parking(parkingId));
+INSERT INTO "Corners" VALUES(1,50.667905,4.621993);
+INSERT INTO "Corners" VALUES(1,50.667876,4.621063);
+INSERT INTO "Corners" VALUES(1,50.667556,4.621084);
+INSERT INTO "Corners" VALUES(1,50.667299,4.621462);
+INSERT INTO "Corners" VALUES(1,50.667408,4.62202);
+DROP TABLE IF EXISTS "Entries";
+CREATE TABLE "Entries"(parking INTEGER NOT NULL, latitude DOUBLE NOT NULL, longitude DOUBLE NOT NULL, FOREIGN KEY(parking) REFERENCES Parking(parkingId));
+INSERT INTO "Entries" VALUES(1,50.667408,4.62202);
+INSERT INTO "Entries" VALUES(1,50.667299,4.621462);
+DROP TABLE IF EXISTS "ForbiddenFuel";
+CREATE TABLE "ForbiddenFuel" ("parking" INTEGER NOT NULL , "forbidden" INTEGER NOT NULL );
+INSERT INTO "ForbiddenFuel" VALUES(1,'3
+3');
+DROP TABLE IF EXISTS "Fuel";
+CREATE TABLE "Fuel" ("fuelId" INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , "name" TEXT NOT NULL  UNIQUE );
+INSERT INTO "Fuel" VALUES(1,'Diesel');
+INSERT INTO "Fuel" VALUES(2,'Gasoil');
+INSERT INTO "Fuel" VALUES(3,'Gas');
+DROP TABLE IF EXISTS "History";
+CREATE TABLE "History" ("car" INTEGER PRIMARY KEY  NOT NULL ,"start" DATETIME NOT NULL  DEFAULT (null) ,"end" DATETIME NOT NULL  DEFAULT (null) ,"parking" INTEGER NOT NULL );
+DROP TABLE IF EXISTS "HourlyRate";
+CREATE TABLE "HourlyRate" ("start" TIME PRIMARY KEY  NOT NULL  DEFAULT (null) ,"end" TIME NOT NULL  DEFAULT (null) ,"cost" FLOAT NOT NULL  DEFAULT (null) ,"parking" INTEGER NOT NULL );
+INSERT INTO "HourlyRate" VALUES('00:00:00','01:00:00',1.35,'1
+1');
+INSERT INTO "HourlyRate" VALUES('01:00:01','03:00:00',1.1,'1
+1');
+INSERT INTO "HourlyRate" VALUES('03:00:01','24:00:00',1,'1
+1');
+DROP TABLE IF EXISTS "OpeningHours";
+CREATE TABLE OpeningHours(dayStart INTEGER NOT NULL CHECK (dayStart <= 6 AND dayStart >= 0), 
+dayEnd INTEGER NOT NULL CHECK (dayEnd <= 6 AND dayEnd >= 0),
+hourStart TIME NOT NULL, hourEnd TIME NOT NULL, parking INTEGER NOT NULL, FOREIGN KEY(parking) REFERENCES Parking(parkingId));
+INSERT INTO "OpeningHours" VALUES(0,6,'00:00:00','23:59:59',1);
+DROP TABLE IF EXISTS "Parking";
+CREATE TABLE Parking(parkingId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, name varchar(20) NOT NULL, defibrillator BOOL DEFAULT 0, totalPlaces INTEGER CHECK (totalPlaces > 0),
+freePlaces INTEGER CHECK(freePlaces < totalPlaces AND freePlaces >= 0) DEFAULT totalPlaces, maxHeight INTEGER CHECK (maxHeight > 0), "disable" BOOL DEFAULT 0);
+INSERT INTO "Parking" VALUES(1,'Sainte Barbe',1,150,10,999300,0);
+INSERT INTO "Parking" VALUES(2,'P22',0,75,65,185,1);
+DROP TABLE IF EXISTS "Pass";
+CREATE TABLE Pass(passId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, dateStart DATETIME NOT NULL, dateEnd DATETIME NOT NULL CHECK (dateEnd > dateStart), user INTEGER NOT NULL, FOREIGN KEY(user) REFERENCES User(userId));
+INSERT INTO "Pass" VALUES(1,'2007-01-01 10:00:00','2015-01-01 10:00:00',1);
+INSERT INTO "Pass" VALUES(2,'2014-01-01 10:00:00','2015-01-01 10:00:00',2);
+DROP TABLE IF EXISTS "PassParking";
+CREATE TABLE "PassParking"(parking INTEGER NOT NULL, pass INTEGER NOT NULL, FOREIGN KEY(parking) REFERENCES Parking(parkingId), FOREIGN KEY(pass) REFERENCES Pass(passId));
+INSERT INTO "PassParking" VALUES(1,1);
+DROP TABLE IF EXISTS "User";
+CREATE TABLE "User"(userId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, type INTEGER NOT NULL CONSTRAINT chk_type CHECK (type IN (0, 1, 2)), username varchar(20) NOT NULL UNIQUE, password varchar(20) NOT NULL);
+INSERT INTO "User" VALUES(1,0,'Alex','azerty');
+CREATE TRIGGER check_openinghours AFTER INSERT
+ON OpeningHours
+BEGIN
+update OpeningHours set dayStart=0 where dayStart<0;
+update OpeningHours set dayEnd=6 where dayEnd>6;
+END;
+CREATE TRIGGER check_parkingslot AFTER INSERT
+ON Parking
+BEGIN
+update Parking set freePlaces = totalPlaces where (freePlaces < 0 or totalPlaces < freePlaces);
+END;
