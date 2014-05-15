@@ -245,11 +245,14 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 
 			ParkingDB parkingDB = ParkingDB.getInstance();
 			parkingDB.open(true);
-			parkingDB.save(newParking);
-			parkingDB.close();
+			long pid = parkingDB.save(newParking);
 			
-			parkingAddress.setParkingID(newParking.getParkingId());
+
+			parkingAddress.setParkingID((int) pid);
 			newParking.setAddress(parkingAddress);
+
+			parkingDB.update(newParking);
+			parkingDB.close();
 
 			AddressDB addressDB = AddressDB.getInstance();
 			addressDB.open(true);
