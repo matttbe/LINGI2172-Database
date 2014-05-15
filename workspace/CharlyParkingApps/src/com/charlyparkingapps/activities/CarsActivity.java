@@ -15,7 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CompoundButton;
+import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.charlyparkingapps.CharlyApplication;
@@ -25,6 +28,8 @@ import com.charlyparkingapps.db.object.Car;
 import com.charlyparkingapps.db.object.Model;
 
 public class CarsActivity extends Activity {
+
+	private RadioButton mSelectedRB;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +56,7 @@ public class CarsActivity extends Activity {
 		final ListView listView = (ListView) findViewById(R.id.cars_list);
 		final StableArrayAdapter adapter = new StableArrayAdapter(this,
 				R.layout.cars_item_view, cars);
+
 		listView.setAdapter(adapter);
 
 		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -131,6 +137,22 @@ public class CarsActivity extends Activity {
 			TextView textViewSecondLine = (TextView) rowView
 					.findViewById(R.id.cars_item_secondLine);
 			
+			RadioButton selected = (RadioButton) rowView
+					.findViewById(R.id.selected_car);
+			// TODO select a button
+			selected.setOnCheckedChangeListener(new OnCheckedChangeListener() {
+				
+				@Override
+				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					if (mSelectedRB != null) {
+						mSelectedRB.setChecked(false);
+					}
+					mSelectedRB = (RadioButton) buttonView;
+					// TODO DB change selected car
+
+				}
+			});
+
 			Car car = (Car) getItem(position);
 			textViewFirstLine.setText(String.valueOf(car.getName()));
 			textViewSecondLine.setText(getString(R.string.height_colon) + " "

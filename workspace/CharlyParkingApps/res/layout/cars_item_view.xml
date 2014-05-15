@@ -22,5 +22,12 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_vertical"
         android:textSize="16sp" />
+    
+    <RadioButton
+        android:id="@+id/selected_car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true" />
 
 </RelativeLayout>
