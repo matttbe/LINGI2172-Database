@@ -40,8 +40,8 @@ public class UserDB extends ObjectRepository {
 					+ "type INTEGER NOT NULL CONSTRAINT chk_type "
 						+ "CHECK (type IN (0, 1, 2)), "
 					+ "username varchar(20) NOT NULL UNIQUE, "
-					+ "password varchar(20) NOT NULL"
- + "favoriteCar INT"
+					+ "password varchar(20) NOT NULL, "
+					+ "favoriteCar INT"
 				+ ")";
 	}
 
