@@ -46,6 +46,11 @@ public class ParkingActivity extends Activity {
 		TextView tv4 = (TextView) findViewById(R.id.parking_country);
 		tv4.setText (parking.getAddress ().getCountry ());
 		
+		TextView defibrilator = (TextView) findViewById(R.id.defibrilator_parking);
+		String defString = (this.parking.isDefibrillator()) ? getString(R.string.yes)
+				: getString(R.string.no);
+		defibrilator.setText(defibrilator.getText() + " : " + defString);
+		
 		TextView tv5 = (TextView) findViewById(R.id.freePlaces);
 		tv5.setText ("Free places : " + parking.getFreePlaces ()
 				+ " under a total of: " + parking.getTotalPlaces () + " places");

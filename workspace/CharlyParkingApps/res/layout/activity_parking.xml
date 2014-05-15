@@ -10,12 +10,12 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:layout_marginRight="134dp"
-        android:layout_marginTop="114dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:orientation="vertical" >
 
         <LinearLayout
@@ -56,6 +56,12 @@
             android:layout_alignParentTop="true"
             android:layout_marginRight="14dp"
             android:orientation="vertical" >
+            
+            <TextView
+            	android:id="@+id/defibrilator_parking"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="@string/defibrilator" />
 
             <TextView
                 android:id="@+id/freePlaces"
