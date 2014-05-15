@@ -1,6 +1,9 @@
 package com.charlyparkingapps.activities;
 
+import java.io.IOException;
+
 import android.app.Activity;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -87,6 +90,17 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 			this.mParking.getAddress().setCity(this.mCity.getText().toString());
 			this.mParking.getAddress().setCountry(
 					this.mCountry.getText().toString());
+
+			Geocoder geocoder = new Geocoder(this);
+			try {
+				android.location.Address address = geocoder
+						.getFromLocationName(
+						this.mParking.getAddress().toString(), 1).get(0);
+				this.mParking.getAddress().setLatitude(address.getLatitude());
+				this.mParking.getAddress().setLongitude(address.getLongitude());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 
 			AddressDB addressDB = AddressDB.getInstance();
 			addressDB.open(true);

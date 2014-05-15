@@ -173,4 +173,9 @@ public class Address implements Model {
 		latitude = latLng.latitude;
 		longitude = latLng.longitude;
 	}
+
+	public String toString() {
+		return this.street + ", " + this.number + ", " + this.zip + ", "
+				+ this.city + ", " + this.country;
+	}
 }
