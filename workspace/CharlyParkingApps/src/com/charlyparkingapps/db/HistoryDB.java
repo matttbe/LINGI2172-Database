@@ -25,7 +25,8 @@ public class HistoryDB extends ObjectRepository {
 		return sInstance;
 	}
 
-	private static final String[] ALL_COLUMNS = { "historyId", "user" };
+	private static final String[] ALL_COLUMNS = { "historyId", "car", "start",
+			"end", "parking" };
 
 	public HistoryDB(Context context) {
 		super(context);
@@ -40,7 +41,7 @@ public class HistoryDB extends ObjectRepository {
 	public String getCreateRequest() {
 		return "CREATE TABLE History ("
 				+ "historyId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
-				+ "user INTEGER NOT NULL, "
+				+ "car INTEGER NOT NULL, "
 				+ "start DATETIME NOT NULL DEFAULT (null), "
 				+ "end DATETIME NOT NULL DEFAULT (null), "
 				+ "parking INTEGER NOT NULL"
