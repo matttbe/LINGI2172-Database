@@ -10,7 +10,6 @@ import android.database.sqlite.SQLiteDatabase;
 import com.charlyparkingapps.db.object.Car;
 import com.charlyparkingapps.db.object.History;
 import com.charlyparkingapps.db.object.Model;
-import com.charlyparkingapps.db.object.Parking;
 import com.charlyparkingapps.db.object.User;
 
 public class HistoryDB extends ObjectRepository {
@@ -86,11 +85,11 @@ public class HistoryDB extends ObjectRepository {
 		return convertCursorToListObject(cursor);
 	}
 
-	public List<Model> getAllCurrentHistoriesOrdered(User user, Parking parking) {
+	public List<Model> getAllCurrentHistoriesOrdered(User user, Car car) {
 		Cursor cursor = myBDD.query(getTablename(), getAllColumns(),
-				"user=? AND end IS NULL AND parking=?",
+				"user=? AND end IS NULL AND car=?",
 				new String[] { String.valueOf(user.getId()),
-						String.valueOf(parking.getParkingId()) }, null, null,
+						String.valueOf(car.getCarId()) }, null, null,
 				"start");
 
 		return convertCursorToListObject(cursor);
