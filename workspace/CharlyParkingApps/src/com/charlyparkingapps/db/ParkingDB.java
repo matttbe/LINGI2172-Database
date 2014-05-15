@@ -43,7 +43,7 @@ public class ParkingDB extends ObjectRepository {
 					+ "defibrillator BOOL DEFAULT 0, "
 					+ "totalPlaces INTEGER CHECK (totalPlaces > 0), "
 					+ "freePlaces INTEGER CHECK("
-						+ "freePlaces < totalPlaces AND freePlaces >= 0"
+				+ "freePlaces <= totalPlaces AND freePlaces >= 0"
 					+ ") DEFAULT 0, "
 					+ "maxHeight INTEGER CHECK (maxHeight > 0), "
 					+ "disable BOOL DEFAULT 0"
@@ -59,12 +59,12 @@ public class ParkingDB extends ObjectRepository {
 		db.execSQL("INSERT INTO Parking VALUES(1,'Sainte Barbe',1,150,10,999300,0);");
 		db.execSQL("INSERT INTO Parking VALUES(2,'P22',0,75,65,185,1);");
 		db.execSQL("INSERT INTO Address VALUES(0,1,'Place Sainte Barbe',1,'Louvain-la-Neuve',1348,'BE',50.667408,4.62202);");
-		db.execSQL("INSERT INTO Parking VALUES(3,'Hôtel de Ville',0,150,10,110,1);");
-		db.execSQL("INSERT INTO Address VALUES(1,3,'Hôtel de Ville','Place de l'Hôtel de Ville',0,'Saint-Quentin',02100,'FR',0.0,0.0);");
+		db.execSQL("INSERT INTO Parking VALUES(3,'Hotel de Ville',0,150,10,110,1);");
+		db.execSQL("INSERT INTO Address VALUES(1,3,'Place de Hotel de Ville',0,'Saint-Quentin',02100,'FR',0.0,0.0);");
 		db.execSQL("INSERT INTO Parking VALUES(4,'Saleya',1,170,170,310,0);");
-		db.execSQL("INSERT INTO Address VALUES(2,4,'Saleya','Cours Saleya',0, 06300, 'Nice', 'FR',0.0,0.0);");
+		db.execSQL("INSERT INTO Address VALUES(2,4,'Cours Saleya',0, 06300, 'Nice', 'FR',0.0,0.0);");
 		db.execSQL("INSERT INTO Parking VALUES(5,'Acropolis - Jean Bouin',0,70,15,10,1);");
-		db.execSQL("INSERT INTO Address VALUES(3,5,'Acropolis - Jean Bouin', 0,'Place du XVe Corps','Nice',06000, 'FR', 0.0,0.0);");
+		db.execSQL("INSERT INTO Address VALUES(3,5,'Place du XVe Corps',0,'Nice',06000, 'FR', 0.0,0.0);");
 		/*
 		 * Palais de Justice Place du Palais de Justice 06000 Nice FRANCE Barla
 		 * Rue Auguste Gal 06300 Nice FRANCE Massena Place Masséna 06000 Nice
