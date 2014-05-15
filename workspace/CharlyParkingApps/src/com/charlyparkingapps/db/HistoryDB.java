@@ -7,7 +7,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.charlyparkingapps.db.object.Fuel;
 import com.charlyparkingapps.db.object.History;
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.User;
@@ -67,7 +66,8 @@ public class HistoryDB extends ObjectRepository {
 	}
 	
 	public List<Model> getAllHistoriesOrdered(User user) {
-		Cursor cursor = myBDD.query (getTablename (), getAllColumns (), "=?",
+		Cursor cursor = myBDD.query (getTablename (), getAllColumns (),
+				"user=?",
 				new String[] { String.valueOf(user.getId()) }, null, null,
 				"start");
 
@@ -98,7 +98,7 @@ public class HistoryDB extends ObjectRepository {
 
 		do {
 
-			Fuel model = new Fuel(c);
+			History model = new History (c);
 
 			liste.add(model);
 		} while (c.moveToNext());

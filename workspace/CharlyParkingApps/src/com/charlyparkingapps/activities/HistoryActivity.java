@@ -145,11 +145,12 @@ public class HistoryActivity extends Activity
 			TextView textViewFirstLine = (TextView) rowView
 					.findViewById (R.id.cell_history_parking);
 			TextView textViewSecondLine = (TextView) rowView
-					.findViewById (R.id.cell_stationnary_car);
+					.findViewById (R.id.cell_history_car);
 
 			History h = (History) getItem (position);
 			textViewFirstLine.setText (String.valueOf (h.getParking ()
 					.getName ()));
+			System.out.println ("Test " + textViewSecondLine == null);
 			textViewSecondLine.setText (getString (R.string.height_colon) + " "
 					+ h.getCar ().getName ());
 
