@@ -24,12 +24,15 @@ import android.widget.TextView;
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.CarDB;
+import com.charlyparkingapps.db.UserDB;
 import com.charlyparkingapps.db.object.Car;
 import com.charlyparkingapps.db.object.Model;
+import com.charlyparkingapps.db.object.User;
 
 public class CarsActivity extends Activity {
 
 	private RadioButton mSelectedRB;
+	private Car favoriteCar;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,9 @@ public class CarsActivity extends Activity {
 	}
 
 	private void addUserCars() {
-		int userId = ((CharlyApplication) getApplication()).getCurrentUser()
-				.getId();
+		User user = ((CharlyApplication) getApplication()).getCurrentUser();
+		favoriteCar = user.getMyFavoriteCar();
+		int userId = user.getId();
 		CarDB carDB = CarDB.getInstance();
 		carDB.open(false);
 		List<Model> allCars = CarDB.getInstance().getAllCars(userId);
@@ -55,7 +59,7 @@ public class CarsActivity extends Activity {
 	private void addCarsInList(List<Model> cars) {
 		final ListView listView = (ListView) findViewById(R.id.cars_list);
 		final StableArrayAdapter adapter = new StableArrayAdapter(this,
-				R.layout.cars_item_view, cars);
+				R.layout.cars_item_view, cars, favoriteCar.getCarId());
 
 		listView.setAdapter(adapter);
 
@@ -105,11 +109,13 @@ public class CarsActivity extends Activity {
 
 	private class StableArrayAdapter extends ArrayAdapter<Model> {
 
-		HashMap<Model, Integer> mIdMap = new HashMap<Model, Integer>();
+		private HashMap<Model, Integer> mIdMap = new HashMap<Model, Integer>();
+		private int favoriteCarID;
 
 		public StableArrayAdapter(Context context, int textViewResourceId,
-				List<Model> cars) {
+				List<Model> cars, int favoriteCarID) {
 			super(context, textViewResourceId, cars);
+			this.favoriteCarID = favoriteCarID;
 			for (int i = 0; i < cars.size(); ++i) {
 				mIdMap.put(cars.get(i), i);
 			}
@@ -127,7 +133,8 @@ public class CarsActivity extends Activity {
 		}
 
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView,
+				ViewGroup parent) {
 			LayoutInflater inflater = (LayoutInflater) getContext()
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View rowView = inflater.inflate(R.layout.cars_item_view, parent,
@@ -139,17 +146,24 @@ public class CarsActivity extends Activity {
 			
 			RadioButton selected = (RadioButton) rowView
 					.findViewById(R.id.selected_car);
-			// TODO select a button
 			selected.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 				
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+					// we click on another button: uncheck the previous one
 					if (mSelectedRB != null) {
 						mSelectedRB.setChecked(false);
 					}
 					mSelectedRB = (RadioButton) buttonView;
-					// TODO DB change selected car
 
+					Car mCar = (Car) getItem(position);
+					User currentUser = ((CharlyApplication) getApplication())
+							.getCurrentUser();
+					currentUser.setMyFavoriteCar(mCar);
+					UserDB userDB = UserDB.getInstance();
+					userDB.open(true);
+					userDB.update(currentUser);
+					userDB.close();
 				}
 			});
 
@@ -157,6 +171,10 @@ public class CarsActivity extends Activity {
 			textViewFirstLine.setText(String.valueOf(car.getName()));
 			textViewSecondLine.setText(getString(R.string.height_colon) + " "
 					+ car.getHeight());
+
+			// select car
+			if (car.getCarId() == this.favoriteCarID)
+				selected.setChecked(true);
 
 			return rowView;
 		}
