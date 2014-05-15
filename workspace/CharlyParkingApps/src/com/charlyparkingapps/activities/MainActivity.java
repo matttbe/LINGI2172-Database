@@ -27,7 +27,7 @@ import android.widget.Toast;
 
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
-import com.charlyparkingapps.db.CarDB;
+import com.charlyparkingapps.db.ParkingDB;
 import com.charlyparkingapps.db.object.Car;
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.Parking;
@@ -179,17 +179,15 @@ public class MainActivity extends Activity implements LocationListener {
 		Bundle extras = getIntent().getExtras();
 		if (extras == null) {
 			// init: TODO: what do we have to display?
-			// display my cars
-			CarDB carDB = CarDB.getInstance();
-			carDB.open(false);
-			int userID = ((CharlyApplication) getApplication())
-					.getCurrentUser().getId();
-			List<Car> cars = new LinkedList<Car>();
-			for (Model car : carDB.getAllCars(userID)) {
-				cars.add((Car) car);
+			// display all parkings
+			ParkingDB parkingDB = ParkingDB.getInstance();
+			parkingDB.open(false);
+			List<Parking> parkings = new LinkedList<Parking>();
+			for (Model parking : parkingDB.getAll()) {
+				parkings.add((Parking) parking);
 			}
-			carDB.close();
-			markers.showCar(cars);
+			parkingDB.close();
+			markers.showParking(parkings);
 			mapDisplay = MapDisplay.CARS_LIST;
 			canMoveCamera = true;
 			return;
