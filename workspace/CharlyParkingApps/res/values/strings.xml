@@ -48,5 +48,6 @@
     <string name="no">No</string>
     <string name="modifs_saved">Modifications saved</string>
     <string name="action_add_car">Add a new car</string>
+    <string name="height_colon">Height:</string>
 
 </resources>

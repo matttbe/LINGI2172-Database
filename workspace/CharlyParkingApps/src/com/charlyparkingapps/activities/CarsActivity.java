@@ -129,8 +129,9 @@ public class CarsActivity extends Activity {
 					.findViewById(R.id.cars_item_secondLine);
 			
 			Car car = (Car) getItem(position);
-			textViewFirstLine.setText(car.getCarId()); // TODO: name
-			textViewSecondLine.setText("Height: " + car.getHeight());
+			textViewFirstLine.setText(String.valueOf(car.getCarId())); // TODO: name
+			textViewSecondLine.setText(R.string.height_colon + " "
+					+ car.getHeight());
 
 			return rowView;
 		}
