@@ -1,12 +1,8 @@
 package com.charlyparkingapps.db.object;
 
 import java.sql.Time;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.util.Log;
 
@@ -26,8 +22,6 @@ public class HourlyRate implements Model {
 
 	private Parking parking;
 
-	@SuppressLint("SimpleDateFormat")
-	DateFormat iso8601Format = new SimpleDateFormat("HH:mm:ss");
 
 	public HourlyRate(Time startParam, Time endParam, float costParam,
 			int parkingIdParam) {
@@ -62,14 +56,14 @@ public class HourlyRate implements Model {
 	@Override
 	public Model createFromCursor(Cursor c) {
 		this.setHourlyRateId(c.getInt(0));
-		Date dateStart = null;
-		Date dateEnd = null;
+		Time dateStart = null;
+		Time dateEnd = null;
 		try {
-			dateStart = iso8601Format.parse(c.getString(2));
+			dateStart = Time.valueOf(c.getString(2));
 			if (!c.isNull(3)) {
-				dateEnd = iso8601Format.parse(c.getString(3));
+				dateEnd = Time.valueOf(c.getString(3));
 			}
-		} catch (ParseException e) {
+		} catch (Exception e) {
 			Log.e("History", "Error Parsing ISO8601", e);
 		} finally {
 			this.setStart(dateStart);
