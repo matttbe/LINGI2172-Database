@@ -2,17 +2,23 @@ package com.charlyparkingapps.db.object;
 
 import android.database.Cursor;
 
+import com.charlyparkingapps.db.ParkingDB;
+import com.google.android.gms.maps.model.LatLng;
+
 public class Corner implements Model {
 
 
 	private int cornerId;
-	private int parking_id;
+	private int parkingId;
 	private double latitude;
 	private double longitude;
 
-	public Corner(int parking_idParam, double latitudeParam,
+	private Parking parking;
+	private LatLng location;
+
+	public Corner(int parkingIdParam, double latitudeParam,
 			double longitudeParam) {
-		this.setParking_id(parking_idParam);
+		this.setParkingID(parkingIdParam);
 		this.setLatitude(latitudeParam);
 		this.setLongitude(longitudeParam);
 	}
@@ -27,7 +33,7 @@ public class Corner implements Model {
 		case 0:
 			return String.valueOf(this.getCornerId());
 		case 1:
-			return String.valueOf(this.getParking_id());
+			return String.valueOf(this.getParkingID());
 		case 2:
 			return String.valueOf(this.getLatitude());
 		case 3:
@@ -40,7 +46,7 @@ public class Corner implements Model {
 	@Override
 	public Model createFromCursor(Cursor c) {
 		this.setCornerId(c.getInt(0));
-		this.setParking_id(c.getInt(1));
+		this.setParkingID(c.getInt(1));
 		this.setLatitude(c.getDouble(2));
 		this.setLongitude(c.getDouble(3));
 		return this;
@@ -54,12 +60,12 @@ public class Corner implements Model {
 		this.cornerId = cornerId;
 	}
 
-	public int getParking_id() {
-		return parking_id;
+	public int getParkingID() {
+		return parkingId;
 	}
 
-	public void setParking_id(int parking_id) {
-		this.parking_id = parking_id;
+	public void setParkingID(int parkingId) {
+		this.parkingId = parkingId;
 	}
 
 	public double getLatitude() {
@@ -78,4 +84,32 @@ public class Corner implements Model {
 		this.longitude = longitude;
 	}
 
+	public void loadParking() {
+		ParkingDB p = ParkingDB.getInstance();
+		p.open(false);
+		this.setParking((Parking) p.getById(this.getParkingID()));
+		p.close();
+	}
+
+	public Parking getParking() {
+		if (parking == null) {
+			loadParking();
+		}
+		return this.parking;
+
+	}
+
+	public void setParking(Parking parking) {
+		this.parking = parking;
+	}
+
+	/**
+	 * @return the location of the parking (the center of it) or null
+	 */
+	public LatLng getLocation() {
+		if (location == null) {
+			location = new LatLng(getLatitude(), getLongitude());
+		}
+		return location;
+	}
 }

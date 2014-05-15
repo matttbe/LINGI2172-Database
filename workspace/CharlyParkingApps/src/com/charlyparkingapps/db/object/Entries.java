@@ -3,6 +3,7 @@ package com.charlyparkingapps.db.object;
 import android.database.Cursor;
 
 import com.charlyparkingapps.db.ParkingDB;
+import com.google.android.gms.maps.model.LatLng;
 
 public class Entries implements Model {
 
@@ -13,6 +14,7 @@ public class Entries implements Model {
 	private Double longitude;
 
 	private Parking parking;
+	private LatLng location;
 
 	public Entries(int parkingIDParam, Double latitudeParam,
 			Double longitudeParam) {
@@ -99,4 +101,13 @@ public class Entries implements Model {
 		this.parking = parking;
 	}
 
+	/**
+	 * @return the location of the parking (the center of it) or null
+	 */
+	public LatLng getLocation() {
+		if (location == null) {
+			location = new LatLng(getLatitude(), getLongitude());
+		}
+		return location;
+	}
 }
