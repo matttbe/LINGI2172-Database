@@ -44,7 +44,7 @@ public class HistoryDB extends ObjectRepository {
 				+ "car INTEGER NOT NULL, "
 				+ "start DATETIME NOT NULL DEFAULT (null), "
 				+ "end DATETIME DEFAULT (null), "
-				+ "parking INTEGER NOT NULL"
+				+ "parking INTEGER NOT NULL, "
 				+ "user INTEGER NOT NULL"
 			+ ");";
 	}
