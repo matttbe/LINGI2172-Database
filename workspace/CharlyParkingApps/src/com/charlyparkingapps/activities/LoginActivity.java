@@ -215,7 +215,7 @@ public class LoginActivity extends Activity {
 			if (!log) {
 				user.open(true);
 				if (user.getByUsername(mUsername) == null) {
-					User u = new User(mUsername, UserType.USER, mPassword);
+					User u = new User(mUsername, UserType.USER, mPassword, 0);
 					user.save(u);
 					log = true;
 				}

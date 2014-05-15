@@ -12,13 +12,18 @@ public class User implements Model {
 	private String username;
 	private String password;
 	private UserType type;
+	private int my_favorite_carID;
+
+	private Car my_favorite_car = null;
 
 	private List<Model> allCars;
 
-	public User(String usernameParam, UserType typeParam, String passwordParam) {
+	public User(String usernameParam, UserType typeParam, String passwordParam,
+			int myfavoritecarParam) {
 		this.setUsername(usernameParam);
 		this.setType(typeParam);
 		this.setPassword(passwordParam);
+		this.setMy_favorite_carID(myfavoritecarParam);
 	}
 
 	public User(Cursor c) {
@@ -30,6 +35,7 @@ public class User implements Model {
 		this.setUsername (c.getString (1));
 		this.setType (UserType.values ()[c.getInt (2)]);
 		this.setPassword (c.getString (3));
+		this.setMy_favorite_carID(c.getInt(4));
 
 		return this;
 	}
@@ -44,6 +50,8 @@ public class User implements Model {
 			return String.valueOf(getType().ordinal());
 		case 3:
 			return String.valueOf(getPassword());
+		case 4:
+			return String.valueOf(getMy_favorite_carID());
 
 		}
 		return String.valueOf(getId());
@@ -97,5 +105,37 @@ public class User implements Model {
 			loadCars();
 		}
 		return this.allCars;
+	}
+
+	public void loadFavoriteCar() {
+		CarDB c = CarDB.getInstance();
+		c.open(false);
+		Car car = (Car) c.getById(this.getMy_favorite_carID());
+		this.setMy_favorite_car(car);
+		c.close();
+	}
+
+	public Car getMy_favorite_car() {
+		if (my_favorite_carID == 0) {
+			return null;
+		} else {
+			if (this.my_favorite_car == null) {
+				loadFavoriteCar();
+			}
+			return this.my_favorite_car;
+		}
+	}
+
+	public void setMy_favorite_car(Car my_favorite_car) {
+		this.my_favorite_car = my_favorite_car;
+		this.my_favorite_carID = this.my_favorite_car.getCarId();
+	}
+
+	public int getMy_favorite_carID() {
+		return my_favorite_carID;
+	}
+
+	public void setMy_favorite_carID(int my_favorite_car) {
+		this.my_favorite_carID = my_favorite_car;
 	}
 }

@@ -22,7 +22,7 @@ public class UserDB extends ObjectRepository {
 
 
 	private static final String[] ALL_COLUMNS = { "userId", "username", "type",
-			"password" };
+			"password", "favoriteCar" };
 
 	public UserDB(Context context) {
 		super(context);
@@ -41,14 +41,15 @@ public class UserDB extends ObjectRepository {
 						+ "CHECK (type IN (0, 1, 2)), "
 					+ "username varchar(20) NOT NULL UNIQUE, "
 					+ "password varchar(20) NOT NULL"
+ + "favoriteCar INT"
 				+ ")";
 	}
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO User VALUES(1, 1, 'user','abcd')");
-		db.execSQL("INSERT INTO User VALUES(2, 2, 'user2','abcd')");
-		db.execSQL("INSERT INTO User VALUES(3, 0, 'user3','abcd')");
+		db.execSQL("INSERT INTO User VALUES(1, 1, 'user','abcd',0)");
+		db.execSQL("INSERT INTO User VALUES(2, 2, 'user2','abcd',0)");
+		db.execSQL("INSERT INTO User VALUES(3, 0, 'user3','abcd',0)");
 	}
 
 	@Override
