@@ -60,15 +60,15 @@ public class ParkingDB extends ObjectRepository {
 		db.execSQL("INSERT INTO Parking VALUES(2,'P22',0,75,65,185,1);");
 		db.execSQL("INSERT INTO Address VALUES(0,1,'Place Sainte Barbe',1,'Louvain-la-Neuve',1348,'BE',50.667408,4.62202);");
 		db.execSQL("INSERT INTO Parking VALUES(3,'Hotel de Ville',0,150,10,110,1);");
-		db.execSQL("INSERT INTO Address VALUES(1,3,'Place de Hotel de Ville',0,'Saint-Quentin',02100,'FR',0.0,0.0);");
+		db.execSQL("INSERT INTO Address VALUES(1,3,'Place de Hotel de Ville',0,'Saint-Quentin',02100,'FR',49.846122,3.287457);");
 		db.execSQL("INSERT INTO Parking VALUES(4,'Saleya',1,170,170,310,0);");
-		db.execSQL("INSERT INTO Address VALUES(2,4,'Cours Saleya',0, 06300, 'Nice', 'FR',0.0,0.0);");
+		db.execSQL("INSERT INTO Address VALUES(2,4,'Cours Saleya',0, 06300, 'Nice', 'FR',43.695607,274922699999934);");
 		db.execSQL("INSERT INTO Parking VALUES(5,'Acropolis - Jean Bouin',0,70,15,10,1);");
-		db.execSQL("INSERT INTO Address VALUES(3,5,'Place du XVe Corps',0,'Nice',06000, 'FR', 0.0,0.0);");
-		db.execSQL("INSERT INTO Parking VALUES(6,'Palais de Justice',0,70,150,10,0);");
-		db.execSQL("INSERT INTO Address VALUES(4,6,'Place du Palais de Justice',0, 'Nice', 06000, FR, 0.0, 0.0);");
+		db.execSQL("INSERT INTO Address VALUES(3,5,'Place du XVe Corps',0,'Nice',06000, 'FR', 43.7072969,7.28019119999999);");
+		db.execSQL("INSERT INTO Parking VALUES(6,'Palais de Justice',0,770,150,10,0);");
+		db.execSQL("INSERT INTO Address VALUES(4,6,'Place du Palais de Justice',0, 'Nice', 06000, 'FR', 43.696672, 7.273752000000059);");
 		db.execSQL("INSERT INTO Parking VALUES(7,'Pink Paradise',0,1,0,180,0);");
-		db.execSQL("INSERT INTO Address VALUES(5,7, 'Rue de Ponthieu',59, 'Paris', 75008, FR, 0.0,0.0);");
+		db.execSQL("INSERT INTO Address VALUES(5,7, 'Rue de Ponthieu',59, 'Paris', 75008, 'FR', 48.87214119999999,2.304941699999972);");
 		/*
 		 * Barla Rue Auguste Gal 06300 Nice FRANCE Massena Place Masséna 06000
 		 * Nice FRANCE Louvre 20, Boulevard Victor Hugo 06000 Nice FRANCE Lenval
