@@ -52,5 +52,6 @@
 	<string name="name">Name : </string>
 	<string name="title_activity_parking_edit">Edit Parking</string>	
 	<string name="add_parking">Add parking</string>	
-	
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="history_list">Previous Parkings where you went</string>
 </resources>

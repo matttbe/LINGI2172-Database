@@ -3,12 +3,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/history_list"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
     
      <ListView android:id="@+id/stationnary_cars_list"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:layout_weight="1"
             />
+
+     <TextView
+         android:id="@+id/textView2"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:text="On c pas ce qu'on va mèt là"
+         android:textAppearance="?android:attr/textAppearanceLarge" />
      
       <ListView android:id="@+id/history_list"
               android:layout_width="match_parent"

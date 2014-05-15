@@ -105,6 +105,10 @@
             android:name="com.charlyparkingapps.activities.ParkingEditActivity"
             android:label="@string/title_activity_parking_edit" >
         </activity>
+        <activity
+            android:name="com.charlyparkingapps.activities.HistoryActivity"
+            android:label="@string/title_activity_history" >
+        </activity>
     </application>
 
 </manifest>
