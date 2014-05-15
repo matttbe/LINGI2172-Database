@@ -60,7 +60,7 @@
 	<string name="address">Address</string>
 	<string name="num">No</string>
 	<string name="street">Street</string>
-	<string name="zip">Zip code</string>
+	<string name="zip">Zip</string>
 	<string name="city">City</string>
 	<string name="country">Country</string>
 	<string name="p">P</string>
@@ -80,9 +80,6 @@
 	<string name="radius">Radius (Km) : </string>
 	<string name="action_use_parking">Park Here!</string>
 	<string name="action_use_parking_end">Leave this parking</string>
-	
-	
-	
-	
+	<string name="remove_parking">Remove parking</string>
 	
 </resources>

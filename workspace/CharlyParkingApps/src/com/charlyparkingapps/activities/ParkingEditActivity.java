@@ -3,8 +3,12 @@ package com.charlyparkingapps.activities;
 import java.io.IOException;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,9 +17,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.AddressDB;
 import com.charlyparkingapps.db.ParkingDB;
+import com.charlyparkingapps.db.object.Address;
 import com.charlyparkingapps.db.object.Parking;
 
 public class ParkingEditActivity extends Activity implements OnClickListener {
@@ -41,7 +47,7 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_car_edit);
+		setContentView(R.layout.activity_parking_edit);
 		// Show the Up button in the action bar.
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -57,17 +63,17 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 		
 		this.mPlaces = (TextView) findViewById(R.id.parking_edit_places);
 		
-		this.mPlus = (Button) findViewById (R.id.places_plus);
-		this.mPlus.setOnClickListener (this);
-		this.mMinus = (Button) findViewById (R.id.places_minus);
-		this.mMinus.setOnClickListener (this);
+		this.mPlus = (Button) findViewById(R.id.places_plus);
+		this.mPlus.setOnClickListener(this);
+		this.mMinus = (Button) findViewById(R.id.places_minus);
+		this.mMinus.setOnClickListener(this);
 		this.mAddParking = (Button) findViewById(R.id.add_parking);
 		this.mAddParking.setOnClickListener(this);
 		
 		getParking();
 
 		if(this.mParking == null) {
-			
+			this.mAddParking.setVisibility(View.VISIBLE);
 		} else {
 			this.mName.setText(this.mParking.getName());
 			this.mStreet.setText(this.mParking.getAddress().getStreet());
@@ -81,6 +87,57 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 					.getHasPlacesForDisabledPeople());
 			this.mPlaces.setText(""+this.mParking.getTotalPlaces());
 		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.car_edit, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		// Handle action bar item clicks here. The action bar will
+		// automatically handle clicks on the Home/Up button, so long
+		// as you specify a parent activity in AndroidManifest.xml.
+		int id = item.getItemId();
+		switch (id) {
+		case R.id.action_settings:
+			return true;
+		case android.R.id.home:
+			this.onBackPressed();
+			break;
+		case R.id.action_remove_parking:
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setMessage(R.string.are_you_sure);
+			builder.setTitle(R.string.remove_parking);
+			builder.setPositiveButton(R.string.yes,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							if (mParking == null)
+								return;
+							ParkingDB parkingDB = ParkingDB.getInstance();
+							parkingDB.open(false);
+							parkingDB.delete(mParking.getParkingId());
+							parkingDB.close();
+							onBackPressed(); // return to the previous activity
+						}
+					});
+			builder.setNegativeButton(R.string.no,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							return;
+						}
+					});
+
+			AlertDialog dialog = builder.create();
+			dialog.show();
+			break;
+		}
+			
+		return true;
 	}
 
 	public void onStop() {
@@ -161,7 +218,46 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 									.toString()) + 1));
 			break;
 		case R.id.add_parking:
-			// TODO
+			Address parkingAddress = new Address(mStreet.getText().toString(),
+					Integer.parseInt(mNum.getText().toString()), mCity
+							.getText().toString(), Integer.parseInt(mZip
+							.getText().toString()), mCountry.getText()
+							.toString());
+			
+			Geocoder geocoder = new Geocoder(this);
+			try {
+				android.location.Address address = geocoder
+						.getFromLocationName(parkingAddress.toString(), 1).get(
+								0);
+				parkingAddress.setLatitude(address.getLatitude());
+				parkingAddress.setLongitude(address.getLongitude());
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			
+			int userID = ((CharlyApplication) getApplication()).getCurrentUser().getId();
+			Parking newParking = new Parking(mName.getText().toString(),
+					mDefibrilator.isChecked(), Integer.parseInt(mPlaces
+							.getText().toString()), Integer.parseInt(mPlaces
+							.getText().toString()), 150, mDisabled.isChecked(),
+					userID);
+
+			ParkingDB parkingDB = ParkingDB.getInstance();
+			parkingDB.open(true);
+			parkingDB.save(newParking);
+			parkingDB.close();
+			
+			parkingAddress.setParkingID(newParking.getParkingId());
+			newParking.setAddress(parkingAddress);
+
+			AddressDB addressDB = AddressDB.getInstance();
+			addressDB.open(true);
+			addressDB.save(parkingAddress);
+			addressDB.close();
+
+
+			this.onBackPressed();
 			break;
 		}
 

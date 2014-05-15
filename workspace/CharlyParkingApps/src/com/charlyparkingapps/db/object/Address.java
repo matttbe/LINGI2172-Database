@@ -32,6 +32,17 @@ public class Address implements Model {
 		this.setLongitude(longitudeParam);
 	}
 
+	public Address(String streetParam, int numberParam,
+			String cityParam, int zipParam, String countryParam) {
+		this.setStreet(streetParam);
+		this.setNumber(numberParam);
+		this.setCity(cityParam);
+		this.setZip(zipParam);
+		this.setCountry(countryParam);
+		this.setLatitude(0.0);
+		this.setLongitude(0.0);
+	}
+
 	public Address(Cursor c) {
 		createFromCursor(c);
 	}

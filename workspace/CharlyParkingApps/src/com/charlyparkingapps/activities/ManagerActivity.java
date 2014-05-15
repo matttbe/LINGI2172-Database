@@ -9,7 +9,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -77,8 +76,7 @@ public class ManagerActivity extends Activity
 				Parking parking = (Parking) adapter.getItem (position);
 				Intent intent = new Intent (ManagerActivity.this,
 						ParkingEditActivity.class);
-				intent.putExtra (ParkingEditActivity.KEY_PARKING_ID,
-						parking.getParkingId ());
+				intent.putExtra(ParkingEditActivity.KEY_PARKING_SERIAL, parking);
 				startActivityForResult (intent, 0);
 			}
 		});
@@ -109,7 +107,8 @@ public class ManagerActivity extends Activity
 		switch (item.getItemId ())
 		{
 			case android.R.id.home:
-				NavUtils.navigateUpFromSameTask (this);
+			// marche pas ! NavUtils.navigateUpFromSameTask (this);
+			onBackPressed();
 				return true;
 			case R.id.action_add_parking:
 				intent = new Intent (this, ParkingEditActivity.class);
