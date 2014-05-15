@@ -4,16 +4,19 @@ import java.util.Date;
 
 import android.database.Cursor;
 
+import com.charlyparkingapps.db.ParkingDB;
+import com.charlyparkingapps.db.UserDB;
+
 public class History implements Model {
-	// CREATE TABLE "History" ("user" INTEGER PRIMARY KEY NOT NULL ,"start"
-	// DATETIME NOT NULL DEFAULT (null) ,"end" DATETIME NOT NULL DEFAULT (null)
-	// ,"parking" INTEGER NOT NULL );
 
 	private int historyId;
 	private int userId;
 	private Date start;
 	private Date end;
 	private int parkingId;
+
+	private User user;
+	private Parking parking;
 
 	public History(int userIdParam, Date startParam, Date endParam,
 			int parkingIdParam) {
@@ -94,6 +97,45 @@ public class History implements Model {
 
 	public void setParking_id(int parking_id) {
 		this.parkingId = parking_id;
+	}
+
+	public void loadUser() {
+		UserDB u = UserDB.getInstance();
+		u.open(false);
+		this.setUser((User) u.getById(this.getUserId()));
+		u.close();
+	}
+
+	public User getUser() {
+		if (user == null) {
+			loadUser();
+		}
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+		this.setParking_id(parking.getParkingId());
+	}
+
+	public void loadParking() {
+		ParkingDB p = ParkingDB.getInstance();
+		p.open(false);
+		this.setParking((Parking) p.getById(this.getParkingId()));
+		p.close();
+	}
+
+	public Parking getParking() {
+		if (parking == null) {
+			loadParking();
+		}
+		return this.parking;
+
+	}
+
+	public void setParking(Parking parking) {
+		this.parking = parking;
+		this.setParking_id(parking.getParkingId());
 	}
 
 }

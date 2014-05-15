@@ -101,6 +101,7 @@ public class Corner implements Model {
 
 	public void setParking(Parking parking) {
 		this.parking = parking;
+		this.setParkingID(parking.getParkingId());
 	}
 
 	/**
