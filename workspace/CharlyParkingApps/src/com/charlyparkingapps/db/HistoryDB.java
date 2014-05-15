@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.charlyparkingapps.db.object.Fuel;
 import com.charlyparkingapps.db.object.History;
 import com.charlyparkingapps.db.object.Model;
+import com.charlyparkingapps.db.object.User;
 
 public class HistoryDB extends ObjectRepository {
 	// Singleton stuff
@@ -59,6 +60,14 @@ public class HistoryDB extends ObjectRepository {
 	public List<Model> getAllOrdered() {
 		Cursor cursor = myBDD.query(getTablename(), getAllColumns(), null,
 				null, null, null, "start");
+
+		return convertCursorToListObject(cursor);
+	}
+	
+	public List<Model> getAllHistoriesOrdered(User user) {
+		Cursor cursor = myBDD.query(getTablename(), getAllColumns(), "user=?",
+				new String[] { String.valueOf(user.getId()) }, null, null,
+				"start");
 
 		return convertCursorToListObject(cursor);
 	}
