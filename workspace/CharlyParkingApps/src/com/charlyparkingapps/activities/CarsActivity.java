@@ -1,8 +1,10 @@
 package com.charlyparkingapps.activities;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import android.app.Activity;
 import android.content.Context;
@@ -27,8 +29,10 @@ import android.widget.TextView;
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.CarDB;
+import com.charlyparkingapps.db.HistoryDB;
 import com.charlyparkingapps.db.UserDB;
 import com.charlyparkingapps.db.object.Car;
+import com.charlyparkingapps.db.object.History;
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.User;
 
@@ -66,7 +70,8 @@ public class CarsActivity extends Activity {
 
 	private void addCarsInList(List<Model> cars) {
 		final StableArrayAdapter adapter = new StableArrayAdapter(this,
-				R.layout.cars_item_view, cars, favoriteCar.getCarId());
+				R.layout.cars_item_view, cars,
+				favoriteCar != null ? favoriteCar.getCarId() : 0);
 
 		listView.setAdapter(adapter);
 
@@ -217,8 +222,20 @@ public class CarsActivity extends Activity {
 			// ______________ DATA
 			Car car = (Car) getItem(position);
 			textViewFirstLine.setText(String.valueOf(car.getName()));
-			textViewSecondLine.setText(getString(R.string.height_colon) + " "
-					+ car.getHeight());
+			String desc = getString(R.string.height_colon) + " "
+					+ car.getHeight() + " ";
+
+			HistoryDB historyDB = HistoryDB.getInstance();
+			historyDB.open(false);
+			List<Model> currentHistory = historyDB.getCurrentParking(car);
+			historyDB.close();
+			if (currentHistory.size() > 0) {
+				History history = (History) currentHistory.get(0);
+				Date start = history.getStart();
+				long diff = new Date().getTime() - start.getTime();
+				desc += " - " + getTimeMinutes(diff);
+			}
+			textViewSecondLine.setText(desc);
 
 			// select car
 			if (car.getCarId() == this.favoriteCarID)
@@ -233,5 +250,29 @@ public class CarsActivity extends Activity {
 		listView.setAdapter(null);
 		addUserCars();
 		System.out.println("Result");
+	}
+
+	public static String getTimeMinutes(long diff) {
+		String desc = "";
+		long diffDay = TimeUnit.MILLISECONDS.toDays(diff);
+		if (diffDay > 0) {
+			diff -= TimeUnit.MILLISECONDS.convert(diffDay, TimeUnit.DAYS);
+			desc += diffDay + " days ";
+		}
+		long diffHour = TimeUnit.MILLISECONDS.toHours(diff);
+		if (diffHour > 0) {
+			diff -= TimeUnit.MILLISECONDS.convert(diffHour, TimeUnit.HOURS);
+			desc += diffHour + " h ";
+		}
+		long diffMinutes = TimeUnit.MILLISECONDS.toMinutes(diff);
+		if (diffMinutes > 0) {
+			System.out.println(diff);
+			diff -= TimeUnit.MILLISECONDS
+					.convert(diffMinutes, TimeUnit.MINUTES);
+			System.out.println(diff);
+			desc += diffMinutes + " min ";
+		}
+		desc += TimeUnit.MILLISECONDS.toSeconds(diff) + " sec";
+		return desc;
 	}
 }
