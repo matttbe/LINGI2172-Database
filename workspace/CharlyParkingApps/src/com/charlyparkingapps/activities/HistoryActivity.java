@@ -38,7 +38,7 @@ public class HistoryActivity extends Activity
 		// Show the Up button in the action bar.
 		setupActionBar ();
 
-
+		addUserHistory ();
 	}
 
 	private void addUserHistory ()
