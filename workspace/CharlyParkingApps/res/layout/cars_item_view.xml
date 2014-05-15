@@ -27,20 +27,31 @@
         android:focusable="true"
         android:textSize="16sp" />
 
-    <ImageButton
-        android:id="@+id/car_map"
-        android:layout_height="30dp"
-        android:layout_width="30dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
+    <Button
+        android:id="@+id/cars_row_parking"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cars_item_secondLine"
+        android:layout_toLeftOf="@+id/cars_row_car_map"
+        android:text="@string/p" />
+
+    <Button
+        android:id="@+id/cars_row_car_map"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/cars_item_secondLine"
+        android:layout_alignRight="@+id/cars_item_secondLine"
         android:contentDescription="@string/app_name"
-        android:src="@drawable/map_logo" />
+        android:text="@string/m" />
 
     <RadioButton
         android:id="@+id/selected_car"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/car_map"
-        android:layout_toLeftOf="@+id/car_map" />
+        android:layout_alignBaseline="@+id/cars_row_parking"
+        android:layout_alignBottom="@+id/cars_row_parking"
+        android:layout_toLeftOf="@+id/cars_row_parking" />
 
 </RelativeLayout>

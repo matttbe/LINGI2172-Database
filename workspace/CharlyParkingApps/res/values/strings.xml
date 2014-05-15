@@ -54,7 +54,7 @@
     <string name="stationnary_list">Parking where you are currently parked</string>
     <string name="action_show_all_cars_map">Show all cars on map</string>
     <string name="action_show_parked_cars_map">Show parked cars on map</string>
-	<string name="name">Name : </string>
+	<string name="name">Name: </string>
 	<string name="title_activity_parking_edit">Edit Parking</string>
 	<string name="add_parking">Add parking</string>
 	<string name="address">Address</string>
@@ -63,4 +63,6 @@
 	<string name="zip">Zip code</string>
 	<string name="city">City</string>
 	<string name="country">Country</string>
+	<string name="p">P</string>
+	<string name="m">M</string>
 </resources>

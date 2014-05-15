@@ -19,9 +19,9 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -35,6 +35,7 @@ import com.charlyparkingapps.db.UserDB;
 import com.charlyparkingapps.db.object.Car;
 import com.charlyparkingapps.db.object.History;
 import com.charlyparkingapps.db.object.Model;
+import com.charlyparkingapps.db.object.Parking;
 import com.charlyparkingapps.db.object.User;
 
 public class CarsActivity extends Activity {
@@ -222,10 +223,10 @@ public class CarsActivity extends Activity {
 				}
 			});
 
-			// ______________ ICON
+			// ______________ MAP
 
-			ImageButton mapButton = (ImageButton) rowView
-					.findViewById(R.id.car_map);
+			Button mapButton = (Button) rowView
+					.findViewById(R.id.cars_row_car_map);
 			mapButton.setOnClickListener(new OnClickListener() {
 
 				@Override
@@ -238,6 +239,10 @@ public class CarsActivity extends Activity {
 				}
 			});
 
+			// _____________ Parking
+			Button parkingButton = (Button) rowView
+					.findViewById(R.id.cars_row_parking);
+
 			// ______________ DATA
 			Car car = (Car) getItem(position);
 			textViewFirstLine.setText(String.valueOf(car.getName()));
@@ -248,12 +253,27 @@ public class CarsActivity extends Activity {
 			historyDB.open(false);
 			List<Model> currentHistory = historyDB.getCurrentParking(car);
 			historyDB.close();
+
 			if (currentHistory.size() > 0) {
-				History history = (History) currentHistory.get(0);
+				final History history = (History) currentHistory.get(0);
 				Date start = history.getStart();
 				long diff = new Date().getTime() - start.getTime();
 				desc += " - " + getTimeMinutes(diff);
+
+				parkingButton.setOnClickListener(new OnClickListener() {
+
+					@Override
+					public void onClick(View v) {
+						Parking parking = history.getParking();
+						Intent intent = new Intent(CarsActivity.this,
+								MainActivity.class);
+						intent.putExtra(MainActivity.KEY_PARKING, parking);
+						startActivity(intent);
+					}
+				});
 			}
+ else
+				parkingButton.setVisibility(View.GONE);
 			textViewSecondLine.setText(desc);
 
 			// select car
