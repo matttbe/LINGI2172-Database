@@ -52,6 +52,7 @@ public class HistoryDB extends ObjectRepository {
 	@Override
 	public void populate(SQLiteDatabase db) {
 		db.execSQL("INSERT INTO History VALUES(1, 1, '2007-01-01 10:00:00', '2007-01-01 11:00:00', 1,1);");
+		db.execSQL("INSERT INTO History VALUES(2, 1, '2014-05-15 18:00:00', NULL, 1, 1);");
 	}
 
 	@Override
@@ -77,7 +78,7 @@ public class HistoryDB extends ObjectRepository {
 
 	public List<Model> getAllCurrentHistoriesOrdered(User user) {
 		Cursor cursor = myBDD.query(getTablename(), getAllColumns(),
-				"user=? AND end=NULL",
+				"user=? AND end IS NULL",
 				new String[] { String.valueOf(user.getId()) }, null, null,
 				"start");
 
@@ -86,7 +87,7 @@ public class HistoryDB extends ObjectRepository {
 
 	public List<Model> getCurrentParking(Car car) {
 		Cursor cursor = myBDD.query(getTablename(), getAllColumns(),
-				"car=? AND end=NULL",
+				"car=? AND end IS NULL",
 				new String[] { String.valueOf(car.getCarId()) }, null, null,
 				"start");
 
