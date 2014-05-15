@@ -46,9 +46,9 @@ public class UserDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO User VALUES(1, 0, 'user','abc')");
-		db.execSQL("INSERT INTO User VALUES(2, 0, 'user2','abc')");
-		db.execSQL("INSERT INTO User VALUES(3, 0, 'user3','abc')");
+		db.execSQL("INSERT INTO User VALUES(1, 0, 'user','abcd')");
+		db.execSQL("INSERT INTO User VALUES(2, 0, 'user2','abcd')");
+		db.execSQL("INSERT INTO User VALUES(3, 0, 'user3','abcd')");
 	}
 
 	@Override
