@@ -5,6 +5,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.LayoutInflater;
@@ -57,7 +58,10 @@ public class CarsActivity extends Activity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, final View view,
 					int position, long id) {
-				// TODO
+				Car car = (Car) adapter.getItem(position);
+				Intent intent = new Intent(CarsActivity.this,
+						CarEditActivity.class);
+				intent.putExtra(CarEditActivity.KEY_CAR_SERIAL, car);
 			}
 		});
 	}
