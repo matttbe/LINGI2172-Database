@@ -77,6 +77,5 @@
     <string name="title_activity_manager">ManagerActivity</string>
     <string name="action_add_parking">Add Parking</string>
     <string name="action_show_all_parkings_map">Show my parkings on map</string>
-    
-
+	<string name="radius">Radius (Km) : </string>
 </resources>

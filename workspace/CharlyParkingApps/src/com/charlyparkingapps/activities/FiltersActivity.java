@@ -45,6 +45,8 @@ public class FiltersActivity extends Activity implements
 	private Button mFavoriteButton;
 	private Button mUsingButton;
 	private Button mMineButton;
+	private Button mMinus;
+	private Button mPlus;
 
 	// Spinner
 	private Spinner mSortSpinner;
@@ -53,6 +55,7 @@ public class FiltersActivity extends Activity implements
 	private TextView mTotalPlacesTV;
 	private TextView mFreePlacesTV;
 	private TextView mPriceTV;
+	private TextView mRadius;
 
 	// Strings for preferences
 	public final static String DEFIBRILATOR_PREF = "defibrilator";
@@ -66,6 +69,7 @@ public class FiltersActivity extends Activity implements
 	public final static String FREEPLACES_PREF = "free places";
 	public final static String SORT_PREF = "sorting";
 	public final static String PRICE_PREF = "price";
+	public final static String RADIUS_PREF = "radius";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +112,10 @@ public class FiltersActivity extends Activity implements
 		this.mUsingButton.setOnClickListener(this);
 		this.mMineButton = (Button) findViewById(R.id.mine_button);
 		this.mMineButton.setOnClickListener(this);
+		this.mMinus = (Button) findViewById(R.id.radius_minus);
+		this.mMinus.setOnClickListener(this);
+		this.mPlus = (Button) findViewById(R.id.radius_plus);
+		this.mPlus.setOnClickListener(this);
 
 		// Spinner
 		this.mSortSpinner = (Spinner) findViewById(R.id.sort_spinner);
@@ -125,6 +133,8 @@ public class FiltersActivity extends Activity implements
 		this.mFreePlacesTV.setText("" + this.mFreePlacesSB.getProgress());
 		this.mPriceTV = (TextView) findViewById(R.id.price_tv);
 		this.mPriceTV.setText("" + this.mPriceSB.getProgress());
+		this.mRadius = (TextView) findViewById(R.id.radius);
+		this.mRadius.setText(this.mPreferences.getInt(RADIUS_PREF, 100));
 	}
 
 	// ________________ LISTERNER FOR THE MENU
@@ -210,6 +220,21 @@ public class FiltersActivity extends Activity implements
 		// TODO Auto-generated method stub
 		// Envoyer vers une liste avec les infos demandées ?
 
+		switch (v.getId()) {
+		case R.id.radius_minus:
+			int radius_min = Integer.parseInt(this.mRadius.getText()
+					.toString()) - 1;
+			this.mRadius.setText("" + radius_min);
+			this.mEditor.putInt(RADIUS_PREF, radius_min);
+			break;
+		case R.id.radius_plus:
+			int radius_plus = Integer.parseInt(this.mRadius.getText()
+					.toString()) + 1;
+			this.mRadius.setText("" + radius_plus);
+			this.mEditor.putInt(RADIUS_PREF, radius_plus);
+			break;
+		}
+		this.mEditor.commit();
 	}
 
 	// Spinner listener
