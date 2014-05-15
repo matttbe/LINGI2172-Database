@@ -1,11 +1,15 @@
 package com.charlyparkingapps.db.object;
 
+import java.io.Serializable;
+
 import android.database.Cursor;
 
 import com.charlyparkingapps.db.FuelDB;
 import com.charlyparkingapps.db.UserDB;
 
-public class Car implements Model {
+public class Car implements Model, Serializable {
+
+	private static final long serialVersionUID = 3780068181871904047L;
 
 	private int carId;
 	private int height = 0;

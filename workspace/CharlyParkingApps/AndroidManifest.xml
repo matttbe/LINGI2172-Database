@@ -98,7 +98,7 @@
                 android:value="com.charlyparkingapps.activities.ProfileActivity" />
         </activity>
         <activity
-            android:name="com.charlyparkingapps.CarEditActivity"
+            android:name="com.charlyparkingapps.activities.CarEditActivity"
             android:label="@string/title_activity_car_edit" >
         </activity>
     </application>

@@ -1,6 +1,5 @@
-package com.charlyparkingapps;
+package com.charlyparkingapps.activities;
 
-import android.app.ActionBar;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,10 +15,15 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.charlyparkingapps.R;
+import com.charlyparkingapps.db.CarDB;
 import com.charlyparkingapps.db.object.Car;
 
 public class CarEditActivity extends Activity implements
 		OnCheckedChangeListener, OnClickListener {
+
+	public static final String KEY_CAR_ID = "carID";
+	public static final String KEY_CAR_SERIAL = "carSerial";
 
 	private Car mCar;
 
@@ -29,27 +33,44 @@ public class CarEditActivity extends Activity implements
 	private Button mPlusHeight;
 	private Button mMinusHeight;
 
-	private boolean mRemoved = false;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_car_edit);
+		getActionBar().setDisplayHomeAsUpEnabled(true);
 
-		// TODO get the car and updat field with good infos (put car id in the
-		// intent)
+		getCar();
+		if (mCar != null)
+			initView();
+	}
 
-		this.mCarName = (EditText) findViewById(R.id.car_name_edit);
-		this.mFuelRadio = (RadioGroup) findViewById(R.id.radio_fuel);
-		this.mFuelRadio.setOnCheckedChangeListener(this);
-		this.mCarHeight = (EditText) findViewById(R.id.car_edit_height);
-		this.mPlusHeight = (Button) findViewById(R.id.height_plus);
-		this.mPlusHeight.setOnClickListener(this);
-		this.mMinusHeight = (Button) findViewById(R.id.height_minus);
-		this.mMinusHeight.setOnClickListener(this);
+	private void getCar() {
+		int carId = getIntent().getIntExtra(KEY_CAR_ID, 0);
 
-		ActionBar actionBar = getActionBar();
-		actionBar.setDisplayHomeAsUpEnabled(true);
+		if (carId > 0) {
+			CarDB carDB = CarDB.getInstance();
+			carDB.open(false);
+			this.mCar = (Car) carDB.getById(carId);
+			carDB.close();
+			return;
+		}
+
+		this.mCar = (Car) getIntent().getSerializableExtra(KEY_CAR_SERIAL);
+	}
+
+	private void initView() {
+		mCarName = (EditText) findViewById(R.id.car_name_edit);
+		mFuelRadio = (RadioGroup) findViewById(R.id.radio_fuel);
+		mFuelRadio.setOnCheckedChangeListener(this);
+		mCarHeight = (EditText) findViewById(R.id.car_edit_height);
+		mPlusHeight = (Button) findViewById(R.id.height_plus);
+		mPlusHeight.setOnClickListener(this);
+		mMinusHeight = (Button) findViewById(R.id.height_minus);
+		mMinusHeight.setOnClickListener(this);
+
+		// mCarName.setText(mCar.getCarName); // TODO
+		// mFuelRadio.set // TODO
+		mCarHeight.setText(String.valueOf(mCar.getHeight()));
 	}
 
 	@Override
@@ -79,8 +100,12 @@ public class CarEditActivity extends Activity implements
 			builder.setPositiveButton(R.string.yes,
 					new DialogInterface.OnClickListener() {
 						public void onClick(DialogInterface dialog, int id) {
-							// TODO : delete the car form DB
-							mRemoved = true;
+							if (mCar == null)
+								return;
+							CarDB carDB = CarDB.getInstance();
+							carDB.open(false);
+							carDB.delete(mCar.getCarId());
+							carDB.close();
 							onBackPressed(); // return to the previous activity
 						}
 					});
@@ -95,9 +120,6 @@ public class CarEditActivity extends Activity implements
 
 	@Override
 	public void onBackPressed() {
-		if (!mRemoved) {
-			// TODO : add modifications to the db !
-		}
 		Toast saved = Toast.makeText(this, R.string.modifs_saved,
 				Toast.LENGTH_LONG);
 		saved.show();
