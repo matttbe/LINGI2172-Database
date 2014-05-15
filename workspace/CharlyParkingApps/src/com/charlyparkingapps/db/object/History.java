@@ -52,9 +52,15 @@ public class History implements Model {
 		case 1:
 			return String.valueOf(this.getCarId());
 		case 2:
-			return this.getStart().toString();
+				return iso8601Format.format (this.getStart ())
+						.toString ();
 		case 3:
-			return this.getEnd().toString();
+				if (this.getEnd () == null)
+				{
+					return null;
+				}
+				return iso8601Format.format (this.getEnd ())
+						.toString ();
 		case 4:
 			return String.valueOf(this.getParkingId());
 		case 5:

@@ -75,6 +75,22 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        
+        <Button
+        android:id="@+id/action_use_parking"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/action_use_parking" />
+        
+        <Button
+        android:id="@+id/action_use_parking_end"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:text="@string/action_use_parking_end" />
     </LinearLayout>
+
+    
 
 </RelativeLayout>

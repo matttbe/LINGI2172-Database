@@ -78,4 +78,11 @@
     <string name="action_add_parking">Add Parking</string>
     <string name="action_show_all_parkings_map">Show my parkings on map</string>
 	<string name="radius">Radius (Km) : </string>
+	<string name="action_use_parking">Park Here!</string>
+	<string name="action_use_parking_end">Leave this parking</string>
+	
+	
+	
+	
+	
 </resources>
