@@ -61,7 +61,7 @@ public class ParkingActivity extends Activity {
 		
 		ProgressBar pb = (ProgressBar) findViewById (R.id.freePlacesProgressBar);
 		pb.setMax (parking.getTotalPlaces ());
-		pb.setProgress (parking.getFreePlaces ());
+		pb.setProgress(parking.getTotalPlaces() - parking.getFreePlaces());
 
 	}
 
