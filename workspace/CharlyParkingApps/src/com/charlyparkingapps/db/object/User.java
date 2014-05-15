@@ -12,9 +12,9 @@ public class User implements Model {
 	private String username;
 	private String password;
 	private UserType type;
-	private int my_favorite_carID;
+	private int myFavoriteCarID;
 
-	private Car my_favorite_car = null;
+	private Car myFavoriteCar = null;
 
 	private List<Model> allCars;
 
@@ -51,7 +51,7 @@ public class User implements Model {
 		case 3:
 			return String.valueOf(getPassword());
 		case 4:
-			return String.valueOf(getMy_favorite_carID());
+			return String.valueOf(getMyFavoriteCarID());
 
 		}
 		return String.valueOf(getId());
@@ -110,32 +110,32 @@ public class User implements Model {
 	public void loadFavoriteCar() {
 		CarDB c = CarDB.getInstance();
 		c.open(false);
-		Car car = (Car) c.getById(this.getMy_favorite_carID());
-		this.setMy_favorite_car(car);
+		Car car = (Car) c.getById(this.getMyFavoriteCarID());
+		this.setMyFavoriteCar(car);
 		c.close();
 	}
 
-	public Car getMy_favorite_car() {
-		if (my_favorite_carID == 0) {
+	public Car getMyFavoriteCar() {
+		if (myFavoriteCarID == 0) {
 			return null;
 		} else {
-			if (this.my_favorite_car == null) {
+			if (this.myFavoriteCar == null) {
 				loadFavoriteCar();
 			}
-			return this.my_favorite_car;
+			return this.myFavoriteCar;
 		}
 	}
 
-	public void setMy_favorite_car(Car my_favorite_car) {
-		this.my_favorite_car = my_favorite_car;
-		this.my_favorite_carID = this.my_favorite_car.getCarId();
+	public void setMyFavoriteCar(Car myFavoriteCar) {
+		this.myFavoriteCar = myFavoriteCar;
+		this.myFavoriteCarID = this.myFavoriteCar.getCarId();
 	}
 
-	public int getMy_favorite_carID() {
-		return my_favorite_carID;
+	public int getMyFavoriteCarID() {
+		return myFavoriteCarID;
 	}
 
 	public void setMy_favorite_carID(int my_favorite_car) {
-		this.my_favorite_carID = my_favorite_car;
+		this.myFavoriteCarID = my_favorite_car;
 	}
 }
