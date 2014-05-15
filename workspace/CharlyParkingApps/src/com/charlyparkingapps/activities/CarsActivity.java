@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -139,10 +140,24 @@ public class CarsActivity extends Activity {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			View rowView = inflater.inflate(R.layout.cars_item_view, parent,
 					false);
+
 			TextView textViewFirstLine = (TextView) rowView
 					.findViewById(R.id.cars_item_firstLine);
 			TextView textViewSecondLine = (TextView) rowView
 					.findViewById(R.id.cars_item_secondLine);
+
+			OnClickListener onClickListener = new OnClickListener() {
+				@Override
+				public void onClick(View v) {
+					Car car = (Car) getItem(position);
+					Intent intent = new Intent(CarsActivity.this,
+							MainActivity.class);
+					intent.putExtra(MainActivity.KEY_CAR, car);
+					startActivity(intent);
+				}
+			};
+			textViewFirstLine.setOnClickListener(onClickListener);
+			textViewSecondLine.setOnClickListener(onClickListener);
 			
 			RadioButton selected = (RadioButton) rowView
 					.findViewById(R.id.selected_car);
