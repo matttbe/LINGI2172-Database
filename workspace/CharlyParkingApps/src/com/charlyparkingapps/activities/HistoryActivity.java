@@ -1,5 +1,6 @@
 package com.charlyparkingapps.activities;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -173,13 +174,21 @@ public class HistoryActivity extends Activity
 					.findViewById (R.id.cell_history_parking);
 			TextView textViewSecondLine = (TextView) rowView
 					.findViewById (R.id.cell_history_car);
+			TextView textViewThirdLine = (TextView) rowView
+					.findViewById (R.id.cell_history_date);
+			TextView textViewFourthLine = (TextView) rowView
+					.findViewById (R.id.cell_history_time);
 
 			History h = (History) getItem (position);
-			textViewFirstLine.setText (String.valueOf (h.getParking ()
-					.getName ()));
-			System.out.println ("Test " + textViewSecondLine == null);
-			textViewSecondLine.setText (getString (R.string.height_colon) + " "
+			textViewFirstLine.setText (getString (R.string.parking) + " "
+					+ h.getParking ().getName ());
+			textViewSecondLine.setText (getString (R.string.car) + " "
 					+ h.getCar ().getName ());
+			textViewThirdLine.setText (getString (R.string.time) + " "
+					+ (h.getEnd ().getHours () - h.getStart ().getHours ())
+					+ " " + getString (R.string.hour_time_separator) + " "
+					+ (h.getEnd ().getMinutes () - h.getStart ().getMinutes ())
+					% 60 + " " + getString (R.string.minutes_time_separator));
 
 			return rowView;
 		}
@@ -225,13 +234,23 @@ public class HistoryActivity extends Activity
 					.findViewById (R.id.cell_stationnary_parking);
 			TextView textViewSecondLine = (TextView) rowView
 					.findViewById (R.id.cell_stationnary_car);
+			TextView textViewThirdLine = (TextView) rowView
+					.findViewById (R.id.cell_stationnary_from);
+			TextView textViewFourthLine = (TextView) rowView
+					.findViewById (R.id.cell_stationnary_hourly_rate);
 
 			History h = (History) getItem (position);
-			textViewFirstLine.setText (String.valueOf (h.getParking ()
-					.getName ()));
-			System.out.println ("Test " + textViewSecondLine == null);
-			textViewSecondLine.setText (getString (R.string.height_colon) + " "
+			Date now = new Date();
+
+			textViewFirstLine.setText (getString (R.string.parking) + " "
+					+ h.getParking ().getName ());
+			textViewSecondLine.setText (getString (R.string.car) + " "
 					+ h.getCar ().getName ());
+			textViewThirdLine.setText (getString (R.string.from) + " "
+					+ (now.getHours () - h.getStart ().getHours ())+ " "
+					+ getString (R.string.hour_time_separator)+ " "
+					+ (now.getMinutes () - h.getStart ().getMinutes ()) % 60
+					+ " " + getString (R.string.minutes_time_separator));
 
 			return rowView;
 		}

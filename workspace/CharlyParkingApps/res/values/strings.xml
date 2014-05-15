@@ -68,4 +68,13 @@
 	<string name="become_manager">Become manager</string>
 	<string name="you_are_manager">You became manager !</string>
 	<string name="already_manager">You are already manager !</string>
+    <string name="car">Car: </string>
+    <string name="parking">Parking: </string>
+    <string name="time">Time: </string>
+    <string name="from">From: </string>
+    <string name="hour_time_separator"> hours and </string>
+    <string name="minutes_time_separator">minutes.</string>
+     
+    
+
 </resources>
