@@ -106,7 +106,7 @@ public class Car implements Model, Serializable {
 		return fuelId;
 	}
 
-	private void setFuelId(int fuel) {
+	public void setFuelId(int fuel) {
 		this.fuelId = fuel;
 	}
 

@@ -44,17 +44,19 @@ public class CarEditActivity extends Activity implements
 		getActionBar().setDisplayHomeAsUpEnabled(true);
 		this.initView();
 
+		getCar();
+
 		// Add a new car
-		if (getIntent().getIntExtra(KEY_CAR_ID, 0) == 0) {
+		if (mCar == null) {
 			this.mAddCar.setVisibility(View.VISIBLE);
 		}
 		// Edit an existing car
 		else {
-			getCar();
-			if (mCar != null)
-				// mCarName.setText(mCar.getCarName); // TODO
-				// mFuelRadio.set // TODO
+			if (mCar != null) {
+				mCarName.setText(mCar.getName());
+				mFuelRadio.check(mCar.getFuelId() - 1);
 				mCarHeight.setText(String.valueOf(mCar.getHeight()));
+			}
 		}
 	}
 
@@ -121,6 +123,12 @@ public class CarEditActivity extends Activity implements
 							onBackPressed(); // return to the previous activity
 						}
 					});
+			builder.setNegativeButton(R.string.no,
+					new DialogInterface.OnClickListener() {
+						public void onClick(DialogInterface dialog, int id) {
+							return;
+						}
+					});
 
 			AlertDialog dialog = builder.create();
 			dialog.show();
@@ -132,6 +140,16 @@ public class CarEditActivity extends Activity implements
 
 	@Override
 	public void onBackPressed() {
+		if (mCar != null) {
+			this.mCar.setHeight(Integer.parseInt(this.mCarHeight.getText()
+					.toString()));
+			this.mCar.setName(this.mCarName.getText().toString());
+			this.mCar.setFuelId(this.mSelectedFuel);
+			CarDB carDB = CarDB.getInstance();
+			carDB.open(true);
+			carDB.update(this.mCar);
+			carDB.close();
+		}
 		Toast saved = Toast.makeText(this, R.string.modifs_saved,
 				Toast.LENGTH_LONG);
 		saved.show();
