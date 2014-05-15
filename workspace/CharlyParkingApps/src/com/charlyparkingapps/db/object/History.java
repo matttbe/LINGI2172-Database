@@ -11,6 +11,7 @@ import android.util.Log;
 
 import com.charlyparkingapps.db.CarDB;
 import com.charlyparkingapps.db.ParkingDB;
+import com.charlyparkingapps.db.UserDB;
 
 public class History implements Model {
 
@@ -19,19 +20,22 @@ public class History implements Model {
 	private Date start;
 	private Date end;
 	private int parkingId;
+	private int userId;
 
 	private Car car;
 	private Parking parking;
+	private User user;
 
 	@SuppressLint("SimpleDateFormat")
 	DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public History(int carIdParam, Date startParam, Date endParam,
-			int parkingIdParam) {
+			int parkingIdParam, int UserIdParam) {
 		this.setCarId(carIdParam);
 		this.setStart(startParam);
 		this.setEnd(endParam);
 		this.setParkingId(parkingIdParam);
+		this.setUserId(UserIdParam);
 	}
 
 	public History(Cursor cursor) {
@@ -41,16 +45,18 @@ public class History implements Model {
 	@Override
 	public String getByInt(int i) {
 		switch (i) {
-		case 1:
+		case 0:
 			return String.valueOf(this.getHistoryId());
-		case 2:
+		case 1:
 			return String.valueOf(this.getCarId());
-		case 3:
+		case 2:
 			return this.getStart().toString();
-		case 4:
+		case 3:
 			return this.getEnd().toString();
-		case 5:
+		case 4:
 			return String.valueOf(this.getParkingId());
+		case 5:
+			return String.valueOf(this.getUserId());
 		default:
 			return String.valueOf(this.getHistoryId());
 
@@ -76,6 +82,7 @@ public class History implements Model {
 			this.setEnd(dateEnd);
 		}
 		this.setParkingId(c.getInt(4));
+		this.setUserId(c.getInt(5));
 		return this;
 	}
 
@@ -156,6 +163,33 @@ public class History implements Model {
 	public void setParking(Parking parking) {
 		this.parking = parking;
 		this.setParkingId(parking.getParkingId());
+	}
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
+
+	public void loadUser() {
+		UserDB u = UserDB.getInstance();
+		u.open(false);
+		this.setUser((User) u.getById(this.getUserId()));
+		u.close();
+	}
+
+	public User getUser() {
+		if (user == null) {
+			loadUser();
+		}
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+		this.setUserId(user.getId());
 	}
 
 }
