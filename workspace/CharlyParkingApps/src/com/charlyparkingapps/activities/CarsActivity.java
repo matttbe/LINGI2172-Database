@@ -25,8 +25,6 @@ import com.charlyparkingapps.db.object.Model;
 
 public class CarsActivity extends Activity {
 
-	public static final String KEY_CAR = "carID";
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,17 +32,18 @@ public class CarsActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 
-		int id = getIntent().getIntExtra(KEY_CAR, 0);
-		if (id > 0)
-			System.out.println("Should display car id: " + id); // TODO: not car ID butzList<Cars>
-		else
-			addUserCars();
+		// TODO: getintent().getIntent().getSerializableExtra(LIST);
+		addUserCars();
 	}
 
 	private void addUserCars() {
 		int userId = ((CharlyApplication) getApplication()).getCurrentUser()
 				.getId();
-		addCars(CarDB.getInstance().getAllCars(userId));
+		CarDB carDB = CarDB.getInstance();
+		carDB.open(false);
+		List<Model> allCars = CarDB.getInstance().getAllCars(userId);
+		carDB.close();
+		addCars(allCars);
 	}
 
 	private void addCars(List<Model> cars) {
