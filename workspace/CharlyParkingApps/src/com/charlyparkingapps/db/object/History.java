@@ -9,26 +9,26 @@ import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.util.Log;
 
+import com.charlyparkingapps.db.CarDB;
 import com.charlyparkingapps.db.ParkingDB;
-import com.charlyparkingapps.db.UserDB;
 
 public class History implements Model {
 
 	private int historyId;
-	private int userId;
+	private int carId;
 	private Date start;
 	private Date end;
 	private int parkingId;
 
-	private User user;
+	private Car car;
 	private Parking parking;
 
 	@SuppressLint("SimpleDateFormat")
 	DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-	public History(int userIdParam, Date startParam, Date endParam,
+	public History(int carIdParam, Date startParam, Date endParam,
 			int parkingIdParam) {
-		this.setUserId(userIdParam);
+		this.setCarId(carIdParam);
 		this.setStart(startParam);
 		this.setEnd(endParam);
 		this.setParkingId(parkingIdParam);
@@ -44,7 +44,7 @@ public class History implements Model {
 		case 1:
 			return String.valueOf(this.getHistoryId());
 		case 2:
-			return String.valueOf(this.getUserId());
+			return String.valueOf(this.getCarId());
 		case 3:
 			return this.getStart().toString();
 		case 4:
@@ -60,7 +60,7 @@ public class History implements Model {
 	@Override
 	public Model createFromCursor(Cursor c) {
 		this.setHistoryId(c.getInt(0));
-		this.setUserId(c.getInt(1));
+		this.setCarId(c.getInt(1));
 
 		Date dateStart = null;
 		Date dateEnd = null;
@@ -84,12 +84,12 @@ public class History implements Model {
 		this.historyId = historyId;
 	}
 
-	public int getUserId() {
-		return userId;
+	public int getCarId() {
+		return carId;
 	}
 
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setCarId(int carId) {
+		this.carId = carId;
 	}
 
 	public Date getStart() {
@@ -116,23 +116,23 @@ public class History implements Model {
 		this.parkingId = parkingId;
 	}
 
-	public void loadUser() {
-		UserDB u = UserDB.getInstance();
+	public void loadCar() {
+		CarDB u = CarDB.getInstance();
 		u.open(false);
-		this.setUser((User) u.getById(this.getUserId()));
+		this.setCar((Car) u.getById(this.getCarId()));
 		u.close();
 	}
 
-	public User getUser() {
-		if (user == null) {
-			loadUser();
+	public Car getCar() {
+		if (car == null) {
+			loadCar();
 		}
-		return user;
+		return car;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
-		this.setParkingId(parking.getParkingId());
+	public void setCar(Car car) {
+		this.car = car;
+		this.setCarId(car.getCarId());
 	}
 
 	public void loadParking() {
