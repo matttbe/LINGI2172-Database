@@ -8,7 +8,9 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.charlyparkingapps.db.object.ForbiddenFuel;
+import com.charlyparkingapps.db.object.Fuel;
 import com.charlyparkingapps.db.object.Model;
+import com.charlyparkingapps.db.object.Parking;
 
 public class ForbiddenFuelDB extends ObjectRepository {
 
@@ -43,12 +45,31 @@ public class ForbiddenFuelDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO ForbiddenFuel VALUES(1,'3');");
+		db.execSQL("INSERT INTO ForbiddenFuel VALUES(1,3);");
 	}
 
 	@Override
 	public boolean checkConstraint(Model entite) {
 		return true;
+	}
+
+	public List<Fuel> getForbiddentFuelforParking(Parking parking) {
+		Cursor c = myBDD.query(getTablename(), getAllColumns(),
+				"parking=?",
+				new String[] { String.valueOf(parking.getParkingId()) }, null,
+				null, null);
+
+		List<Fuel> liste = new ArrayList<Fuel>();
+		if (c.getCount() == 0)
+			return liste;
+		c.moveToFirst();
+		do {
+			ForbiddenFuel model = new ForbiddenFuel(c);
+			liste.add(model.getFuel());
+		} while (c.moveToNext());
+		c.close();
+
+		return liste;
 	}
 
 	@Override
