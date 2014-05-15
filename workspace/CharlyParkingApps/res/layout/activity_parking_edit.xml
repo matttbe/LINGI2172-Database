@@ -2,7 +2,88 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical" 
+    android:padding="7dp">
     
+    <LinearLayout
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal">
+    
+    	<TextView
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1"
+    		android:text="@string/name" />
+    		
+    	<EditText
+    		android:id="@+id/parking_edit_name"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="2" />
+    		
+    </LinearLayout>
+    
+    <LinearLayout
+    	android:layout_width="match_parent"
+    	android:layout_height="match_parent"
+    	android:orientation="horizontal">
+    
+    	<CheckBox
+    		android:id="@+id/parking_edit_defibrilator_cb"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1"
+    		android:text="@string/defibrilator" />
+    		
+    	<CheckBox
+    		android:id="@+id/parking_edit_disabled_cb"
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:layout_weight="1" 
+    		android:text="@string/handicaped_spot"/>
+    		
+    </LinearLayout>
+    
+    <LinearLayout
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:orientation="horizontal" 
+    	android:padding="7dp" >
+    	
+    	<TextView
+    		android:id="@+id/parking_edit_places"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="@string/total_places" />
+    	
+    	<TextView
+    		android:id="@+id/parking_edit_places"
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="150"/>
+    		
+    	<Button
+    		android:id="@+id/places_height_minus"	
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="-"
+    		android:layout_marginLeft="5dp" />
+    	
+    	<Button
+    		android:id="@+id/places_height_plus"	
+    		android:layout_width="wrap_content"
+    		android:layout_height="wrap_content"
+    		android:text="+"
+    		android:layout_marginLeft="5dp" />
+    	
+    </LinearLayout>
+    
+    <Button
+    	android:id="@+id/add_parking"	
+    	android:layout_width="fill_parent"
+    	android:layout_height="wrap_content"
+    	android:text="@string/add_parking"
+    	android:visibility="gone" />
 
 </LinearLayout>

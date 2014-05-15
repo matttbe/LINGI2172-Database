@@ -24,7 +24,7 @@
     <string name="total_places">total places</string>
     <string name="free_places">free places</string>
     <string name="one_free_place">Show only parking with at least one free place</string>
-    <string name="handicaped_spot">places for handicaped people</string>
+    <string name="handicaped_spot">Handicaped spots</string>
     <string name="favorites">favorites</string>
     <string name="using_parkings">used now</string>
     <string name="my_parkings">my parkings</string>
@@ -49,5 +49,8 @@
     <string name="modifs_saved">Modifications saved</string>
     <string name="action_add_car">Add a new car</string>
     <string name="height_colon">Height:</string>
-
+	<string name="name">Name : </string>
+	<string name="title_activity_parking_edit">Edit Parking</string>	
+	<string name="add_parking">Add parking</string>	
+	
 </resources>
