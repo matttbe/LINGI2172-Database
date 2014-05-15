@@ -12,6 +12,7 @@ public class Car implements Model, Serializable {
 	private static final long serialVersionUID = 3780068181871904047L;
 
 	private int carId;
+	private String name;
 	private int height = 0;
 	private int fuelId = 0;
 	private int userId;
@@ -21,8 +22,10 @@ public class Car implements Model, Serializable {
 	private User user;
 	private Fuel fuel;
 
-	public Car(int heightParam, int fuelIdParam, int userIdParam,
+	public Car(int heightParam, String nameParam, int fuelIdParam,
+			int userIdParam,
 			Double latitudeParam, Double longitudeParam) {
+		this.setName(nameParam);
 		this.setHeight(heightParam);
 		this.setFuelId(fuelIdParam);
 		this.setUserId(userIdParam);
@@ -40,14 +43,16 @@ public class Car implements Model, Serializable {
 		case 0:
 			return String.valueOf(this.getCarId());
 		case 1:
-			return String.valueOf(this.getHeight());
+			return this.getName();
 		case 2:
-			return String.valueOf(this.getFuelId());
+			return String.valueOf(this.getHeight());
 		case 3:
-			return String.valueOf(this.getUserId());
+			return String.valueOf(this.getFuelId());
 		case 4:
-			return String.valueOf(this.getLatitude());
+			return String.valueOf(this.getUserId());
 		case 5:
+			return String.valueOf(this.getLatitude());
+		case 6:
 			return String.valueOf(this.getLongitude());
 		default:
 			return String.valueOf(this.getCarId());
@@ -57,11 +62,12 @@ public class Car implements Model, Serializable {
 	@Override
 	public Model createFromCursor(Cursor c) {
 		this.setCarId(c.getInt(0));
-		this.setHeight(c.getInt(1));
-		this.setFuelId(c.getInt(2));
-		this.setUserId(c.getInt(3));
-		this.setLatitude(c.getDouble(4));
-		this.setLongitude(c.getDouble(5));
+		this.setName(c.getString(1));
+		this.setHeight(c.getInt(2));
+		this.setFuelId(c.getInt(3));
+		this.setUserId(c.getInt(4));
+		this.setLatitude(c.getDouble(5));
+		this.setLongitude(c.getDouble(6));
 		return this;
 	}
 
@@ -71,6 +77,14 @@ public class Car implements Model, Serializable {
 
 	public void setCarId(int carId) {
 		this.carId = carId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public int getHeight() {

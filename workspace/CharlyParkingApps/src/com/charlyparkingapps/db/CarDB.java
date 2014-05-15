@@ -24,7 +24,8 @@ public class CarDB extends ObjectRepository {
 		return sInstance;
 	}
 
-	private static final String[] ALL_COLUMNS = { "carId", "height", "fuel",
+	private static final String[] ALL_COLUMNS = { "carId", "name", "height",
+			"fuel",
 			"user", "latitude", "longitude" };
 
 	public CarDB(Context context) {
@@ -39,14 +40,14 @@ public class CarDB extends ObjectRepository {
 
 	@Override
 	public String getCreateRequest() {
-		return "CREATE TABLE Car (carId INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , height INTEGER DEFAULT 0, fuel INTEGER DEFAULT 0, user INTEGER NOT NULL, latitude DOUBLE, longitude DOUBLE, FOREIGN KEY(user) REFERENCES User(userId), FOREIGN KEY(fuel) REFERENCES Fuel(fuelId));";
+		return "CREATE TABLE Car (carId INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , name TEXT NOT NULL, height INTEGER DEFAULT 0, fuel INTEGER DEFAULT 0, user INTEGER NOT NULL, latitude DOUBLE, longitude DOUBLE, FOREIGN KEY(user) REFERENCES User(userId), FOREIGN KEY(fuel) REFERENCES Fuel(fuelId));";
 	}
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO Car VALUES(1,162,1,1,NULL,NULL); "
-				+ "INSERT INTO Car VALUES(2,165,3,1,50.667408,4.62202);"
-				+ "INSERT INTO Car VALUES(3,0,0,2,50.667408,4.62202);");
+		db.execSQL("INSERT INTO Car VALUES(1,\"My car\",162,1,1,NULL,NULL); "
+				+ "INSERT INTO Car VALUES(2,\"Pimp my car\",165,3,1,50.667408,4.62202);"
+				+ "INSERT INTO Car VALUES(3,\"My tailor is rich in my pimped car\",0,0,2,50.667408,4.62202);");
 
 	}
 
