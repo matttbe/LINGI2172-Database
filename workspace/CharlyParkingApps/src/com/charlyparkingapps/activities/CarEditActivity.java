@@ -15,6 +15,7 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.CarDB;
 import com.charlyparkingapps.db.object.Car;
@@ -32,16 +33,29 @@ public class CarEditActivity extends Activity implements
 	private TextView mCarHeight;
 	private Button mPlusHeight;
 	private Button mMinusHeight;
+	private Button mAddCar;
+
+	private int mSelectedFuel = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_car_edit);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+		this.initView();
 
-		getCar();
-		if (mCar != null)
-			initView();
+		// Add a new car
+		if (getIntent().getIntExtra(KEY_CAR_ID, 0) == 0) {
+			this.mAddCar.setVisibility(View.VISIBLE);
+		}
+		// Edit an existing car
+		else {
+			getCar();
+			if (mCar != null)
+				// mCarName.setText(mCar.getCarName); // TODO
+				// mFuelRadio.set // TODO
+				mCarHeight.setText(String.valueOf(mCar.getHeight()));
+		}
 	}
 
 	private void getCar() {
@@ -62,15 +76,13 @@ public class CarEditActivity extends Activity implements
 		mCarName = (EditText) findViewById(R.id.car_name_edit);
 		mFuelRadio = (RadioGroup) findViewById(R.id.radio_fuel);
 		mFuelRadio.setOnCheckedChangeListener(this);
-		mCarHeight = (EditText) findViewById(R.id.car_edit_height);
+		mCarHeight = (TextView) findViewById(R.id.car_edit_height);
 		mPlusHeight = (Button) findViewById(R.id.height_plus);
 		mPlusHeight.setOnClickListener(this);
 		mMinusHeight = (Button) findViewById(R.id.height_minus);
 		mMinusHeight.setOnClickListener(this);
-
-		// mCarName.setText(mCar.getCarName); // TODO
-		// mFuelRadio.set // TODO
-		mCarHeight.setText(String.valueOf(mCar.getHeight()));
+		mAddCar = (Button) findViewById(R.id.add_car);
+		mAddCar.setOnClickListener(this);
 	}
 
 	@Override
@@ -128,7 +140,7 @@ public class CarEditActivity extends Activity implements
 
 	@Override
 	public void onCheckedChanged(RadioGroup group, int pos) {
-		// TODO Auto-generated method stub
+		this.mSelectedFuel = pos + 1;
 
 	}
 
@@ -145,6 +157,16 @@ public class CarEditActivity extends Activity implements
 					.setText(""
 							+ (Integer.parseInt(this.mCarHeight.getText()
 									.toString()) + 1));
+			break;
+		case R.id.add_car:
+			CarDB carDB = CarDB.getInstance();
+			carDB.open(true);
+			carDB.save(new Car(Integer
+					.parseInt(mCarHeight.getText().toString()),
+					this.mSelectedFuel, ((CharlyApplication) getApplication())
+							.getCurrentUser().getId(), 0.0, 0.0));
+			carDB.close();
+			this.onBackPressed();
 			break;
 		}
 

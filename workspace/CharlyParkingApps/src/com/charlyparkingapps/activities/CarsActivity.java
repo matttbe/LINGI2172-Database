@@ -90,7 +90,9 @@ public class CarsActivity extends Activity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_add_car:
-			// TODO
+			Intent intent = new Intent(this, CarEditActivity.class);
+			this.startActivity(intent);
+			break;
 		}
 		return super.onOptionsItemSelected(item);
 	}

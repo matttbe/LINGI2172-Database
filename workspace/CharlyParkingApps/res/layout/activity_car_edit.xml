@@ -75,5 +75,12 @@
     	
     </LinearLayout>   
     
+    <Button
+    		android:id="@+id/add_car"	
+    		android:layout_width="fill_parent"
+    		android:layout_height="wrap_content"
+    		android:text="@string/action_add_car"
+    		android:visibility="gone"
+    		android:layout_marginLeft="5dp" />
 
 </LinearLayout>
