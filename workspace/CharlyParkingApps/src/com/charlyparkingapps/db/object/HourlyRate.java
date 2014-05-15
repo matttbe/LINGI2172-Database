@@ -1,5 +1,6 @@
 package com.charlyparkingapps.db.object;
 
+import java.sql.Time;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -18,17 +19,17 @@ public class HourlyRate implements Model {
 	// (null) ,"parking" INTEGER NOT NULL )
 
 	private int hourlyRateId;
-	private Date start;
-	private Date end;
+	private Time start;
+	private Time end;
 	private float cost;
 	private int parkingId;
 
 	private Parking parking;
 
 	@SuppressLint("SimpleDateFormat")
-	DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	DateFormat iso8601Format = new SimpleDateFormat("HH:mm:ss");
 
-	public HourlyRate(Date startParam, Date endParam, float costParam,
+	public HourlyRate(Time startParam, Time endParam, float costParam,
 			int parkingIdParam) {
 		this.setStart(startParam);
 		this.setEnd(endParam);
@@ -91,7 +92,7 @@ public class HourlyRate implements Model {
 		return start;
 	}
 
-	public void setStart(Date start) {
+	public void setStart(Time start) {
 		this.start = start;
 	}
 
@@ -99,7 +100,7 @@ public class HourlyRate implements Model {
 		return end;
 	}
 
-	public void setEnd(Date end) {
+	public void setEnd(Time end) {
 		this.end = end;
 	}
 
