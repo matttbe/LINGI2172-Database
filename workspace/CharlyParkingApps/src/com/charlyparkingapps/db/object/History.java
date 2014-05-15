@@ -204,6 +204,14 @@ public class History implements Model {
 		HourlyRateDB u = HourlyRateDB.getInstance();
 		u.open(false);
 		List<Model> allH = u.getAllHourlyRateForParking(p);
+		int index = 0;
+
+		while (index < allH.size() && time > 0) {
+			HourlyRate h = (HourlyRate) allH.get(index);
+			price = price + h.getCost();
+			time = time - (h.getEnd().getTime() - h.getStart().getTime());
+			index = index + 1;
+		}
 
 		// u.get
 		u.close();
