@@ -12,6 +12,7 @@
         android:ellipsize="marquee"
         android:singleLine="true"
         android:clickable="true"
+        android:focusable="true"
         android:textSize="12sp" />
 
     <TextView
@@ -23,13 +24,23 @@
         android:layout_centerHorizontal="true"
         android:gravity="center_vertical"
         android:clickable="true"
+        android:focusable="true"
         android:textSize="16sp" />
-    
+
+    <ImageButton
+        android:id="@+id/car_map"
+        android:layout_height="30dp"
+        android:layout_width="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/map_logo" />
+
     <RadioButton
         android:id="@+id/selected_car"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true" />
+        android:layout_alignTop="@+id/car_map"
+        android:layout_toLeftOf="@+id/car_map" />
 
 </RelativeLayout>

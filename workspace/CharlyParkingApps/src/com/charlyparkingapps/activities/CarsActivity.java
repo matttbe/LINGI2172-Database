@@ -18,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
 import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
@@ -35,6 +36,8 @@ public class CarsActivity extends Activity {
 	private RadioButton mSelectedRB;
 	private Car favoriteCar;
 
+	private ListView listView;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -42,7 +45,13 @@ public class CarsActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 
+		listView = (ListView) findViewById(R.id.cars_list);
+
 		// TODO: getintent().getIntent().getSerializableExtra(LIST);
+	}
+
+	protected void onStart() {
+		super.onStart();
 		addUserCars();
 	}
 
@@ -58,7 +67,6 @@ public class CarsActivity extends Activity {
 	}
 
 	private void addCarsInList(List<Model> cars) {
-		final ListView listView = (ListView) findViewById(R.id.cars_list);
 		final StableArrayAdapter adapter = new StableArrayAdapter(this,
 				R.layout.cars_item_view, cars, favoriteCar.getCarId());
 
@@ -141,6 +149,8 @@ public class CarsActivity extends Activity {
 			View rowView = inflater.inflate(R.layout.cars_item_view, parent,
 					false);
 
+			// _____________ TEXT
+
 			TextView textViewFirstLine = (TextView) rowView
 					.findViewById(R.id.cars_item_firstLine);
 			TextView textViewSecondLine = (TextView) rowView
@@ -151,18 +161,20 @@ public class CarsActivity extends Activity {
 				public void onClick(View v) {
 					Car car = (Car) getItem(position);
 					Intent intent = new Intent(CarsActivity.this,
-							MainActivity.class);
-					intent.putExtra(MainActivity.KEY_CAR, car);
+							CarEditActivity.class);
+					intent.putExtra(CarEditActivity.KEY_CAR_SERIAL, car);
 					startActivity(intent);
 				}
 			};
 			textViewFirstLine.setOnClickListener(onClickListener);
 			textViewSecondLine.setOnClickListener(onClickListener);
-			
+
+			// __________ RADIO
+
 			RadioButton selected = (RadioButton) rowView
 					.findViewById(R.id.selected_car);
 			selected.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-				
+
 				@Override
 				public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
 					// we click on another button: uncheck the previous one
@@ -182,6 +194,23 @@ public class CarsActivity extends Activity {
 				}
 			});
 
+			// ______________ ICON
+
+			ImageButton mapButton = (ImageButton) rowView
+					.findViewById(R.id.car_map);
+			mapButton.setOnClickListener(new OnClickListener() {
+
+				@Override
+				public void onClick(View v) {
+					Car car = (Car) getItem(position);
+					Intent intent = new Intent(CarsActivity.this,
+							MainActivity.class);
+					intent.putExtra(MainActivity.KEY_CAR, car);
+					startActivity(intent);
+				}
+			});
+
+			// ______________ DATA
 			Car car = (Car) getItem(position);
 			textViewFirstLine.setText(String.valueOf(car.getName()));
 			textViewSecondLine.setText(getString(R.string.height_colon) + " "
