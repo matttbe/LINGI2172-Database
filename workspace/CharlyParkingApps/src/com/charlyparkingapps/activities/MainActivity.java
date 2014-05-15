@@ -183,7 +183,7 @@ public class MainActivity extends Activity implements LocationListener {
 			ParkingDB parkingDB = ParkingDB.getInstance();
 			parkingDB.open(false);
 			List<Parking> parkings = new LinkedList<Parking>();
-			for (Model parking : parkingDB.getAll()) {
+			for (Model parking : parkingDB.getParkingsWithFreePlaces()) {
 				parkings.add((Parking) parking);
 			}
 			parkingDB.close();

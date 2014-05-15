@@ -121,6 +121,13 @@ public class ParkingDB extends ObjectRepository {
 		return this.convertCursorToListObject(cursor);
 	}
 
+	public List<Model> getParkingsWithFreePlaces() {
+		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
+				"freePlaces < totalPlaces", null, null, null, null);
+
+		return this.convertCursorToListObject(cursor);
+	}
+
 	public List<Model> getParkings(double latitude, double longitude,
 			float radius) {
 		double diffLat = ONE_METER * radius;
