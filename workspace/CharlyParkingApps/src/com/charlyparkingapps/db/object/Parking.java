@@ -112,11 +112,11 @@ public class Parking implements Model, Serializable {
 		this.maxHeight = maxHeight;
 	}
 
-	public boolean getHasPlacesForDisablesPeople() {
+	public boolean getHasPlacesForDisabledPeople() {
 		return disable;
 	}
 
-	public void setHasPlacesForDisablesPeople(boolean disable) {
+	public void setHasPlacesForDisabledPeople(boolean disable) {
 		this.disable = disable;
 	}
 

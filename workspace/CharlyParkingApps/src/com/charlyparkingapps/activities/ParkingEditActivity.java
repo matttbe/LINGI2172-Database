@@ -74,7 +74,8 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 			this.mCountry.setText(this.mParking.getAddress().getCountry());
 
 			this.mDefibrilator.setChecked(this.mParking.isDefibrillator());
-			//TODO => this.mDisabled.setChecked(this.mParking.isDisabled());
+			this.mDisabled.setChecked(this.mParking
+					.getHasPlacesForDisabledPeople());
 			this.mPlaces.setText(""+this.mParking.getTotalPlaces());
 		}
 	}
@@ -109,7 +110,8 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 
 			this.mParking.setName(this.mName.getText().toString());
 			this.mParking.setDefibrillator(this.mDefibrilator.isChecked());
-			// this.mParking.setDisabled(this.mDisabled.isChecked());
+			this.mParking.setHasPlacesForDisabledPeople(this.mDisabled
+					.isChecked());
 			this.mParking.setTotalPlaces(Integer.parseInt(this.mPlaces
 					.getText().toString()));
 
