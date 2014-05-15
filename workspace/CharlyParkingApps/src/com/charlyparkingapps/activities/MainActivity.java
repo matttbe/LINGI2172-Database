@@ -155,8 +155,9 @@ public class MainActivity extends Activity implements LocationListener {
 
 				case CAR:
 				case CARS_LIST:
-					intent = new Intent(MainActivity.this, CarsActivity.class);
-					intent.putExtra(CarsActivity.KEY_CAR, keyID);
+					intent = new Intent(MainActivity.this,
+							CarEditActivity.class);
+					intent.putExtra(CarEditActivity.KEY_CAR_ID, keyID);
 					startActivity(intent);
 					break;
 				}
