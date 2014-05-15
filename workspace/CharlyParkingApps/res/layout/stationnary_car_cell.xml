@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?><RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:padding="2dp">
+    
+    <TextView 
+        android:id="@+id/cell_stationnary_parking"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:textStyle="bold"
+    	android:layout_alignParentLeft="true"
+    	android:layout_alignParentTop="true"
+    	android:text="@string/test" />
+    
+    <TextView 
+        android:id="@+id/cell_stationnary_car"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_below="@id/cell_stationnary_parking"
+    	android:text="@string/test" />
+    
+    <TextView 
+        android:id="@+id/cell_stationnary_hourly_rate"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_alignParentRight="true"
+    	android:layout_alignParentBottom="true"
+    	android:text="@string/test" />
+    
+    <TextView 
+        android:id="@+id/cell_stationnary_from"
+        android:layout_width="wrap_content"
+    	android:layout_height="wrap_content"
+    	android:layout_above="@id/cell_stationnary_hourly_rate"
+    	android:layout_alignRight="@id/cell_stationnary_hourly_rate"
+    	android:text="@string/test" />
+    
+    
+
+</RelativeLayout>
