@@ -98,6 +98,17 @@ public class ParkingDB extends ObjectRepository {
 		return liste;
 	}
 
+	public List<Model> getParkingsWithFilters(String[] filters) {
+		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
+				"parking=pink AND name=Charly AND clinche=?",
+ new String[] {
+				// ici c'est les params ou sque ta mis les ? avant
+				}, null,
+				null, null);
+
+		return this.convertCursorToListObject(cursor);
+	}
+
 	public List<Model> getParkings(double latitude, double longitude,
 			float radius) {
 		double diffLat = ONE_METER * radius;
