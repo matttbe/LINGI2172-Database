@@ -8,12 +8,12 @@ public class ForbiddenFuel implements Model {
 	// INTEGER NOT NULL );
 
 	private int forbiddenFuelId;
-	private int parking_id;
-	private int forbiddent_id;
+	private int parkingId;
+	private int forbiddentId;
 
-	public ForbiddenFuel(int parking_idParam, int forbiddent_idParam) {
-		this.setParking_id(parking_idParam);
-		this.setForbiddenFuelId(forbiddent_idParam);
+	public ForbiddenFuel(int parkingIdParam, int forbiddentIdParam) {
+		this.setParkingId(parkingIdParam);
+		this.setForbiddenFuelId(forbiddentIdParam);
 	}
 
 	public ForbiddenFuel(Cursor cursor) {
@@ -26,9 +26,9 @@ public class ForbiddenFuel implements Model {
 		case 0:
 			return String.valueOf(this.getForbiddenFuelId());
 		case 1:
-			return String.valueOf(this.getParking_id());
+			return String.valueOf(this.getParkingId());
 		case 2:
-			return String.valueOf(this.getForbiddent_id());
+			return String.valueOf(this.getForbiddentId());
 		default:
 			return String.valueOf(this.getForbiddenFuelId());
 		}
@@ -37,7 +37,7 @@ public class ForbiddenFuel implements Model {
 	@Override
 	public Model createFromCursor(Cursor c) {
 		this.setForbiddenFuelId(c.getInt(0));
-		this.setParking_id(c.getInt(1));
+		this.setParkingId(c.getInt(1));
 		this.setForbiddenFuelId(c.getInt(2));
 		return this;
 	}
@@ -50,20 +50,20 @@ public class ForbiddenFuel implements Model {
 		this.forbiddenFuelId = forbiddenFuelId;
 	}
 
-	public int getParking_id() {
-		return parking_id;
+	public int getParkingId() {
+		return parkingId;
 	}
 
-	public void setParking_id(int parking_id) {
-		this.parking_id = parking_id;
+	public void setParkingId(int parkingId) {
+		this.parkingId = parkingId;
 	}
 
-	public int getForbiddent_id() {
-		return forbiddent_id;
+	public int getForbiddentId() {
+		return forbiddentId;
 	}
 
-	public void setForbiddent_id(int forbiddent_id) {
-		this.forbiddent_id = forbiddent_id;
+	public void setForbiddentId(int forbiddentId) {
+		this.forbiddentId = forbiddentId;
 	}
 
 }
