@@ -10,8 +10,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,8 +20,7 @@ import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.CarDB;
 import com.charlyparkingapps.db.object.Car;
 
-public class CarEditActivity extends Activity implements
-		OnCheckedChangeListener, OnClickListener {
+public class CarEditActivity extends Activity implements OnClickListener {
 
 	public static final String KEY_CAR_ID = "carID";
 	public static final String KEY_CAR_SERIAL = "carSerial";
@@ -35,13 +34,12 @@ public class CarEditActivity extends Activity implements
 	private Button mMinusHeight;
 	private Button mAddCar;
 
-	private int mSelectedFuel = 0;
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_car_edit);
 		getActionBar().setDisplayHomeAsUpEnabled(true);
+
 		this.initView();
 
 		getCar();
@@ -52,11 +50,13 @@ public class CarEditActivity extends Activity implements
 		}
 		// Edit an existing car
 		else {
-			if (mCar != null) {
-				mCarName.setText(mCar.getName());
-				mFuelRadio.check(mCar.getFuelId() - 1);
-				mCarHeight.setText(String.valueOf(mCar.getHeight()));
-			}
+			mCarName.setText(mCar.getName());
+			System.out.println("Check: " + (mCar.getFuelId() - 1));
+			RadioButton fuelButton = (RadioButton) mFuelRadio.getChildAt(mCar
+					.getFuelId() - 1); // mFuelRadio.check() doesn't work...
+			if (fuelButton != null)
+				fuelButton.setChecked(true);
+			mCarHeight.setText(String.valueOf(mCar.getHeight()));
 		}
 	}
 
@@ -77,7 +77,6 @@ public class CarEditActivity extends Activity implements
 	private void initView() {
 		mCarName = (EditText) findViewById(R.id.car_name_edit);
 		mFuelRadio = (RadioGroup) findViewById(R.id.radio_fuel);
-		mFuelRadio.setOnCheckedChangeListener(this);
 		mCarHeight = (TextView) findViewById(R.id.car_edit_height);
 		mPlusHeight = (Button) findViewById(R.id.height_plus);
 		mPlusHeight.setOnClickListener(this);
@@ -85,6 +84,11 @@ public class CarEditActivity extends Activity implements
 		mMinusHeight.setOnClickListener(this);
 		mAddCar = (Button) findViewById(R.id.add_car);
 		mAddCar.setOnClickListener(this);
+	}
+
+	private int getSelectedFuelNb() {
+		return mFuelRadio.indexOfChild(findViewById(mFuelRadio
+				.getCheckedRadioButtonId())) + 1;
 	}
 
 	@Override
@@ -138,28 +142,21 @@ public class CarEditActivity extends Activity implements
 		return super.onOptionsItemSelected(item);
 	}
 
-	@Override
-	public void onBackPressed() {
+	public void onStop() {
 		if (mCar != null) {
 			this.mCar.setHeight(Integer.parseInt(this.mCarHeight.getText()
 					.toString()));
 			this.mCar.setName(this.mCarName.getText().toString());
-			this.mCar.setFuelId(this.mSelectedFuel);
+
+			this.mCar.setFuelId(getSelectedFuelNb());
 			CarDB carDB = CarDB.getInstance();
 			carDB.open(true);
 			carDB.update(this.mCar);
 			carDB.close();
+			Toast.makeText(this, R.string.modifs_saved, Toast.LENGTH_LONG)
+					.show();
 		}
-		Toast saved = Toast.makeText(this, R.string.modifs_saved,
-				Toast.LENGTH_LONG);
-		saved.show();
-		super.onBackPressed();
-	}
-
-	@Override
-	public void onCheckedChanged(RadioGroup group, int pos) {
-		this.mSelectedFuel = pos + 1;
-
+		super.onStop();
 	}
 
 	@Override
@@ -179,11 +176,14 @@ public class CarEditActivity extends Activity implements
 		case R.id.add_car:
 			CarDB carDB = CarDB.getInstance();
 			carDB.open(true);
-			carDB.save(new Car(Integer
-					.parseInt(mCarHeight.getText().toString()), this.mCarName
-					.getText().toString(),
-					this.mSelectedFuel, ((CharlyApplication) getApplication())
-							.getCurrentUser().getId(), 0.0, 0.0));
+			carDB.save(new Car(
+					Integer.parseInt(mCarHeight.getText().toString()),
+					this.mCarName.getText().toString(),
+ getSelectedFuelNb(),
+					((CharlyApplication) getApplication()).getCurrentUser()
+							.getId(),
+					0.0,
+					0.0));
 			carDB.close();
 			this.onBackPressed();
 			break;
