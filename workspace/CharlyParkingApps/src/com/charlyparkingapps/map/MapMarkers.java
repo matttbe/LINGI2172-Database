@@ -8,6 +8,7 @@ import android.location.Location;
 import android.util.Log;
 import android.util.SparseArray;
 
+import com.charlyparkingapps.db.object.Car;
 import com.charlyparkingapps.db.object.Parking;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
@@ -161,7 +162,7 @@ public class MapMarkers {
 	 * @param car to show
 	 * @param onlyOne clear map and move the camera on top of the car
 	 */
-	/*public void showCar(CAR car, boolean onlyOne) { // TODO
+	public void showCar(Car car, boolean onlyOne) {
 		if (onlyOne)
 			clearMap();
 
@@ -173,14 +174,14 @@ public class MapMarkers {
 			LatLng center = car.getLocation();
 			MapCamera.moveCamera(map, center, MapCamera.ZOOM_OBJECT);
 		}
-	}*/
+	}
 
 	/**
 	 * Show a list of cars on the map
 	 *
 	 * @param cars to show
 	 */
-	/*public void showCar(List<Car> cars) { // TODO
+	public void showCar(List<Car> cars) {
 		int size = cars.size();
 		if (size == 0)
 			return;
@@ -196,5 +197,5 @@ public class MapMarkers {
 			positions.include(car.getLocation());
 		}
 		MapCamera.moveCamera(map, positions.build());
-	}*/
+	}
 }

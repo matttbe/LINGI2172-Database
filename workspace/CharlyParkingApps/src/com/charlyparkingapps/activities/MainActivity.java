@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
+import com.charlyparkingapps.db.object.Car;
 import com.charlyparkingapps.db.object.Parking;
 import com.charlyparkingapps.listeners.DrawerListListener;
 import com.charlyparkingapps.listeners.SearchListener;
@@ -190,18 +191,15 @@ public class MainActivity extends Activity implements LocationListener {
 			mapDisplay = MapDisplay.PARKINGS_LIST;
 		}
 		else if ((serial = extras.getSerializable(KEY_CAR)) != null) {
-			/*
-			 * Car car = (Car) extras.getSerializable(KEY_CAR);
-			 * markers.showCar(car); //TODO mapDisplay = MapDisplay.CAR;
-			 */
+			Car car = (Car) extras.getSerializable(KEY_CAR);
+			markers.showCar(car, true);
 			mapDisplay = MapDisplay.CAR;
 		}
 		else if ((serial = extras.getSerializable(KEY_CARS_LIST)) != null) {
-			/*
-			 * List<Car> cars = (List<Car>)
-			 * extras.getSerializable(KEY_CARS_LIST); markers.showCar(cars); //
-			 * TODO mapDisplay = MapDisplay.CARS_LIST;
-			 */
+			@SuppressWarnings("unchecked")
+			List<Car> cars = (List<Car>) extras.getSerializable(KEY_CARS_LIST);
+			markers.showCar(cars);
+			mapDisplay = MapDisplay.CARS_LIST;
 			mapDisplay = MapDisplay.CARS_LIST;
 		}
 		else

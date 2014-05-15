@@ -6,6 +6,10 @@ import android.database.Cursor;
 
 import com.charlyparkingapps.db.FuelDB;
 import com.charlyparkingapps.db.UserDB;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 public class Car implements Model, Serializable {
 
@@ -21,6 +25,9 @@ public class Car implements Model, Serializable {
 
 	private User user;
 	private Fuel fuel;
+
+	private Marker marker = null;
+	private LatLng location;
 
 	public Car(int heightParam, String nameParam, int fuelIdParam,
 			int userIdParam,
@@ -111,7 +118,7 @@ public class Car implements Model, Serializable {
 		this.userId = userId;
 	}
 
-	public Double getLatitude() {
+	public double getLatitude() {
 		return latitude;
 	}
 
@@ -119,7 +126,7 @@ public class Car implements Model, Serializable {
 		this.latitude = latitude;
 	}
 
-	public Double getLongitude() {
+	public double getLongitude() {
 		return longitude;
 	}
 
@@ -155,4 +162,54 @@ public class Car implements Model, Serializable {
 		return this.fuel;
 	}
 
+	/**
+	 * @return the location of the parking (the center of it) or null
+	 */
+	public LatLng getLocation() {
+		if (location == null) {
+			location = new LatLng(getLatitude(), getLongitude());
+		}
+		return location;
+	}
+
+	/**
+	 * @return a MarkerOptions needed for creating a marker
+	 */
+	private MarkerOptions getMarkerOptions() {
+		MarkerOptions markerOptions = new MarkerOptions();
+		// we add the id on the title, a bit ugly but not for a DB view point
+		markerOptions.title(getCarId() + " - " + getName());
+		markerOptions.position(getLocation());
+		// TODO: add description
+		// markerOptions.snippet (TEXT);
+		return markerOptions;
+	}
+
+	/**
+	 * Add a marker with the info of this item if it doesn't exist yet
+	 *
+	 * @param map where the marker will be added
+	 * @return the marker added to the map
+	 */
+	public void addMarkerToMap(GoogleMap map) {
+		if (marker == null)
+			marker = map.addMarker(getMarkerOptions());
+	}
+
+	/**
+	 * @return the marker linked to this item
+	 */
+	public Marker getMarker() {
+		return marker;
+	}
+
+	/**
+	 * Remove the marker (if available) from the map and set it to null;
+	 */
+	public void removeMarker() {
+		if (marker != null) {
+			marker.remove();
+			marker = null;
+		}
+	}
 }
