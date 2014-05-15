@@ -9,6 +9,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.Parking;
+import com.charlyparkingapps.db.object.User;
 
 public class ParkingDB extends ObjectRepository {
 
@@ -22,7 +23,8 @@ public class ParkingDB extends ObjectRepository {
 
 
 	private static final String[] ALL_COLUMNS = { "parkingId", "name",
-		"defibrillator", "totalPlaces", "freePlaces", "maxHeight", "disable" };
+			"defibrillator", "totalPlaces", "freePlaces", "maxHeight",
+			"disable", "user" };
 
 	private static final double ONE_METER = 0.00000898 * 1.05; // with extras
 
@@ -38,15 +40,15 @@ public class ParkingDB extends ObjectRepository {
 	@Override
 	public String getCreateRequest() {
 		return "CREATE TABLE Parking("
-					+ "parkingId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
-					+ "name varchar(20) NOT NULL, "
-					+ "defibrillator BOOL DEFAULT 0, "
-					+ "totalPlaces INTEGER CHECK (totalPlaces > 0), "
-					+ "freePlaces INTEGER CHECK("
-				+ "freePlaces <= totalPlaces AND freePlaces >= 0"
-					+ ") DEFAULT 0, "
-					+ "maxHeight INTEGER CHECK (maxHeight > 0), "
-					+ "disable BOOL DEFAULT 0"
+
+				+ "parkingId INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "
+				+ "name varchar(20) NOT NULL, "
+				+ "defibrillator BOOL DEFAULT 0, "
+				+ "totalPlaces INTEGER CHECK (totalPlaces > 0), "
+				+ "freePlaces INTEGER CHECK("
+				+ "freePlaces < totalPlaces AND freePlaces >= 0"
+				+ ") DEFAULT 0, " + "maxHeight INTEGER CHECK (maxHeight > 0), "
+				+ "disable BOOL DEFAULT 0" + "user INTEGER"
 				+ ")";
 	}
 
@@ -56,24 +58,25 @@ public class ParkingDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO Parking VALUES(1,'Sainte Barbe',1,150,10,999300,0);");
-		db.execSQL("INSERT INTO Parking VALUES(2,'P22',0,75,65,185,1);");
-		db.execSQL("INSERT INTO Address VALUES(0,1,'Place Sainte Barbe',1,'Louvain-la-Neuve',1348,'BE',50.667408,4.62202);");
-		db.execSQL("INSERT INTO Parking VALUES(3,'Hotel de Ville',0,150,10,110,1);");
-		db.execSQL("INSERT INTO Address VALUES(1,3,'Place de Hotel de Ville',0,'Saint-Quentin',02100,'FR',49.846122,3.287457);");
-		db.execSQL("INSERT INTO Parking VALUES(4,'Saleya',1,170,170,310,0);");
-		db.execSQL("INSERT INTO Address VALUES(2,4,'Cours Saleya',0, 06300, 'Nice', 'FR',43.695607,274922699999934);");
-		db.execSQL("INSERT INTO Parking VALUES(5,'Acropolis - Jean Bouin',0,70,15,10,1);");
-		db.execSQL("INSERT INTO Address VALUES(3,5,'Place du XVe Corps',0,'Nice',06000, 'FR', 43.7072969,7.28019119999999);");
-		db.execSQL("INSERT INTO Parking VALUES(6,'Palais de Justice',0,770,150,10,0);");
-		db.execSQL("INSERT INTO Address VALUES(4,6,'Place du Palais de Justice',0, 'Nice', 06000, 'FR', 43.696672, 7.273752000000059);");
-		db.execSQL("INSERT INTO Parking VALUES(7,'Pink Paradise',0,1,0,180,0);");
-		db.execSQL("INSERT INTO Address VALUES(5,7, 'Rue de Ponthieu',59, 'Paris', 75008, 'FR', 48.87214119999999,2.304941699999972);");
+		db.execSQL ("INSERT INTO Parking VALUES(1,'Sainte Barbe',1,150,10,999300,0,1);");
+		db.execSQL ("INSERT INTO Parking VALUES(2,'P22',0,75,65,185,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(0,1,'Place Sainte Barbe',1,'Louvain-la-Neuve',1348,'BE',50.667408,4.62202,1,1);");
+		db.execSQL ("INSERT INTO Parking VALUES(3,'Hotel de Ville',0,150,10,110,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(1,3,'Place de Hotel de Ville',0,'Saint-Quentin',02100,'FR',49.846122,3.287457,1,1);");
+		db.execSQL ("INSERT INTO Parking VALUES(4,'Saleya',1,170,170,310,0,1);");
+		db.execSQL ("INSERT INTO Address VALUES(2,4,'Cours Saleya',0, 06300, 'Nice', 'FR',43.695607,274922699999934,1,1);");
+		db.execSQL ("INSERT INTO Parking VALUES(5,'Acropolis - Jean Bouin',0,70,15,10,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(3,5,'Place du XVe Corps',0,'Nice',06000, 'FR', 43.7072969,7.28019119999999,0,1);");
+		db.execSQL ("INSERT INTO Parking VALUES(6,'Palais de Justice',0,770,150,10,0,1);");
+		db.execSQL ("INSERT INTO Address VALUES(4,6,'Place du Palais de Justice',0, 'Nice', 06000, 'FR', 43.696672, 7.273752000000059,0,1);");
+		db.execSQL ("INSERT INTO Parking VALUES(7,'Pink Paradise',0,1,0,180,0,1);");
+		db.execSQL ("INSERT INTO Address VALUES(5,7, 'Rue de Ponthieu',59, 'Paris', 75008, 'FR', 48.87214119999999,2.304941699999972,0,1s);");
 		/*
 		 * Barla Rue Auguste Gal 06300 Nice FRANCE Massena Place Masséna 06000
 		 * Nice FRANCE Louvre 20, Boulevard Victor Hugo 06000 Nice FRANCE Lenval
 		 * 57, Avenue de la Californie 06200 Nice FRANCE
 		 */
+
 	}
 
 	@Override
@@ -82,6 +85,16 @@ public class ParkingDB extends ObjectRepository {
 		return parking.getTotalPlaces() > 0
 				&& parking.getFreePlaces() < parking.getTotalPlaces()
 				&& parking.getFreePlaces() >= 0 && parking.getMaxHeight() >= 0;
+	}
+
+	public List<Model> getMyParkings (User user)
+	{
+		Cursor cursor = myBDD.query (getTablename (), getAllColumns (),
+				"user=?",
+				new String[] { String.valueOf (user.getId ()) }, null, null,
+				"start");
+
+		return convertCursorToListObject (cursor);
 	}
 
 
@@ -126,7 +139,7 @@ public class ParkingDB extends ObjectRepository {
 		return this.convertCursorToListObject(cursor);
 	}
 
-	@Override
+	@Override 
 	public String getUniqueColumn() {
 		return ALL_COLUMNS[0];
 	}

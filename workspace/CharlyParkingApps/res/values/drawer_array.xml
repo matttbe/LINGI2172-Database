@@ -5,5 +5,6 @@
         <item>My Profile</item>
         <item>My Cars</item>
         <item>My History</item>
+        <item>My Parkings</item>
     </string-array>
 </resources>

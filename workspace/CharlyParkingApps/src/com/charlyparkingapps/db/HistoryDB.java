@@ -69,7 +69,7 @@ public class HistoryDB extends ObjectRepository {
 	
 	public List<Model> getAllHistoriesOrdered(User user) {
 		Cursor cursor = myBDD.query (getTablename (), getAllColumns (),
-				"user=?",
+				"user=? AND end IS NOT NULL",
 				new String[] { String.valueOf(user.getId()) }, null, null,
 				"start");
 

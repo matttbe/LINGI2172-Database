@@ -20,6 +20,9 @@ import com.charlyparkingapps.db.object.Parking;
 
 public class ParkingEditActivity extends Activity implements OnClickListener {
 
+	public static final String KEY_PARKING_ID = "parkingID";
+	public static final String KEY_PARKING_SERIAL = "parkingSerial";
+
 	private EditText mName;
 	private EditText mStreet;
 	private EditText mNum;
@@ -126,7 +129,19 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 	}
 
 	public void getParking() {
-		// TODO
+		int parkingId = getIntent ().getIntExtra (KEY_PARKING_ID, 0);
+
+		if (parkingId > 0)
+		{
+			ParkingDB parkingDB = ParkingDB.getInstance ();
+			parkingDB.open (false);
+			this.mParking = (Parking) parkingDB.getById (parkingId);
+			parkingDB.close ();
+			return;
+		}
+
+		this.mParking = (Parking) getIntent ().getSerializableExtra (
+				KEY_PARKING_SERIAL);
 	}
 
 

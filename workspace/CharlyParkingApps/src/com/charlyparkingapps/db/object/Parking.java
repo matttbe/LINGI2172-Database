@@ -7,6 +7,7 @@ import java.util.List;
 import android.database.Cursor;
 
 import com.charlyparkingapps.db.AddressDB;
+import com.charlyparkingapps.db.UserDB;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -23,21 +24,25 @@ public class Parking implements Model, Serializable {
 	private int freePlaces;
 	private int maxHeight;
 	private boolean disable;
+	private int ownerId;
 
 	private Address address;
+	private User owner;
 
 	private Marker marker = null;
 	private LatLng location;
 
 	public Parking(String nameParam, boolean defibrillatorParam,
 			int totalPlacesParam, int freePlacesParam, int maxHeightParam,
-			boolean disable) {
+			boolean disable, int ownerId)
+	{
 		this.name = nameParam;
 		this.defibrillator = defibrillatorParam;
 		this.totalPlaces = totalPlacesParam;
 		this.freePlaces = freePlacesParam;
 		this.maxHeight = maxHeightParam;
 		this.disable = disable;
+		this.ownerId = ownerId;
 	}
 
 	public Parking(Cursor c) {
@@ -46,26 +51,28 @@ public class Parking implements Model, Serializable {
 
 	public String getByInt(int i) {
 		switch (i) {
-		case 0:
-			return String.valueOf(this.parkingId);
-		case 1:
-			return this.name;
-		case 2:
-			return String.valueOf(this.defibrillator);
-		case 3:
-			return String.valueOf(this.totalPlaces);
-		case 4:
-			return String.valueOf(this.freePlaces);
-		case 5:
-			return String.valueOf(this.maxHeight);
-		case 6:
-			return String.valueOf(this.disable);
+			case 0:
+				return String.valueOf (this.parkingId);
+			case 1:
+				return this.name;
+			case 2:
+				return String.valueOf (this.defibrillator);
+			case 3:
+				return String.valueOf (this.totalPlaces);
+			case 4:
+				return String.valueOf (this.freePlaces);
+			case 5:
+				return String.valueOf (this.maxHeight);
+			case 6:
+				return String.valueOf (this.disable);
+			case 7:
+				return String.valueOf (this.ownerId);
 		}
 		return String.valueOf(this.parkingId);
 	}
 
 	public int getParkingId() {
-		return parkingId; // TODO: what if parkingID == 0
+		return parkingId;
 	}
 
 	public void setParkingId(int parkingId) {
@@ -124,11 +131,43 @@ public class Parking implements Model, Serializable {
 		this.address = address;
 	}
 
+	public User getOwner ()
+	{
+		if (this.owner == null)
+		{
+			loadUser ();
+		}
+		return this.owner;
+	}
+
+	public void setOwner (User o)
+	{
+		owner = o;
+	}
+
+	public int getOwnerId ()
+	{
+		return this.ownerId;
+	}
+
+	public void setOwnerId (int id)
+	{
+		this.ownerId = id;
+	}
+
 	public void loadAddress() {
 		AddressDB ad = AddressDB.getInstance();
 		ad.open(false);
 		address = ad.getByIdParking(this.getParkingId());
 		ad.close();
+	}
+	
+	public void loadUser ()
+	{
+		UserDB udb = UserDB.getInstance ();
+		udb.open (false);
+		owner = (User) udb.getById (ownerId);
+		udb.close ();
 	}
 
 	public Address getAddress() {
@@ -147,6 +186,7 @@ public class Parking implements Model, Serializable {
 		this.freePlaces = c.getInt(4);
 		this.maxHeight = c.getInt(5);
 		this.disable = c.getString(6).equals("true");
+		this.ownerId = c.getInt (7);
 		return this;
 	}
 

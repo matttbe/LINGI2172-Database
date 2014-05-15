@@ -74,7 +74,9 @@
     <string name="from">From: </string>
     <string name="hour_time_separator"> hours and </string>
     <string name="minutes_time_separator">minutes.</string>
-     
+    <string name="title_activity_manager">ManagerActivity</string>
+    <string name="action_add_parking">Add Parking</string>
+    <string name="action_show_all_parkings_map">Show my parkings on map</string>
     
 
 </resources>

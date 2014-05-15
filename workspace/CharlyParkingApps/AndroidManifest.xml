@@ -109,6 +109,10 @@
             android:name="com.charlyparkingapps.activities.HistoryActivity"
             android:label="@string/title_activity_history" >
         </activity>
+        <activity
+            android:name="com.charlyparkingapps.activities.ManagerActivity"
+            android:label="@string/title_activity_manager" >
+        </activity>
     </application>
 
 </manifest>
