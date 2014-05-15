@@ -37,12 +37,18 @@ public class HistoryDB extends ObjectRepository {
 
 	@Override
 	public String getCreateRequest() {
-		return "CREATE TABLE History (historyId INTEGER PRIMARY KEY  AUTOINCREMENT  NOT NULL , user INTEGER PRIMARY KEY NOT NULL ,start DATETIME NOT NULL DEFAULT (null) ,end DATETIME NOT NULL DEFAULT (null),parking INTEGER NOT NULL );";
+		return "CREATE TABLE History ("
+				+ "historyId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+				+ "user INTEGER NOT NULL, "
+				+ "start DATETIME NOT NULL DEFAULT (null), "
+				+ "end DATETIME NOT NULL DEFAULT (null), "
+				+ "parking INTEGER NOT NULL"
+			+ ");";
 	}
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO History VALUES(1,'2007-01-01 10:00:00','2007-01-01 11:00:00',1);");
+		db.execSQL("INSERT INTO History VALUES(1, 1, '2007-01-01 10:00:00', '2007-01-01 11:00:00', 1);");
 	}
 
 	@Override
