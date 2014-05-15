@@ -26,6 +26,7 @@ public class CarEditActivity extends Activity implements OnClickListener {
 	public static final String KEY_CAR_SERIAL = "carSerial";
 
 	private Car mCar;
+	private boolean saved = false;
 
 	private EditText mCarName;
 	private RadioGroup mFuelRadio;
@@ -141,8 +142,14 @@ public class CarEditActivity extends Activity implements OnClickListener {
 		return super.onOptionsItemSelected(item);
 	}
 
-	public void onStop() {
-		if (mCar != null) {
+	public void onBackPressed() {
+		super.onBackPressed();
+		saveChanges();
+	}
+
+	private void saveChanges() {
+		if (!saved && mCar != null) {
+			saved = true;
 			this.mCar.setHeight(Integer.parseInt(this.mCarHeight.getText()
 					.toString()));
 			this.mCar.setName(this.mCarName.getText().toString());
@@ -155,6 +162,10 @@ public class CarEditActivity extends Activity implements OnClickListener {
 			Toast.makeText(this, R.string.modifs_saved, Toast.LENGTH_LONG)
 					.show();
 		}
+	}
+
+	public void onStop() {
+		saveChanges();
 		super.onStop();
 	}
 
@@ -178,7 +189,7 @@ public class CarEditActivity extends Activity implements OnClickListener {
 			carDB.save(new Car(
 					Integer.parseInt(mCarHeight.getText().toString()),
 					this.mCarName.getText().toString(),
- getSelectedFuelNb(),
+					getSelectedFuelNb(),
 					((CharlyApplication) getApplication()).getCurrentUser()
 							.getId(),
 					0.0,

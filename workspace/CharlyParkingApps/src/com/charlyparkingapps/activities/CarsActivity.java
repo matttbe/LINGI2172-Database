@@ -48,10 +48,6 @@ public class CarsActivity extends Activity {
 		listView = (ListView) findViewById(R.id.cars_list);
 
 		// TODO: getintent().getIntent().getSerializableExtra(LIST);
-	}
-
-	protected void onStart() {
-		super.onStart();
 		addUserCars();
 	}
 
@@ -81,7 +77,7 @@ public class CarsActivity extends Activity {
 				Intent intent = new Intent(CarsActivity.this,
 						CarEditActivity.class);
 				intent.putExtra(CarEditActivity.KEY_CAR_SERIAL, car);
-				startActivity(intent);
+				startActivityForResult(intent, 0);
 			}
 		});
 	}
@@ -110,7 +106,7 @@ public class CarsActivity extends Activity {
 			return true;
 		case R.id.action_add_car:
 			Intent intent = new Intent(this, CarEditActivity.class);
-			this.startActivity(intent);
+			this.startActivityForResult(intent, 0);
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -163,7 +159,7 @@ public class CarsActivity extends Activity {
 					Intent intent = new Intent(CarsActivity.this,
 							CarEditActivity.class);
 					intent.putExtra(CarEditActivity.KEY_CAR_SERIAL, car);
-					startActivity(intent);
+					startActivityForResult(intent, 0);
 				}
 			};
 			textViewFirstLine.setOnClickListener(onClickListener);
@@ -222,5 +218,12 @@ public class CarsActivity extends Activity {
 
 			return rowView;
 		}
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		listView.setAdapter(null);
+		addUserCars();
+		System.out.println("Result");
 	}
 }
