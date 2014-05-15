@@ -133,8 +133,8 @@ public class FiltersActivity extends Activity implements
 		this.mFreePlacesTV.setText("" + this.mFreePlacesSB.getProgress());
 		this.mPriceTV = (TextView) findViewById(R.id.price_tv);
 		this.mPriceTV.setText("" + this.mPriceSB.getProgress());
-		this.mRadius = (TextView) findViewById(R.id.radius);
-		this.mRadius.setText(this.mPreferences.getInt(RADIUS_PREF, 100));
+		this.mRadius = (TextView) findViewById(R.id.filter_radius);
+		this.mRadius.setText("" + this.mPreferences.getInt(RADIUS_PREF, 100));
 	}
 
 	// ________________ LISTERNER FOR THE MENU

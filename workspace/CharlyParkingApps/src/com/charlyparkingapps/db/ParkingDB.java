@@ -111,7 +111,7 @@ public class ParkingDB extends ObjectRepository {
 		return liste;
 	}
 
-	public List<Model> getParkingsWithFilters(String[] filters) {
+	public List<Model> getParkingsWithFilters(Context context) {
 		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
 				"parking=pink AND name=Charly AND clinche=?",
  new String[] {
