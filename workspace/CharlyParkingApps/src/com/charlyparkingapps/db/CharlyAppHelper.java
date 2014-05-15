@@ -33,6 +33,7 @@ public class CharlyAppHelper extends SQLiteOpenHelper {
 			db.execSQL(object.getCreateRequest());
 			object.populate(db);
 		}
+		createTriggers(db);
 	}
 
 	@Override
@@ -40,5 +41,9 @@ public class CharlyAppHelper extends SQLiteOpenHelper {
 		for (ObjectDB object : allObjects) {
 			object.upgrade(db, oldVersion, newVersion);
 		}
+	}
+
+	private void createTriggers(SQLiteDatabase db) {
+
 	}
 }
