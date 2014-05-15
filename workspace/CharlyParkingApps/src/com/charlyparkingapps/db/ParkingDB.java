@@ -52,7 +52,6 @@ public class ParkingDB extends ObjectRepository {
 
 	@Override
 	public void upgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-		// TODO Auto-generated method stub
 	}
 
 	@Override
