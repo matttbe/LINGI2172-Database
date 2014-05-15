@@ -162,7 +162,8 @@ public class CarEditActivity extends Activity implements
 			CarDB carDB = CarDB.getInstance();
 			carDB.open(true);
 			carDB.save(new Car(Integer
-					.parseInt(mCarHeight.getText().toString()),
+					.parseInt(mCarHeight.getText().toString()), this.mCarName
+					.getText().toString(),
 					this.mSelectedFuel, ((CharlyApplication) getApplication())
 							.getCurrentUser().getId(), 0.0, 0.0));
 			carDB.close();
