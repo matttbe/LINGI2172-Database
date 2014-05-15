@@ -43,11 +43,11 @@ public class CornerDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO Corners VALUES(0, 1, 50.667905, 4.621993);");
-		db.execSQL("INSERT INTO Corners VALUES(0, 1, 50.667876, 4.621063);");
-		db.execSQL("INSERT INTO Corners VALUES(0, 1, 50.667556, 4.621084);");
-		db.execSQL("INSERT INTO Corners VALUES(0, 1, 50.667299, 4.621462);");
-		db.execSQL("INSERT INTO Corners VALUES(0, 1, 50.667408, 4.62202););");
+		db.execSQL("INSERT INTO Corners VALUES(1, 1, 50.667905, 4.621993);");
+		db.execSQL("INSERT INTO Corners VALUES(2, 1, 50.667876, 4.621063);");
+		db.execSQL("INSERT INTO Corners VALUES(3, 1, 50.667556, 4.621084);");
+		db.execSQL("INSERT INTO Corners VALUES(4, 1, 50.667299, 4.621462);");
+		db.execSQL("INSERT INTO Corners VALUES(5, 1, 50.667408, 4.62202););");
 	}
 
 	@Override

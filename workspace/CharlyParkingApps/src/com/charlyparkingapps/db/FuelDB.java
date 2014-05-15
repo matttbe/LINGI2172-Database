@@ -44,10 +44,10 @@ public class FuelDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO Fuel VALUES(0,'Diesel');");
-		db.execSQL("INSERT INTO Fuel VALUES(0,'Gasoline');");
-		db.execSQL("INSERT INTO Fuel VALUES(0,'LPG');");
-		db.execSQL("INSERT INTO Fuel VALUES(0,'Ethanol');");
+		db.execSQL("INSERT INTO Fuel VALUES(1, 'Diesel');");
+		db.execSQL("INSERT INTO Fuel VALUES(2, 'Gasoline');");
+		db.execSQL("INSERT INTO Fuel VALUES(3, 'LPG');");
+		db.execSQL("INSERT INTO Fuel VALUES(4, 'Ethanol');");
 
 	}
 
