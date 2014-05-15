@@ -1,5 +1,6 @@
 package com.charlyparkingapps.activities;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class CarsActivity extends Activity {
 
 	private RadioButton mSelectedRB;
 	private Car favoriteCar;
+	private ArrayList<Model> allCars;
 
 	private ListView listView;
 
@@ -57,7 +59,7 @@ public class CarsActivity extends Activity {
 		int userId = user.getId();
 		CarDB carDB = CarDB.getInstance();
 		carDB.open(false);
-		List<Model> allCars = CarDB.getInstance().getAllCars(userId);
+		allCars = new ArrayList<Model>(CarDB.getInstance().getAllCars(userId));
 		carDB.close();
 		addCarsInList(allCars);
 	}
@@ -100,13 +102,19 @@ public class CarsActivity extends Activity {
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
+		Intent intent;
 		switch (item.getItemId()) {
 		case android.R.id.home:
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_add_car:
-			Intent intent = new Intent(this, CarEditActivity.class);
+			intent = new Intent(this, CarEditActivity.class);
 			this.startActivityForResult(intent, 0);
+			break;
+		case R.id.action_show_all_cars_map:
+			intent = new Intent(this, MainActivity.class);
+			intent.putExtra(MainActivity.KEY_CARS_LIST, allCars);
+			this.startActivity(intent);
 			break;
 		}
 		return super.onOptionsItemSelected(item);
