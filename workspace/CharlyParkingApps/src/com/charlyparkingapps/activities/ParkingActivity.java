@@ -39,12 +39,16 @@ public class ParkingActivity extends Activity {
 		TextView tv1 = (TextView) findViewById(R.id.parking_name);
 		tv1.setText (parking.getName ());
 		TextView tv2 = (TextView) findViewById(R.id.parking_street_number);
-		tv2.setText (parking.getAddress ().getStreet () + " "+ parking.getAddress ().getNumber ());
+		if (parking.getAddress() != null) {
+			tv2.setText(parking.getAddress().getStreet() + " "
+					+ parking.getAddress().getNumber());
 
-		TextView tv3 = (TextView) findViewById(R.id.parking_zip_city);
-		tv3.setText (parking.getAddress ().getZip () + " "+ parking.getAddress ().getCity ());
-		TextView tv4 = (TextView) findViewById(R.id.parking_country);
-		tv4.setText (parking.getAddress ().getCountry ());
+			TextView tv3 = (TextView) findViewById(R.id.parking_zip_city);
+			tv3.setText(parking.getAddress().getZip() + " "
+					+ parking.getAddress().getCity());
+			TextView tv4 = (TextView) findViewById(R.id.parking_country);
+			tv4.setText(parking.getAddress().getCountry());
+		}
 		
 		TextView defibrilator = (TextView) findViewById(R.id.defibrilator_parking);
 		String defString = (this.parking.isDefibrillator()) ? getString(R.string.yes)
