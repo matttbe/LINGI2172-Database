@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.charlyparkingapps.db.object.History;
 import com.charlyparkingapps.db.object.HourlyRate;
 import com.charlyparkingapps.db.object.Model;
+import com.charlyparkingapps.db.object.Parking;
 
 public class HourlyRateDB extends ObjectRepository {
 	// Singleton stuff
@@ -56,6 +57,15 @@ public class HourlyRateDB extends ObjectRepository {
 		db.execSQL("INSERT INTO HourlyRate VALUES(01:00:01,03:00:00,1.1,1);");
 		db.execSQL("INSERT INTO HourlyRate VALUES(03:00:01,24:00:00,1,1);");
 
+	}
+
+	public List<Model> getAllHourlyRateForParking(Parking parking) {
+		Cursor cursor = myBDD.query(getTablename(), getAllColumns(),
+				"parking=?",
+				new String[] { String.valueOf(parking.getParkingId()) }, null,
+				null, "start");
+
+		return convertCursorToListObject(cursor);
 	}
 
 	@Override
