@@ -27,7 +27,7 @@ public class ForbiddenFuelDB extends ObjectRepository {
 	}
 
 	public static final String[] ALL_COLUMNS = { "forbiddenFuelId", "parking",
-			"forbiddent" };
+			"forbidden" };
 
 	public ForbiddenFuelDB(Context context) {
 		super(context);
@@ -45,7 +45,7 @@ public class ForbiddenFuelDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO ForbiddenFuel VALUES(1,3);");
+		db.execSQL ("INSERT INTO ForbiddenFuel VALUES(1,1,3);");
 	}
 
 	@Override
