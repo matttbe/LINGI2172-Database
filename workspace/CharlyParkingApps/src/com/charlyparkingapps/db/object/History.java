@@ -1,8 +1,13 @@
 package com.charlyparkingapps.db.object;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import android.annotation.SuppressLint;
 import android.database.Cursor;
+import android.util.Log;
 
 import com.charlyparkingapps.db.ParkingDB;
 import com.charlyparkingapps.db.UserDB;
@@ -18,12 +23,15 @@ public class History implements Model {
 	private User user;
 	private Parking parking;
 
+	@SuppressLint("SimpleDateFormat")
+	DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
 	public History(int userIdParam, Date startParam, Date endParam,
 			int parkingIdParam) {
 		this.setUserId(userIdParam);
 		this.setStart(startParam);
 		this.setEnd(endParam);
-		this.setParking_id(parkingIdParam);
+		this.setParkingId(parkingIdParam);
 	}
 
 	public History(Cursor cursor) {
@@ -53,9 +61,18 @@ public class History implements Model {
 	public Model createFromCursor(Cursor c) {
 		this.setHistoryId(c.getInt(0));
 		this.setUserId(c.getInt(1));
-		this.setStart(new Date(c.getString(2)));
-		this.setEnd(new Date(c.getString(3)));
-		this.setParking_id(c.getInt(4));
+
+		Date dateStart = null;
+		Date dateEnd = null;
+		try {
+			dateStart = iso8601Format.parse(c.getString(2));
+		} catch (ParseException e) {
+			Log.e("History", "Error Parsing ISO8601", e);
+		} finally {
+			this.setStart(dateStart);
+			this.setEnd(dateEnd);
+		}
+		this.setParkingId(c.getInt(4));
 		return this;
 	}
 
@@ -95,8 +112,8 @@ public class History implements Model {
 		return parkingId;
 	}
 
-	public void setParking_id(int parking_id) {
-		this.parkingId = parking_id;
+	public void setParkingId(int parkingId) {
+		this.parkingId = parkingId;
 	}
 
 	public void loadUser() {
@@ -115,7 +132,7 @@ public class History implements Model {
 
 	public void setUser(User user) {
 		this.user = user;
-		this.setParking_id(parking.getParkingId());
+		this.setParkingId(parking.getParkingId());
 	}
 
 	public void loadParking() {
@@ -135,7 +152,7 @@ public class History implements Model {
 
 	public void setParking(Parking parking) {
 		this.parking = parking;
-		this.setParking_id(parking.getParkingId());
+		this.setParkingId(parking.getParkingId());
 	}
 
 }
