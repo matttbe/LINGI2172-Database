@@ -4,12 +4,14 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.util.Log;
 
 import com.charlyparkingapps.db.CarDB;
+import com.charlyparkingapps.db.HourlyRateDB;
 import com.charlyparkingapps.db.ParkingDB;
 import com.charlyparkingapps.db.UserDB;
 
@@ -190,6 +192,23 @@ public class History implements Model {
 	public void setUser(User user) {
 		this.user = user;
 		this.setUserId(user.getId());
+	}
+
+	/*
+	 * c'est un peu bourrin
+	 */
+	public float getPrice(History history) {
+		float price = 0;
+		Parking p = history.getParking();
+		long time = history.getEnd().getTime() - history.getStart().getTime();
+		HourlyRateDB u = HourlyRateDB.getInstance();
+		u.open(false);
+		List<Model> allH = u.getAllHourlyRateForParking(p);
+
+		// u.get
+		u.close();
+		
+		return price;
 	}
 
 }
