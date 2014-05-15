@@ -51,7 +51,6 @@ public class CarEditActivity extends Activity implements OnClickListener {
 		// Edit an existing car
 		else {
 			mCarName.setText(mCar.getName());
-			System.out.println("Check: " + (mCar.getFuelId() - 1));
 			RadioButton fuelButton = (RadioButton) mFuelRadio.getChildAt(mCar
 					.getFuelId() - 1); // mFuelRadio.check() doesn't work...
 			if (fuelButton != null)
