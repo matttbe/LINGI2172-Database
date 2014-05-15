@@ -25,6 +25,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
@@ -42,6 +43,7 @@ public class CarsActivity extends Activity {
 	private Car favoriteCar;
 	private ArrayList<Model> allCars;
 
+	private User user;
 	private ListView listView;
 
 	@Override
@@ -58,7 +60,7 @@ public class CarsActivity extends Activity {
 	}
 
 	private void addUserCars() {
-		User user = ((CharlyApplication) getApplication()).getCurrentUser();
+		user = ((CharlyApplication) getApplication()).getCurrentUser();
 		favoriteCar = user.getMyFavoriteCar();
 		int userId = user.getId();
 		CarDB carDB = CarDB.getInstance();
@@ -120,6 +122,25 @@ public class CarsActivity extends Activity {
 			intent = new Intent(this, MainActivity.class);
 			intent.putExtra(MainActivity.KEY_CARS_LIST, allCars);
 			this.startActivity(intent);
+			break;
+		case R.id.action_show_parked_cars_map:
+			HistoryDB historyDB = HistoryDB.getInstance();
+			historyDB.open(false);
+			List<Model> currentHistory = historyDB
+					.getAllCurrentHistoriesOrdered(user);
+			historyDB.close();
+			if (currentHistory.size() > 0) {
+				ArrayList<Car> cars = new ArrayList<Car>();
+				for (Model model : currentHistory) {
+					cars.add(((History) model).getCar());
+				}
+				intent = new Intent(this, MainActivity.class);
+				intent.putExtra(MainActivity.KEY_CARS_LIST, cars);
+				this.startActivity(intent);
+			}
+			else
+				Toast.makeText(this, "No parked cars", Toast.LENGTH_LONG)
+						.show();
 			break;
 		}
 		return super.onOptionsItemSelected(item);
@@ -193,12 +214,10 @@ public class CarsActivity extends Activity {
 					mSelectedRB = (RadioButton) buttonView;
 
 					Car mCar = (Car) getItem(position);
-					User currentUser = ((CharlyApplication) getApplication())
-							.getCurrentUser();
-					currentUser.setMyFavoriteCar(mCar);
+					user.setMyFavoriteCar(mCar);
 					UserDB userDB = UserDB.getInstance();
 					userDB.open(true);
-					userDB.update(currentUser);
+					userDB.update(user);
 					userDB.close();
 				}
 			});

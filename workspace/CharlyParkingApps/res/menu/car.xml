@@ -15,5 +15,10 @@
         android:orderInCategory="120"
         android:showAsAction="never"
         android:title="@string/action_show_all_cars_map"/>
+    <item
+        android:id="@+id/action_show_parked_cars_map"
+        android:orderInCategory="130"
+        android:showAsAction="never"
+        android:title="@string/action_show_parked_cars_map"/>
 
 </menu>
