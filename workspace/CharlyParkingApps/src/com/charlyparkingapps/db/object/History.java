@@ -23,6 +23,10 @@ public class History implements Model {
 		this.setParking_id(parkingIdParam);
 	}
 
+	public History(Cursor cursor) {
+		createFromCursor(cursor);
+	}
+
 	@Override
 	public String getByInt(int i) {
 		switch (i) {
