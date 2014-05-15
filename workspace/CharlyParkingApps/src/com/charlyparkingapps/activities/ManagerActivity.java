@@ -161,6 +161,12 @@ public class ManagerActivity extends Activity
 			TextView textViewSecondLine = (TextView) rowView
 					.findViewById (R.id.cell_parking_address);
 
+			Parking p = (Parking) getItem (position);
+			textViewFirstLine.setText (getString (R.string.parking) + " "
+					+ p.getName ());
+			textViewSecondLine.setText (getString (R.string.address) + " "
+					+ p.getAddress ().toString ());
+
 			OnClickListener onClickListener = new OnClickListener ()
 			{
 				@Override

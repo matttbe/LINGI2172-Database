@@ -46,9 +46,9 @@ public class ParkingDB extends ObjectRepository {
 				+ "defibrillator BOOL DEFAULT 0, "
 				+ "totalPlaces INTEGER CHECK (totalPlaces > 0), "
 				+ "freePlaces INTEGER CHECK("
-				+ "freePlaces < totalPlaces AND freePlaces >= 0"
+				+ "freePlaces <= totalPlaces AND freePlaces >= 0"
 				+ ") DEFAULT 0, " + "maxHeight INTEGER CHECK (maxHeight > 0), "
-				+ "disable BOOL DEFAULT 0" + "user INTEGER"
+				+ "disable BOOL DEFAULT 0," + "user INTEGER"
 				+ ")";
 	}
 
@@ -59,18 +59,19 @@ public class ParkingDB extends ObjectRepository {
 	@Override
 	public void populate(SQLiteDatabase db) {
 		db.execSQL ("INSERT INTO Parking VALUES(1,'Sainte Barbe',1,150,10,999300,0,1);");
-		db.execSQL ("INSERT INTO Parking VALUES(2,'P22',0,75,65,185,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(0,1,'Place Sainte Barbe',1,'Louvain-la-Neuve',1348,'BE',50.667408,4.62202,1,1);");
+		// db.execSQL ("INSERT INTO Parking VALUES(2,'P22',0,75,65,185,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(0,1,'Place Sainte Barbe',1,'Louvain-la-Neuve',1348,'BE',50.667408,4.62202);");
+
 		db.execSQL ("INSERT INTO Parking VALUES(3,'Hotel de Ville',0,150,10,110,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(1,3,'Place de Hotel de Ville',0,'Saint-Quentin',02100,'FR',49.846122,3.287457,1,1);");
-		db.execSQL ("INSERT INTO Parking VALUES(4,'Saleya',1,170,170,310,0,1);");
-		db.execSQL ("INSERT INTO Address VALUES(2,4,'Cours Saleya',0, 06300, 'Nice', 'FR',43.695607,274922699999934,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(1,3,'Place de Hotel de Ville',0,'Saint-Quentin',02100,'FR',49.846122,3.287457);");
+		db.execSQL ("INSERT INTO Parking VALUES(4,'Saleya',1,170,170,310,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(2,4,'Cours Saleya',0, 06300, 'Nice', 'FR',43.695607,274922699999934);");
 		db.execSQL ("INSERT INTO Parking VALUES(5,'Acropolis - Jean Bouin',0,70,15,10,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(3,5,'Place du XVe Corps',0,'Nice',06000, 'FR', 43.7072969,7.28019119999999,0,1);");
+		db.execSQL ("INSERT INTO Address VALUES(3,5,'Place du XVe Corps',0,'Nice',06000, 'FR', 43.7072969,7.28019119999999);");
 		db.execSQL ("INSERT INTO Parking VALUES(6,'Palais de Justice',0,770,150,10,0,1);");
-		db.execSQL ("INSERT INTO Address VALUES(4,6,'Place du Palais de Justice',0, 'Nice', 06000, 'FR', 43.696672, 7.273752000000059,0,1);");
+		db.execSQL ("INSERT INTO Address VALUES(4,6,'Place du Palais de Justice',0, 'Nice', 06000, 'FR', 43.696672, 7.273752000000059);");
 		db.execSQL ("INSERT INTO Parking VALUES(7,'Pink Paradise',0,1,0,180,0,1);");
-		db.execSQL ("INSERT INTO Address VALUES(5,7, 'Rue de Ponthieu',59, 'Paris', 75008, 'FR', 48.87214119999999,2.304941699999972,0,1);");
+		db.execSQL ("INSERT INTO Address VALUES(5,7, 'Rue de Ponthieu',59, 'Paris', 75008, 'FR', 48.87214119999999,2.304941699999972);");
 		/*
 		 * Barla Rue Auguste Gal 06300 Nice FRANCE Massena Place Masséna 06000
 		 * Nice FRANCE Louvre 20, Boulevard Victor Hugo 06000 Nice FRANCE Lenval
@@ -90,9 +91,8 @@ public class ParkingDB extends ObjectRepository {
 	public List<Model> getMyParkings (User user)
 	{
 		Cursor cursor = myBDD.query (getTablename (), getAllColumns (),
-				"user=?",
-				new String[] { String.valueOf (user.getId ()) }, null, null,
-				"start");
+				"user=?", new String[] { String.valueOf (user.getId ()) },
+				null, null, null);
 
 		return convertCursorToListObject (cursor);
 	}
@@ -116,8 +116,7 @@ public class ParkingDB extends ObjectRepository {
 				"parking=pink AND name=Charly AND clinche=?",
  new String[] {
 				// ici c'est les params ou sque ta mis les ? avant
-				}, null,
-				null, null);
+				}, null, null, null);
 
 		return this.convertCursorToListObject(cursor);
 	}

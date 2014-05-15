@@ -57,10 +57,10 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 		
 		this.mPlaces = (TextView) findViewById(R.id.parking_edit_places);
 		
-		this.mPlus = (Button) findViewById(R.id.places_plus);
-		this.mPlus.setOnClickListener(this);
-		this.mMinus = (Button) findViewById(R.id.places_minus);
-		this.mMinus.setOnClickListener(this);
+		this.mPlus = (Button) findViewById (R.id.places_plus);
+		this.mPlus.setOnClickListener (this);
+		this.mMinus = (Button) findViewById (R.id.places_minus);
+		this.mMinus.setOnClickListener (this);
 		this.mAddParking = (Button) findViewById(R.id.add_parking);
 		this.mAddParking.setOnClickListener(this);
 		
