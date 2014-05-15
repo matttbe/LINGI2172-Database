@@ -48,6 +48,13 @@ public class FuelDB extends ObjectRepository {
 
 	}
 
+	public Fuel getFuelByName(String name) {
+		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS, "name=?",
+				new String[] { name }, null,
+				null, null);
+		return new Fuel(cursor);
+	}
+
 	@Override
 	public void upgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
