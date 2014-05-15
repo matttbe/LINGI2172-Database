@@ -44,10 +44,10 @@ public class CarsActivity extends Activity {
 		carDB.open(false);
 		List<Model> allCars = CarDB.getInstance().getAllCars(userId);
 		carDB.close();
-		addCars(allCars);
+		addCarsInList(allCars);
 	}
 
-	private void addCars(List<Model> cars) {
+	private void addCarsInList(List<Model> cars) {
 		final ListView listView = (ListView) findViewById(R.id.cars_list);
 		final StableArrayAdapter adapter = new StableArrayAdapter(this,
 				R.layout.cars_item_view, cars);
@@ -62,6 +62,7 @@ public class CarsActivity extends Activity {
 				Intent intent = new Intent(CarsActivity.this,
 						CarEditActivity.class);
 				intent.putExtra(CarEditActivity.KEY_CAR_SERIAL, car);
+				startActivity(intent);
 			}
 		});
 	}
@@ -129,8 +130,8 @@ public class CarsActivity extends Activity {
 					.findViewById(R.id.cars_item_secondLine);
 			
 			Car car = (Car) getItem(position);
-			textViewFirstLine.setText(String.valueOf(car.getCarId())); // TODO: name
-			textViewSecondLine.setText(R.string.height_colon + " "
+			textViewFirstLine.setText(String.valueOf(car.getName()));
+			textViewSecondLine.setText(getString(R.string.height_colon) + " "
 					+ car.getHeight());
 
 			return rowView;
