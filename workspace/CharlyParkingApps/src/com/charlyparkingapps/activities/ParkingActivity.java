@@ -10,16 +10,20 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.charlyparkingapps.CharlyApplication;
 import com.charlyparkingapps.R;
 import com.charlyparkingapps.db.HistoryDB;
+import com.charlyparkingapps.db.OpeningHoursDB;
 import com.charlyparkingapps.db.ParkingDB;
 import com.charlyparkingapps.db.object.History;
 import com.charlyparkingapps.db.object.Model;
+import com.charlyparkingapps.db.object.OpeningHours;
 import com.charlyparkingapps.db.object.Parking;
 import com.charlyparkingapps.db.object.User;
 
@@ -116,9 +120,54 @@ public class ParkingActivity extends Activity {
 					});
 				}
 			}
+
+
+
+
 		}
+
+		GridView gridView = (GridView) findViewById (R.id.opening_hours_grid);
+		ArrayAdapter<String> adapter = new ArrayAdapter<String> (this,
+				android.R.layout.simple_list_item_1, buildOpeningHoursList ());
+
+		gridView.setAdapter (adapter);
 		hdb.close ();
 
+	}
+
+	private String[] buildOpeningHoursList ()
+	{
+		String[] list = new String[7 * 3];
+		list[0] = getString (R.string.monday);
+		list[3] = getString (R.string.tuesday);
+		list[7] = getString (R.string.wednesday);
+		list[10] = getString (R.string.thursday);
+		list[13] = getString (R.string.friday);
+		list[16] = getString (R.string.saturday);
+		list[19] = getString (R.string.sunday);
+		OpeningHoursDB odb = OpeningHoursDB.getInstance ();
+		odb.open (false);
+		for(int i=0; i<7;i++){
+			List<Model> l = odb.getOpeningHoursForParkingADay (parking, i);
+			if (l.size () <= 0)
+			{
+				list[(i*3)+1] = getString (R.string.closed);
+				list[(i*3)+2] = "-";
+			}else{
+				list[(i*3)+1] = ((OpeningHours)l.get (0)).getHourStart ().getHours () +":" + ((OpeningHours)l.get (0)).getHourStart ().getMinutes ();
+				list[(i * 3) + 2] = ((OpeningHours) l.get (0)).getHourEnd ()
+						.getHours ()
+						+ ":"
+						+ ((OpeningHours) l.get (0)).getHourEnd ()
+								.getMinutes ();
+			}
+			
+		}
+		
+		odb.close ();
+		
+		return list;
+		
 	}
 
 	private void leaveParking ()

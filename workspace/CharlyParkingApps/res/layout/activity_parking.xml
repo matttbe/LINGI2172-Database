@@ -96,8 +96,17 @@
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:text="@string/action_use_parking_end" />
+        
+         <GridView
+        android:id="@+id/opening_hours_grid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="45dp"
+        android:layout_marginTop="38dp"
+        android:numColumns="3" >
+    </GridView>
     </LinearLayout>
 
-    
+   
 
 </RelativeLayout>

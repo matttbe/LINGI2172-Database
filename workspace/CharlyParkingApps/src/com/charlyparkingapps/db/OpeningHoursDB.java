@@ -31,9 +31,9 @@ public class OpeningHoursDB extends ObjectRepository {
 		return sInstance;
 	}
 
-	private static final String[] ALL_COLUMNS = { "parkingId", "name",
-			"defibrillator", "totalPlaces", "freePlaces", "maxHeight",
-			"disable", "user" };
+	private static final String[] ALL_COLUMNS = { "openingId", "dayStart",
+			"dayEnd",
+			"hourStart", "hourEnd", "parking" };
 
 	public OpeningHoursDB(Context context) {
 		super(context);
@@ -46,7 +46,9 @@ public class OpeningHoursDB extends ObjectRepository {
 
 	@Override
 	public String getCreateRequest() {
-		return "CREATE TABLE OpeningHours(dayStart INTEGER NOT NULL CHECK (dayStart <= 6 AND dayStart >= 0), "
+		return "CREATE TABLE OpeningHours("
+				+ "openingId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "
+				+ "dayStart INTEGER NOT NULL CHECK (dayStart <= 6 AND dayStart >= 0), "
 				+ "dayEnd INTEGER NOT NULL CHECK (dayEnd <= 6 AND dayEnd >= 0),"
 				+ "hourStart TIME NOT NULL, "
 				+ "hourEnd TIME NOT NULL, "
@@ -58,11 +60,21 @@ public class OpeningHoursDB extends ObjectRepository {
 		Cursor cursor = myBDD.query(getTablename(), getAllColumns(),
 				"parking=?",
 				new String[] { String.valueOf(parking.getParkingId()) }, null,
-				null, "start");
+ null, null);
 
 		return convertCursorToListObject(cursor);
 	}
 
+	public List<Model> getOpeningHoursForParkingADay (Parking parking, int day)
+	{
+		Cursor cursor = myBDD.query (getTablename (), getAllColumns (),
+				"parking=? AND dayStart<=? AND dayEnd<=?",
+				new String[] { String.valueOf (parking.getParkingId ()),
+						String.valueOf (day), String.valueOf (day) }, null,
+				null, null);
+
+		return convertCursorToListObject (cursor);
+	}
 	@Override
 	public void populate(SQLiteDatabase db) {
 		db.execSQL("INSERT INTO OpeningHours VALUES(1,0, 6, '00:00:00','23:59:59',1);");

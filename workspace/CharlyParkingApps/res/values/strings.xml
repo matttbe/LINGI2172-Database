@@ -82,5 +82,18 @@
 	<string name="action_use_parking_end">Leave this parking</string>
 	<string name="remove_parking">Remove parking</string>
 	<string name="not_manager">You cannot manage parkings !</string>
-	<string name="no_car">You need to had and select a car</string>
+	<string name="no_car">You need to add and select a car</string>
+	
+	<string name="monday">Monday</string>
+	<string name="tuesday">Tuesday</string>
+	<string name="wednesday">Wednesday</string>
+	<string name="thursday">Thursday</string>
+	<string name="friday">Friday</string>
+	<string name="saturday">Saturday</string>
+	<string name="sunday">Sunday</string>
+	<string name="hour">hour</string>
+	<string name="hours">hours</string>
+	<string name="euro">€/h</string>
+	<string name="closed">Closed</string>
+	
 </resources>

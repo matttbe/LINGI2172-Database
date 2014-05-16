@@ -17,6 +17,7 @@ import com.charlyparkingapps.db.FuelDB;
 import com.charlyparkingapps.db.HistoryDB;
 import com.charlyparkingapps.db.HourlyRateDB;
 import com.charlyparkingapps.db.ObjectDB;
+import com.charlyparkingapps.db.OpeningHoursDB;
 import com.charlyparkingapps.db.ParkingDB;
 import com.charlyparkingapps.db.UserDB;
 import com.charlyparkingapps.db.object.User;
@@ -41,6 +42,7 @@ public class CharlyApplication extends Application {
 		allObjects.add(CarDB.init(context));
 		allObjects.add(HistoryDB.init(context));
 		allObjects.add(HourlyRateDB.init(context));
+		allObjects.add (OpeningHoursDB.init (context));
 
 
 	}
