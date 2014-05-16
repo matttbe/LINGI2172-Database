@@ -90,14 +90,19 @@ public class FiltersActivity extends Activity implements
 		this.mHandicapedCB.setChecked(this.mPreferences.getBoolean(HANDICAPED_PREF, false));
 		this.mFuelCB = (CheckBox) findViewById(R.id.fuel_cb);
 		this.mFuelCB.setOnCheckedChangeListener(this);
+		this.mFuelCB.setChecked(this.mPreferences.getBoolean(FUEL_PREF, false));
 		this.mDieselCB = (CheckBox) findViewById(R.id.diesel_cb);
 		this.mDieselCB.setOnCheckedChangeListener(this);
+		this.mDieselCB.setChecked(this.mPreferences.getBoolean(DIESEL_PREF, false));
 		this.mLPGCB = (CheckBox) findViewById(R.id.lpg_cb);
 		this.mLPGCB.setOnCheckedChangeListener(this);
+		this.mLPGCB.setChecked(this.mPreferences.getBoolean(LPG_PREF, false));;
 		this.mEthanolCB = (CheckBox) findViewById(R.id.ethanol_cb);
 		this.mEthanolCB.setOnCheckedChangeListener(this);
+		this.mEthanolCB.setChecked(this.mPreferences.getBoolean(ETHANOL_PREF, false));
 		this.mOneFreeCB = (CheckBox) findViewById(R.id.one_free_place_cb);
 		this.mOneFreeCB.setOnCheckedChangeListener(this);
+		this.mOneFreeCB.setChecked(this.mPreferences.getBoolean(ONEFREESPOT_PREF, false));
 
 		// SeekBars
 		this.mTotalPlacesSB = (SeekBar) findViewById(R.id.total_places_sb);
