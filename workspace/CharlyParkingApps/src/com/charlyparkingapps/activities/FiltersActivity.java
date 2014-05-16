@@ -107,10 +107,13 @@ public class FiltersActivity extends Activity implements
 		// SeekBars
 		this.mTotalPlacesSB = (SeekBar) findViewById(R.id.total_places_sb);
 		this.mTotalPlacesSB.setOnSeekBarChangeListener(this);
+		this.mTotalPlacesSB.setProgress(this.mPreferences.getInt(TOTALPLACES_PREF, 0));
 		this.mFreePlacesSB = (SeekBar) findViewById(R.id.free_places_sb);
 		this.mFreePlacesSB.setOnSeekBarChangeListener(this);
+		this.mFreePlacesSB.setProgress(this.mPreferences.getInt(FREEPLACES_PREF, 0));
 		this.mPriceSB = (SeekBar) findViewById(R.id.price_sb);
 		this.mPriceSB.setOnSeekBarChangeListener(this);
+		this.mPriceSB.setProgress(this.mPreferences.getInt(PRICE_PREF, 0));
 
 		// Buttons
 		this.mFavoriteButton = (Button) findViewById(R.id.favorites_button);
