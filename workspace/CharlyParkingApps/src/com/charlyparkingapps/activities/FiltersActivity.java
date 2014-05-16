@@ -184,7 +184,6 @@ public class FiltersActivity extends Activity implements
 
 		this.mEditor.putBoolean(prefStr, checked);
 		this.mEditor.commit();
-		// TODO faire di-rek la requete
 	}
 
 	// Seekbars listeners
@@ -208,7 +207,6 @@ public class FiltersActivity extends Activity implements
 
 		this.mEditor.putInt(prefStr, seekBar.getProgress());
 		this.mEditor.commit();
-		// TODO faire di-rek la requete
 	}
 
 	@Override
@@ -224,7 +222,6 @@ public class FiltersActivity extends Activity implements
 	// Buttons listener
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		// Envoyer vers une liste avec les infos demandées ?
 
 		switch (v.getId()) {
@@ -249,7 +246,6 @@ public class FiltersActivity extends Activity implements
 	public void onItemSelected(AdapterView<?> parent, View view, int pos,
 			long id) {
 		this.mEditor.putString(SORT_PREF, "" + parent.getItemAtPosition(pos));
-		// TODO, faire un enum ou pas ?
 		this.mEditor.commit();
 		// TODO faire di-rek la requete
 	}

@@ -11,9 +11,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.charlyparkingapps.CharlyApplication;
@@ -23,7 +27,7 @@ import com.charlyparkingapps.db.ParkingDB;
 import com.charlyparkingapps.db.object.Address;
 import com.charlyparkingapps.db.object.Parking;
 
-public class ParkingEditActivity extends Activity implements OnClickListener {
+public class ParkingEditActivity extends Activity implements OnClickListener, OnItemSelectedListener {
 
 	public static final String KEY_PARKING_ID = "parkingID";
 	public static final String KEY_PARKING_SERIAL = "parkingSerial";
@@ -34,6 +38,8 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 	private EditText mZip;
 	private EditText mCity;
 	private EditText mCountry;
+	private EditText mOpeningHours;
+	private EditText mOpeningMin;
 	private CheckBox mDefibrilator;
 	private CheckBox mDisabled;
 	private EditText mPlaces;
@@ -43,8 +49,11 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 	private EditText mHeight;
 	private Button mPlusH;
 	private Button mMinusH;
+	private Spinner mDaysSpinner;
 
 	private Parking mParking;
+	private int hours[][] = new int[7][2];
+	private int oldPos;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +84,19 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 		this.mMinusH = (Button) findViewById (R.id.minus_height);
 		this.mPlusH.setOnClickListener (this);
 		this.mMinusH.setOnClickListener (this);
+		
+		this.mDaysSpinner = (Spinner) findViewById(R.id.parking_edit_days_spinner);
+		this.mDaysSpinner.setOnItemSelectedListener(this);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+				this, R.array.days_spinner_array,
+				android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		this.mDaysSpinner.setAdapter(adapter);
+		this.mDaysSpinner.setSelection(0);
+		this.oldPos = 0;
+		
+		this.mOpeningHours = (EditText) findViewById(R.id.parking_edit_hours);
+		this.mOpeningMin = (EditText) findViewById(R.id.parking_edit_min);
 
 		this.mAddParking = (Button) findViewById(R.id.add_parking);
 		this.mAddParking.setOnClickListener(this);
@@ -150,6 +172,7 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 	}
 
 	public void onStop() {
+		//TODO add les opening hours
 		if (mParking != null) {
 			this.mParking.getAddress().setStreet(
 					this.mStreet.getText().toString());
@@ -238,6 +261,7 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 				break;
 
 		case R.id.add_parking:
+			//TODO add les opening hours
 			Address parkingAddress = new Address(mStreet.getText().toString(),
 					Integer.parseInt(mNum.getText().toString()), mCity
 							.getText().toString(), Integer.parseInt(mZip
@@ -259,8 +283,7 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 			int userID = ((CharlyApplication) getApplication()).getCurrentUser().getId();
 			Parking newParking = new Parking(mName.getText().toString(),
 					mDefibrilator.isChecked(), Integer.parseInt(mPlaces
-							.getText().toString()), Integer.parseInt(mPlaces
-.getText ().toString ()),
+							.getText().toString()), Integer.parseInt(mPlaces.getText ().toString ()),
 						Integer.parseInt (mHeight.getText ().toString ()),
 						mDisabled.isChecked (),
 					userID);
@@ -286,6 +309,21 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 			break;
 		}
 
+	}
+
+	@Override
+	public void onItemSelected(AdapterView<?> parent, View view, int pos,
+			long id) {
+			this.hours[this.oldPos][0] = Integer.parseInt(this.mOpeningHours.getText().toString());
+			this.hours[oldPos][1] = Integer.parseInt(this.mOpeningMin.getText().toString());
+			oldPos = pos;
+			//TODO updater les edit text .... 
+			//this.mOpeningHours.setText(this.mParking.get...);
+	}
+
+	@Override
+	public void onNothingSelected(AdapterView<?> arg0) {
+		//Nothing to do here !		
 	}
 
 }

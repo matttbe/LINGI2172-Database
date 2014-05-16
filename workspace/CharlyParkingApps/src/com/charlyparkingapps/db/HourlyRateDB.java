@@ -53,9 +53,10 @@ public class HourlyRateDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',1.35,1);");
-		db.execSQL("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.1,1);");
-		db.execSQL("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,1);");
+		
+		for(int i = 1; i< 7;i++){
+			db.execSQL("INSERT INTO HourlyRate VALUES("+i+",'00:00:00','24:00:00',"+(2.35*i)+","+i+");");
+		}
 
 		db.execSQL ("INSERT INTO HourlyRate VALUES(4,'00:00:00','01:00:00',1.50,2);");
 		db.execSQL ("INSERT INTO HourlyRate VALUES(5,'01:00:01','03:00:00',1.25,2);");

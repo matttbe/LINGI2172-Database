@@ -156,21 +156,23 @@ public class ParkingDB extends ObjectRepository {
 				+ fuels + ") "
 				: "";
 		
-		String totPlaces = "AND totalPlaces >= "
-				+ prefs.getInt(FiltersActivity.TOTALPLACES_PREF, 0) + " ";
+		String totPlaces = prefs.getInt(FiltersActivity.TOTALPLACES_PREF, 0)!=0 ? "AND totalPlaces >= "
+				+ prefs.getInt(FiltersActivity.TOTALPLACES_PREF, 0) + " " : "";
 
-		String freePlaces = "AND freePlaces >= "
-				+ prefs.getInt(FiltersActivity.FREEPLACES_PREF, 0) + " ";
+		String freePlaces = prefs.getInt(FiltersActivity.FREEPLACES_PREF, 0)!=0 ? "AND freePlaces >= "
+				+ prefs.getInt(FiltersActivity.FREEPLACES_PREF, 0) + " " : "";
 
 		String oneFree = (prefs.getBoolean(FiltersActivity.ONEFREESPOT_PREF,
-				false)) ? "AND freePlaces < totalPlaces " : "";
-
+				false)) ? "AND freePlaces > 0 " : "";
+		String cos = prefs.getInt(FiltersActivity.PRICE_PREF, 0)!=0 ?
+				" AND P.ParkingId IN (SELECT parking FROM HourlyRate WHERE cost <="+ prefs.getInt(FiltersActivity.PRICE_PREF, 0)+" )"
+				: "";
 		Cursor cursor = myBDD.rawQuery(
 				"SELECT * FROM Parking P, ForbiddenFuel FF, Fuel F WHERE (P.parkingId = FF.parking OR P.parkingId != FF.parking) AND defibrillator IN (" + def
 								+ ") AND disable IN ("
 								+ dis
 								+ ") "
-								+ getFuels + totPlaces + freePlaces + oneFree, null);
+								+ getFuels + totPlaces + freePlaces + oneFree + cos, null);
 		/*
 		 * Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
 		 * "defibrillator IN ("+def+") AND disable IN ("+dis+")", null, null,
