@@ -106,8 +106,6 @@ public class CarEditActivity extends Activity implements OnClickListener {
 		// as you specify a parent activity in AndroidManifest.xml.
 		int id = item.getItemId();
 		switch(id) {
-		case R.id.action_settings :
-			return true;
 		case android.R.id.home:
 			this.onBackPressed();
 			break;
