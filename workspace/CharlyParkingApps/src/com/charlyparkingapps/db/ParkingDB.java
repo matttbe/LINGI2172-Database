@@ -7,9 +7,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteQueryBuilder;
 import android.preference.PreferenceManager;
-import android.util.Log;
 
 import com.charlyparkingapps.activities.FiltersActivity;
 import com.charlyparkingapps.db.object.Model;
@@ -129,9 +127,14 @@ public class ParkingDB extends ObjectRepository {
 		fuels += (prefs.getBoolean(FiltersActivity.ETHANOL_PREF,false)) ? "Ethanol,":"";
 		fuels = fuels.length()>0 ? fuels.substring(0, fuels.length()-2) : "";
 		
-		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
-				"defibrillator IN ("+def+") AND disable IN ("+dis+")",
-				null, null, null, null);
+		Cursor cursor = myBDD.rawQuery(
+				"SELECT * FROM Parking WHERE defibrillator IN (" + def
+						+ ") AND disable IN (" + dis + ")", null);
+		/*
+		 * Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
+		 * "defibrillator IN ("+def+") AND disable IN ("+dis+")", null, null,
+		 * null, null);
+		 */
 		
 		
 		System.out.println((prefs.getBoolean(FiltersActivity.HANDICAPED_PREF, false) ? "1":"0,1"));
