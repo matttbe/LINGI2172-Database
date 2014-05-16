@@ -59,9 +59,9 @@ public class HourlyRate implements Model {
 		Time dateStart = null;
 		Time dateEnd = null;
 		try {
-			dateStart = Time.valueOf(c.getString(2));
+			dateStart = Time.valueOf (c.getString (1));
 			if (!c.isNull(3)) {
-				dateEnd = Time.valueOf(c.getString(3));
+				dateEnd = Time.valueOf (c.getString (2));
 			}
 		} catch (Exception e) {
 			Log.e("History", "Error Parsing ISO8601", e);

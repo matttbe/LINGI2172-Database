@@ -127,6 +127,7 @@ public class ParkingActivity extends Activity {
 		hdb.open (true);
 		History h = ((History) hdb.getAllCurrentHistoriesOrdered (user,
 				user.getMyFavoriteCar ()).get (0));
+
 		h.setEnd (new Date ());
 		hdb.update (h);
 		hdb.close ();

@@ -174,7 +174,7 @@ public class HistoryActivity extends Activity
 			TextView textViewThirdLine = (TextView) rowView
 					.findViewById (R.id.cell_history_date);
 			TextView textViewFourthLine = (TextView) rowView
-					.findViewById (R.id.cell_history_time);
+					.findViewById (R.id.cell_history_price);
 
 			final History h = (History) getItem (position);
 			textViewFirstLine.setText (getString (R.string.parking) + " "
@@ -186,6 +186,7 @@ public class HistoryActivity extends Activity
 					+ " " + getString (R.string.hour_time_separator) + " "
 					+ (h.getEnd ().getMinutes () - h.getStart ().getMinutes ())
 					% 60 + " " + getString (R.string.minutes_time_separator));
+			textViewFourthLine.setText (h.getPrice () + "€");
 
 			RatingBar rb = (RatingBar) rowView
 					.findViewById (R.id.cell_history_rate);

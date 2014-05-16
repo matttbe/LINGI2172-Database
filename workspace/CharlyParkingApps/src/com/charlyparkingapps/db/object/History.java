@@ -219,10 +219,11 @@ public class History implements Model {
 	/*
 	 * c'est un peu bourrin
 	 */
-	public float getPrice(History history) {
+	public float getPrice ()
+	{
 		float price = 0;
-		Parking p = history.getParking();
-		long time = history.getEnd().getTime() - history.getStart().getTime();
+		Parking p = this.getParking ();
+		long time = this.getEnd ().getTime () - this.getStart ().getTime ();
 		HourlyRateDB u = HourlyRateDB.getInstance();
 		u.open(false);
 		List<Model> allH = u.getAllHourlyRateForParking(p);
@@ -231,6 +232,8 @@ public class History implements Model {
 		while (index < allH.size() && time > 0) {
 			HourlyRate h = (HourlyRate) allH.get(index);
 			price = price + h.getCost();
+			System.out.println (h.getEnd ().getTime ());
+			System.out.println (h.getStart ().getTime ());
 			time = time - (h.getEnd().getTime() - h.getStart().getTime());
 			index = index + 1;
 		}
