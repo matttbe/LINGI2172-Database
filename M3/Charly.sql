@@ -37,7 +37,7 @@ INSERT INTO "Address" VALUES(13, 14, 'Place du Nouveau Marché aux Grains', 1, '
 INSERT INTO "Address" VALUES(14, 15, 'Rue de Flandre', 60, 'Bruxelles', 1000, 'BE', 50.851665, 4.3462069);
 INSERT INTO "Address" VALUES(15, 16, 'Place De Brouckère', 1, 'Bruxelles', 1000, 'BE', 50.8510611, 4.3524389);
 INSERT INTO "Address" VALUES(16, 17, 'Boulevard de Waterloo', 1, 'Bruxelles', 1000, 'BE', 50.8388739, 4.3613843);
-INSERT INTO "Address" VALUES(17, 18, 'Rue de l Ecuyer, ', 15, 'Bruxelles', 1000, 'BE', 50.8492771, 4.3534652);
+INSERT INTO "Address" VALUES(17, 18, 'Rue de l\'Ecuyer', 15, 'Bruxelles', 1000, 'BE', 50.8492771, 4.3534652);
 
 
 CREATE TABLE Car (carId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
