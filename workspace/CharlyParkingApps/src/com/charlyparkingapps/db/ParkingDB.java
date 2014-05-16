@@ -120,6 +120,7 @@ public class ParkingDB extends ObjectRepository {
 		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
 		String def = (prefs.getBoolean(FiltersActivity.DEFIBRILATOR_PREF,false)) ? "1":"0,1";
 		String dis = (prefs.getBoolean(FiltersActivity.HANDICAPED_PREF, false)) ? "1":"0,1";
+
 		String fuels = "";
 		fuels += (prefs.getBoolean(FiltersActivity.FUEL_PREF,false)) ? "'Gasoline',":"";
 		fuels += (prefs.getBoolean(FiltersActivity.DIESEL_PREF,false)) ? "'Diesel',":"";
@@ -127,12 +128,25 @@ public class ParkingDB extends ObjectRepository {
 		fuels += (prefs.getBoolean(FiltersActivity.ETHANOL_PREF,false)) ? "'Ethanol',":"";
 		fuels = fuels.length()>0 ? fuels.substring(0, fuels.length()-1) : "";
 		
-		String getFuels = fuels.length()>0 ? "AND (P.parkingId = FF.parking) AND F.name NOT IN ("+fuels+")": "";
+		String getFuels = fuels.length() > 0 ? "AND (P.parkingId = FF.parking) AND F.name NOT IN ("
+				+ fuels + ") "
+				: "";
 		
+		String totPlaces = (prefs.getBoolean(FiltersActivity.TOTALPLACES_PREF,
+				false)) ? "" : "AND totalPlaces <= "
+				+ prefs.getInt(FiltersActivity.TOTALPLACES_PREF, 0) + " ";
+
+		String freePlaces = (prefs.getBoolean(FiltersActivity.FREEPLACES_PREF,
+				false)) ? "" : "AND freePlaces <= "
+				+ prefs.getInt(FiltersActivity.FREEPLACES_PREF, 0) + " ";
+
 		System.out.println(getFuels);
 		Cursor cursor = myBDD.rawQuery(
 				"SELECT * FROM Parking P, ForbiddenFuel FF, Fuel F WHERE (P.parkingId = FF.parking OR P.parkingId != FF.parking) AND defibrillator IN (" + def
-						+ ") AND disable IN (" + dis + ") "+getFuels, null);
+								+ ") AND disable IN ("
+								+ dis
+								+ ") "
+								+ getFuels + totPlaces + freePlaces, null);
 		/*
 		 * Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
 		 * "defibrillator IN ("+def+") AND disable IN ("+dis+")", null, null,
