@@ -151,11 +151,15 @@ public class ParkingActivity extends Activity {
 			List<Model> l = odb.getOpeningHoursForParkingADay (parking, i);
 			if (l.size () <= 0)
 			{
-				list[(i*3)+1] = getString (R.string.closed);
-				list[(i*3)+2] = "-";
+				list[(i * 3) + 2] = getString (R.string.closed);
+				list[(i * 3) + 3] = "-";
 			}else{
-				list[(i*3)+1] = ((OpeningHours)l.get (0)).getHourStart ().getHours () +":" + ((OpeningHours)l.get (0)).getHourStart ().getMinutes ();
-				list[(i * 3) + 2] = ((OpeningHours) l.get (0)).getHourEnd ()
+				list[(i * 3) + 2] = ((OpeningHours) l.get (0)).getHourStart ()
+						.getHours ()
+						+ ":"
+						+ ((OpeningHours) l.get (0)).getHourStart ()
+								.getMinutes ();
+				list[(i * 3) + 3] = ((OpeningHours) l.get (0)).getHourEnd ()
 						.getHours ()
 						+ ":"
 						+ ((OpeningHours) l.get (0)).getHourEnd ()
