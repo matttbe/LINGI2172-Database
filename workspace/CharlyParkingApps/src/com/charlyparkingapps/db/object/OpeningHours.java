@@ -3,6 +3,7 @@ package com.charlyparkingapps.db.object;
 import java.sql.Time;
 
 import android.database.Cursor;
+import android.util.Log;
 
 import com.charlyparkingapps.db.ParkingDB;
 
@@ -39,14 +40,44 @@ public class OpeningHours implements Model {
 
 	@Override
 	public String getByInt(int i) {
-		// TODO Auto-generated method stub
-		return null;
+		switch (i) {
+		case 0:
+			return String.valueOf(this.getOpeningsHoursId());
+		case 1:
+			return String.valueOf(this.getDayStart());
+		case 2:
+			return String.valueOf(this.getDayEnd());
+		case 3:
+			return this.getHourStart().toString();
+		case 4:
+			return this.getHourEnd().toString();
+		case 5:
+			return String.valueOf(this.getParkingId());
+		default:
+			return String.valueOf(this.getOpeningsHoursId());
+		}
 	}
 
 	@Override
 	public Model createFromCursor(Cursor c) {
-		// TODO Auto-generated method stub
-		return null;
+		this.setOpeningsHoursId(c.getInt(0));
+		this.setDayStart(c.getInt(1));
+		this.setDayEnd(c.getInt(2));
+		Time dateStart = null;
+		Time dateEnd = null;
+		try {
+			dateStart = Time.valueOf(c.getString(3));
+			if (!c.isNull(3)) {
+				dateEnd = Time.valueOf(c.getString(4));
+			}
+		} catch (Exception e) {
+			Log.e("History", "Error Parsing ISO8601", e);
+		} finally {
+			this.setHourStart(dateStart);
+			this.setHourEnd(dateEnd);
+		}
+		this.setParkingId(c.getInt(5));
+		return this;
 	}
 
 	public int getOpeningsHoursId() {
