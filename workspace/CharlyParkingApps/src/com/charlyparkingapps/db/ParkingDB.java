@@ -61,11 +61,13 @@ public class ParkingDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL ("INSERT INTO Parking VALUES(1,'Sainte Barbe',1,150,10,999300,0,1);");
-		// db.execSQL ("INSERT INTO Parking VALUES(2,'P22',0,75,65,185,1,1);");
+		/*
+		 * "parkingId", "name","defibrillator", "totalPlaces", "freePlaces",
+		 * "maxHeight","disable", "user"
+		 */
+		db.execSQL ("INSERT INTO Parking VALUES(1,'Sainte Barbe',1,150,10,250,0,1);");
 		db.execSQL ("INSERT INTO Address VALUES(0,1,'Place Sainte Barbe',1,'Louvain-la-Neuve',1348,'BE',50.667408,4.62202);");
-
-		db.execSQL ("INSERT INTO Parking VALUES(3,'Hotel de Ville',0,150,10,110,1,1);");
+		db.execSQL ("INSERT INTO Parking VALUES(3,'Hotel de Ville',0,150,10,260,1,1);");
 		db.execSQL ("INSERT INTO Address VALUES(1,3,'Place de Hotel de Ville',0,'Saint-Quentin',02100,'FR',49.846122,3.287457);");
 		db.execSQL ("INSERT INTO Parking VALUES(4,'Saleya',1,170,17,310,1,1);");
 		db.execSQL ("INSERT INTO Address VALUES(2,4,'Cours Saleya',0, 06300, 'Nice', 'FR',43.695607,7.4922699999934);");
@@ -76,27 +78,27 @@ public class ParkingDB extends ObjectRepository {
 		db.execSQL ("INSERT INTO Parking VALUES(7,'Pink Paradise',0,1,0,180,0,1);");
 		db.execSQL ("INSERT INTO Address VALUES(5,7, 'Rue de Ponthieu',59, 'Paris', 75008, 'FR', 48.87214119999999,2.304941699999972);");
 		db.execSQL ("INSERT INTO Parking VALUES(8,'City Parking',0,1,0,200,0,1);");
-		db.execSQL ("INSERT INTO Address VALUES(6,8, 'Rue des Fossés',19, 'Braine-l'Alleud', 1420, 'BE', 50.6836196,4.371213399999988);");
-		db.execSQL ("INSERT INTO Parking VALUES(9,'Albertine-Square',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(6,8, 'Rue des Fossés',19, 'Braine-l Alleud', 1420, 'BE', 50.6836196,4.371213399999988);");
+		db.execSQL ("INSERT INTO Parking VALUES(9,'Albertine Square',0,200,150,260,1,1);");
 		db.execSQL ("INSERT INTO Address VALUES(7,9, 'Place de la Justice',16, 'Bruxelles', 1000, 'BE', 50.8439031,4.3546111000000565);");
-		db.execSQL ("INSERT INTO Parking VALUES(10,'Alhambra',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Parking VALUES(10,'Alhambra',0,200,150,300,1,1);");
 		db.execSQL ("INSERT INTO Address VALUES(8,10, 'Boulevard Emile Jacqmain',14, 'Bruxelles', 1000, 'BE',50.85251100000001,4.352997100000039);");
-		db.execSQL ("INSERT INTO Parking VALUES(11,'Botanique',0,1,150,200,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(8,10, 'Boulevard du Jardin Botanique',29, 'Bruxelles', 1000, 'BE',50.85446100000001,4.36015969999994);");
-		db.execSQL ("INSERT INTO Parking VALUES(12,'Centre',0,1,150,200,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(9,12, 'Rue du Damier',26, 'Bruxelles', 1000, 'BE',50.85320609999999,4.358081599999991);");
-		db.execSQL ("INSERT INTO Parking VALUES(13,'City 2',0,1,150,200,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(10,13, 'Rue des Cendres',8, 'Bruxelles', 1000, 'BE',50.85465550000001,4.359839800000032);");
-		db.execSQL ("INSERT INTO Parking VALUES(14,'Dansaert',0,1,150,200,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(11,14, 'Place du Nouveau Marché aux Grains',1, 'Bruxelles', 1000, 'BE',50.8507354,4.344914099999983);");
-		db.execSQL ("INSERT INTO Parking VALUES(15,'Dansaert 2',0,1,150,200,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(12,15, 'Rue de Flandre',60, 'Bruxelles', 1000, 'BE',50.851665,4.34620689999997);");
-		db.execSQL ("INSERT INTO Parking VALUES(16,'De Brouckère',0,1,150,200,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(13,16, 'Place De Brouckère',1, 'Bruxelles', 1000, 'BE',50.8510611,4.352438900000038);");
-		db.execSQL ("INSERT INTO Parking VALUES(17,'Deux Portes',0,1,150,200,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(14,17, 'Boulevard de Waterloo',1, 'Bruxelles', 1000, 'BE',50.8388739,4.361384300000054);");
-		db.execSQL ("INSERT INTO Parking VALUES(18,'Ecuyer',0,1,150,200,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(15,18, 'Rue de l'Ecuyer,',15, 'Bruxelles', 1000, 'BE',50.84927709999999,4.35346519999996);");
+		db.execSQL ("INSERT INTO Parking VALUES(11,'Botanique',0,200,150,320,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(9,10, 'Boulevard du Jardin Botanique',29, 'Bruxelles', 1000, 'BE',50.85446100000001,4.36015969999994);");
+		db.execSQL ("INSERT INTO Parking VALUES(12,'Centre',0,400,190,260,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(11,12, 'Rue du Damier',26, 'Bruxelles', 1000, 'BE',50.85320609999999,4.358081599999991);");
+		db.execSQL ("INSERT INTO Parking VALUES(13,'City 2',0,500,239,270,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(12,13, 'Rue des Cendres',8, 'Bruxelles', 1000, 'BE',50.85465550000001,4.359839800000032);");
+		db.execSQL ("INSERT INTO Parking VALUES(14,'Dansaert',0,457,96,290,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(13,14, 'Place du Nouveau Marché aux Grains',1, 'Bruxelles', 1000, 'BE',50.8507354,4.344914099999983);");
+		db.execSQL ("INSERT INTO Parking VALUES(15,'Dansaert 2',0,190,150,280,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(14,15, 'Rue de Flandre',60, 'Bruxelles', 1000, 'BE',50.851665,4.34620689999997);");
+		db.execSQL ("INSERT INTO Parking VALUES(16,'De Brouckère',0,500,150,300,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(15,16, 'Place De Brouckère',1, 'Bruxelles', 1000, 'BE',50.8510611,4.352438900000038);");
+		db.execSQL ("INSERT INTO Parking VALUES(17,'Deux Portes',0,190,150,300,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(16,17, 'Boulevard de Waterloo',1, 'Bruxelles', 1000, 'BE',50.8388739,4.361384300000054);");
+		db.execSQL ("INSERT INTO Parking VALUES(18,'Ecuyer',0,387,54,300,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(17,18, 'Rue de l Ecuyer,',15, 'Bruxelles', 1000, 'BE',50.84927709999999,4.35346519999996);");
 		/*
 		 * Barla Rue Auguste Gal 06300 Nice FRANCE Massena Place Masséna 06000
 		 * Nice FRANCE Louvre 20 , Boulevard Victor Hugo 06000 Nice FRANCE
