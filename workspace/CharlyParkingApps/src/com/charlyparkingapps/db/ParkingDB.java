@@ -132,12 +132,10 @@ public class ParkingDB extends ObjectRepository {
 				+ fuels + ") "
 				: "";
 		
-		String totPlaces = (prefs.getBoolean(FiltersActivity.TOTALPLACES_PREF,
-				false)) ? "" : "AND totalPlaces <= "
+		String totPlaces = "AND totalPlaces >= "
 				+ prefs.getInt(FiltersActivity.TOTALPLACES_PREF, 0) + " ";
 
-		String freePlaces = (prefs.getBoolean(FiltersActivity.FREEPLACES_PREF,
-				false)) ? "" : "AND freePlaces <= "
+		String freePlaces = "AND freePlaces >= "
 				+ prefs.getInt(FiltersActivity.FREEPLACES_PREF, 0) + " ";
 
 		System.out.println(getFuels);

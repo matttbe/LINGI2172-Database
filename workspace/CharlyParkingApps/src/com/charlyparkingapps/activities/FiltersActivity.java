@@ -103,6 +103,13 @@ public class FiltersActivity extends Activity implements
 		this.mOneFreeCB = (CheckBox) findViewById(R.id.one_free_place_cb);
 		this.mOneFreeCB.setOnCheckedChangeListener(this);
 		this.mOneFreeCB.setChecked(this.mPreferences.getBoolean(ONEFREESPOT_PREF, false));
+		
+		// TextViews
+		this.mTotalPlacesTV = (TextView) findViewById(R.id.total_places_tv);
+		this.mFreePlacesTV = (TextView) findViewById(R.id.free_places_tv);
+		this.mPriceTV = (TextView) findViewById(R.id.price_tv);
+		this.mRadius = (TextView) findViewById(R.id.filter_radius);
+		this.mRadius.setText("" + this.mPreferences.getInt(RADIUS_PREF, 100));
 
 		// SeekBars
 		this.mTotalPlacesSB = (SeekBar) findViewById(R.id.total_places_sb);
@@ -135,16 +142,6 @@ public class FiltersActivity extends Activity implements
 				android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		this.mSortSpinner.setAdapter(adapter);
-
-		// TextViews
-		this.mTotalPlacesTV = (TextView) findViewById(R.id.total_places_tv);
-		this.mTotalPlacesTV.setText("" + this.mTotalPlacesSB.getProgress());
-		this.mFreePlacesTV = (TextView) findViewById(R.id.free_places_tv);
-		this.mFreePlacesTV.setText("" + this.mFreePlacesSB.getProgress());
-		this.mPriceTV = (TextView) findViewById(R.id.price_tv);
-		this.mPriceTV.setText("" + this.mPriceSB.getProgress());
-		this.mRadius = (TextView) findViewById(R.id.filter_radius);
-		this.mRadius.setText("" + this.mPreferences.getInt(RADIUS_PREF, 100));
 	}
 
 	// ________________ LISTERNER FOR THE MENU
