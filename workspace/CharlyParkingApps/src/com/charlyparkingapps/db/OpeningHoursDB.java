@@ -66,6 +66,24 @@ public class OpeningHoursDB extends ObjectRepository {
 	@Override
 	public void populate(SQLiteDatabase db) {
 		db.execSQL("INSERT INTO OpeningHours VALUES(1,0, 6, '00:00:00','23:59:59',1);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(2,0, 6, '00:00:00','23:59:59',2);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(3,0, 6, '00:00:00','23:59:59',3);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(4,0, 6, '00:00:00','23:59:59',4);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(5,0, 6, '00:00:00','23:59:59',5);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(6,0, 6, '00:00:00','23:59:59',6);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(7,0, 6, '00:00:00','23:59:59',7);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(8,0, 6, '00:00:00','23:59:59',8);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(9,0, 6, '00:00:00','23:59:59',9);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(10,0, 6, '00:00:00','23:59:59',10);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(11,0, 6, '00:00:00','23:59:59',11);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(12,0, 6, '00:00:00','23:59:59',12);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(13,0, 6, '00:00:00','23:59:59',13);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(14,0, 6, '00:00:00','23:59:59',14);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(15,0, 3, '00:00:00','22:59:59',15);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(16,4, 6, '00:00:00','23:59:59',15);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(17,0, 6, '07:00:00','20:59:59',16);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(18,0, 6, '06:00:00','20:59:59',17);");
+		db.execSQL ("INSERT INTO OpeningHours VALUES(19,0, 6, '00:00:00','20:59:59',18);");
 
 	}
 

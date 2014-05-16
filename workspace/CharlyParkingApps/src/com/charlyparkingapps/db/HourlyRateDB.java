@@ -57,6 +57,74 @@ public class HourlyRateDB extends ObjectRepository {
 		db.execSQL("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.1,1);");
 		db.execSQL("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,1);");
 
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',1.50,2);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.25,2);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,2);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',3,3);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.1,3);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,3);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',1.80,4);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.50,4);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,4);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,5);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,5);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,5);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,6);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,6);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,6);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,7);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,7);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,7);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,8);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,8);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,8);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,9);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,9);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,9);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,10);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,10);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,10);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,11);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,11);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,11);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,12);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,12);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,12);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,13);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,13);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,13);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,14);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,14);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,14);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,15);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,15);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,15);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,16);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,16);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,16);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,17);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,17);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,17);");
+
+		db.execSQL ("INSERT INTO HourlyRate VALUES(1,'00:00:00','01:00:00',2.10,18);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(2,'01:00:01','03:00:00',1.5,18);");
+		db.execSQL ("INSERT INTO HourlyRate VALUES(3,'03:00:01','24:00:00',1,18);");
+
 	}
 
 	public List<Model> getAllHourlyRateForParking(Parking parking) {

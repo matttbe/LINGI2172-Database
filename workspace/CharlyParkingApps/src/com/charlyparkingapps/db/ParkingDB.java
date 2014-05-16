@@ -75,10 +75,32 @@ public class ParkingDB extends ObjectRepository {
 		db.execSQL ("INSERT INTO Address VALUES(4,6,'Place du Palais de Justice',0, 'Nice', 06000, 'FR', 43.696672, 7.273752000000059);");
 		db.execSQL ("INSERT INTO Parking VALUES(7,'Pink Paradise',0,1,0,180,0,1);");
 		db.execSQL ("INSERT INTO Address VALUES(5,7, 'Rue de Ponthieu',59, 'Paris', 75008, 'FR', 48.87214119999999,2.304941699999972);");
+		db.execSQL ("INSERT INTO Parking VALUES(8,'City Parking',0,1,0,200,0,1);");
+		db.execSQL ("INSERT INTO Address VALUES(6,8, 'Rue des Fossés',19, 'Braine-l'Alleud', 1420, 'BE', 50.6836196,4.371213399999988);");
+		db.execSQL ("INSERT INTO Parking VALUES(9,'Albertine-Square',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(7,9, 'Place de la Justice',16, 'Bruxelles', 1000, 'BE', 50.8439031,4.3546111000000565);");
+		db.execSQL ("INSERT INTO Parking VALUES(10,'Alhambra',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(8,10, 'Boulevard Emile Jacqmain',14, 'Bruxelles', 1000, 'BE',50.85251100000001,4.352997100000039);");
+		db.execSQL ("INSERT INTO Parking VALUES(11,'Botanique',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(8,10, 'Boulevard du Jardin Botanique',29, 'Bruxelles', 1000, 'BE',50.85446100000001,4.36015969999994);");
+		db.execSQL ("INSERT INTO Parking VALUES(12,'Centre',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(9,12, 'Rue du Damier',26, 'Bruxelles', 1000, 'BE',50.85320609999999,4.358081599999991);");
+		db.execSQL ("INSERT INTO Parking VALUES(13,'City 2',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(10,13, 'Rue des Cendres',8, 'Bruxelles', 1000, 'BE',50.85465550000001,4.359839800000032);");
+		db.execSQL ("INSERT INTO Parking VALUES(14,'Dansaert',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(11,14, 'Place du Nouveau Marché aux Grains',1, 'Bruxelles', 1000, 'BE',50.8507354,4.344914099999983);");
+		db.execSQL ("INSERT INTO Parking VALUES(15,'Dansaert 2',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(12,15, 'Rue de Flandre',60, 'Bruxelles', 1000, 'BE',50.851665,4.34620689999997);");
+		db.execSQL ("INSERT INTO Parking VALUES(16,'De Brouckère',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(13,16, 'Place De Brouckère',1, 'Bruxelles', 1000, 'BE',50.8510611,4.352438900000038);");
+		db.execSQL ("INSERT INTO Parking VALUES(17,'Deux Portes',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(14,17, 'Boulevard de Waterloo',1, 'Bruxelles', 1000, 'BE',50.8388739,4.361384300000054);");
+		db.execSQL ("INSERT INTO Parking VALUES(18,'Ecuyer',0,1,150,200,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(15,18, 'Rue de l'Ecuyer,',15, 'Bruxelles', 1000, 'BE',50.84927709999999,4.35346519999996);");
 		/*
 		 * Barla Rue Auguste Gal 06300 Nice FRANCE Massena Place Masséna 06000
-		 * Nice FRANCE Louvre 20, Boulevard Victor Hugo 06000 Nice FRANCE Lenval
-		 * 57, Avenue de la Californie 06200 Nice FRANCE
+		 * Nice FRANCE Louvre 20 , Boulevard Victor Hugo 06000 Nice FRANCE
+		 * Lenval 57 , Avenue de la Californie 06200 Nice FRANCE
 		 */
 
 	}
