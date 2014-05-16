@@ -4,9 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteQueryBuilder;
+import android.preference.PreferenceManager;
+import android.util.Log;
 
+import com.charlyparkingapps.activities.FiltersActivity;
 import com.charlyparkingapps.db.object.Model;
 import com.charlyparkingapps.db.object.Parking;
 import com.charlyparkingapps.db.object.User;
@@ -64,8 +69,8 @@ public class ParkingDB extends ObjectRepository {
 
 		db.execSQL ("INSERT INTO Parking VALUES(3,'Hotel de Ville',0,150,10,110,1,1);");
 		db.execSQL ("INSERT INTO Address VALUES(1,3,'Place de Hotel de Ville',0,'Saint-Quentin',02100,'FR',49.846122,3.287457);");
-		db.execSQL ("INSERT INTO Parking VALUES(4,'Saleya',1,170,170,310,1,1);");
-		db.execSQL ("INSERT INTO Address VALUES(2,4,'Cours Saleya',0, 06300, 'Nice', 'FR',43.695607,274922699999934);");
+		db.execSQL ("INSERT INTO Parking VALUES(4,'Saleya',1,170,17,310,1,1);");
+		db.execSQL ("INSERT INTO Address VALUES(2,4,'Cours Saleya',0, 06300, 'Nice', 'FR',43.695607,7.4922699999934);");
 		db.execSQL ("INSERT INTO Parking VALUES(5,'Acropolis - Jean Bouin',0,70,15,10,1,1);");
 		db.execSQL ("INSERT INTO Address VALUES(3,5,'Place du XVe Corps',0,'Nice',06000, 'FR', 43.7072969,7.28019119999999);");
 		db.execSQL ("INSERT INTO Parking VALUES(6,'Palais de Justice',0,770,150,10,0,1);");
@@ -112,12 +117,17 @@ public class ParkingDB extends ObjectRepository {
 	}
 
 	public List<Model> getParkingsWithFilters(Context context) {
-		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
-				"parking=pink AND name=Charly AND clinche=?",
- new String[] {
-				// ici c'est les params ou sque ta mis les ? avant
-				}, null, null, null);
 
+		//1 = true, 0 = false
+		SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+		String def = (prefs.getBoolean(FiltersActivity.DEFIBRILATOR_PREF,false)) ? "1":"0,1";
+		String dis = (prefs.getBoolean(FiltersActivity.HANDICAPED_PREF, false)) ? "1":"0,1";
+		Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
+				"defibrillator IN ("+def+") AND disable IN ("+dis+")",
+				null, null, null, null);
+		
+		System.out.println((prefs.getBoolean(FiltersActivity.HANDICAPED_PREF, false) ? "1":"0,1"));
+		System.out.println(cursor);
 		return this.convertCursorToListObject(cursor);
 	}
 
