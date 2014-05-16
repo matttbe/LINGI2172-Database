@@ -37,7 +37,10 @@ public class ProfileActivity extends Activity {
 
 		mUser = ((CharlyApplication) this.getApplication()).getCurrentUser();
 		TextView tv = (TextView) findViewById (R.id.username);
-		tv.setText(mUser.getUsername());
+		tv.setText (getString (R.string.name) + " " + mUser.getUsername ());
+		TextView tv2 = (TextView) findViewById (R.id.favorite_car_info);
+		tv2.setText (getString (R.string.car) + " "
+				+ mUser.getMyFavoriteCar ().getName ());
 
 		initMenu ();
 

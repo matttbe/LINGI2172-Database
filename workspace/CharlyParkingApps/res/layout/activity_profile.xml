@@ -16,6 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
+            android:paddingLeft="5dp"
             android:text="@string/test"
             android:textStyle="bold" />
 
@@ -25,7 +26,7 @@
             android:background="@android:color/darker_gray" />
 
         <TextView
-            android:id="@+id/car_info"
+            android:id="@+id/favorite_car_info"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
