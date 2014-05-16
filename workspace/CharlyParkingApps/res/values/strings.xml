@@ -82,4 +82,5 @@
 	<string name="action_use_parking_end">Leave this parking</string>
 	<string name="remove_parking">Remove parking</string>
 	<string name="not_manager">You cannot manage parkings !</string>
+	<string name="no_car">You need to had and select a car</string>
 </resources>

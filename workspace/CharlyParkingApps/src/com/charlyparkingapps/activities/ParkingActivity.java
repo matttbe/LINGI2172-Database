@@ -75,37 +75,46 @@ public class ParkingActivity extends Activity {
 		user.getMyFavoriteCar ();
 		HistoryDB hdb = HistoryDB.getInstance ();
 		hdb.open (false);
-		List<Model> l= hdb.getAllCurrentHistoriesOrdered (user, user.getMyFavoriteCar ());
-		if (l.size () == 0)
+		if (user.getMyFavoriteCar () == null)
 		{
-			Button park = (Button) findViewById (R.id.action_use_parking);
-			park.setVisibility (View.VISIBLE);
-			park.setOnClickListener (new OnClickListener ()
-			{
-
-				@Override
-				public void onClick (View v)
-				{
-					addInHistory ();
-				}
-			});
+			((TextView) findViewById (R.id.no_car))
+					.setVisibility (View.VISIBLE);
 		}
 		else
 		{
-			if (((History) l.get (0))
-					.getParkingId () == parking.getParkingId ())
+			List<Model> l = hdb.getAllCurrentHistoriesOrdered (user,
+					user.getMyFavoriteCar ());
+			if (l.size () == 0)
 			{
-				Button endPark = (Button) findViewById (R.id.action_use_parking_end);
-				endPark.setVisibility (View.VISIBLE);
-				endPark.setOnClickListener (new OnClickListener ()
+				Button park = (Button) findViewById (R.id.action_use_parking);
+				park.setVisibility (View.VISIBLE);
+				park.setOnClickListener (new OnClickListener ()
 				{
 
 					@Override
 					public void onClick (View v)
 					{
-						leaveParking ();
+						addInHistory ();
 					}
 				});
+			}
+			else
+			{
+				if (((History) l.get (0)).getParkingId () == parking
+						.getParkingId ())
+				{
+					Button endPark = (Button) findViewById (R.id.action_use_parking_end);
+					endPark.setVisibility (View.VISIBLE);
+					endPark.setOnClickListener (new OnClickListener ()
+					{
+
+						@Override
+						public void onClick (View v)
+						{
+							leaveParking ();
+						}
+					});
+				}
 			}
 		}
 		hdb.close ();
