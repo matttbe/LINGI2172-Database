@@ -23,6 +23,7 @@ public class History implements Model {
 	private Date end;
 	private int parkingId;
 	private int userId;
+	private int feedback;
 
 	private Car car;
 	private Parking parking;
@@ -32,12 +33,24 @@ public class History implements Model {
 	DateFormat iso8601Format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
 	public History(int carIdParam, Date startParam, Date endParam,
-			int parkingIdParam, int UserIdParam) {
+			int parkingIdParam, int UserIdParam, int feedback)
+	{
 		this.setCarId(carIdParam);
 		this.setStart(startParam);
 		this.setEnd(endParam);
 		this.setParkingId(parkingIdParam);
 		this.setUserId(UserIdParam);
+		this.setFeedback (feedback);
+	}
+
+	public int getFeedback ()
+	{
+		return feedback;
+	}
+
+	public void setFeedback (int feedback)
+	{
+		this.feedback = feedback;
 	}
 
 	public History(Cursor cursor) {

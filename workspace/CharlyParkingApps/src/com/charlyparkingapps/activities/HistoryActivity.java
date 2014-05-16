@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RatingBar;
+import android.widget.RatingBar.OnRatingBarChangeListener;
 import android.widget.TextView;
 
 import com.charlyparkingapps.CharlyApplication;
@@ -158,12 +160,6 @@ public class HistoryActivity extends Activity
 		}
 
 		@Override
-		public boolean hasStableIds ()
-		{
-			return true;
-		}
-
-		@Override
 		public View getView (int position, View convertView, ViewGroup parent)
 		{
 			LayoutInflater inflater = (LayoutInflater) getContext ()
@@ -179,7 +175,7 @@ public class HistoryActivity extends Activity
 			TextView textViewFourthLine = (TextView) rowView
 					.findViewById (R.id.cell_history_time);
 
-			History h = (History) getItem (position);
+			final History h = (History) getItem (position);
 			textViewFirstLine.setText (getString (R.string.parking) + " "
 					+ h.getParking ().getName ());
 			textViewSecondLine.setText (getString (R.string.car) + " "
@@ -189,6 +185,30 @@ public class HistoryActivity extends Activity
 					+ " " + getString (R.string.hour_time_separator) + " "
 					+ (h.getEnd ().getMinutes () - h.getStart ().getMinutes ())
 					% 60 + " " + getString (R.string.minutes_time_separator));
+
+			RatingBar rb = (RatingBar) rowView
+					.findViewById (R.id.cell_history_rate);
+			System.out.println ("b4 adjust : " + h.getFeedback ());
+			if (h.getFeedback () > 0)
+			{
+				rb.setRating (h.getFeedback ());
+				System.out.println ("adjust");
+			}
+			rb.setOnRatingBarChangeListener (new OnRatingBarChangeListener ()
+			{
+
+				@Override
+				public void onRatingChanged (RatingBar ratingBar, float rating,
+						boolean fromUser)
+				{
+					h.setFeedback ((int) rating);
+					HistoryDB hdb = HistoryDB.getInstance ();
+					hdb.open (true);
+					hdb.update (h);
+					System.out.println ("New value:" + h.getFeedback ());
+					hdb.close ();
+				}
+			});
 
 			return rowView;
 		}
@@ -214,12 +234,6 @@ public class HistoryActivity extends Activity
 		{
 			Model item = getItem (position);
 			return mIdMap.get (item);
-		}
-
-		@Override
-		public boolean hasStableIds ()
-		{
-			return true;
 		}
 
 		@Override
@@ -251,6 +265,7 @@ public class HistoryActivity extends Activity
 					+ getString (R.string.hour_time_separator)+ " "
 					+ (now.getMinutes () - h.getStart ().getMinutes ()) % 60
 					+ " " + getString (R.string.minutes_time_separator));
+			
 
 			return rowView;
 		}

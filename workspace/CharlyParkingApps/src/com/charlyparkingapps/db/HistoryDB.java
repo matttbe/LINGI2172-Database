@@ -26,7 +26,7 @@ public class HistoryDB extends ObjectRepository {
 	}
 
 	private static final String[] ALL_COLUMNS = { "historyId", "car", "start",
-			"end", "parking", "user" };
+			"end", "parking", "user", "feedback" };
 
 	public HistoryDB(Context context) {
 		super(context);
@@ -45,14 +45,16 @@ public class HistoryDB extends ObjectRepository {
 				+ "start DATETIME NOT NULL DEFAULT (null), "
 				+ "end DATETIME DEFAULT (null), "
 				+ "parking INTEGER NOT NULL, "
-				+ "user INTEGER NOT NULL"
+ + "user INTEGER NOT NULL,"
+				+ "feedback INTEGER NOT NULL CONSTRAINT chk_val "
+				+ "CHECK (feedback IN (0,1, 2, 3, 4))"
 			+ ");";
 	}
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		db.execSQL("INSERT INTO History VALUES(1, 1, '2007-01-01 10:00:00', '2007-01-01 11:00:00', 1,1);");
-		db.execSQL("INSERT INTO History VALUES(2, 1, '2014-05-15 18:00:00', NULL, 1, 1);");
+		db.execSQL ("INSERT INTO History VALUES(1, 1, '2007-01-01 10:00:00', '2007-01-01 11:00:00', 1,1,3);");
+		db.execSQL ("INSERT INTO History VALUES(2, 1, '2014-05-15 18:00:00', NULL, 1, 1,3);");
 	}
 
 	@Override

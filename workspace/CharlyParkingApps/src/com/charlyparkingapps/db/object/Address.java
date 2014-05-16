@@ -1,11 +1,17 @@
 package com.charlyparkingapps.db.object;
 
+import java.io.Serializable;
+
 import android.database.Cursor;
 
 import com.charlyparkingapps.db.ParkingDB;
 import com.google.android.gms.maps.model.LatLng;
 
-public class Address implements Model {
+
+public class Address implements Model, Serializable
+{
+
+	private static final long serialVersionUID = 1L;
 
 	private int AddressID;
 	private int parkingID;

@@ -72,7 +72,7 @@ public class ParkingActivity extends Activity {
 		ProgressBar pb = (ProgressBar) findViewById (R.id.freePlacesProgressBar);
 		pb.setMax (parking.getTotalPlaces ());
 		pb.setProgress(parking.getTotalPlaces() - parking.getFreePlaces());
-
+		user.getMyFavoriteCar ();
 		HistoryDB hdb = HistoryDB.getInstance ();
 		hdb.open (false);
 		List<Model> l= hdb.getAllCurrentHistoriesOrdered (user, user.getMyFavoriteCar ());
@@ -126,7 +126,7 @@ public class ParkingActivity extends Activity {
 	private void addInHistory ()
 	{
 		History h = new History (user.getMyFavoriteCar ().getCarId (),
-				new Date (), null, parking.getParkingId (), user.getId ());
+				new Date (), null, parking.getParkingId (), user.getId (), 0);
 		HistoryDB hdb = HistoryDB.getInstance ();
 		hdb.open (true);
 		hdb.save (h);

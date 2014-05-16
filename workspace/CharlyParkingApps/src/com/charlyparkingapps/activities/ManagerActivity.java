@@ -173,9 +173,9 @@ public class ManagerActivity extends Activity
 				{
 					Parking parking = (Parking) getItem (position);
 					Intent intent = new Intent (ManagerActivity.this,
-							ParkingEditActivity.class);
-					intent.putExtra (ParkingEditActivity.KEY_PARKING_SERIAL,
-							parking);
+							MainActivity.class);
+					intent.putExtra (MainActivity.KEY_PARKING,
+ parking);
 					startActivityForResult (intent, 0);
 				}
 			};
