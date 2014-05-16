@@ -215,4 +215,13 @@ public class ManagerActivity extends Activity
 		desc += TimeUnit.MILLISECONDS.toSeconds (diff) + " sec";
 		return desc;
 	}
+
+	@Override
+	protected void onActivityResult (int requestCode, int resultCode,
+			Intent data)
+	{
+		listView.setAdapter (null);
+		addMyParkings ();
+		System.out.println ("Result");
+	}
 }

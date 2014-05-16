@@ -188,7 +188,8 @@ public class HistoryActivity extends Activity
 
 			RatingBar rb = (RatingBar) rowView
 					.findViewById (R.id.cell_history_rate);
-			System.out.println ("b4 adjust : " + h.getFeedback ());
+			System.out.println ("b4 adjust : " + h.getFeedback ()
+					+ h.getParking ().getName ()); // TODO FIX UPDATE OF HISTORY
 			if (h.getFeedback () > 0)
 			{
 				rb.setRating (h.getFeedback ());
