@@ -164,6 +164,7 @@ public class ParkingDB extends ObjectRepository {
 
 		String oneFree = (prefs.getBoolean(FiltersActivity.ONEFREESPOT_PREF,
 				false)) ? "AND freePlaces < totalPlaces " : "";
+
 		Cursor cursor = myBDD.rawQuery(
 				"SELECT * FROM Parking P, ForbiddenFuel FF, Fuel F WHERE (P.parkingId = FF.parking OR P.parkingId != FF.parking) AND defibrillator IN (" + def
 								+ ") AND disable IN ("
