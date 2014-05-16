@@ -1,0 +1,14 @@
+
+
+
+String totPlaces = prefs.getInt(FiltersActivity.TOTALPLACES_PREF, 0)!=0 ? "AND totalPlaces >= "
+				+ prefs.getInt(FiltersActivity.TOTALPLACES_PREF, 0) + " " : "";
+
+
+CREATE FUNCTION getParkings (@def TEXT, @dis TEXT, @fuels TEXT, @totalP INT, @freeP INT, @price INT)
+RETURNS TABLE
+AS
+RETURN
+   "SELECT * FROM Parking P, ForbiddenFuel FF, Fuel F WHERE (P.parkingId = FF.parking OR P.parkingId != FF.parking) AND defibrillator IN (@def) 
+				AND disable IN (@dis) AND (P.parkingId = FF.parking) AND F.name NOT IN (@fuels) ND totalPlaces >= @totalP 
+				AND freePlaces >= @freeP AND freePlaces > 0 AND P.ParkingId IN (SELECT parking FROM HourlyRate WHERE cost <= @price)
