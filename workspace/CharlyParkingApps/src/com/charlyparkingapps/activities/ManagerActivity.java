@@ -163,8 +163,9 @@ public class ManagerActivity extends Activity
 			Parking p = (Parking) getItem (position);
 			textViewFirstLine.setText (getString (R.string.parking) + " "
 					+ p.getName ());
-			textViewSecondLine.setText (getString (R.string.address) + " "
-					+ p.getAddress ().toString ());
+			if (p.getAddress() != null)
+				textViewSecondLine.setText(getString(R.string.address) + " "
+						+ p.getAddress().toString());
 
 			OnClickListener onClickListener = new OnClickListener ()
 			{
