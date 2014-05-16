@@ -160,7 +160,8 @@ public class HistoryActivity extends Activity
 		}
 
 		@Override
-		public View getView (int position, View convertView, ViewGroup parent)
+		public View getView (int position, View convertView,
+				ViewGroup parent)
 		{
 			LayoutInflater inflater = (LayoutInflater) getContext ()
 					.getSystemService (Context.LAYOUT_INFLATER_SERVICE);
@@ -188,12 +189,10 @@ public class HistoryActivity extends Activity
 
 			RatingBar rb = (RatingBar) rowView
 					.findViewById (R.id.cell_history_rate);
-			System.out.println ("b4 adjust : " + h.getFeedback ()
-					+ h.getParking ().getName ()); // TODO FIX UPDATE OF HISTORY
 			if (h.getFeedback () > 0)
 			{
 				rb.setRating (h.getFeedback ());
-				System.out.println ("adjust");
+
 			}
 			rb.setOnRatingBarChangeListener (new OnRatingBarChangeListener ()
 			{
@@ -206,7 +205,7 @@ public class HistoryActivity extends Activity
 					HistoryDB hdb = HistoryDB.getInstance ();
 					hdb.open (true);
 					hdb.update (h);
-					System.out.println ("New value:" + h.getFeedback ());
+
 					hdb.close ();
 				}
 			});
@@ -266,7 +265,7 @@ public class HistoryActivity extends Activity
 					+ getString (R.string.hour_time_separator)+ " "
 					+ (now.getMinutes () - h.getStart ().getMinutes ()) % 60
 					+ " " + getString (R.string.minutes_time_separator));
-			
+
 
 			return rowView;
 		}

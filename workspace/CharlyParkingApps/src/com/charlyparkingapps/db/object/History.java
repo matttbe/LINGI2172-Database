@@ -60,26 +60,28 @@ public class History implements Model {
 	@Override
 	public String getByInt(int i) {
 		switch (i) {
-		case 0:
-			return String.valueOf(this.getHistoryId());
-		case 1:
-			return String.valueOf(this.getCarId());
-		case 2:
+			case 0:
+				return String.valueOf (this.getHistoryId ());
+			case 1:
+				return String.valueOf (this.getCarId ());
+			case 2:
 				return iso8601Format.format (this.getStart ())
 						.toString ();
-		case 3:
+			case 3:
 				if (this.getEnd () == null)
 				{
 					return null;
 				}
 				return iso8601Format.format (this.getEnd ())
 						.toString ();
-		case 4:
-			return String.valueOf(this.getParkingId());
-		case 5:
-			return String.valueOf(this.getUserId());
-		default:
-			return String.valueOf(this.getHistoryId());
+			case 4:
+				return String.valueOf (this.getParkingId ());
+			case 5:
+				return String.valueOf (this.getUserId ());
+			case 6:
+				return String.valueOf (this.getFeedback ());
+			default:
+				return String.valueOf (this.getHistoryId ());
 
 		}
 	}
@@ -104,6 +106,7 @@ public class History implements Model {
 		}
 		this.setParkingId(c.getInt(4));
 		this.setUserId(c.getInt(5));
+		this.setFeedback (c.getInt (6));
 		return this;
 	}
 
@@ -234,7 +237,7 @@ public class History implements Model {
 
 		// u.get
 		u.close();
-		
+
 		return price;
 	}
 
