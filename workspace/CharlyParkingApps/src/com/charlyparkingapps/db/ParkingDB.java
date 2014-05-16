@@ -121,15 +121,18 @@ public class ParkingDB extends ObjectRepository {
 		String def = (prefs.getBoolean(FiltersActivity.DEFIBRILATOR_PREF,false)) ? "1":"0,1";
 		String dis = (prefs.getBoolean(FiltersActivity.HANDICAPED_PREF, false)) ? "1":"0,1";
 		String fuels = "";
-		fuels += (prefs.getBoolean(FiltersActivity.FUEL_PREF,false)) ? "Gasoline,":"";
-		fuels += (prefs.getBoolean(FiltersActivity.DIESEL_PREF,false)) ? "Diesel,":"";
-		fuels += (prefs.getBoolean(FiltersActivity.LPG_PREF,false)) ? "LPG,":"";
-		fuels += (prefs.getBoolean(FiltersActivity.ETHANOL_PREF,false)) ? "Ethanol,":"";
-		fuels = fuels.length()>0 ? fuels.substring(0, fuels.length()-2) : "";
+		fuels += (prefs.getBoolean(FiltersActivity.FUEL_PREF,false)) ? "'Gasoline',":"";
+		fuels += (prefs.getBoolean(FiltersActivity.DIESEL_PREF,false)) ? "'Diesel',":"";
+		fuels += (prefs.getBoolean(FiltersActivity.LPG_PREF,false)) ? "'LPG',":"";
+		fuels += (prefs.getBoolean(FiltersActivity.ETHANOL_PREF,false)) ? "'Ethanol',":"";
+		fuels = fuels.length()>0 ? fuels.substring(0, fuels.length()-1) : "";
 		
+		String getFuels = fuels.length()>0 ? "AND (P.parkingId = FF.parking) AND F.name NOT IN ("+fuels+")": "";
+		
+		System.out.println(getFuels);
 		Cursor cursor = myBDD.rawQuery(
-				"SELECT * FROM Parking WHERE defibrillator IN (" + def
-						+ ") AND disable IN (" + dis + ")", null);
+				"SELECT * FROM Parking P, ForbiddenFuel FF, Fuel F WHERE (P.parkingId = FF.parking OR P.parkingId != FF.parking) AND defibrillator IN (" + def
+						+ ") AND disable IN (" + dis + ") "+getFuels, null);
 		/*
 		 * Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
 		 * "defibrillator IN ("+def+") AND disable IN ("+dis+")", null, null,

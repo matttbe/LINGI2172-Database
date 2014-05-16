@@ -46,6 +46,11 @@ public class ForbiddenFuelDB extends ObjectRepository {
 	@Override
 	public void populate(SQLiteDatabase db) {
 		db.execSQL ("INSERT INTO ForbiddenFuel VALUES(1,1,3);");
+		db.execSQL ("INSERT INTO ForbiddenFuel VALUES(2,2,2);");
+		db.execSQL ("INSERT INTO ForbiddenFuel VALUES(3,3,1);");
+		db.execSQL ("INSERT INTO ForbiddenFuel VALUES(4,4,4);");
+		db.execSQL ("INSERT INTO ForbiddenFuel VALUES(5,3,5);");
+		
 	}
 
 	@Override
