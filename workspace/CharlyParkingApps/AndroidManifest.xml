@@ -100,6 +100,9 @@
         <activity
             android:name="com.charlyparkingapps.activities.CarEditActivity"
             android:label="@string/title_activity_car_edit" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.charlyparkingapps.activities.CarActivity" />
         </activity>
         <activity
             android:name="com.charlyparkingapps.activities.ParkingEditActivity"
@@ -108,6 +111,9 @@
         <activity
             android:name="com.charlyparkingapps.activities.HistoryActivity"
             android:label="@string/title_activity_history" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.charlyparkingapps.activities.MainActivity" />
         </activity>
         <activity
             android:name="com.charlyparkingapps.activities.ManagerActivity"
