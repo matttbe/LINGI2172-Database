@@ -251,8 +251,6 @@ public class HistoryActivity extends Activity
 					.findViewById (R.id.cell_stationnary_car);
 			TextView textViewThirdLine = (TextView) rowView
 					.findViewById (R.id.cell_stationnary_from);
-			TextView textViewFourthLine = (TextView) rowView
-					.findViewById (R.id.cell_stationnary_hourly_rate);
 
 			History h = (History) getItem (position);
 			Date now = new Date();
