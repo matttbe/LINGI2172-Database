@@ -14,7 +14,6 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.charlyparkingapps.CharlyApplication;
@@ -37,10 +36,13 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 	private EditText mCountry;
 	private CheckBox mDefibrilator;
 	private CheckBox mDisabled;
-	private TextView mPlaces;
+	private EditText mPlaces;
 	private Button mPlus;
 	private Button mMinus;
 	private Button mAddParking;
+	private EditText mHeight;
+	private Button mPlusH;
+	private Button mMinusH;
 
 	private Parking mParking;
 
@@ -61,12 +63,19 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 		this.mDefibrilator = (CheckBox) findViewById(R.id.parking_edit_defibrilator_cb);
 		this.mDisabled = (CheckBox) findViewById(R.id.parking_edit_disabled_cb);
 		
-		this.mPlaces = (TextView) findViewById(R.id.parking_edit_places);
+		this.mPlaces = (EditText) findViewById (R.id.parking_edit_places);
 		
 		this.mPlus = (Button) findViewById(R.id.places_plus);
 		this.mPlus.setOnClickListener(this);
 		this.mMinus = (Button) findViewById(R.id.places_minus);
 		this.mMinus.setOnClickListener(this);
+
+		this.mHeight = (EditText) findViewById (R.id.parking_edit_height);
+		this.mPlusH = (Button) findViewById (R.id.plus_height);
+		this.mMinusH = (Button) findViewById (R.id.minus_height);
+		this.mPlusH.setOnClickListener (this);
+		this.mMinusH.setOnClickListener (this);
+
 		this.mAddParking = (Button) findViewById(R.id.add_parking);
 		this.mAddParking.setOnClickListener(this);
 		
@@ -217,6 +226,17 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 							+ (Integer.parseInt(this.mPlaces.getText()
 									.toString()) + 1));
 			break;
+			case R.id.height_plus:
+				this.mHeight.setText (""
+						+ (Integer.parseInt (this.mHeight.getText ()
+								.toString ()) + 1));
+				break;
+			case R.id.height_minus:
+				this.mHeight.setText (""
+						+ (Integer.parseInt (this.mHeight.getText ()
+								.toString ()) - 1));
+				break;
+
 		case R.id.add_parking:
 			Address parkingAddress = new Address(mStreet.getText().toString(),
 					Integer.parseInt(mNum.getText().toString()), mCity
@@ -240,7 +260,9 @@ public class ParkingEditActivity extends Activity implements OnClickListener {
 			Parking newParking = new Parking(mName.getText().toString(),
 					mDefibrilator.isChecked(), Integer.parseInt(mPlaces
 							.getText().toString()), Integer.parseInt(mPlaces
-							.getText().toString()), 150, mDisabled.isChecked(),
+.getText ().toString ()),
+						Integer.parseInt (mHeight.getText ().toString ()),
+						mDisabled.isChecked (),
 					userID);
 
 			ParkingDB parkingDB = ParkingDB.getInstance();

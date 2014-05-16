@@ -47,8 +47,9 @@ public class DrawerListListener implements ListView.OnItemClickListener {
 				mContext.startActivity (i);
 				break;
 			case 4:
-			if (((CharlyApplication) mContext.getApplicationContext())
-					.getCurrentUser().getType() == UserType.USER) {
+				if (((CharlyApplication) mContext.getApplicationContext ())
+						.getCurrentUser ().getType () == UserType.USER)
+				{
 					Toast toast = Toast.makeText(mContext, mContext.getString(R.string.not_manager), Toast.LENGTH_LONG);
 					toast.show();
 				} else {
