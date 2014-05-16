@@ -140,32 +140,30 @@ public class ParkingActivity extends Activity {
 		String[] list = new String[7 * 3];
 		list[0] = getString (R.string.monday);
 		list[3] = getString (R.string.tuesday);
-		list[7] = getString (R.string.wednesday);
-		list[10] = getString (R.string.thursday);
-		list[13] = getString (R.string.friday);
-		list[16] = getString (R.string.saturday);
-		list[19] = getString (R.string.sunday);
+		list[6] = getString(R.string.wednesday);
+		list[9] = getString(R.string.thursday);
+		list[12] = getString(R.string.friday);
+		list[15] = getString(R.string.saturday);
+		list[18] = getString(R.string.sunday);
 		OpeningHoursDB odb = OpeningHoursDB.getInstance ();
 		odb.open (false);
-		for(int i=0; i<7;i++){
+		for (int i = 0; i < 7; i++) {
 			List<Model> l = odb.getOpeningHoursForParkingADay (parking, i);
-			if (l.size () <= 0)
-			{
-				list[(i * 3) + 2] = getString (R.string.closed);
-				list[(i * 3) + 3] = "-";
-			}else{
-				list[(i * 3) + 2] = ((OpeningHours) l.get (0)).getHourStart ()
+			if (l.size() <= 0) {
+				list[(i * 3) + 1] = getString(R.string.closed);
+				list[(i * 3) + 2] = "-";
+			} else {
+				list[(i * 3) + 1] = ((OpeningHours) l.get(0)).getHourStart()
 						.getHours ()
 						+ ":"
 						+ ((OpeningHours) l.get (0)).getHourStart ()
 								.getMinutes ();
-				list[(i * 3) + 3] = ((OpeningHours) l.get (0)).getHourEnd ()
+				list[(i * 3) + 2] = ((OpeningHours) l.get(0)).getHourEnd()
 						.getHours ()
 						+ ":"
 						+ ((OpeningHours) l.get (0)).getHourEnd ()
 								.getMinutes ();
 			}
-			
 		}
 		
 		odb.close ();
