@@ -84,8 +84,10 @@ public class FiltersActivity extends Activity implements
 		// Checkboxes
 		this.mDefibrilatorCB = (CheckBox) findViewById(R.id.defibrilator_cb);
 		this.mDefibrilatorCB.setOnCheckedChangeListener(this);
+		this.mDefibrilatorCB.setChecked(this.mPreferences.getBoolean(DEFIBRILATOR_PREF, false));
 		this.mHandicapedCB = (CheckBox) findViewById(R.id.handicaped_cb);
 		this.mHandicapedCB.setOnCheckedChangeListener(this);
+		this.mHandicapedCB.setChecked(this.mPreferences.getBoolean(HANDICAPED_PREF, false));
 		this.mFuelCB = (CheckBox) findViewById(R.id.fuel_cb);
 		this.mFuelCB.setOnCheckedChangeListener(this);
 		this.mDieselCB = (CheckBox) findViewById(R.id.diesel_cb);
