@@ -163,33 +163,18 @@ public class ParkingDB extends ObjectRepository {
 				+ prefs.getInt(FiltersActivity.FREEPLACES_PREF, 0) + " " : "";
 
 		String oneFree = (prefs.getBoolean(FiltersActivity.ONEFREESPOT_PREF,
-<<<<<<< HEAD
 				false)) ? "AND freePlaces > 0 " : "";
 		String cos = prefs.getInt(FiltersActivity.PRICE_PREF, 0)!=0 ?
 				" AND P.ParkingId IN (SELECT parking FROM HourlyRate WHERE cost <="+ prefs.getInt(FiltersActivity.PRICE_PREF, 0)+" )"
 				: "";
-=======
-				false)) ? "AND freePlaces < totalPlaces " : "";
 
-
->>>>>>> matin
 		Cursor cursor = myBDD.rawQuery(
 				"SELECT * FROM Parking P, ForbiddenFuel FF, Fuel F WHERE (P.parkingId = FF.parking OR P.parkingId != FF.parking) AND defibrillator IN (" + def
 								+ ") AND disable IN ("
 								+ dis
 								+ ") "
-<<<<<<< HEAD
 								+ getFuels + totPlaces + freePlaces + oneFree + cos, null);
-		/*
-		 * Cursor cursor = myBDD.query(getTablename(), ALL_COLUMNS,
-		 * "defibrillator IN ("+def+") AND disable IN ("+dis+")", null, null,
-		 * null, null);
-		 */
-		
-=======
-								+ getFuels + totPlaces + freePlaces + oneFree, null);
->>>>>>> matin
-		
+
 		return this.convertCursorToListObject(cursor);
 	}
 
