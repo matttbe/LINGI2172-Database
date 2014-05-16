@@ -65,7 +65,7 @@ public class OpeningHoursDB extends ObjectRepository {
 
 	@Override
 	public void populate(SQLiteDatabase db) {
-		// TODO Auto-generated method stub
+		db.execSQL("INSERT INTO OpeningHours VALUES(1,0, 6, '00:00:00','23:59:59',1);");
 
 	}
 
