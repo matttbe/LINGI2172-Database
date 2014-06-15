@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <title>LINGI2172 - Mission 2 - Benoit Daloze</title>
+  <link href="Benoit_Daloze_1_fichiers/bootstrap.css" rel="stylesheet">
+  <style>
+  .puzzle-block { padding-top: 50px; }
+  .student-block { padding-top: 50px; }
+  .puzzle { border-top: 2px solid #222222; padding-top: 10px; padding-bottom: 10px; }
+  .clear { clear: both; }
+  .success { color: green; }
+  .failure { color: red; }
+  .ignored { color: #888888; }
+  .menu { position: fixed; top: 5px; }
+  tr.failure { background-color: red; color: white; }
+  .menu li.success a { color: green; }
+  .menu li.failure a { color: red; }
+  .menu li.partial a { color: orange; }
+  @page { margin: 1cm; }
+  @media print {
+    .menu { display: none; }
+    body { font-size: 10px; }
+    pre { font-size: 8px; overflow: hidden; }
+    .puzzle-block { padding-top: 0px; page-break-after:always; }
+    .student-block { padding-top: 0px; }
+  }
+  </style>
+  <!--[if lt IE 9]>
+  <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
+<body>
+  <div class="container">
+    <div class="menu">
+      <ul class="pagination pagination-sm">
+        <li class="success"><a href="#S1">S1</a></li>
+        <li class="success"><a href="#S2">S2</a></li>
+        <li class="success"><a href="#S3">S3</a></li>
+        <li class="success"><a href="#S4">S4</a></li>
+        <li class="success"><a href="#S5">S5</a></li>
+        <li class="success"><a href="#S6">S6</a></li>
+        <li class="success"><a href="#S7">S7</a></li>
+        <li class="success"><a href="#S8">S8</a></li>
+        <li class="success"><a href="#E1">E1</a></li>
+        <li class="success"><a href="#E2">E2</a></li>
+        <li class="success"><a href="#E3">E3</a></li>
+        <li class="success"><a href="#E4">E4</a></li>
+        <li class="success"><a href="#E5">E5</a></li>
+        <li class="success"><a href="#E6">E6</a></li>
+        <li class="success"><a href="#M1">M1</a></li>
+        <li class="success"><a href="#M2">M2</a></li>
+        <li class="success"><a href="#M3">M3</a></li>
+        <li class="success"><a href="#M4">M4</a></li>
+        <li class="success"><a href="#M5">M5</a></li>
+        <li class="success"><a href="#M6">M6</a></li>
+        <li class="success"><a href="#D1">D1</a></li>
+        <li class="success"><a href="#D2">D2</a></li>
+        <li class="success"><a href="#D3">D3</a></li>
+        <li class="success"><a href="#D4">D4</a></li>
+        <li class="success"><a href="#D5">D5</a></li>
+        <li class="success"><a href="#D6">D6</a></li>
+        <li class="success"><a href="#H1">H1</a></li>
+        <li class="partial"><a href="#H2">H2</a></li>
+        <li class="success"><a href="#H3">H3</a></li>
+        <li class="success"><a href="#H4">H4</a></li>
+        <li class="success"><a href="#H5">H5</a></li>
+      </ul>
+    </div>
+    <div class="row student-block">
+      <h1>
+        <span class="pull-left">Benoit Daloze — 1030-09-00</span>
+        <span class="pull-right">164.0 / 172 — B</span>
+        <div class="clear"></div>
+      </h1>
+    </div>
+    <div class="puzzle-block" id="S1">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle S1</span>
+          <span class="pull-right">straightforward — 1 / 1 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get all suppliers.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` is named `name`, has status `status` and is located in the city named `city`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUPPLIERS</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT * FROM suppliers</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="S2">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle S2</span>
+          <span class="pull-right">straightforward — 1 / 1 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get the number and name of suppliers.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` is named `name`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUPPLIERS { SID, NAME }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT sid, name FROM suppliers</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="S3">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle S3</span>
+          <span class="pull-right">straightforward — 1 / 1 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get all but the status of suppliers.</pre>
+      </div>
+      <div class="row">
+        <pre>(There exists a status such that) supplier with number `sid` is named `name` and is located in city named `city`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUPPLIERS { ALL BUT STATUS }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT sid, name, city FROM suppliers</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="S4">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle S4</span>
+          <span class="pull-right">straightforward — 1 / 1 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get the city names where at least one supplier is located.</pre>
+      </div>
+      <div class="row">
+        <pre>(There exists a supplier, say s, ... such that)  s is located in city named `city`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUPPLIERS { CITY }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT DISTINCT city FROM suppliers</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="S5">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle S5</span>
+          <span class="pull-right">straightforward — 1 / 1 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get suppliers with status in the range 15 to 25 inclusive.</pre>
+      </div>
+      <div class="row">
+        <pre>[Supplier with number `sid` is named `name`, has status `status`, is located in city named `city`] and his status is in the range 15 to 25 inclusive</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUPPLIERS WHERE 15 &lt;= STATUS AND STATUS &lt;= 25</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT * FROM suppliers WHERE status BETWEEN 15 AND 25</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="S6">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle S6</span>
+          <span class="pull-right">straightforward — 1 / 1 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get suppliers located in London or Athens.</pre>
+      </div>
+      <div class="row">
+        <pre>[...] and that city is named London or is named Athens</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUPPLIERS MATCHING RELATION { TUPLE { CITY 'London' }, TUPLE { CITY 'Athens' } }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT * FROM suppliers WHERE city IN ('London', 'Athens')</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="S7">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle S7</span>
+          <span class="pull-right">straightforward — 1 / 1 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get suppliers not located in London nor in Athens.</pre>
+      </div>
+      <div class="row">
+        <pre>[...] and that city is not named London nor Athens</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUPPLIERS NOT MATCHING RELATION { TUPLE { CITY 'London' }, TUPLE { CITY 'Athens' } }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT * FROM suppliers WHERE city NOT IN ('London', 'Athens')</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="S8">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle S8</span>
+          <span class="pull-right">straightforward — 1 / 1 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get supplier numbers for suppliers located in London.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` is located in London</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>(SUPPLIERS WHERE CITY = 'London') { SID }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">0.5 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT sid FROM suppliers WHERE city = 'London'</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="E1">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle E1</span>
+          <span class="pull-right">easy — 2 / 2 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get supplier numbers for suppliers who supply part P1.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` supplies the part whose number is P1</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>(SHIPMENTS WHERE PID = P#('P1')) { SID }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT sid FROM shipments WHERE pid = 'P1'</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="E2">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle E2</span>
+          <span class="pull-right">easy — 2 / 2 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get how many shipments there are.</pre>
+      </div>
+      <div class="row">
+        <pre>The total count of shipments is `c`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>RELATION { TUPLE { C COUNT(SHIPMENTS) } }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT COUNT(*) AS c FROM shipments</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="E3">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle E3</span>
+          <span class="pull-right">easy — 2 / 2 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get how many parts are supplied by supplier S1.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier whose number is S1 supplies `c` parts</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>RELATION { TUPLE { C COUNT(SHIPMENTS WHERE SID = S#('S1')) } }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT COUNT(*) AS c FROM shipments WHERE sid = 'S1'</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="E4">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle E4</span>
+          <span class="pull-right">easy — 2 / 2 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get suppliers who supply at least one part.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` is named `name`, has status `status`, is located in the city named `city` and supplies at least one part (i.e. there exists a part number such that...)</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUPPLIERS MATCHING SHIPMENTS</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT * FROM suppliers WHERE EXISTS (SELECT * FROM shipments WHERE suppliers.sid = shipments.sid)</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="E5">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle E5</span>
+          <span class="pull-right">easy — 2 / 2 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get suppliers who supply no part at all.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` [is named ...] and supplies no part at all (i.e. there does not exist...)</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUPPLIERS NOT MATCHING SHIPMENTS</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT * FROM suppliers WHERE NOT EXISTS (SELECT * FROM shipments WHERE suppliers.sid = shipments.sid)</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="E6">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle E6</span>
+          <span class="pull-right">easy — 2 / 2 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get shipments together with the name of the supplier (sname) and the name of the part (pname)</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` is named `sname` and ships the part with number `pid`, named `pname` in `qty` quantity.</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>JOIN { SUPPLIERS RENAME { NAME AS SNAME, CITY AS SCITY }, SHIPMENTS, PARTS RENAME { NAME AS PNAME } } { SID, SNAME, PID, PNAME, QTY }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">1 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT sid, suppliers.name AS sname, parts.pid, parts.name AS pname, qty FROM suppliers NATURAL JOIN shipments JOIN parts ON shipments.pid = parts.pid</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="M1">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle M1</span>
+          <span class="pull-right">medium — 4 / 4 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get the `total` quantity of parts supplied by supplier S1.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier whose number is S1 supplies parts for a total quantity of `total`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>RELATION { TUPLE { TOTAL SUM(SHIPMENTS WHERE SID = S#('S1'), QTY) } }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT COALESCE(SUM(qty),0) AS total FROM shipments WHERE sid = 'S1'</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="M2">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle M2</span>
+          <span class="pull-right">medium — 4 / 4 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get part numbers for parts supplied by at least one supplier in Paris.</pre>
+      </div>
+      <div class="row">
+        <pre>The exists at least one supplier located in Paris who supplies the part whose number is `pid`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success ignored">0 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>(SHIPMENTS JOIN SUPPLIERS WHERE CITY = 'Paris') { PID }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success ignored">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>(SHIPMENTS MATCHING (SUPPLIERS WHERE CITY = 'Paris')) { PID }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success ignored">0 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT DISTINCT pid FROM shipments WHERE EXISTS (SELECT * FROM suppliers WHERE shipments.sid = suppliers.sid AND city = 'Paris')</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success ignored">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT DISTINCT pid FROM shipments NATURAL JOIN suppliers WHERE city = 'Paris'</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="M3">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle M3</span>
+          <span class="pull-right">medium — 4 / 4 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get city names for cities in which at least two suppliers are located.</pre>
+      </div>
+      <div class="row">
+        <pre>There exists at least two suppliers located in the city named `city`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>(SUMMARIZE SUPPLIERS BY { CITY } : { N := COUNT() } WHERE N &gt;= 2) { CITY }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT city FROM suppliers GROUP BY city HAVING COUNT(*) &gt;= 2</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="M4">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle M4</span>
+          <span class="pull-right">medium — 4 / 4 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get supplier numbers for suppliers whose city is first in the alphabetic list of such cities.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` is located in the city named `city` and that city name appears first in the alphabetic list of supplier cities.</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>(SUPPLIERS WHERE CITY = MIN(SUPPLIERS, CITY)) { SID }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT sid FROM suppliers WHERE city = (SELECT MIN(city) FROM suppliers)</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="M5">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle M5</span>
+          <span class="pull-right">medium — 4 / 4 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get the supplier numbers and the `total` quantity of supplied parts for each of them.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` supplies parts for a total quantity of `total`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success ignored">0 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>EXTEND SUPPLIERS : { TOTAL := SUM(SHIPMENTS JOIN RELATION { TUPLE { SID SID } }, QTY) } { SID, TOTAL }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success ignored">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUMMARIZE SHIPMENTS PER (SUPPLIERS { SID }) : { TOTAL := SUM(QTY) }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT suppliers.sid, SUM(COALESCE(qty,0)) AS total FROM suppliers LEFT JOIN shipments ON suppliers.sid = shipments.sid GROUP BY suppliers.sid</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="M6">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle M6</span>
+          <span class="pull-right">medium — 4 / 4 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get the number(s) of lightest part(s). In case of ex-aequo, get all parts with that smallest weight.</pre>
+      </div>
+      <div class="row">
+        <pre>Part with number `pid` has the smallest known weight among all parts</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>(PARTS WHERE WEIGHT = MIN(PARTS, WEIGHT)) { PID }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">2 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT pid FROM parts WHERE weight = (SELECT MIN(weight) FROM parts)</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="D1">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle D1</span>
+          <span class="pull-right">difficult — 8 / 8 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get part numbers for parts not supplied by any supplier in Paris.</pre>
+      </div>
+      <div class="row">
+        <pre>No supplier in Paris supplies the part with number `pid`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>PARTS { PID } NOT MATCHING (SHIPMENTS MATCHING (SUPPLIERS WHERE CITY = 'Paris'))</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT pid FROM parts WHERE NOT EXISTS (SELECT * FROM shipments NATURAL JOIN suppliers WHERE parts.pid = shipments.pid AND city = 'Paris')</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="D2">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle D2</span>
+          <span class="pull-right">difficult — 8 / 8 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get numbers of suppliers who supply all parts.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` supplies all parts.</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>((SUMMARIZE SHIPMENTS PER (SUPPLIERS { SID }) : { NB := COUNT() }) WHERE NB = COUNT(PARTS)) { SID }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT suppliers.sid FROM suppliers LEFT JOIN shipments ON suppliers.sid = shipments.sid GROUP BY suppliers.sid HAVING COUNT(pid) = (SELECT COUNT(*) FROM parts)</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="D3">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle D3</span>
+          <span class="pull-right">difficult — 8 / 8 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get supplier for suppliers with a status strictly lower than of supplier S1.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` is named [...] and has a status strictly lower than supplier with number S1</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success ignored">0 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUPPLIERS WHERE STATUS &lt; (STATUS FROM TUPLE FROM (SUPPLIERS WHERE SID = S#('S1')))</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success ignored">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH (S1STATUS := (SUPPLIERS WHERE SID = S#("S1")) { STATUS } RENAME { STATUS AS S }):
+        (SUPPLIERS TIMES S1STATUS WHERE STATUS &lt; S) { ALL BUT S }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT * FROM suppliers WHERE status &lt; (SELECT status FROM suppliers WHERE sid = 'S1')</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="D4">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle D4</span>
+          <span class="pull-right">difficult — 8 / 8 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get supplier-number/part-number pairs such that the indicated supplier does not supply the indicated part.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sid` does not supply part with number `pid`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success ignored">0 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>EXTEND (SUPPLIERS { SID }) : { SPARTS := PARTS { PID } MINUS (PARTS JOIN SHIPMENTS JOIN RELATION { TUPLE { SID SID } }) { PID } } UNGROUP (SPARTS)</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success ignored">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>(SUPPLIERS { SID } JOIN PARTS { PID }) NOT MATCHING SHIPMENTS</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT sid, pid FROM suppliers, parts EXCEPT SELECT sid, pid FROM shipments</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="D5">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle D5</span>
+          <span class="pull-right">difficult — 8 / 8 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get every known city together with the count of parts located in that city (`ps`), the count of suppliers located there (`ss`), and the total shipped quantity by the latter (`total`).</pre>
+      </div>
+      <div class="row">
+        <pre>In city named `city`, there are `ps` located parts, `ss` located suppliers and a total quantity of `total` shipped parts by those suppliers.</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>EXTEND (SUPPLIERS { CITY } UNION PARTS { CITY }) : {
+          PS := COUNT(PARTS JOIN RELATION { TUPLE { CITY CITY } }),
+          SS := COUNT(SUPPLIERS JOIN RELATION { TUPLE { CITY CITY } }),
+          TOTAL := SUM(SHIPMENTS JOIN SUPPLIERS JOIN RELATION { TUPLE { CITY CITY } }, QTY)
+        }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right failure ignored">0 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT city, SUM(ps) AS ps, SUM(ss) AS ss, SUM(total) AS total
+        FROM (
+          (SELECT city, COUNT(*) AS ps, 0 AS ss, 0 AS total
+           FROM parts GROUP BY city)
+        UNION
+          (SELECT city, 0 AS ps, COUNT(DISTINCT suppliers.sid) AS ss, COALESCE(SUM(qty),0) AS total
+           FROM suppliers LEFT JOIN shipments ON suppliers.sid = shipments.sid GROUP BY city)
+        ) AS r GROUP BY city</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="failure ignored">
+            <td>base</td>
+            <td>heading mismatch</td>
+            <td><pre>    Alf::Heading[:city =&gt; String, :ss =&gt; Fixnum, :ps =&gt; Fixnum, :total =&gt; Fixnum]
+vs. Alf::Heading[:city =&gt; String, :ps =&gt; BigDecimal, :ss =&gt; BigDecimal, :total =&gt; BigDecimal]</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="failure ignored">
+            <td>no-shipments</td>
+            <td>heading mismatch</td>
+            <td><pre>    Alf::Heading[:city =&gt; String, :ss =&gt; Fixnum, :ps =&gt; Fixnum, :total =&gt; Fixnum]
+vs. Alf::Heading[:city =&gt; String, :ps =&gt; BigDecimal, :ss =&gt; BigDecimal, :total =&gt; BigDecimal]</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH cities AS (SELECT * FROM (SELECT city FROM suppliers UNION SELECT city FROM parts) c),
+             supplies AS (SELECT * FROM suppliers NATURAL JOIN shipments)
+        SELECT
+          city,
+          (SELECT COUNT(*) FROM parts p WHERE p.city = c.city) AS ps,
+          (SELECT COUNT(*) FROM suppliers s WHERE s.city = c.city) AS ss,
+          COALESCE((SELECT SUM(qty) FROM supplies s WHERE s.city = c.city GROUP BY s.city), 0) AS total
+        FROM cities c;</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="D6">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle D6</span>
+          <span class="pull-right">difficult — 8 / 8 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get the heaviest part. In case of ex-aequo, select the one with the smallest part number.</pre>
+      </div>
+      <div class="row">
+        <pre>Part number `pid` is the first in the alphabetic list of (part numbers of) heaviest parts</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH (HEAVIEST := PARTS WHERE WEIGHT = MAX(PARTS, WEIGHT)) :
+        (HEAVIEST WHERE PID = MIN(HEAVIEST, PID)) { PID }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">4 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT pid FROM parts WHERE weight = (SELECT MAX(weight) FROM parts) ORDER BY pid ASC LIMIT 1</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="H1">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle H1</span>
+          <span class="pull-right">hard — 16 / 16 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get every city name where at least one part is located, together with the average supplier status in that city (`avg_status`). Do not include cities where no supplier is located.</pre>
+      </div>
+      <div class="row">
+        <pre>At least one part is located in the the city named `city` and that city has located suppliers for an average status of `avg_status`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">8 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SUMMARIZE SUPPLIERS MATCHING PARTS { CITY } BY { CITY } : { AVG_STATUS := AVG(STATUS) }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">8 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>SELECT city, AVG(status) AS avg_status FROM suppliers WHERE EXISTS
+          (SELECT * FROM parts WHERE parts.city = suppliers.city)
+        GROUP BY city</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="H2">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle H2</span>
+          <span class="pull-right">hard — 8 / 16 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get part numbers for parts supplied by all suppliers in London.</pre>
+      </div>
+      <div class="row">
+        <pre>Part with number `pid` is supplied by all suppliers located in London</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right failure ignored">0 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH (SUPLONDON := (SUPPLIERS WHERE CITY = 'London') { SID }) :
+        (SUMMARIZE PARTS JOIN SHIPMENTS JOIN SUPLONDON BY { PID } : { C := COUNT() } WHERE C = COUNT(SUPLONDON)) { PID }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success ignored">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="failure ignored">
+            <td>no-shipments</td>
+            <td>not equivalent</td>
+            <td><pre>+-----------+------+
+| :expected | :got |
++-----------+------+
+| +------+  | []   |
+| | :pid |  |      |
+| +------+  |      |
+| | P1   |  |      |
+| | P2   |  |      |
+| | P3   |  |      |
+| | P4   |  |      |
+| | P5   |  |      |
+| | P6   |  |      |
+| +------+  |      |
++-----------+------+
+</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right failure">0 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH (SUPLONDON := (SUPPLIERS WHERE CITY = 'London') { SID }) :
+        (PARTS NOT MATCHING ((SUPLONDON TIMES PARTS) NOT MATCHING SHIPMENTS)) { PID }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="failure">
+            <td>no-shipments</td>
+            <td>not equivalent</td>
+            <td><pre>+-----------+------+
+| :expected | :got |
++-----------+------+
+| +------+  | []   |
+| | :pid |  |      |
+| +------+  |      |
+| | P1   |  |      |
+| | P2   |  |      |
+| | P3   |  |      |
+| | P4   |  |      |
+| | P5   |  |      |
+| | P6   |  |      |
+| +------+  |      |
++-----------+------+
+</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">8 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH suplondon AS (SELECT sid FROM suppliers WHERE city = 'London')
+        SELECT pid
+        FROM parts NATURAL JOIN shipments NATURAL JOIN suplondon
+        GROUP BY pid HAVING COUNT(*) = (SELECT COUNT(*) FROM suplondon)</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="H3">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle H3</span>
+          <span class="pull-right">hard — 16 / 16 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get all pairs of supplier numbers, say sx and sy, such that sx and sy supply exactly the same set of parts each.</pre>
+      </div>
+      <div class="row">
+        <pre>Supplier with number `sx` supplies the same parts as supplier with number `sy`.</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">8 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH (
+          SUPPLY := (SUPPLIERS { SID } JOIN SHIPMENTS { SID, PID }) GROUP ({PID} AS SUPPLIES),
+          PAIRS := SUPPLIERS { SID } RENAME { SID AS SX } TIMES SUPPLIERS { SID } RENAME { SID AS SY }
+        ) : PAIRS WHERE NOT (SX = SY) AND (SUPPLY WHERE SID = SX) { SUPPLIES } = (SUPPLY WHERE SID = SY) { SUPPLIES }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">8 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH sids AS (SELECT sid FROM suppliers)
+        SELECT s1.sid AS sx, s2.sid AS sy FROM sids s1 JOIN sids s2 ON s1.sid != s2.sid
+        WHERE
+          (NOT EXISTS(SELECT * FROM shipments WHERE sid = s1.sid
+             AND pid NOT IN (SELECT pid FROM shipments WHERE sid = s2.sid))) AND
+          (NOT EXISTS(SELECT * FROM shipments WHERE sid = s2.sid
+             AND pid NOT IN (SELECT pid FROM shipments WHERE sid = s1.sid)))</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="H4">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle H4</span>
+          <span class="pull-right">hard — 16 / 16 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get all pairs of part numbers (as `p` and `q`) such that some supplier supplies both of the indicated parts.</pre>
+      </div>
+      <div class="row">
+        <pre>There exists a supplier supplying both part with number `p`  and part with number `q`</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success ignored">0 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH (SUPPLY := ((SUPPLIERS { SID } JOIN SHIPMENTS { SID, PID }) GROUP ({PID} AS SUPPLIES)) { SUPPLIES }) :
+        (PARTS { PID } RENAME { PID AS P }) TIMES (PARTS { PID } RENAME { PID AS Q })
+        WHERE NOT (P = Q) AND NOT IS_EMPTY(SUPPLY WHERE RELATION { TUPLE { PID P }, TUPLE { PID Q } } &lt;= SUPPLIES)</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success ignored">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success ignored">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">8 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH (SS := SHIPMENTS { PID, SID }) :
+        JOIN {
+          PARTS { PID } RENAME { PID AS P } TIMES PARTS { PID } RENAME { PID AS Q } WHERE NOT (P = Q),
+          SS RENAME { PID AS P },
+          SS RENAME { PID AS Q }
+        } { P, Q }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">8 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH pids AS (SELECT pid FROM parts)
+        SELECT p1.pid AS p, p2.pid AS q FROM pids p1 JOIN pids p2 ON p1.pid != p2.pid
+        WHERE EXISTS(SELECT * FROM suppliers
+          WHERE (
+            SELECT COUNT(*) FROM shipments
+            WHERE suppliers.sid = shipments.sid AND (pid = p1.pid OR pid = p2.pid)
+          ) = 2)</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+    <div class="puzzle-block" id="H5">
+      <div class="row">
+        <h2 class="puzzle">
+          <span class="pull-left">Puzzle H5</span>
+          <span class="pull-right">hard — 16 / 16 star(s)</span>
+          <div class="clear"></div>
+        </h2>
+      </div>
+      <div class="row">
+        <pre>Get supplier numbers for suppliers supplying at least as many parts as the three "best" suppliers (in terms of supplied quantities), together with their respective total quantity.</pre>
+      </div>
+      <div class="row">
+        <pre>With a total quantity of supplied parts `total`, supplier with number `sid` is among those who supply the three largest total quantities of parts.</pre>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">tutorial-d</span>
+          <span class="pull-right success">8 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH (
+          Q := SUMMARIZE SHIPMENTS PER (SUPPLIERS { SID }) : { TOTAL := SUM(QTY) }, 
+          R := EXTEND (Q) : { BETTER := COUNT(Q RENAME { TOTAL AS TOT } WHERE TOT &gt; TOTAL) }
+        ) : (R WHERE BETTER &lt;= 2) { ALL BUT BETTER }</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+      <div class="row">
+        <h3>
+          <span class="pull-left">sql</span>
+          <span class="pull-right success">8 star(s) earned</span>
+          <div class="clear"></div>
+        </h3>
+      </div>
+      <div class="row">
+        <pre>WITH supplying AS
+          (SELECT s.sid, COALESCE(SUM(qty), 0) AS total
+           FROM (SELECT sid FROM suppliers) s
+           LEFT JOIN shipments sp ON s.sid = sp.sid
+           GROUP BY s.sid)
+        (SELECT sid, total
+         FROM supplying WHERE total &gt;=
+           (SELECT total
+            FROM (SELECT total FROM supplying ORDER BY total DESC LIMIT 3) s
+            ORDER BY total ASC LIMIT 1))</pre>
+      </div>
+      <div class="row">
+        <table class="table">
+          <tbody><tr class="success">
+            <td>base</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>empty</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+          <tr class="success">
+            <td>no-shipments</td>
+            <td>equivalent</td>
+            <td><pre>good job!</pre></td>
+          </tr>
+        </tbody></table>
+      </div>
+    </div>
+  </div>
+
+</body></html>
